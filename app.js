@@ -736,38 +736,512 @@ function verifyChargaffChallenge() {
   }
 }
 
-let currentGelDye = 'etbr';
-function toggleGelDye() {
-  currentGelDye = currentGelDye === 'etbr' ? 'sybr' : 'etbr';
-  const btn = document.getElementById('btn-dye');
-  const bands = ['sample-band-large', 'sample-band-med', 'sample-band-small'];
-  if (currentGelDye === 'sybr') {
-    if (btn) {
-      btn.textContent = '🎨 Colorante: SYBR Safe (Verde UV)';
-      btn.className = 'px-3.5 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-emerald-300 font-bold rounded-xl transition';
+// ==========================================================================
+// SIMULADOR 2A: LABORATORIO PROFESIONAL DE ELECTROFORESIS Y TRANSILUMINADOR UV
+// ==========================================================================
+
+const GEL_LADDER_DATA = [
+  { size: 10000, label: '10.0 kb', topPct: 15, rf: 0.16, ng: 40, desc: 'Banda superior del ladder ($10.000\\text{ pb}$). Fragmento de gran masa molecular con alta fricción y retención en la red tridimensional de agarosa.' },
+  { size: 6000, label: '6.0 kb', topPct: 24, rf: 0.25, ng: 40, desc: 'Fragmento de $6.000\\text{ pb}$ ($6\\text{ kb}$) del marcador estándar.' },
+  { size: 4000, label: '4.0 kb', topPct: 33, rf: 0.35, ng: 45, desc: 'Fragmento de $4.000\\text{ pb}$ ($4\\text{ kb}$). Coincide exactamente con el vector linealizado en el Carril 2.' },
+  { size: 3000, label: '3.0 kb', topPct: 41, rf: 0.43, ng: 45, desc: 'Fragmento de $3.000\\text{ pb}$ ($3\\text{ kb}$) del marcador estándar.' },
+  { size: 2000, label: '2.0 kb', topPct: 50, rf: 0.52, ng: 50, desc: 'Fragmento de $2.000\\text{ pb}$ ($2\\text{ kb}$) del marcador estándar.' },
+  { size: 1500, label: '1.5 kb', topPct: 58, rf: 0.60, ng: 50, desc: 'Fragmento de $1.500\\text{ pb}$ ($1.5\\text{ kb}$). Coincide con la banda del inserto clonado en el Carril 2.' },
+  { size: 1000, label: '1.0 kb ★', topPct: 66, rf: 0.69, ng: 100, isRef: true, desc: 'Banda de referencia molecular de $1.000\\text{ pb}$ ($1\\text{ kb}$). Posee el doble de masa de ADN ($100\\text{ ng}$) para orientar visualmente el gel.' },
+  { size: 500, label: '500 pb', topPct: 80, rf: 0.83, ng: 40, desc: 'Fragmento corto de $500\\text{ pb}$. Migra con rapidez hacia el tercio inferior del gel.' },
+  { size: 250, label: '250 pb', topPct: 91, rf: 0.95, ng: 35, desc: 'Banda inferior más rápida del marcador ($250\\text{ pb}$). Migra inmediatamente detrás del frente del colorante de carga.' }
+];
+
+const GEL_SAMPLES_DATA = {
+  sampleA: [
+    { id: 'sa_vector', size: 4000, label: '4.0 kb', topPct: 33, rf: 0.35, ng: 80, isThick: true, lane: 'Carril 2 • Muestra A (Digestión de Plásmido)', name: 'Vector Plasmídico Linealizado', desc: 'Banda de $4.000\\text{ pb}$ resultante de escindir el plásmido recombinante con restrictasas en las dianas que flanquean el inserto.' },
+    { id: 'sa_insert', size: 1500, label: '1.5 kb', topPct: 58, rf: 0.60, ng: 50, isThick: false, lane: 'Carril 2 • Muestra A (Digestión de Plásmido)', name: 'Inserto Clonado de ADNc', desc: 'Fragmento liberado de $1.500\\text{ pb}$ ($1.5\\text{ kb}$). Corresponde al gen eucariota de interés introducido en el vector.' }
+  ],
+  sampleB: [
+    { id: 'sb_relaxed', size: 7000, label: '~7.0 kb (aparente)', topPct: 20, rf: 0.21, ng: 35, isThick: false, lane: 'Carril 3 • Muestra B (Plásmido Intacto)', name: 'Forma Circular Relajada (Nicked DNA)', desc: 'Molécula de plásmido circular con una mella o corte fosfodiéster en una sola hebra. Su conformación circular abierta y laxa aumenta la resistencia hidrodinámica, migrando muy lentamente.' },
+    { id: 'sb_supercoiled', size: 2000, label: '~2.0 kb (aparente)', topPct: 50, rf: 0.52, ng: 90, isThick: true, lane: 'Carril 3 • Muestra B (Plásmido Intacto)', name: 'Forma Superenrollada (Supercoiled DNA)', desc: 'ADN plasmídico bicatenario cerrado covalentemente con alto grado de superenrollamiento negativo. Al ser sumamente compacto, atraviesa la red de agarosa a gran velocidad (migración aparente $\\approx 2.0\\text{ kb}$ a pesar de tener un peso real de $5.5\\text{ kb}$).' }
+  ],
+  sampleC: [
+    { id: 'sc_pcr', size: 750, label: '750 pb', topPct: 73, rf: 0.76, ng: 70, isThick: true, lane: 'Carril 4 • Muestra C (Producto PCR)', name: 'Amplicón de PCR Específico', desc: 'Fragmento monobanda nítido de $750\\text{ pb}$ sintetizado mediante PCR. Interpola limpiamente entre la banda de $1.000\\text{ pb}$ y la de $500\\text{ pb}$ del marcador.' }
+  ]
+};
+
+const GelLabState = {
+  isRunning: false,
+  voltage: 100, // 70, 100, 130
+  progress: 1.0, // 0.0 (en pocillos) a 1.0 (migración completa)
+  timeElapsedSec: 2400, // 40 minutos en segundos
+  totalDurationSec: 2400,
+  illumination: 'uv', // 'visible' | 'uv'
+  dye: 'etbr', // 'etbr' | 'sybr'
+  showRuler: false,
+  timerInterval: null,
+  selectedBandKey: null,
+  challengeSelected: null,
+  challengeSolved: false
+};
+
+function initGelLab() {
+  updateGelDisplays();
+  renderGelBands();
+}
+
+function updateGelDisplays() {
+  const vDisp = document.getElementById('disp-voltage');
+  const cDisp = document.getElementById('disp-current');
+  const tDisp = document.getElementById('disp-time');
+  const sDisp = document.getElementById('disp-status');
+  const led = document.getElementById('power-led');
+  const btnRun = document.getElementById('btn-run-gel');
+  const iconRun = document.getElementById('icon-run-gel');
+  const textRun = document.getElementById('text-run-gel');
+  const bubCath = document.getElementById('bubbles-cathode-indicator');
+  const bubAnod = document.getElementById('bubbles-anode-indicator');
+
+  if (vDisp) vDisp.textContent = `${GelLabState.voltage} V`;
+
+  // mA calculation according to voltage
+  let currentMA = 0;
+  if (GelLabState.isRunning) {
+    if (GelLabState.voltage === 70) currentMA = 46;
+    else if (GelLabState.voltage === 100) currentMA = 68;
+    else currentMA = 94;
+  }
+  if (cDisp) cDisp.textContent = `${currentMA} mA`;
+
+  // Format time mm:ss
+  const mins = Math.floor(GelLabState.timeElapsedSec / 60);
+  const secs = GelLabState.timeElapsedSec % 60;
+  const timeStr = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  if (tDisp) tDisp.textContent = timeStr;
+
+  // Status and LED
+  if (sDisp && led) {
+    if (GelLabState.isRunning) {
+      sDisp.textContent = 'RUNNING';
+      sDisp.className = 'text-[11px] font-mono-code font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 animate-pulse';
+      led.className = 'w-2 h-2 rounded-full bg-emerald-400 inline-block shadow-lg shadow-emerald-400/80 animate-pulse';
+    } else if (GelLabState.progress >= 1.0) {
+      sDisp.textContent = 'COMPLETED';
+      sDisp.className = 'text-[11px] font-mono-code font-bold px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40';
+      led.className = 'w-2 h-2 rounded-full bg-cyan-400 inline-block';
+    } else {
+      sDisp.textContent = 'STANDBY';
+      sDisp.className = 'text-[11px] font-mono-code font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-400';
+      led.className = 'w-2 h-2 rounded-full bg-slate-600 inline-block';
     }
-    bands.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.className = 'h-2 rounded bg-emerald-400 sybr-glow transition-all duration-700';
+  }
+
+  // Run button state
+  if (btnRun && iconRun && textRun) {
+    if (GelLabState.isRunning) {
+      iconRun.textContent = '⏸️';
+      textRun.textContent = 'Pausar';
+      btnRun.className = 'col-span-2 sm:col-span-1 py-2 px-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition shadow-lg shadow-amber-500/20';
+    } else {
+      iconRun.textContent = '▶️';
+      textRun.textContent = GelLabState.progress >= 1.0 ? 'Reanudar' : 'Conectar';
+      btnRun.className = 'col-span-2 sm:col-span-1 py-2 px-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition shadow-lg shadow-emerald-500/20';
+    }
+  }
+
+  // Electrolysis Bubbles
+  if (bubCath) {
+    if (GelLabState.isRunning) bubCath.classList.remove('hidden');
+    else bubCath.classList.add('hidden');
+  }
+  if (bubAnod) {
+    if (GelLabState.isRunning) bubAnod.classList.remove('hidden');
+    else bubAnod.classList.add('hidden');
+  }
+
+  // Update well fill colors
+  for (let w = 1; w <= 4; w++) {
+    const wf = document.getElementById(`well-fill-${w}`);
+    if (wf) {
+      if (GelLabState.progress < 0.1) {
+        wf.className = 'w-full h-2 bg-indigo-900 rounded opacity-100 transition-all';
+      } else {
+        wf.className = 'w-full h-2 bg-slate-900 rounded opacity-40 transition-all';
+      }
+    }
+  }
+}
+
+function renderGelBands() {
+  const container = document.getElementById('gel-lanes-area');
+  if (!container) return;
+
+  const p = Math.min(1.0, Math.max(0.0, GelLabState.progress));
+  const isUV = GelLabState.illumination === 'uv';
+  const dyeClass = GelLabState.dye === 'sybr' ? 'band-sybr' : 'band-etbr';
+  const bandDisplay = isUV ? 'opacity-100' : 'opacity-0';
+
+  // Tracking dye front (Azul de Bromofenol): co-migrates with ~300 bp fragments (~94% top)
+  const dyeTop = (4 + (94 - 4) * p);
+
+  // Helper: linear interpolation from well (4%) to final migration Rf (targetPct)
+  const getTop = (targetPct) => (4 + (targetPct - 4) * p);
+
+  let html = '';
+
+  // 1. Ladder Scale column on the left (col-span-3: 0% to 25% of width)
+  GEL_LADDER_DATA.forEach((lad, idx) => {
+    const curTop = getTop(lad.topPct);
+    html += `
+      <div class="absolute left-1 sm:left-2 flex items-center gap-1 transition-all duration-150 ${isUV ? 'opacity-90' : 'opacity-0'} pointer-events-none" style="top: ${curTop}%; transform: translateY(-50%);">
+        <span class="text-[9px] sm:text-[10px] font-mono-code font-bold ${lad.isRef ? 'text-amber-300' : 'text-cyan-300'} whitespace-nowrap">${lad.label}</span>
+        <span class="w-2 sm:w-3 h-px bg-slate-600 inline-block"></span>
+      </div>
+    `;
+  });
+
+  // 2. Carril 1: Marcador Ladder bands (centered at 33.3% of width)
+  GEL_LADDER_DATA.forEach((lad, idx) => {
+    const curTop = getTop(lad.topPct);
+    const isSelected = GelLabState.selectedBandKey === `lad_${lad.size}`;
+    const heightClass = lad.isRef ? 'h-2 sm:h-2.5' : 'h-1 sm:h-1.5';
+    html += `
+      <div id="band-lad-${idx}" 
+           onclick="inspectGelBand('ladder', ${lad.size})" 
+           class="absolute left-[33.3%] -translate-x-1/2 w-8 sm:w-10 ${heightClass} ${dyeClass} ${bandDisplay} ${isSelected ? 'band-highlight' : ''} cursor-pointer transition-all duration-150 hover:brightness-150 z-20"
+           style="top: ${curTop}%; transform: translate(-50%, -50%);"
+           title="Ladder: ${lad.label} (${lad.size} pb)">
+      </div>
+    `;
+  });
+
+  // 3. Carril 2: Muestra A (Digestión de Plásmido) (centered at 54.1%)
+  GEL_SAMPLES_DATA.sampleA.forEach(item => {
+    const curTop = getTop(item.topPct);
+    const isSelected = GelLabState.selectedBandKey === item.id;
+    const heightClass = item.isThick ? 'h-2 sm:h-2.5' : 'h-1 sm:h-1.5';
+    html += `
+      <div id="band-${item.id}" 
+           onclick="inspectGelBand('sampleA', ${item.size})" 
+           class="absolute left-[54.1%] -translate-x-1/2 w-10 sm:w-12 ${heightClass} ${dyeClass} ${bandDisplay} ${isSelected ? 'band-highlight' : ''} cursor-pointer transition-all duration-150 hover:brightness-150 z-20"
+           style="top: ${curTop}%; transform: translate(-50%, -50%);"
+           title="${item.name}: ${item.label}">
+      </div>
+    `;
+  });
+
+  // 4. Carril 3: Muestra B (Plásmido Intacto) (centered at 75.0%)
+  GEL_SAMPLES_DATA.sampleB.forEach(item => {
+    const curTop = getTop(item.topPct);
+    const isSelected = GelLabState.selectedBandKey === item.id;
+    const heightClass = item.isThick ? 'h-2 sm:h-2.5' : 'h-1 sm:h-1.5';
+    html += `
+      <div id="band-${item.id}" 
+           onclick="inspectGelBand('sampleB', '${item.id}')" 
+           class="absolute left-[75.0%] -translate-x-1/2 w-8 sm:w-10 ${heightClass} ${dyeClass} ${bandDisplay} ${isSelected ? 'band-highlight' : ''} cursor-pointer transition-all duration-150 hover:brightness-150 z-20"
+           style="top: ${curTop}%; transform: translate(-50%, -50%);"
+           title="${item.name}: ${item.label}">
+      </div>
+    `;
+  });
+
+  // 5. Carril 4: Muestra C (Producto PCR) (centered at 91.6%)
+  GEL_SAMPLES_DATA.sampleC.forEach(item => {
+    const curTop = getTop(item.topPct);
+    const isSelected = GelLabState.selectedBandKey === item.id;
+    html += `
+      <div id="band-${item.id}" 
+           onclick="inspectGelBand('sampleC', ${item.size})" 
+           class="absolute left-[91.6%] -translate-x-1/2 w-8 sm:w-10 h-2 sm:h-2.5 ${dyeClass} ${bandDisplay} ${isSelected ? 'band-highlight' : ''} cursor-pointer transition-all duration-150 hover:brightness-150 z-20"
+           style="top: ${curTop}%; transform: translate(-50%, -50%);"
+           title="${item.name}: ${item.label}">
+      </div>
+    `;
+  });
+
+  // 6. Frente del Colorante de Carga (Azul de Bromofenol)
+  if (p > 0.04) {
+    const dyeOpacity = isUV ? 'opacity-25' : 'opacity-85';
+    const lanesX = ['33.3%', '54.1%', '75.0%', '91.6%'];
+    lanesX.forEach(lx => {
+      html += `
+        <div class="absolute -translate-x-1/2 w-8 sm:w-11 h-2 tracking-dye-front ${dyeOpacity} pointer-events-none transition-all duration-150 z-10"
+             style="left: ${lx}; top: ${dyeTop}%; transform: translate(-50%, -50%);">
+        </div>
+      `;
     });
+  }
+
+  container.innerHTML = html;
+}
+
+function toggleGelRun() {
+  if (GelLabState.isRunning) {
+    pauseGelSimulation();
   } else {
-    if (btn) {
-      btn.textContent = '🎨 Colorante: Bromuro de Etidio (Luz UV)';
-      btn.className = 'px-3.5 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-rose-300 font-bold rounded-xl transition';
+    startGelSimulation();
+  }
+}
+
+function startGelSimulation() {
+  if (GelLabState.progress >= 1.0) {
+    // Reset to start new run if completed
+    GelLabState.progress = 0;
+    GelLabState.timeElapsedSec = 0;
+  }
+
+  GelLabState.isRunning = true;
+  SFX.click();
+  updateGelDisplays();
+
+  if (GelLabState.timerInterval) clearInterval(GelLabState.timerInterval);
+
+  GelLabState.timerInterval = setInterval(() => {
+    // Progress calculation speed factor based on voltage
+    const speedFactor = GelLabState.voltage === 70 ? 10 : (GelLabState.voltage === 100 ? 18 : 28);
+    GelLabState.timeElapsedSec += speedFactor;
+
+    if (GelLabState.timeElapsedSec >= GelLabState.totalDurationSec) {
+      GelLabState.timeElapsedSec = GelLabState.totalDurationSec;
+      GelLabState.progress = 1.0;
+      pauseGelSimulation();
+      SFX.success();
+    } else {
+      GelLabState.progress = GelLabState.timeElapsedSec / GelLabState.totalDurationSec;
     }
-    bands.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.className = 'h-2 rounded bg-rose-500 uv-glow transition-all duration-700';
-    });
+
+    updateGelDisplays();
+    renderGelBands();
+  }, 100);
+}
+
+function pauseGelSimulation() {
+  GelLabState.isRunning = false;
+  if (GelLabState.timerInterval) {
+    clearInterval(GelLabState.timerInterval);
+    GelLabState.timerInterval = null;
+  }
+  updateGelDisplays();
+  renderGelBands();
+  SFX.click();
+}
+
+function fastForwardGel() {
+  pauseGelSimulation();
+  GelLabState.progress = 1.0;
+  GelLabState.timeElapsedSec = GelLabState.totalDurationSec;
+  updateGelDisplays();
+  renderGelBands();
+  SFX.success();
+}
+
+function resetGelSimulation() {
+  pauseGelSimulation();
+  GelLabState.progress = 0;
+  GelLabState.timeElapsedSec = 0;
+  GelLabState.selectedBandKey = null;
+  updateGelDisplays();
+  renderGelBands();
+  SFX.click();
+
+  const insp = document.getElementById('inspect-content');
+  const carrier = document.getElementById('inspect-carrier');
+  if (insp && carrier) {
+    carrier.textContent = 'Pocillos cargados • Listo para correr';
+    insp.innerHTML = `<p class="text-slate-400 italic text-[11px]">Las muestras de ADN con glicerol y azul de bromofenol están en el fondo de los pocillos. Pulsa <strong>▶️ Conectar</strong> para iniciar la migración hacia el polo positivo (+).</p>`;
+  }
+}
+
+function setGelVoltage(v) {
+  GelLabState.voltage = v;
+  [70, 100, 130].forEach(volt => {
+    const b = document.getElementById(`btn-v-${volt}`);
+    if (b) {
+      if (volt === v) {
+        b.className = 'py-1.5 rounded-lg bg-cyan-500/30 border border-cyan-500/50 text-cyan-300 font-bold transition';
+      } else {
+        b.className = 'py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition';
+      }
+    }
+  });
+  updateGelDisplays();
+  SFX.click();
+}
+
+function setGelIllumination(mode) {
+  GelLabState.illumination = mode;
+  const slab = document.getElementById('gel-slab-surface');
+  const btnVis = document.getElementById('btn-illum-vis');
+  const btnUV = document.getElementById('btn-illum-uv');
+
+  if (mode === 'uv') {
+    if (slab) slab.className = 'gel-bed-uv relative rounded-xl p-3 h-[420px] transition-colors duration-500 overflow-hidden';
+    if (btnUV) btnUV.className = 'p-2.5 rounded-xl bg-purple-500/20 text-purple-200 border border-purple-500/50 hover:bg-purple-500/30 text-left transition shadow-lg shadow-purple-500/20';
+    if (btnVis) btnVis.className = 'p-2.5 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 text-left transition';
+  } else {
+    if (slab) slab.className = 'gel-bed-visible relative rounded-xl p-3 h-[420px] transition-colors duration-500 overflow-hidden';
+    if (btnVis) btnVis.className = 'p-2.5 rounded-xl bg-cyan-500/20 text-cyan-200 border border-cyan-500/50 hover:bg-cyan-500/30 text-left transition shadow-lg shadow-cyan-500/20';
+    if (btnUV) btnUV.className = 'p-2.5 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 text-left transition';
+  }
+
+  renderGelBands();
+  SFX.click();
+}
+
+function setGelFluorophore(dye) {
+  GelLabState.dye = dye;
+  currentGelDye = dye;
+  const btnEtbr = document.getElementById('btn-dye-etbr');
+  const btnSybr = document.getElementById('btn-dye-sybr');
+  const badge = document.getElementById('gel-safety-badge');
+
+  if (dye === 'sybr') {
+    if (btnSybr) btnSybr.className = 'px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 text-xs font-bold transition';
+    if (btnEtbr) btnEtbr.className = 'px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-slate-400 text-xs font-bold hover:bg-slate-700 transition';
+    if (badge) {
+      badge.className = 'px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-mono-code flex items-center gap-1.5';
+      badge.innerHTML = '<span>🟢 Bioseguridad: SYBR Safe (No mutagénico)</span>';
+    }
+  } else {
+    if (btnEtbr) btnEtbr.className = 'px-2.5 py-1 rounded-lg bg-rose-500/20 border border-rose-500/50 text-rose-300 text-xs font-bold transition';
+    if (btnSybr) btnSybr.className = 'px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-slate-400 text-xs font-bold hover:bg-slate-700 transition';
+    if (badge) {
+      badge.className = 'px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono-code flex items-center gap-1.5';
+      badge.innerHTML = '<span>⚠️ Bioseguridad: Bromuro de Etidio (Intercalante)</span>';
+    }
+  }
+
+  renderGelBands();
+  SFX.click();
+}
+
+function toggleGelDye() {
+  setGelFluorophore(GelLabState.dye === 'etbr' ? 'sybr' : 'etbr');
+}
+
+function toggleGelRuler() {
+  GelLabState.showRuler = !GelLabState.showRuler;
+  const ruler = document.getElementById('gel-ruler-overlay');
+  const btn = document.getElementById('btn-toggle-ruler');
+  if (ruler) {
+    if (GelLabState.showRuler) ruler.classList.remove('hidden');
+    else ruler.classList.add('hidden');
+  }
+  if (btn) {
+    btn.className = GelLabState.showRuler 
+      ? 'text-xs text-cyan-300 font-bold flex items-center gap-1 underline' 
+      : 'text-xs text-slate-400 hover:text-white flex items-center gap-1';
   }
   SFX.click();
 }
 
+function inspectGelBand(type, key) {
+  SFX.click();
+  let item = null;
+  let carrierText = '';
+
+  if (type === 'ladder') {
+    item = GEL_LADDER_DATA.find(x => x.size === key);
+    carrierText = 'Carril 1 • Marcador de Peso Molecular 1 kb Plus Ladder';
+    GelLabState.selectedBandKey = `lad_${key}`;
+  } else if (type === 'sampleA') {
+    item = GEL_SAMPLES_DATA.sampleA.find(x => x.size === key);
+    carrierText = item ? item.lane : 'Carril 2';
+    GelLabState.selectedBandKey = item ? item.id : null;
+  } else if (type === 'sampleB') {
+    item = GEL_SAMPLES_DATA.sampleB.find(x => x.id === key);
+    carrierText = item ? item.lane : 'Carril 3';
+    GelLabState.selectedBandKey = key;
+  } else if (type === 'sampleC') {
+    item = GEL_SAMPLES_DATA.sampleC.find(x => x.size === key);
+    carrierText = item ? item.lane : 'Carril 4';
+    GelLabState.selectedBandKey = item ? item.id : null;
+  }
+
+  if (!item) return;
+
+  renderGelBands();
+
+  const cElem = document.getElementById('inspect-carrier');
+  const bElem = document.getElementById('inspect-content');
+  if (cElem) cElem.textContent = carrierText;
+  if (bElem) {
+    bElem.innerHTML = `
+      <div class="space-y-1.5 animate-fadeIn">
+        <div class="flex items-center justify-between text-xs font-bold text-white">
+          <span class="text-cyan-300">${item.name || item.label}</span>
+          <span class="px-2 py-0.5 rounded bg-slate-800 text-amber-300 font-mono-code font-bold">${item.size.toLocaleString()} pb</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 text-[11px] text-slate-400 font-mono-code">
+          <span>Movilidad Relativa: <strong class="text-white">$R_f = ${item.rf.toFixed(2)}$</strong></span>
+          <span>Masa estimada: <strong class="text-white">~${item.ng} ng</strong></span>
+          <span>Emisión: <strong class="${GelLabState.dye === 'sybr' ? 'text-emerald-400' : 'text-rose-400'}">${GelLabState.dye === 'sybr' ? '530 nm (Verde)' : '605 nm (Naranja)'}</strong></span>
+        </div>
+        <p class="text-slate-300 text-xs mt-1 leading-relaxed">${item.desc}</p>
+      </div>
+    `;
+    renderMath();
+  }
+}
+
+function selectGelChallengeOpt(val) {
+  GelLabState.challengeSelected = val;
+  ['250', '500', '750', '1500', '4000'].forEach(opt => {
+    const b = document.getElementById(`ch-opt-${opt}`);
+    if (b) {
+      if (opt === val) {
+        b.className = 'py-1.5 rounded bg-amber-500 text-slate-950 font-bold text-center transition shadow';
+      } else {
+        b.className = 'py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center transition';
+      }
+    }
+  });
+  SFX.click();
+}
+
+function checkGelChallenge() {
+  const fb = document.getElementById('gel-ch-feedback');
+  const badge = document.getElementById('gel-challenge-badge');
+  if (!fb) return;
+
+  if (!GelLabState.challengeSelected) {
+    fb.innerHTML = '<span class="text-amber-400">Selecciona primero un tamaño estimado arriba.</span>';
+    SFX.error();
+    return;
+  }
+
+  if (GelLabState.challengeSelected === '750') {
+    fb.innerHTML = '<span class="text-emerald-300 font-bold">🎉 ¡Correcto! Amplicón de 750 pb identificado con éxito. (+50 XP)</span>';
+    if (badge) {
+      badge.textContent = '✅ Superado';
+      badge.className = 'text-[10px] font-bold text-emerald-400';
+    }
+    SFX.success();
+    if (!GelLabState.challengeSolved) {
+      GelLabState.challengeSolved = true;
+      addXP(50, 'tema1_gel_challenge');
+    }
+    inspectGelBand('sampleC', 750);
+  } else {
+    SFX.error();
+    const hints = {
+      '250': 'Incorrecto: 250 pb es la banda más baja y rápida del marcador (cerca del fondo).',
+      '500': 'Incorrecto: La banda del Carril 4 está más arriba (más lenta y grande) que la banda de 500 pb.',
+      '1500': 'Incorrecto: 1.5 kb migra en la mitad superior del gel.',
+      '4000': 'Incorrecto: 4.0 kb queda muy retenida cerca del pocillo de origen.'
+    };
+    fb.innerHTML = `<span class="text-rose-400">${hints[GelLabState.challengeSelected] || 'Tamaño incorrecto. Compara la posición con las bandas de 1.000 pb y 500 pb del Carril 1.'}</span>`;
+  }
+}
+
 function runGelSimulation() {
+  fastForwardGel();
   const fb = document.getElementById('gel-sim-feedback');
   if (fb) {
-    fb.innerHTML = `✅ <strong>¡Electroforesis y Revelado UV Completados!</strong> El ADN (con carga negativa por sus grupos fosfato) migró hacia el <strong>ánodo (+)</strong> a través del tamiz de agarosa/poliacrilamida. Comparando con el <strong>marcador "ladder"</strong>, tu muestra contiene 3 bandas de <strong>10.000 pb, 1.000 pb (1 kb) y 200 pb</strong> teñidas con ${currentGelDye === 'etbr' ? 'Bromuro de Etidio' : 'SYBR Safe'} bajo luz ultravioleta. (+50 XP)`;
-    fb.className = 'text-xs text-emerald-200 bg-emerald-950/40 p-3 rounded-xl border border-emerald-500/40';
+    fb.innerHTML = `
+      <div class="flex items-start gap-2">
+        <span class="text-emerald-400 text-base">✅</span>
+        <div>
+          <strong>¡Electroforesis y Revelado UV en Tiempo Real Completados!</strong> El ADN migró hacia el polo positivo (ánodo) según la ley logarítmica de tamizaje molecular. Tu muestra incluye los fragmentos revelados bajo transiluminador con ${GelLabState.dye === 'sybr' ? 'SYBR Safe (530 nm)' : 'Bromuro de Etidio (605 nm)'}. (+50 XP)
+        </div>
+      </div>
+    `;
   }
   addXP(50, 'tema1_sub2');
 }
@@ -1487,6 +1961,7 @@ window.addEventListener('DOMContentLoaded', () => {
   inspectDnaChem('miescher');
   updateThermalSim();
   updateChargaffCalc();
+  initGelLab();
   inspectChromatinLevel('11nm');
   inspectChromatinType('eu');
   inspectHumanGenomeBranch('genes');

@@ -537,92 +537,324 @@
           </button>
         </div>
 
-        <!-- SIMULADOR 2A: CUBETA DE ELECTROFORESIS EN GEL Y TRANSILUMINADOR UV -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div class="bg-slate-950 border border-emerald-500/30 rounded-2xl p-5 space-y-4">
-            <h3 class="text-base font-bold text-emerald-400">⚡ Simulador 2A: Cámara de Electroforesis y Tinción bajo Luz UV</h3>
-            <p class="text-xs text-slate-300 leading-relaxed">
-              El ADN posee <strong>carga eléctrica negativa neta</strong> (por los <strong>grupos fosfato</strong> de su esqueleto) y migra en una solución tampón salino hacia el <strong>polo positivo (ánodo)</strong>. El gel (de <strong>agarosa o poliacrilamida</strong>) actúa como un <strong>tamiz molecular</strong>.
-            </p>
-
-            <div class="flex flex-wrap gap-2 text-xs">
-              <button onclick="runGelSimulation('run')" class="px-3.5 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl transition">
-                ▶️ Aplicar Corriente Eléctrica y Luz UV
-              </button>
-              <button onclick="toggleGelDye()" id="btn-dye" class="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-rose-300 font-bold rounded-xl transition">
-                🎨 Colorante: Bromuro de Etidio (Luz UV)
-              </button>
+        <!-- SIMULADOR 2A: LABORATORIO PROFESIONAL DE ELECTROFORESIS EN GEL DE AGAROSA Y TRANSILUMINADOR UV -->
+        <div class="bg-slate-950 border border-emerald-500/40 rounded-2xl p-6 space-y-6 shadow-2xl">
+          <!-- Encabezado y Credenciales del Laboratorio -->
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+            <div>
+              <div class="flex flex-wrap items-center gap-2 mb-1">
+                <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono-code text-xs font-bold border border-emerald-500/40">⚡ VIRTUAL SUB-CELL GT</span>
+                <span class="px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-mono-code text-xs">AGAROSA 1.2% EN TAMPÓN TAE 1X</span>
+                <span class="px-2.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono-code text-xs">POLARIDAD: ➖ CÁTODO ➔ ➕ ÁNODO</span>
+              </div>
+              <h3 class="text-xl font-bold text-white">⚡ Simulador 2A: Cámara de Electroforesis y Fotodocumentador UV</h3>
+              <p class="text-xs text-slate-300 mt-1 max-w-3xl leading-relaxed">
+                El ADN posee <strong>carga eléctrica neta negativa</strong> en toda su longitud (debido a los <strong>grupos fosfato</strong> de su esqueleto azúcar-fosfato) y migra hacia el <strong>polo positivo (ánodo)</strong>. La matriz de agarosa actúa como un <strong>tamiz molecular tridimensional</strong> donde la distancia de migración ($d$) es inversamente proporcional al logaritmo del tamaño del fragmento ($d \propto -\log_{10}\text{pb}$).
+              </p>
             </div>
-
-            <!-- Representación Visual del Gel -->
-            <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-2">
-              <div class="flex justify-between text-[11px] font-mono-code text-slate-400 border-b border-slate-800 pb-1">
-                <span>➖ CÁTODO (Polo Negativo - Pocillos de origen)</span>
-                <span>Dirección de migración ↓</span>
-              </div>
-
-              <div class="grid grid-cols-2 gap-4 py-2 font-mono-code text-xs">
-                <!-- Carril 1: Ladder -->
-                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 space-y-3">
-                  <div class="text-center text-[11px] text-cyan-400 font-bold">Carril 1: Marcador "Ladder"</div>
-                  <div class="h-2 rounded bg-cyan-400/80 flex justify-end pr-1 text-[10px] text-slate-950 font-bold">10.000 pb (Lento)</div>
-                  <div class="h-2 rounded bg-cyan-400/80 flex justify-end pr-1 text-[10px] text-slate-950 font-bold">3.000 pb</div>
-                  <div class="h-2 rounded bg-cyan-400/80 flex justify-end pr-1 text-[10px] text-slate-950 font-bold">1.000 pb (1 kb)</div>
-                  <div class="h-2 rounded bg-cyan-400/80 flex justify-end pr-1 text-[10px] text-slate-950 font-bold">200 pb (Rápido)</div>
-                </div>
-
-                <!-- Carril 2: Muestra Problema -->
-                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 space-y-3">
-                  <div class="text-center text-[11px] text-emerald-400 font-bold">Carril 2: Muestra de ADN</div>
-                  <div id="sample-band-large" class="h-2 rounded bg-rose-500 uv-glow transition-all duration-700"></div>
-                  <div class="h-2 opacity-0"></div>
-                  <div id="sample-band-med" class="h-2 rounded bg-rose-500 uv-glow transition-all duration-700"></div>
-                  <div id="sample-band-small" class="h-2 rounded bg-rose-500 uv-glow transition-all duration-700"></div>
-                </div>
-              </div>
-
-              <div class="flex justify-between text-[11px] font-mono-code text-emerald-400 border-t border-slate-800 pt-1">
-                <span>➕ ÁNODO (Polo Positivo - Fragmentos más pequeños/rápidos)</span>
-                <span>Tamiz Molecular</span>
-              </div>
-            </div>
-
-            <div id="gel-sim-feedback" class="text-xs text-slate-300 bg-slate-900 p-3 rounded-xl border border-slate-800">
-              💡 Los fragmentos más grandes ($10.000\text{ pb}$) encuentran mayor resistencia y quedan cerca del pocillo; los más pequeños ($200\text{ pb}$) avanzan más rápido y más lejos hacia el ánodo (+).
+            
+            <div class="flex items-center gap-2">
+              <span id="gel-safety-badge" class="px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono-code flex items-center gap-1.5">
+                <span>⚠️ Bioseguridad: Agente Intercalante</span>
+              </span>
             </div>
           </div>
 
-          <!-- SIMULADOR 2B: NIVELES DE EMPAQUETAMIENTO DE LA CROMATINA Y EUCROMATINA VS HETEROCROMATINA -->
-          <div class="bg-slate-950 border border-cyan-500/30 rounded-2xl p-5 space-y-4">
-            <h3 class="text-base font-bold text-cyan-400">🧬 Simulador 2B: Escala de Condensación ($2\text{ nm} \rightarrow 1400\text{ nm}$) y Tipos de Cromatina</h3>
-            <p class="text-xs text-slate-300">
-              Recorre los niveles exactos de empaquetamiento del ADN con proteínas básicas <strong>histonas</strong> (Figura 1 del Subtema 2) y los tipos de cromatina:
-            </p>
+          <!-- Mesa de Trabajo Integrada (2 Columnas: Consola a la Izquierda, Cubeta a la Derecha) -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <!-- COLUMNA IZQUIERDA: FUENTE DE ALIMENTACIÓN, MESA ÓPTICA, INSPECTOR Y RETO (5 COLS) -->
+            <div class="lg:col-span-5 space-y-4">
+              
+              <!-- 1. FUENTE DE PODER DIGITAL -->
+              <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 space-y-3">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                  <span class="text-xs font-mono-code font-bold text-cyan-400 flex items-center gap-1.5">
+                    <span id="power-led" class="w-2 h-2 rounded-full bg-slate-600 inline-block"></span>
+                    FUENTE DE PODER ELECTROFORÉTICA
+                  </span>
+                  <span id="disp-status" class="text-[11px] font-mono-code font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-400">STANDBY</span>
+                </div>
 
-            <!-- Botones de escala en nanómetros de la Figura 1 -->
-            <div class="grid grid-cols-5 gap-1.5 text-center font-mono-code text-xs">
-              <button onclick="inspectChromatinLevel('2nm')" class="p-2 rounded-lg bg-slate-900 hover:bg-cyan-950 border border-cyan-500/40 text-cyan-300 font-bold">2 nm</button>
-              <button onclick="inspectChromatinLevel('11nm')" class="p-2 rounded-lg bg-slate-900 hover:bg-cyan-950 border border-cyan-500/40 text-cyan-300 font-bold">Nucleosoma</button>
-              <button onclick="inspectChromatinLevel('30nm')" class="p-2 rounded-lg bg-slate-900 hover:bg-cyan-950 border border-cyan-500/40 text-cyan-300 font-bold">30 nm</button>
-              <button onclick="inspectChromatinLevel('300_700nm')" class="p-2 rounded-lg bg-slate-900 hover:bg-cyan-950 border border-cyan-500/40 text-cyan-300 font-bold">300-700 nm</button>
-              <button onclick="inspectChromatinLevel('1400nm')" class="p-2 rounded-lg bg-slate-900 hover:bg-cyan-950 border border-cyan-500/40 text-cyan-300 font-bold">1400 nm</button>
+                <!-- Display Digital Tipo LED -->
+                <div class="grid grid-cols-3 gap-2 bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-center font-mono-code">
+                  <div>
+                    <span class="text-[10px] text-slate-400 block">VOLTAJE</span>
+                    <span id="disp-voltage" class="text-base sm:text-lg font-bold text-cyan-300">100 V</span>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-slate-400 block">CORRIENTE</span>
+                    <span id="disp-current" class="text-base sm:text-lg font-bold text-emerald-400">0 mA</span>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-slate-400 block">TIEMPO</span>
+                    <span id="disp-time" class="text-base sm:text-lg font-bold text-amber-300">00:00</span>
+                  </div>
+                </div>
+
+                <!-- Selectores de Tensión -->
+                <div class="space-y-1.5">
+                  <span class="text-[11px] text-slate-400 font-bold block">Tensión Eléctrica Seleccionada:</span>
+                  <div class="grid grid-cols-3 gap-1.5 text-xs font-mono-code">
+                    <button onclick="setGelVoltage(70)" id="btn-v-70" class="py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition">70 V (Fino)</button>
+                    <button onclick="setGelVoltage(100)" id="btn-v-100" class="py-1.5 rounded-lg bg-cyan-500/30 border border-cyan-500/50 text-cyan-300 font-bold transition">100 V (Estándar)</button>
+                    <button onclick="setGelVoltage(130)" id="btn-v-130" class="py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition">130 V (Rápido)</button>
+                  </div>
+                </div>
+
+                <!-- Botonera de Control de Corrida -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1">
+                  <button onclick="toggleGelRun()" id="btn-run-gel" class="col-span-2 sm:col-span-1 py-2 px-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition shadow-lg shadow-emerald-500/20">
+                    <span id="icon-run-gel">▶️</span> <span id="text-run-gel">Conectar</span>
+                  </button>
+                  <button onclick="fastForwardGel()" class="py-2 px-2 bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1">
+                    ⏩ Fin Corrida
+                  </button>
+                  <button onclick="resetGelSimulation()" class="py-2 px-2 bg-slate-800 hover:bg-rose-950/40 text-slate-400 hover:text-rose-300 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1">
+                    🔄 Reiniciar
+                  </button>
+                </div>
+              </div>
+
+              <!-- 2. MESA ÓPTICA: LUZ BLANCA VS TRANSILUMINADOR UV Y COLORANTE -->
+              <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 space-y-3">
+                <span class="text-xs font-mono-code font-bold text-purple-400 block border-b border-slate-800 pb-2">
+                  SISTEMA DE ILUMINACIÓN Y DETECCIÓN FLUORESCENTE
+                </span>
+
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                  <button onclick="setGelIllumination('visible')" id="btn-illum-vis" class="p-2.5 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 text-left transition">
+                    <span class="font-bold block">💡 Luz de Banco</span>
+                    <span class="text-[10px] text-slate-400">ADN invisible • Frente azul</span>
+                  </button>
+                  <button onclick="setGelIllumination('uv')" id="btn-illum-uv" class="p-2.5 rounded-xl bg-purple-500/20 text-purple-200 border border-purple-500/50 hover:bg-purple-500/30 text-left transition shadow-lg shadow-purple-500/20">
+                    <span class="font-bold block">🟣 Transiluminador UV</span>
+                    <span class="text-[10px] text-purple-300">Cámara oscura • 302 nm</span>
+                  </button>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-slate-800">
+                  <div class="flex items-center gap-1.5 text-xs">
+                    <span class="text-slate-400 text-[11px]">Fluoróforo:</span>
+                    <button onclick="setGelFluorophore('etbr')" id="btn-dye-etbr" class="px-2.5 py-1 rounded-lg bg-rose-500/20 border border-rose-500/50 text-rose-300 text-xs font-bold transition">EtBr (Naranja)</button>
+                    <button onclick="setGelFluorophore('sybr')" id="btn-dye-sybr" class="px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-emerald-300 text-xs font-bold hover:bg-slate-700 transition">SYBR Safe</button>
+                  </div>
+                  <button onclick="toggleGelRuler()" id="btn-toggle-ruler" class="text-xs text-slate-400 hover:text-white flex items-center gap-1">
+                    <span>📏 Regla Rf</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 3. INSPECTOR INTERACTIVO DE BANDAS -->
+              <div id="gel-inspector-card" class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2">
+                <div class="flex items-center justify-between text-slate-400 border-b border-slate-800 pb-1.5">
+                  <span class="font-bold font-mono-code text-cyan-400">🔍 INSPECTOR DE BANDA</span>
+                  <span id="inspect-carrier" class="text-[11px] text-slate-500">Pasa el cursor o haz clic en una banda</span>
+                </div>
+                <div id="inspect-content" class="text-slate-300 space-y-1">
+                  <p class="text-slate-400 italic text-[11px]">Haz clic en cualquier banda fluorescente del gel para inspeccionar su tamaño molecular, distancia de migración y relevancia biológica.</p>
+                </div>
+              </div>
+
+              <!-- 4. RETO INTERACTIVO DE LABORATORIO (ESTIMAR PCR EN CARRIL 4) -->
+              <div class="bg-slate-900/90 border border-amber-500/30 rounded-xl p-4 space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-mono-code font-bold text-amber-400">🎯 RETO PRÁCTICO (+50 XP)</span>
+                  <span id="gel-challenge-badge" class="text-[10px] font-bold text-slate-400">Pendiente</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-snug">
+                  Interpola con el marcador "ladder" (Carril 1) y determina el <strong>tamaño exacto del amplicón de PCR obtenido en el Carril 4</strong>:
+                </p>
+                
+                <div class="grid grid-cols-5 gap-1.5 font-mono-code text-xs">
+                  <button onclick="selectGelChallengeOpt('250')" id="ch-opt-250" class="py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center transition">250 pb</button>
+                  <button onclick="selectGelChallengeOpt('500')" id="ch-opt-500" class="py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center transition">500 pb</button>
+                  <button onclick="selectGelChallengeOpt('750')" id="ch-opt-750" class="py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center transition">750 pb</button>
+                  <button onclick="selectGelChallengeOpt('1500')" id="ch-opt-1500" class="py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center transition">1.5 kb</button>
+                  <button onclick="selectGelChallengeOpt('4000')" id="ch-opt-4000" class="py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center transition">4.0 kb</button>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+                  <button onclick="checkGelChallenge()" id="btn-submit-gel-ch" class="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-lg transition">
+                    Verificar Estimación
+                  </button>
+                  <div id="gel-ch-feedback" class="text-xs text-slate-400">
+                    Selecciona una opción y verifica.
+                  </div>
+                </div>
+              </div>
+
             </div>
 
-            <div id="chromatin-scale-box" class="bg-slate-900 p-3.5 rounded-xl border border-slate-800 text-xs space-y-1.5">
+            <!-- COLUMNA DERECHA: LA CÁMARA DE ELECTROFORESIS VIRTUAL (7 COLS) -->
+            <div class="lg:col-span-7 space-y-3">
+              
+              <!-- Cubeta Acrílica de Electroforesis -->
+              <div class="gel-chamber-box p-4 rounded-2xl border border-slate-700 space-y-3">
+                
+                <!-- Electrodo Superior: CÁTODO (Polo Negativo ➖ Cable Negro) -->
+                <div class="flex items-center justify-between bg-slate-950/80 px-3 py-1.5 rounded-lg border border-slate-800 text-xs font-mono-code">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-slate-700 border border-slate-500 inline-block"></span>
+                    <span class="font-bold text-slate-300">➖ CÁTODO (Terminal Negativo • Alambre de Platino)</span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span id="bubbles-cathode-indicator" class="hidden text-[10px] text-cyan-400 animate-pulse">Burbujeo 2H⁺ + 2e⁻ ➔ H₂↑</span>
+                    <span class="text-slate-500 text-[10px]">Pocillos de Carga</span>
+                  </div>
+                </div>
+
+                <!-- Contenedor del Gel de Agarosa -->
+                <div id="gel-slab-surface" class="gel-bed-uv relative rounded-xl p-3 h-[420px] transition-colors duration-500 overflow-hidden">
+                  
+                  <!-- Regla Milimetrada Lateral (Opcional Toggle) -->
+                  <div id="gel-ruler-overlay" class="hidden absolute left-1 top-10 bottom-2 w-6 font-mono-code text-[9px] text-slate-400 border-r border-slate-600/50 flex flex-col justify-between py-1 select-none pointer-events-none z-20">
+                    <span class="gel-ruler-tick">0mm</span>
+                    <span class="gel-ruler-tick">10mm</span>
+                    <span class="gel-ruler-tick">20mm</span>
+                    <span class="gel-ruler-tick">30mm</span>
+                    <span class="gel-ruler-tick">40mm</span>
+                    <span class="gel-ruler-tick">50mm</span>
+                    <span class="gel-ruler-tick">60mm</span>
+                    <span class="gel-ruler-tick">70mm</span>
+                    <span class="gel-ruler-tick">80mm</span>
+                  </div>
+
+                  <!-- Encabezados de los 4 Carriles -->
+                  <div class="grid grid-cols-12 gap-2 text-center font-mono-code text-[11px] pb-2 border-b border-slate-700/50 z-10 relative">
+                    <!-- Columna de Marcadores/Escala -->
+                    <div class="col-span-3 text-left pl-2 text-cyan-400 font-bold">
+                      Escala Ladder
+                    </div>
+                    <!-- Carril 1 -->
+                    <div class="col-span-2 text-cyan-300 font-bold">
+                      C1: Ladder
+                    </div>
+                    <!-- Carril 2 -->
+                    <div class="col-span-3 text-emerald-400 font-bold">
+                      C2: Digestión
+                    </div>
+                    <!-- Carril 3 -->
+                    <div class="col-span-2 text-indigo-300 font-bold">
+                      C3: Plásmido
+                    </div>
+                    <!-- Carril 4 -->
+                    <div class="col-span-2 text-amber-300 font-bold">
+                      C4: PCR (?)
+                    </div>
+                  </div>
+
+                  <!-- Pocillos (Wells) Moldados en 3D -->
+                  <div class="grid grid-cols-12 gap-2 pt-1 pb-3 relative z-10">
+                    <div class="col-span-3"></div>
+                    <!-- Pocillo 1 -->
+                    <div class="col-span-2 flex justify-center">
+                      <div class="w-10 h-3.5 gel-well-slot flex items-center justify-center">
+                        <span id="well-fill-1" class="w-8 h-2 bg-indigo-950/80 rounded transition-all"></span>
+                      </div>
+                    </div>
+                    <!-- Pocillo 2 -->
+                    <div class="col-span-3 flex justify-center">
+                      <div class="w-12 h-3.5 gel-well-slot flex items-center justify-center">
+                        <span id="well-fill-2" class="w-10 h-2 bg-indigo-950/80 rounded transition-all"></span>
+                      </div>
+                    </div>
+                    <!-- Pocillo 3 -->
+                    <div class="col-span-2 flex justify-center">
+                      <div class="w-10 h-3.5 gel-well-slot flex items-center justify-center">
+                        <span id="well-fill-3" class="w-8 h-2 bg-indigo-950/80 rounded transition-all"></span>
+                      </div>
+                    </div>
+                    <!-- Pocillo 4 -->
+                    <div class="col-span-2 flex justify-center">
+                      <div class="w-10 h-3.5 gel-well-slot flex items-center justify-center">
+                        <span id="well-fill-4" class="w-8 h-2 bg-indigo-950/80 rounded transition-all"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Área de Migración Dinámica del Gel -->
+                  <div id="gel-lanes-area" class="relative w-full h-[330px]">
+                    <!-- Las bandas dinámicas y el frente de colorante se inyectan y posicionan dinámicamente con absolute top por JS -->
+                  </div>
+
+                </div>
+
+                <!-- Electrodo Inferior: ÁNODO (Polo Positivo ➕ Cable Rojo) -->
+                <div class="flex items-center justify-between bg-slate-950/80 px-3 py-1.5 rounded-lg border border-slate-800 text-xs font-mono-code">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-rose-600 border border-rose-400 inline-block"></span>
+                    <span class="font-bold text-rose-400">➕ ÁNODO (Terminal Positivo • "Run to the Red")</span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span id="bubbles-anode-indicator" class="hidden text-[10px] text-rose-400 animate-pulse">Burbujeo 2H₂O ➔ O₂↑ + 4H⁺</span>
+                    <span class="text-slate-500 text-[10px]">Fragmentos Menores / Rápidos</span>
+                  </div>
+                </div>
+
+                <!-- Guía Didáctica / Leyenda al Pie del Gel -->
+                <div id="gel-sim-feedback" class="p-3 bg-slate-900/60 rounded-xl border border-slate-800 text-xs text-slate-300 leading-relaxed">
+                  <div class="flex items-start gap-2">
+                    <span class="text-emerald-400 text-base">💡</span>
+                    <div>
+                      <strong>Regla Mnemotécnica de Laboratorio:</strong> <em>"Run to the red"</em> (El ADN con carga negativa corre siempre hacia el electrodo rojo positivo). En agarosa, los fragmentos grandes ($10\text{ kb}$) sufren fricción con la malla y migran poco; los fragmentos pequeños ($250\text{ pb}$) atraviesan los poros rápidamente hacia el fondo.
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SIMULADOR 2B: NIVELES DE EMPAQUETAMIENTO DE LA CROMATINA Y EUCROMATINA VS HETEROCROMATINA -->
+        <div class="bg-slate-950 border border-cyan-500/30 rounded-2xl p-6 space-y-4 shadow-xl">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+            <div>
+              <span class="px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-mono-code text-xs font-bold">🧬 MODELO ESTRUCTURAL</span>
+              <h3 class="text-lg font-bold text-white mt-1">Simulador 2B: Escala de Condensación de la Cromatina ($2\text{ nm} \rightarrow 1400\text{ nm}$)</h3>
+            </div>
+            <span class="text-xs text-slate-400 font-mono-code">Figura 1 • Subtema 2</span>
+          </div>
+
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Recorre los niveles exactos de empaquetamiento del ADN con proteínas básicas <strong>histonas</strong> (octámero formado por 2 moléculas de H2A, H2B, H3 y H4, más la histona enlazadora H1) y la distinción funcional entre eucromatina y heterocromatina:
+          </p>
+
+          <!-- Botones de escala en nanómetros de la Figura 1 -->
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center font-mono-code text-xs">
+            <button onclick="inspectChromatinLevel('2nm')" class="p-2.5 rounded-lg bg-slate-900 hover:bg-cyan-950 border border-cyan-500/40 text-cyan-300 font-bold transition">2 nm (Doble Hélice)</button>
+            <button onclick="inspectChromatinLevel('11nm')" class="p-2.5 rounded-lg bg-slate-900 hover:bg-cyan-950 border border-cyan-500/40 text-cyan-300 font-bold transition">11 nm (Nucleosoma)</button>
+            <button onclick="inspectChromatinLevel('30nm')" class="p-2.5 rounded-lg bg-slate-900 hover:bg-cyan-950 border border-cyan-500/40 text-cyan-300 font-bold transition">30 nm (Solenoide)</button>
+            <button onclick="inspectChromatinLevel('300_700nm')" class="p-2.5 rounded-lg bg-slate-900 hover:bg-cyan-950 border border-cyan-500/40 text-cyan-300 font-bold transition">300-700 nm (Bucles)</button>
+            <button onclick="inspectChromatinLevel('1400nm')" class="p-2.5 rounded-lg bg-slate-900 hover:bg-cyan-950 border border-cyan-500/40 text-cyan-300 font-bold transition">1400 nm (Metafase)</button>
+          </div>
+
+          <div id="chromatin-scale-box" class="bg-slate-900 p-4 rounded-xl border border-slate-800 text-xs sm:text-sm space-y-1.5">
+            <!-- Dinámico -->
+          </div>
+
+          <!-- Selector Eucromatina vs Heterocromatina Constitutiva y Facultativa -->
+          <div class="space-y-3 pt-3 border-t border-slate-800">
+            <span class="text-xs font-bold text-white block">Clasificación funcional según compactación y transcripción:</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <button onclick="inspectChromatinType('eu')" class="p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-bold hover:bg-emerald-500/25 transition text-left">
+                <span class="block text-sm">🔓 Eucromatina</span>
+                <span class="text-[11px] text-slate-400 font-normal">Descondensada • Activa</span>
+              </button>
+              <button onclick="inspectChromatinType('const')" class="p-3 rounded-xl bg-rose-500/15 border border-rose-500/40 text-rose-300 font-bold hover:bg-rose-500/25 transition text-left">
+                <span class="block text-sm">🔒 H. Constitutiva</span>
+                <span class="text-[11px] text-slate-400 font-normal">Siempre silenciada • Centrómeros</span>
+              </button>
+              <button onclick="inspectChromatinType('fac')" class="p-3 rounded-xl bg-purple-500/15 border border-purple-500/40 text-purple-300 font-bold hover:bg-purple-500/25 transition text-left">
+                <span class="block text-sm">🌗 H. Facultativa</span>
+                <span class="text-[11px] text-slate-400 font-normal">Reversible • Corpúsculo de Barr</span>
+              </button>
+            </div>
+            <div id="chromatin-type-box" class="bg-slate-900 p-4 rounded-xl border border-slate-800 text-xs sm:text-sm">
               <!-- Dinámico -->
-            </div>
-
-            <!-- Selector Eucromatina vs Heterocromatina Constitutiva y Facultativa -->
-            <div class="space-y-2 pt-2 border-t border-slate-800">
-              <span class="text-xs font-bold text-white block">Clasificación funcional según compactación:</span>
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
-                <button onclick="inspectChromatinType('eu')" class="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-bold">🔓 Eucromatina</button>
-                <button onclick="inspectChromatinType('const')" class="p-2.5 rounded-xl bg-rose-500/15 border border-rose-500/40 text-rose-300 font-bold">🔒 H. Constitutiva</button>
-                <button onclick="inspectChromatinType('fac')" class="p-2.5 rounded-xl bg-purple-500/15 border border-purple-500/40 text-purple-300 font-bold">🌗 H. Facultativa (Barr)</button>
-              </div>
-              <div id="chromatin-type-box" class="bg-slate-900 p-3.5 rounded-xl border border-slate-800 text-xs">
-                <!-- Dinámico -->
-              </div>
             </div>
           </div>
         </div>
