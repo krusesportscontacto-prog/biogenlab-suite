@@ -262,6 +262,15 @@ function updateBreadcrumbs(viewId) {
 
   if (viewId === 'dashboard') {
     bc.innerHTML = `<span>🏛️ Panel Principal</span>`;
+  } else if (viewId === 'exam-workshop' && currentExamFilter && currentExamFilter.startsWith('tema')) {
+    const parentName = names[currentExamFilter] || currentExamFilter;
+    bc.innerHTML = `
+      <button onclick="switchView('dashboard')" class="text-slate-400 hover:text-cyan-400 transition">🏛️ Inicio</button>
+      <span class="text-slate-600">/</span>
+      <button onclick="switchView('${currentExamFilter}')" class="text-slate-400 hover:text-cyan-400 transition">${parentName}</button>
+      <span class="text-slate-600">/</span>
+      <span class="text-amber-300 font-semibold">Casos Prácticos de Examen</span>
+    `;
   } else {
     bc.innerHTML = `
       <button onclick="switchView('dashboard')" class="text-slate-400 hover:text-cyan-400 transition">🏛️ Inicio</button>
@@ -278,17 +287,31 @@ function openStudyVolume(volumeId) {
   }
 }
 
+let returnViewFromExam = 'dashboard';
+
+function openTopicExamProblems(topicKey) {
+  returnViewFromExam = topicKey;
+  currentExamFilter = topicKey;
+  switchView('exam-workshop');
+  renderExamWorkshop();
+  SFX.click();
+}
+
 // Subtab navigation within a topic
 function switchTopicTab(topicKey, tabKey) {
   if (tabKey === 'codex') {
     openStudyVolume(topicKey);
     return;
   }
+  if (tabKey === 'exercises') {
+    openTopicExamProblems(topicKey);
+    return;
+  }
   SFX.click();
   const subtabs = {
-    tema1: ['hub', 'sub1', 'sub2', 'sub3', 'sub4', 'arena', 'exercises'],
-    tema2: ['hub', 'sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'arena', 'exercises'],
-    tema3: ['hub', 'sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'arena', 'exercises'],
+    tema1: ['hub', 'sub1', 'sub2', 'sub3', 'sub4', 'arena'],
+    tema2: ['hub', 'sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'arena'],
+    tema3: ['hub', 'sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'arena'],
     tema4: ['hub', 'sub1', 'sub2', 'sub3', 'sub4', 'arena', 'test-oficial']
   };
 
@@ -758,13 +781,38 @@ let currentExamFilter = 'all';
 
 function filterExamWorkshop(topicFilter) {
   currentExamFilter = topicFilter;
+  if (topicFilter.startsWith('tema')) {
+    returnViewFromExam = topicFilter;
+  } else {
+    returnViewFromExam = 'dashboard';
+  }
   renderExamWorkshop();
+  updateBreadcrumbs('exam-workshop');
   SFX.click();
 }
 
 function renderExamWorkshop() {
   const container = document.getElementById('exam-problems-list');
   if (!container || !window.EXAM_PROBLEMS) return;
+
+  // Actualizar botón dinámico de retorno
+  const returnBtn = document.getElementById('btn-exam-return');
+  if (returnBtn) {
+    if (returnViewFromExam && returnViewFromExam.startsWith('tema')) {
+      const topicTitles = {
+        tema1: 'Tema 1 (Genética y Genómica)',
+        tema2: 'Tema 2 (De la Mutación al Fenotipo)',
+        tema3: 'Tema 3 (Marcadores Moleculares)',
+        tema4: 'Tema 4 (Cultivos In Vitro)'
+      };
+      returnBtn.innerHTML = `← Volver a ${topicTitles[returnViewFromExam] || 'Tema'}`;
+      returnBtn.setAttribute('onclick', `switchView('${returnViewFromExam}')`);
+    } else {
+      returnBtn.innerHTML = `← Volver al Panel`;
+      returnBtn.setAttribute('onclick', `switchView('dashboard')`);
+    }
+  }
+  updateBreadcrumbs('exam-workshop');
 
   const allProbs = window.EXAM_PROBLEMS;
   const filtered = currentExamFilter === 'all' 
