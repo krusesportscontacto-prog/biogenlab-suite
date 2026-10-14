@@ -316,6 +316,16 @@ function switchTopicTab(topicKey, tabKey) {
     activeBtn.className += ` ${colorClass}`;
   }
 
+  if (tabKey === 'arena') {
+    if (!quizStates[topicKey] || !quizStates[topicKey].list || quizStates[topicKey].list.length === 0) {
+      initTopicQuiz(topicKey);
+    } else {
+      renderQuizQuestion(topicKey);
+    }
+  } else if (tabKey === 'test-oficial' && topicKey === 'tema4') {
+    renderTema4OfficialTest();
+  }
+
   renderMath();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -349,22 +359,51 @@ let quizStates = {
   tema4: { list: [], filtered: [], currentIdx: 0, subFilter: 'all' }
 };
 
+function getBiogenlabQuizData() {
+  if (typeof window !== 'undefined' && window.BIOGENLAB_QUIZ_DATA) {
+    return window.BIOGENLAB_QUIZ_DATA;
+  }
+  if (typeof BIOGENLAB_QUIZ_DATA !== 'undefined') {
+    return BIOGENLAB_QUIZ_DATA;
+  }
+  return null;
+}
+
 function initTopicQuiz(topicKey) {
-  if (!window.BIOGENLAB_QUIZ_DATA || !window.BIOGENLAB_QUIZ_DATA[topicKey]) return;
-  quizStates[topicKey].list = window.BIOGENLAB_QUIZ_DATA[topicKey];
+  const data = getBiogenlabQuizData();
+  if (!data || !data[topicKey]) return;
+  quizStates[topicKey].list = data[topicKey];
   quizStates[topicKey].filtered = [...quizStates[topicKey].list];
   quizStates[topicKey].currentIdx = 0;
   renderQuizQuestion(topicKey);
 }
 
 function filterQuizBySub(topicKey, sub) {
+  if (!quizStates[topicKey] || !quizStates[topicKey].list || quizStates[topicKey].list.length === 0) {
+    initTopicQuiz(topicKey);
+  }
   quizStates[topicKey].subFilter = sub;
   if (sub === 'all') {
-    quizStates[topicKey].filtered = [...quizStates[topicKey].list];
+    quizStates[topicKey].filtered = [...(quizStates[topicKey].list || [])];
   } else {
-    quizStates[topicKey].filtered = quizStates[topicKey].list.filter(q => q.sub === sub);
+    quizStates[topicKey].filtered = (quizStates[topicKey].list || []).filter(q => q.sub === sub);
   }
   quizStates[topicKey].currentIdx = 0;
+
+  // Actualizar estilos activos de los botones de filtro
+  try {
+    const allBtns = document.querySelectorAll(`[id^="${topicKey}-qf-"]`);
+    allBtns.forEach(btn => {
+      btn.classList.remove('bg-amber-500', 'text-slate-950');
+      btn.classList.add('bg-slate-800', 'text-slate-300');
+    });
+    const activeBtn = document.getElementById(`${topicKey}-qf-${sub}`);
+    if (activeBtn) {
+      activeBtn.classList.remove('bg-slate-800', 'text-slate-300');
+      activeBtn.classList.add('bg-amber-500', 'text-slate-950');
+    }
+  } catch (e) {}
+
   renderQuizQuestion(topicKey);
 }
 
@@ -2287,9 +2326,10 @@ function simMorphogenesis(type) {
 // --------------------------------------------------------------------------
 function renderTema4OfficialTest() {
   const container = document.getElementById('tema4-test-oficial-list');
-  if (!container || !window.BIOGENLAB_QUIZ_DATA || !window.BIOGENLAB_QUIZ_DATA.tema4OfficialTest) return;
+  const data = getBiogenlabQuizData();
+  if (!container || !data || !data.tema4OfficialTest) return;
 
-  const questions = window.BIOGENLAB_QUIZ_DATA.tema4OfficialTest;
+  const questions = data.tema4OfficialTest;
   container.innerHTML = questions.map((q, idx) => {
     const key = `tema4_test_q${q.id}`;
     const savedAns = AppState.answeredQuiz[key];
@@ -2341,7 +2381,9 @@ function renderTema4OfficialTest() {
 }
 
 function handleOfficialTestAnswer(qId, selectedIdx) {
-  const questions = window.BIOGENLAB_QUIZ_DATA.tema4OfficialTest;
+  const data = getBiogenlabQuizData();
+  if (!data || !data.tema4OfficialTest) return;
+  const questions = data.tema4OfficialTest;
   const q = questions.find(item => item.id === qId);
   if (!q) return;
 

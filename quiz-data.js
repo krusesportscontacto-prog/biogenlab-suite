@@ -1875,3 +1875,9 @@ const BIOGENLAB_CODEX_DATA = [
     "desc": "Organogénesis: desarrollo unipolar sucesivo de órganos (primero tallos inducidos por citoquininas, luego raíces inducidas por auxinas). Embriogénesis somática: desarrollo bipolar simultáneo de tallo y radícula a partir de células somáticas mediante las fases globular, corazón, torpedo y cotiledonar, frecuentemente inducida por 2,4-D."
   }
 ];
+
+// Exposición explícita a window para compatibilidad global en navegadores
+if (typeof window !== 'undefined') {
+  window.BIOGENLAB_QUIZ_DATA = BIOGENLAB_QUIZ_DATA;
+  window.BIOGENLAB_CODEX_DATA = BIOGENLAB_CODEX_DATA;
+}
