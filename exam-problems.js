@@ -1,15 +1,15 @@
 // ==========================================================================
-// BIOGENLAB SUITE - TALLER OFICIAL DE EJERCICIOS DE EXAMEN (WORD DOCUMENT)
-// 13 Problemas y Ejercicios Oficiales con Adaptación Interactiva Rigurosa
+// BIOGENLAB SUITE - CUADERNO OFICIAL DE PROBLEMAS DE CONVOCATORIA
+// 13 Casos Prácticos y Problemas Oficiales con Evaluación Interactiva Activa
 // ==========================================================================
 
 const EXAM_PROBLEMS = [
   // ------------------------------------------------------------------------
-  // EJERCICIO 1 (TEMA 2)
+  // CASO PRÁCTICO 1 (TEMA 2)
   // ------------------------------------------------------------------------
   {
     id: "ex-mut-seq",
-    number: "Ejercicio 1 (Word)",
+    number: "Caso Práctico 1",
     topicId: "tema2",
     topicName: "De la Mutación al Fenotipo",
     title: "Secuencia Codificante y Tipos de Mutaciones Puntuales",
@@ -28,6 +28,18 @@ a) Utilizando la tabla de traducción genética, indique la secuencia de aminoá
 - Una **mutación por desplazamiento del marco de lectura (frameshift)**
 
 b) Si el cambio de secuencia es una modificación de una sola base, indique la posición de la base modificada en la secuencia de ADN (1 a 33) de modo que se produzca cada uno de los tipos de mutación mencionados y resulte en un cambio fenotípico en el organismo portador.`,
+    interactiveEvaluation: {
+      question: "Si introducimos una mutación en la base 10 sustituyendo C por T (transformando el codón 4 de CGA a TGA/UGA), ¿qué tipo exacto de mutación se produce y cuál es su impacto sobre la proteína resultante?",
+      options: [
+        "Mutación silenciosa: no altera el aminoácido y la proteína conserva el 100% de su actividad catalítica.",
+        "Mutación sin sentido (nonsense): genera un codón de parada prematuro (Stop), produciendo un péptido truncado de solo 3 aminoácidos no funcional.",
+        "Mutación de cambio de sentido (missense): sustituye Arginina por Leucina con plegamiento ligeramente alterado.",
+        "Mutación por desplazamiento de pauta (frameshift): altera todas las fases de lectura posteriores sin parar la traducción."
+      ],
+      correct: 1,
+      feedbackCorrect: "¡Excelente deducción! El codón CGA codifica Arginina; al mutar la base 10 (C→T), se convierte en el triplete de terminación TGA (UGA en el ARNm), lo que detiene abruptamente la traducción en el ribosoma originando un péptido truncado (Met-Pro-Tyr-Stop) completamente inactivo.",
+      feedbackIncorrect: "Revisa el código genético: CGA es el cuarto codón. Al cambiar la primera base (C→T) se genera TGA, que en el ARNm es UGA (uno de los 3 codones de parada universales: UAA, UAG, UGA)."
+    },
     solution: {
       a: `• **Secuencia Silvestre (wt):**
   - ARNm: \`AUG CCC UAU CGA UUU ACU CUA UAC GGC GUU UAA\`
@@ -50,11 +62,11 @@ b) Si el cambio de secuencia es una modificación de una sola base, indique la p
   },
 
   // ------------------------------------------------------------------------
-  // EJERCICIO 2 (TEMA 3)
+  // CASO PRÁCTICO 2 (TEMA 3)
   // ------------------------------------------------------------------------
   {
     id: "ex-rapd-paternity",
-    number: "Ejercicio 2 (Word)",
+    number: "Caso Práctico 2",
     topicId: "tema3",
     topicName: "Marcadores y Diversidad",
     title: "Análisis de RAPD para Filiación y Paternidad",
@@ -73,6 +85,18 @@ b) Si el cambio de secuencia es una modificación de una sola base, indique la p
 a) Ponga en un esquema el número de repeticiones que se amplifica para el fragmento marcado con un asterisco (*) en el carril 4 (~400 pb).
 b) Transforme el patrón de bandas del gel en una matriz binaria, indicando con 1 la presencia de banda y con 0 la ausencia.
 c) ¿Cuál de los tres individuos podría ser hijo del posible padre biológico? ¿Por qué? ¿Podría haber otro escenario con otro patrón de bandas que conduzca a una conclusión diferente? Explique.`,
+    interactiveEvaluation: {
+      question: "Analizando la matriz binaria de presencia/ausencia de bandas (carriles 1 a 4), ¿cuál de los tres individuos evaluados es el ÚNICO compatible como hijo biológico del posible padre?",
+      options: [
+        "Individuo 1: Solo presenta bandas compartidas con el padre (200, 300 y 400 pb) y no tiene bandas de 600 pb ausentes en el progenitor.",
+        "Individuo 2: Porque comparte la banda pesada de 500 pb con el padre biológico.",
+        "Individuo 3: Porque posee las dos bandas intermedias de 300 y 400 pb.",
+        "Ninguno de los tres: El padre tiene 4 bandas y ningún hijo puede tener menos bandas que el padre."
+      ],
+      correct: 0,
+      feedbackCorrect: "¡Correcto! En genética forense con marcadores dominantes como RAPD, un hijo biológico solo puede heredar bandas presentes en el progenitor. Los individuos 2 y 3 quedan taxativamente excluidos porque ambos presentan una banda de 600 pb que el presunto padre NO posee.",
+      feedbackIncorrect: "Fíjate en las bandas excluyentes: los Individuos 2 y 3 poseen una banda de 600 pb. ¿De dónde podría haber salido esa banda si el padre no la tiene? El Individuo 1 es el único que no tiene bandas ajenas al padre."
+    },
     solution: {
       a: `El carril 4 muestra un fragmento de aproximadamente **400 pb** marcado con asterisco (*). Si asumimos que la unidad repetitiva mide 50 pb y está flanqueada por el cebador de 8 nt:
 $$\\text{5'–GGGGCCTT–[R]}\\times 4\\text{–GGGGCCTT–3'}$$
@@ -92,26 +116,51 @@ donde $R = 50\\text{ pb}$ y $\\times 4$ indica que hay cuatro unidades repetidas
   },
 
   // ------------------------------------------------------------------------
-  // EJERCICIO 3 (TEMA 4) - TEST OFICIAL A-K
+  // CASO PRÁCTICO 3 (TEMA 4)
   // ------------------------------------------------------------------------
   {
     id: "ex-invitro-test",
-    number: "Ejercicio 3 (Word)",
+    number: "Caso Práctico 3",
     topicId: "tema4",
     topicName: "Cultivo In Vitro",
-    title: "11 Preguntas Tipo Test Oficiales de Examen de Cultivo In Vitro",
-    badge: "Test Oficial de Examen",
+    title: "Banco Oficial de Preguntas de Examen de Cultivo In Vitro",
+    badge: "Evaluación Oficial In Vitro",
     xp: 80,
-    description: `Banco oficial de 11 preguntas de examen tipo test sobre cultivo in vitro, micropropagación, regeneración celular, esterilización y transformación genética con Agrobacterium y biobalística (preguntas a a k).`,
-    questionsCount: 11
+    description: `Banco oficial de 11 preguntas de examen sobre cultivo in vitro, micropropagación, regeneración celular, esterilización y transformación genética con Agrobacterium y biobalística (preguntas a a k).`,
+    interactiveEvaluation: {
+      question: "En un protocolo estandarizado de micropropagación comercial, ¿cuál de las siguientes combinaciones de fases, fitohormonas y condiciones es estrictamente correcta según la metodología oficial?",
+      options: [
+        "La Fase 2 (Multiplicación) requiere citoquininas para inducir brotes, y la Fase 3 (Enraizamiento) requiere auxinas para la emisión de raíces adventicias.",
+        "La Fase 2 requiere altas concentraciones de auxinas para elongar tallos, y la Fase 3 requiere citoquininas para formar la cofia radicular.",
+        "La Fase 4 (Aclimatación) consiste en transferir inmediatamente los brotes a pleno sol en tierra seca sin periodo de adaptación.",
+        "La variación somaclonal solo se produce en semillas silvestres y nunca ocurre en cultivos de tejidos in vitro."
+      ],
+      correct: 0,
+      feedbackCorrect: "¡Exacto! La Fase 2 de multiplicación se basa en la ruptura de la dominancia apical mediante citoquininas (como BA o Kinetina) para multiplicar brotes axilares o adventicios, mientras que la Fase 3 de enraizamiento requiere auxinas (como IBA o NAA) para inducir primordios radiculares.",
+      feedbackIncorrect: "Recuerda el balance auxinas/citoquininas: las citoquininas inducen la división celular y brotes aéreos, mientras que las auxinas inducen raíces adventicias."
+    },
+    solution: {
+      summary: `Este bloque evalúa los 11 puntos críticos de la convocatoria oficial:
+1. **Definición de Explante:** Fragmento vegetal aséptico capaz de regenerar.
+2. **Esterilización:** Autoclave a 121 °C (1 atm, 20 min).
+3. **Fitotrón:** Control de temperatura, humedad y fotoperiodo.
+4. **Meristemos:** Tejido libre de virus para saneamiento.
+5. **Agrobacterium:** Vector biológico con plásmido Ti y T-DNA.
+6. **Biobalística:** Aceleración de micropartículas de oro con ADN.
+7. **MON810:** Maíz transgénico Bt cultivado en España (129.081 ha en 2016).
+8. **Fases de Micropropagación:** Fase 0 (Saneamiento) ➔ Fase 1 (Establecimiento) ➔ Fase 2 (Multiplicación) ➔ Fase 3 (Enraizamiento) ➔ Fase 4 (Aclimatación).
+9. **Totipotencia:** Capacidad de desdiferenciación y reorganización.
+10. **Organogénesis vs Embriogénesis:** Unipolar independiente vs Bipolar sincronizado con 4 fases (globular, corazón, torpedo, cotiledonar).
+11. **Variación Somaclonal:** Comprobación obligatoria por citometría de flujo y marcadores moleculares.`
+    }
   },
 
   // ------------------------------------------------------------------------
-  // EJERCICIO 4: SANGER EXAMEN 28 OCTUBRE 2024 (TEMA 1)
+  // CASO PRÁCTICO 4: SANGER EXAMEN 28 OCTUBRE 2024 (TEMA 1)
   // ------------------------------------------------------------------------
   {
     id: "ex-sanger-2024",
-    number: "Ejercicio Sanger 2024 (Word)",
+    number: "Caso Práctico 4",
     topicId: "tema1",
     topicName: "Genética y Genómica",
     title: "Secuenciación de Sanger - Examen 28 de Octubre 2024",
@@ -138,8 +187,19 @@ b) Indique cuáles de los siguientes cebadores podría utilizar para dicha secue
 - **b.3)** \`5' CCCTAACGAAACGAT 3'\`
 - **b.4)** \`5' CCGGATGCTGTCGGG 3'\`
 
-c) Elija uno de los cebadores anteriores para realizar la secuenciación y suponga que tras la electroforesis en gel de poliacrilamida con 4 carriles (ddATP, ddCTP, ddGTP, ddTTP) se visualizan las bandas.
-¿Cuál es la secuencia de bases indicada con X en negrita?`,
+c) Elija uno de los cebadores anteriores para realizar la secuenciación y deduzca la orientación del gel.`,
+    interactiveEvaluation: {
+      question: "Para secuenciar la región interna X elongando hacia la derecha a lo largo de la hebra inferior molde (3' TAGCAAAGCAATCCC... 5'), ¿cuál de los cuatro cebadores propuestos es el VÁLIDO?",
+      options: [
+        "b.2) 5' ATCGTTTCGTTAGGG 3' (hibrida de forma complementaria y antiparalela con el extremo 3' de la hebra inferior y su extremo 3'-OH elonga hacia la derecha atravesando X).",
+        "b.3) 5' CCCTAACGAAACGAT 3' (porque tiene mayor porcentaje de guaninas y citosinas).",
+        "b.4) 5' CCGGATGCTGTCGGG 3' (porque se une al extremo 5' de la hebra inferior).",
+        "Ninguno de los anteriores es válido porque los cebadores deben ser de ARN bicatenario."
+      ],
+      correct: 0,
+      feedbackCorrect: "¡Perfecto! El cebador b.2 (5' ATCGTTTCGTTAGGG 3') es perfectamente complementario a 3' TAGCAAAGCAATCCC 5'. Al unirse a la hebra inferior, su extremo 3'-OH libre apunta hacia la derecha, permitiendo a la polimerasa sintetizar de 5' a 3' cruzando toda la región X desconocida.",
+      feedbackIncorrect: "Comprueba el principio de antiparalelismo: para leer la hebra inferior de izquierda a derecha (hacia su extremo 5'), el cebador debe unirse a su extremo 3' (3' TAGCAAAGCAATCCC 5') y apuntar con su 3'-OH hacia la derecha."
+    },
     solution: {
       a: `Los didesoxinucleótidos (**ddNTPs**) carecen del grupo hidroxilo en posición **3'-OH** de la pentosa (tienen un hidrógeno en lugar de -OH). La ADN polimerasa necesita ese grupo 3'-OH libre para formar el enlace fosfodiéster con el siguiente nucleótido entrante. Al incorporarse un ddNTP, la síntesis de la cadena se **detiene inmediata e irreversiblemente**, generando fragmentos de longitud específica que terminan en esa base marcada.`,
       b: `Para secuenciar la región interna desconocida **X**:
@@ -151,16 +211,16 @@ c) Elija uno de los cebadores anteriores para realizar la secuenciación y supon
   },
 
   // ------------------------------------------------------------------------
-  // PROBLEMA 1 (TEMA 1) - CEBADOR Y GEL SANGER
+  // CASO PRÁCTICO 5 (TEMA 1)
   // ------------------------------------------------------------------------
   {
     id: "ex-sanger-prob1",
-    number: "Problema 1 (Word)",
+    number: "Caso Práctico 5",
     topicId: "tema1",
     topicName: "Genética y Genómica",
     title: "Diseño de Cebador y Esquema de Gel en Secuenciación Sanger",
     badge: "Diseño de Cebadores",
-    xp: 70,
+    xp: 75,
     dnaSequence: "5´ TTACGCAGTCCCTAATCGGGTAT 3´",
     targetRegion: "CCCTAA",
     description: `Utilizando la siguiente molécula de ADN:
@@ -168,6 +228,18 @@ $$\\text{5´ TTACGCAGTCCCTAATCGGGTAT 3´}$$
 
 b.1. Diseñe un cebador que se una a la región marcada (\`CCCTAA\`), indique su secuencia, sus extremos 5′ y 3′ y represente cómo se uniría a la molécula durante la secuenciación.
 b.2. Represente el gel de electroforesis con los fragmentos de ADN que se obtendrían tras la secuenciación, indicando la posición en el gel y el tamaño en nucleótidos de cada fragmento.`,
+    interactiveEvaluation: {
+      question: "Para la región diana 5'-CCCTAA-3' en la hebra dada, ¿cuál es la secuencia correcta del cebador escrito formalmente en dirección 5' a 3'?",
+      options: [
+        "5'- T T A G G G - 3'",
+        "3'- T T A G G G - 5'",
+        "5'- C C C T A A - 3'",
+        "5'- G G G A T T - 3'"
+      ],
+      correct: 0,
+      feedbackCorrect: "¡Correcto! La secuencia complementaria a 5'-CCCTAA-3' es 3'-GGGATT-5'. Al escribirla en la convención estándar obligatoria de biología molecular 5' a 3', invertimos el orden obteniendo 5'-TTAGGG-3'.",
+      feedbackIncorrect: "Atención a la polaridad: la hebra molde tiene 5'-CCCTAA-3'. La hebra complementaria es 3'-GGGATT-5'. Todo cebador en biología molecular debe enunciarse en dirección 5' a 3', es decir, 5'-TTAGGG-3'."
+    },
     solution: {
       b1: `• **Región diana:** \`5' CCCTAA 3'\` en la molécula dada.
 • **Cebador complementario y antiparalelo:**
@@ -185,11 +257,11 @@ Como la ADN polimerasa únicamente puede sintetizar en sentido $5' \\rightarrow 
   },
 
   // ------------------------------------------------------------------------
-  // PROBLEMA 2 (TEMA 1) - GEL SANGER Y FRAGMENTO X
+  // CASO PRÁCTICO 6 (TEMA 1)
   // ------------------------------------------------------------------------
   {
     id: "ex-sanger-prob2",
-    number: "Problema 2 (Word)",
+    number: "Caso Práctico 6",
     topicId: "tema1",
     topicName: "Genética y Genómica",
     title: "Interpretación de Autorradiografía Sanger y Tamaño de Fragmentos",
@@ -201,13 +273,21 @@ Como la ADN polimerasa únicamente puede sintetizar en sentido $5' \\rightarrow 
     },
     description: `La imagen representa un gel de electroforesis obtenido tras la secuenciación de una molécula de ADN con la metodología de Sanger. Cada carrera representa los fragmentos obtenidos en una reacción independiente: carril 1 (ddATP), carril 2 (ddCTP), carril 3 (ddGTP) y carril 4 (ddTTP).
 
-El fragmento de ADN secuenciado ha sido:
-$$\\text{5´ ATCGGTTACCTGXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXCCCCGGTAGATGCCT 3´}$$
-$$\\text{3´ TAGCCAATGGACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXGGGGCCATCTACGGA 5´}$$
-
 a) Describa brevemente qué pasos habría seguido hasta obtener dicho gel.
 b) Indique el cebador utilizado, señalando sus extremos 5´y 3´ y situándolo en la zona donde se uniría al fragmento secuenciado.
 c) Indique el tamaño en nucleótidos de cada uno de los fragmentos de ADN del gel y la secuencia del fragmento marcado con X.`,
+    interactiveEvaluation: {
+      question: "Si el cebador utilizado mide 12 nucleótidos y la primera banda inferior aparece en el carril de ddATP, ¿cuántos nucleótidos tiene ese fragmento y en qué extremo del gel se localiza?",
+      options: [
+        "13 nucleótidos, y se localiza en la base del gel (cerca del polo positivo/ánodo) por ser el fragmento de menor peso molecular.",
+        "12 nucleótidos, en la parte superior junto a los pocillos de carga.",
+        "1 nucleótido, en el polo negativo (cátodo).",
+        "24 nucleótidos, en el centro exacto del gel."
+      ],
+      correct: 0,
+      feedbackCorrect: "¡Exacto! El fragmento más corto está formado por los 12 nucleótidos del cebador más el primer ddNTP incorporado (ddATP en este caso), totalizando 13 nt. Al ser el más ligero, migra a máxima velocidad hacia el ánodo (+), situándose en la base del gel.",
+      feedbackIncorrect: "Recuerda que el cebador no migra solo (no tiene terminador marcado); la banda más baja detectable corresponde al cebador (12 nt) + 1 ddNTP incorporado = 13 nt, situada en el fondo del gel."
+    },
     solution: {
       a: `**Pasos metodológicos del protocolo de Sanger:**
 1. **Desnaturalización:** Separación de las dos hebras del fragmento de ADN mediante calor.
@@ -226,11 +306,11 @@ Se une a \`3´ TAGCCAATGGAC 5´\` y elonga desde el extremo 3' hacia la región 
   },
 
   // ------------------------------------------------------------------------
-  // PROBLEMA 3 (TEMA 2) - MUTACIONES EN LA REGIÓN CODIFICANTE
+  // CASO PRÁCTICO 7 (TEMA 2)
   // ------------------------------------------------------------------------
   {
     id: "ex-mut-prob3",
-    number: "Problema 3 (Word)",
+    number: "Caso Práctico 7",
     topicId: "tema2",
     topicName: "De la Mutación al Fenotipo",
     title: "Efecto Funcional de Cuatro Mutaciones en la Proteína",
@@ -244,12 +324,6 @@ Se une a \`3´ TAGCCAATGGAC 5´\` y elonga desde el extremo 3' hacia la región 
       { codon: "GCG", aa: "Ala" }, { codon: "UUU", aa: "Phe" }, { codon: "AAG", aa: "Lys" },
       { codon: "GCG", aa: "Ala" }
     ],
-    mutations: [
-      { id: "m1", seq: "AUG ACA GAU CAG CCG CAA UAC GAA...", type: "Silenciosa", codonChanged: "ACG (Thr) -> ACA (Thr)" },
-      { id: "m2", seq: "AUG ACG GAA CAG CCG CAA UAC GAA...", type: "Cambio de sentido (Missense)", codonChanged: "GAU (Asp) -> GAA (Glu)" },
-      { id: "m3", seq: "AUG ACG GAU CAG CCG UAA UAC GAA...", type: "Sin sentido (Nonsense)", codonChanged: "CAA (Gln) -> UAA (STOP)" },
-      { id: "m4", seq: "AUG ACG AGAU CAG CCG CAA UAC GAA...", type: "Desplazamiento de marco (Frameshift)", codonChanged: "Inserción de A" }
-    ],
     description: `La siguiente secuencia representa la región codificante de un gen:
 $$\\text{AUG ACG GAU CAG CCG CAA UAC GAA UUG GCG UUU AAG GCG}$$
 
@@ -262,6 +336,18 @@ Suponga que dicha secuencia sufre las siguientes mutaciones:
 4. \`AUG ACG AGAU CAG CCG CAA UAC GAA\`
 
 Escriba las proteínas resultantes e indique el tipo de mutación en cada caso. Describa brevemente el posible efecto de cada tipo de mutación sobre la función de la proteína resultante.`,
+    interactiveEvaluation: {
+      question: "En la mutación 3 (AUG ACG GAU CAG CCG UAA...), el codón 6 pasa de CAA (Glutamina) a UAA. ¿Cuál es el resultado exacto de esta mutación?",
+      options: [
+        "Mutación sin sentido (nonsense): genera un codón Stop en la posición 6, produciendo un péptido de solo 5 aminoácidos y pérdida total de función.",
+        "Mutación silenciosa: la glutamina sigue incorporándose por titubeo del ARNt.",
+        "Mutación missense: sustituye Glutamina por Asparagina con funcionalidad reducida al 50%.",
+        "Mutación por inversión cromosómica en el brazo corto."
+      ],
+      correct: 0,
+      feedbackCorrect: "¡Muy bien! UAA es el codón de terminación Ocre (Stop). Al aparecer en el sexto triplete, la traducción finaliza de inmediato, generando un fragmento de solo 5 aminoácidos (Met-Thr-Asp-Gln-Pro-Stop) que carece por completo de la estructura y función biológica.",
+      feedbackIncorrect: "UAA, UAG y UGA son codones que no codifican ningún aminoácido; son reconocidos por factores de liberación proteica que provocan la disociación del ribosoma."
+    },
     solution: {
       wt: `**Proteína Silvestre (wt):**
 \`Met – Thr – Asp – Gln – Pro – Gln – Tyr – Glu – Leu – Ala – Phe – Lys – Ala\``,
@@ -281,11 +367,11 @@ Escriba las proteínas resultantes e indique el tipo de mutación en cada caso. 
   },
 
   // ------------------------------------------------------------------------
-  // PROBLEMA 4 (TEMA 2) - ESTRUCTURA DEL GEN EUCARIOTA
+  // CASO PRÁCTICO 8 (TEMA 2)
   // ------------------------------------------------------------------------
   {
     id: "ex-euk-gene-prob4",
-    number: "Problema 4 (Word)",
+    number: "Caso Práctico 8",
     topicId: "tema2",
     topicName: "De la Mutación al Fenotipo",
     title: "Estructura del Gen Eucariota y Repercusión de Mutaciones Puntuales",
@@ -294,6 +380,18 @@ Escriba las proteínas resultantes e indique el tipo de mutación en cada caso. 
     description: `a) Realice un esquema indicando las partes de un gen eucariota e indique cuál sería el posible efecto de una mutación puntual sobre la proteína codificada por el mismo en cada una de sus regiones.
 b) Ponga un ejemplo de una mutación silenciosa, una mutación sin sentido y una mutación de cambio de sentido en el gen a partir del cual se ha transcrito el ARN mensajero del problema 3, indicando la secuencia de aminoácidos resultante.
 c) Indique brevemente el posible efecto de cada tipo de mutación sobre la función de la proteína resultante.`,
+    interactiveEvaluation: {
+      question: "¿Qué efecto molecular produce una mutación puntual localizada en la secuencia promotora o en la caja TATA de un gen eucariota?",
+      options: [
+        "Altera la afinidad de unión de la ARN polimerasa o factores de transcripción basales, disminuyendo o aboliendo la tasa de transcripción del gen sin alterar la secuencia de aminoácidos codificada.",
+        "Origina un codón Stop prematuro en la proteína.",
+        "Cambia la cola de poli-A por una serie de citosinas.",
+        "Provoca la escisión del centrómero en el cromosoma metafásico."
+      ],
+      correct: 0,
+      feedbackCorrect: "¡Exacto! El promotor y la caja TATA no se transcriben ni traducen; su función es actuar como diana de reconocimiento para la maquinaria transcripcional. Una mutación en esta región altera la cantidad de transcrito producido pero no la secuencia codificante del exón.",
+      feedbackIncorrect: "El promotor se sitúa aguas arriba del punto de inicio (+1). Como no forma parte del ARN maduro traducido, no altera los codones directamente, sino la tasa de síntesis de ARNm."
+    },
     solution: {
       a: `**Partes del Gen Eucariota y Repercusión de una Mutación Puntual:**
 1. **Promotor y Caja TATA:** No se transcribe. Una mutación aquí altera la unión de la ARN polimerasa o factores basales de transcripción, provocando una disminución drástica (o supresión total) de la transcripción, reduciendo la cantidad de proteína sin alterar su secuencia.
@@ -314,17 +412,29 @@ c) Indique brevemente el posible efecto de cada tipo de mutación sobre la funci
   },
 
   // ------------------------------------------------------------------------
-  // PROBLEMA 5 (TEMA 2) - POLIPLOIDÍA EN CULTIVOS
+  // CASO PRÁCTICO 9 (TEMA 2)
   // ------------------------------------------------------------------------
   {
     id: "ex-polyploidy-prob5",
-    number: "Problema 5 (Word)",
+    number: "Caso Práctico 9",
     topicId: "tema2",
     topicName: "De la Mutación al Fenotipo",
     title: "Individuos Poliploides en Cultivos: Obtención, Ventajas e Inconvenientes",
     badge: "Poliploidía Agronómica",
     xp: 70,
     description: `Describe qué es un individuo poliploide e indica alguna forma de obtener individuos de este tipo. Pon ejemplos que conozcas de cultivos poliploides e indica las ventajas e inconvenientes que pueden tener los cultivos poliploides.`,
+    interactiveEvaluation: {
+      question: "¿Por qué las sandías triploides (3n) carecen de semillas duras comerciales y cómo se obtienen en los centros de mejora?",
+      options: [
+        "Se obtienen cruzando una planta tetraploide (4n, gametos 2n) con una diploide (2n, gametos 1n); al ser 3n, en la meiosis los cromosomas no pueden segregarse de forma equilibrada, originando aborto embrionario de las semillas.",
+        "Se obtienen tratando semillas diploides con citoquininas en la fase de aclimatación.",
+        "Porque carecen de polen debido a una deleción robertsoniana en el cromosoma 1.",
+        "Son mutantes transgénicos creados con biobalística que no sintetizan endospermo."
+      ],
+      correct: 0,
+      feedbackCorrect: "¡Totalmente correcto! El cruce de un tetraploide (4n) por un diploide (2n) genera progenie triploide (3n). Al tener tres juegos cromosómicos homólogos, es imposible formar parejas bivalentes regulares durante la profase I de la meiosis, generando gametos aneuploides inviables y abortando las semillas (apirenia).",
+      feedbackIncorrect: "Recuerda que la triploidía implica un número impar de juegos cromosómicos (3n). Las células no pueden repartir 3 juegos entre 2 células hijas en la meiosis sin causar desequilibrios cromosómicos letales."
+    },
     solution: {
       definicion: `Un **individuo poliploide** es aquel organismo que posee **más de dos juegos cromosómicos completos** ($3n, 4n, 6n, 8n\\dots$) en el núcleo de sus células.
 - **Autopoliploides:** Los juegos cromosómicos proceden de la misma especie parental por duplicación del propio genoma.
@@ -350,17 +460,29 @@ c) Indique brevemente el posible efecto de cada tipo de mutación sobre la funci
   },
 
   // ------------------------------------------------------------------------
-  // PROBLEMA 6 (TEMA 2) - REORDENACIONES CROMOSÓMICAS
+  // CASO PRÁCTICO 10 (TEMA 2)
   // ------------------------------------------------------------------------
   {
     id: "ex-chrom-rearr-prob6",
-    number: "Problema 6 (Word)",
+    number: "Caso Práctico 10",
     topicId: "tema2",
     topicName: "De la Mutación al Fenotipo",
     title: "Tipos de Reordenaciones Cromosómicas Estructurales",
     badge: "Citogenética y Cariotipo",
     xp: 70,
     description: `Describe los tipos de reordenaciones cromosómicas que conozcas, por qué se originan y cómo afectan al individuo portador de las mismas.`,
+    interactiveEvaluation: {
+      question: "¿Qué ocurre con un fragmento cromosómico acéntrico (que ha perdido el centrómero por deleción) durante la división celular?",
+      options: [
+        "No puede asociarse a los microtúbulos del huso mitótico mediante el cinetocoro y se pierde irreversiblemente en el citoplasma durante la anafase.",
+        "Se duplica espontáneamente con colchicina.",
+        "Se fusiona inmediatamente con el nucleosoma H1.",
+        "Forma un anillo plasmídico superenrollado viable."
+      ],
+      correct: 0,
+      feedbackCorrect: "¡Exacto! El centrómero es la región donde se ensambla el complejo proteico del cinetocoro. Sin centrómero, los microtúbulos no pueden remolcar el fragmento hacia los polos durante la anafase, por lo que queda rezagado y se degrada en el citoplasma.",
+      feedbackIncorrect: "El centrómero es imprescindible para la segregación celular meiótica y mitótica. Cualquier segmento sin centrómero (acéntrico) no se segrega y se pierde."
+    },
     solution: {
       tipos: `**Tipos de Reordenaciones Cromosómicas Estructurales:**
 1. **Deleción:** Pérdida física de un segmento cromosómico. Puede ser terminal (en el extremo) o intersticial (en el cuerpo del brazo).
@@ -381,11 +503,11 @@ c) Indique brevemente el posible efecto de cada tipo de mutación sobre la funci
   },
 
   // ------------------------------------------------------------------------
-  // PROBLEMA 7 (TEMA 3) - RAPD Y DIVERSIDAD EN POBLACIÓN VEGETAL
+  // CASO PRÁCTICO 11 (TEMA 3)
   // ------------------------------------------------------------------------
   {
     id: "ex-rapd-plant-div-prob7",
-    number: "Problema 7 (Word)",
+    number: "Caso Práctico 11",
     topicId: "tema3",
     topicName: "Marcadores y Diversidad",
     title: "Marcadores RAPD en Poblaciones Vegetales y Selección de Parentales",
@@ -394,6 +516,18 @@ c) Indique brevemente el posible efecto de cada tipo de mutación sobre la funci
     description: `La siguiente imagen muestra los resultados de un análisis con marcadores RAPDs de 4 individuos (carriles 1, 2, 3, 4) de una población vegetal.
 
 A partir de estos resultados decide qué pareja de individuos utilizarías de parentales si quisieras **maximizar la diversidad genética** de la población resultante. ¿Y si quisieras **minimizarla**? Justifica la respuesta en todos los casos.`,
+    interactiveEvaluation: {
+      question: "En un programa de mejora que persigue MAXIMIZAR la diversidad genética y heterocigosis de la descendencia mediante marcadores moleculares RAPD, ¿qué criterio de selección de parentales debe aplicarse?",
+      options: [
+        "Seleccionar la pareja de parentales que comparta el menor número de bandas (máxima distancia genética y divergencia alélica).",
+        "Seleccionar parentales con patrones de bandas idénticos en todas las calles para asegurar consanguinidad.",
+        "Elegir únicamente plantas que no muestren ninguna banda amplificada.",
+        "Cruzar solo plantas tetraploides con plásmidos Ti."
+      ],
+      correct: 0,
+      feedbackCorrect: "¡Correcto! Cuanto menor sea el número de bandas compartidas entre dos parentales (menor coeficiente de similitud de Dice o Jaccard), mayor es su distancia genética. Al cruzarlos, la progenie F1 presentará la máxima heterocigosis y segregará una gran diversidad de combinaciones genotípicas novedosas.",
+      feedbackIncorrect: "Para maximizar la diversidad se busca heterosis (vigor híbrido) cruzando genotipos lo más distintos posible, es decir, con el menor número de bandas RAPD comunes."
+    },
     solution: {
       maximizar: `• **Para MAXIMIZAR la diversidad genética:**
 Se debe elegir la pareja de individuos parentales que presente la **menor cantidad de bandas compartidas** (es decir, la mayor distancia genética y menor coeficiente de similitud). Al cruzarse dos parentales genéticamente divergentes, la descendencia presentará la **máxima heterocigosis** posible y segregará una gran variedad de combinaciones genotípicas novedosas en las generaciones siguientes.`,
@@ -404,11 +538,11 @@ Se debe elegir la pareja que muestre el **patrón de bandas más similar o casi 
   },
 
   // ------------------------------------------------------------------------
-  // PROBLEMA 8 (TEMA 3) - RAPD EN CONEJOS Y CONSANGUINIDAD
+  // CASO PRÁCTICO 12 (TEMA 3)
   // ------------------------------------------------------------------------
   {
     id: "ex-rapd-rabbits-prob8",
-    number: "Problema 8 (Word)",
+    number: "Caso Práctico 12",
     topicId: "tema3",
     topicName: "Marcadores y Diversidad",
     title: "Marcadores RAPD en Población de Conejos, Matriz y Consanguinidad",
@@ -419,6 +553,18 @@ Se debe elegir la pareja que muestre el **patrón de bandas más similar o casi 
 
 a) Ponga un ejemplo que represente por qué se amplifica el fragmento marcado con un círculo en el individuo 1 y por qué no se amplifica en el individuo 7.
 b) Transforme este gel en una matriz de 1 y 0 y calcule el coeficiente de similitud entre los individuos 1 y 7, y 1 y 8. ¿Si el individuo 1 fuera una hembra y tuviera que elegir entre el macho 7 y el macho 8 para obtener una generación con menor consanguinidad, qué cruzamiento elegiría? Explique por qué.`,
+    interactiveEvaluation: {
+      question: "¿Por qué un fragmento determinado amplifica en el Individuo 1 pero NO amplifica en el Individuo 7 al usar un único cebador de RAPD?",
+      options: [
+        "Porque en el Individuo 7 ha ocurrido una mutación puntual o deleción en una de las dianas de unión del cebador que impide el anillamiento y la polimerización.",
+        "Porque el Individuo 7 no tiene polimerasa celular.",
+        "Porque en el Individuo 7 el ADN migra hacia el cátodo negativo.",
+        "Porque el cebador solo reconoce ADN de plantas y no de mamíferos."
+      ],
+      correct: 0,
+      feedbackCorrect: "¡Muy bien! En RAPD, para que se produzca amplificación se requiere que existan dos sitios complementarios al cebador en orientaciones opuestas y a corta distancia. Una simple mutación de un solo nucleótido en el extremo 3' de la diana impide la hibridación del cebador, aboliendo por completo la amplificación de la banda.",
+      feedbackIncorrect: "En los marcadores moleculares basados en PCR, la presencia o ausencia de banda refleja la integridad de las secuencias diana reconocidas por los cebadores."
+    },
     solution: {
       a: `**Causa de amplificación diferencial en RAPD:**
 - Para que se amplifique un fragmento de ADN en RAPD con un único cebador decanucleotídico, se requiere que existan **dos secuencias complementarias al cebador en orientaciones convergentes opuestas (en hebras contrarias) y a una distancia física que la Taq polimerasa pueda elongar** (< 2.000 pb).
@@ -440,11 +586,11 @@ donde $N_{xy}$ es el número de bandas compartidas por ambos individuos, y $N_x,
   },
 
   // ------------------------------------------------------------------------
-  // PROBLEMA 9 (TEMA 3) - PCR Y DIAGNÓSTICO VIRAL
+  // CASO PRÁCTICO 13 (TEMA 3)
   // ------------------------------------------------------------------------
   {
     id: "ex-pcr-viral-diag-prob9",
-    number: "Problema 9 (Word)",
+    number: "Caso Práctico 13",
     topicId: "tema3",
     topicName: "Marcadores y Diversidad",
     title: "PCR y Electroforesis para el Diagnóstico de Infecciones Virales",
@@ -452,6 +598,18 @@ donde $N_{xy}$ es el número de bandas compartidas por ambos individuos, y $N_x,
     xp: 75,
     description: `Describa los pasos del método de amplificación de fragmentos de ADN mediante la reacción en cadena de la polimerasa (PCR) y su separación posterior mediante electroforesis.
 Ponga un ejemplo de cómo lo utilizaría para diagnosticar la presencia de una infección viral en un organismo, representando los resultados del gel.`,
+    interactiveEvaluation: {
+      question: "En un protocolo de diagnóstico viral por PCR, ¿cuál es el papel indispensable del control negativo (blanco sin ADN molde) en el gel de electroforesis?",
+      options: [
+        "Confirmar que los reactivos y el agua de la reacción están libres de contaminación por ADN viral o amplicones previos.",
+        "Servir como estándar de peso molecular para calibrar el tamaño del amplicón.",
+        "Verificar que la enzima Taq polimerasa ha alcanzado los 95 °C.",
+        "Teñir el gel de agarosa con azul de bromofenol."
+      ],
+      correct: 0,
+      feedbackCorrect: "¡Exacto! El control negativo (blanco con todos los reactivos excepto ADN molde) debe resultar completamente limpio sin ninguna banda. Si apareciera una banda en el blanco, indicaría contaminación cruzada de los reactivos y todo el ensayo quedaría invalidado.",
+      feedbackIncorrect: "El control negativo contiene todos los componentes de la PCR menos el ADN molde. Su ausencia de banda descarta falsos positivos por contaminación accidental de laboratorio."
+    },
     solution: {
       pasosPcr: `**Los 3 Pasos Cíclicos de la PCR:**
 1. **Desnaturalización térmica (94-95 °C$, 30-60 seg):** El calor rompe los puentes de hidrógeno separando las dos hebras del ADN molde.

@@ -49,10 +49,10 @@
           <span>🏛️</span> <span class="hidden md:inline">Panel</span>
         </button>
         <button onclick="switchView('exam-workshop')" class="px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-xs font-semibold text-amber-300 transition flex items-center gap-1.5">
-          <span>🎯</span> <span class="hidden md:inline">Taller Examen (Word)</span>
+          <span>🎯</span> <span class="hidden md:inline">Problemas de Convocatoria</span>
         </button>
         <button onclick="switchView('codex')" class="px-3 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-xs font-semibold text-emerald-300 transition flex items-center gap-1.5">
-          <span>📚</span> <span class="hidden md:inline">Códice</span>
+          <span>📖</span> <span class="hidden md:inline">Biblioteca de Estudio</span>
         </button>
         <button onclick="toggleSound()" id="btn-sound-toggle" class="px-3 py-1.5 rounded-xl bg-slate-900 border border-cyan-500/40 text-xs font-semibold text-cyan-400 transition">
           🔊 <span class="hidden sm:inline">Sonido: ON</span>
@@ -106,14 +106,14 @@
           Saga BioGenLab: Del Nucleótido al Organismo Biotecnológico
         </h2>
         <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-          4 aplicaciones y episodios de aprendizaje armonizados en un solo simulador con <strong>116 retos interactivos</strong>, <strong>13 ejercicios oficiales de examen del Word</strong> con resolución paso a paso, diseño de cebadores, geles Sanger y RAPD, y glosario universal con renderizado matemático KaTeX.
+          4 aplicaciones y episodios de aprendizaje armonizados en un solo simulador con <strong>116 retos interactivos</strong>, <strong>13 casos prácticos de convocatorias oficiales</strong> con evaluación interactiva activa y resolución razonada paso a paso, diseño de cebadores, geles Sanger y RAPD, y <strong>Biblioteca de Estudio Oficial</strong> con los manuales teóricos íntegros y sus figuras originales.
         </p>
         <div class="flex flex-wrap gap-3 pt-2">
           <button onclick="switchView('exam-workshop')" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition flex items-center gap-2 shadow-lg shadow-amber-500/20">
-            <span>🎯</span> Resolver Ejercicios de Examen (Word)
+            <span>🎯</span> Resolver Casos de Convocatoria
           </button>
           <button onclick="switchView('codex')" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold text-sm transition flex items-center gap-2">
-            <span>📚</span> Glosario y Conceptos Clave
+            <span>📖</span> Biblioteca de Estudio Oficial
           </button>
         </div>
       </div>
@@ -252,20 +252,20 @@
       </div>
     </div>
 
-    <!-- Banner Acceso Especial a Taller de Examen -->
+    <!-- Banner Acceso Especial a Casos Prácticos de Convocatoria Oficial -->
     <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-amber-500/40 bg-gradient-to-r from-amber-950/20 via-slate-900/60 to-slate-950 flex flex-wrap items-center justify-between gap-6">
       <div class="space-y-2 max-w-2xl">
         <div class="flex items-center gap-2">
           <span class="text-xl">🎯</span>
-          <span class="text-xs uppercase font-mono-code font-bold text-amber-400">Taller de Ejercicios Oficiales de Examen (Word)</span>
+          <span class="text-xs uppercase font-mono-code font-bold text-amber-400">Casos Prácticos y Problemas de Convocatoria Oficial</span>
         </div>
-        <h3 class="text-lg sm:text-xl font-bold text-white">13 Problemas y Ejercicios Reales con Solución Guiada y Calificación</h3>
+        <h3 class="text-lg sm:text-xl font-bold text-white">13 Casos Reales con Evaluación Activa Interactiva y Solución Paso a Paso</h3>
         <p class="text-xs sm:text-sm text-slate-300">
           Incluye el fragmento codificante de mutaciones, análisis de RAPDs para paternidad y conejos, diseño de cebadores y geles Sanger, poliploidía, reordenaciones cromosómicas y diagnóstico molecular por PCR.
         </p>
       </div>
       <button onclick="switchView('exam-workshop')" class="px-6 py-3 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition shadow-lg shadow-amber-500/25 shrink-0">
-        Entrar al Taller de Examen →
+        Resolver Casos Prácticos →
       </button>
     </div>
 
@@ -399,8 +399,8 @@
             <button onclick="switchTopicTab('tema1', 'arena')" class="py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs sm:text-sm transition-all">
               🏆 Ir al Examen (28 Retos)
             </button>
-            <button onclick="switchTopicTab('tema1', 'codex')" class="py-2.5 bg-emerald-500/20 hover:bg-emerald-500 hover:text-slate-950 text-emerald-300 border border-emerald-500/40 font-bold rounded-xl text-xs sm:text-sm transition-all">
-              📖 Abrir Códice de Estudio
+            <button onclick="openStudyVolume('tema1')" class="py-2.5 bg-emerald-500/20 hover:bg-emerald-500 hover:text-slate-950 text-emerald-300 border border-emerald-500/40 font-bold rounded-xl text-xs sm:text-sm transition-all">
+              📖 Manual Teórico Oficial
             </button>
           </div>
         </div>
@@ -1344,8 +1344,8 @@
             <button onclick="switchTopicTab('tema2', 'arena')" class="py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs transition-all">
               🏆 Ir al Examen
             </button>
-            <button onclick="switchTopicTab('tema2', 'codex')" class="py-2.5 bg-cyan-500/20 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 border border-cyan-500/40 font-bold rounded-xl text-xs transition-all">
-              📖 Ver Apuntes
+            <button onclick="openStudyVolume('tema2')" class="py-2.5 bg-cyan-500/20 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 border border-cyan-500/40 font-bold rounded-xl text-xs transition-all">
+              📖 Manual Teórico Oficial
             </button>
           </div>
         </div>
@@ -2109,8 +2109,8 @@
             <button onclick="switchTopicTab('tema3', 'arena')" class="py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs transition-all">
               🏆 Ir al Examen (30)
             </button>
-            <button onclick="switchTopicTab('tema3', 'codex')" class="py-2.5 bg-emerald-500/20 hover:bg-emerald-500 hover:text-slate-950 text-emerald-300 border border-emerald-500/40 font-bold rounded-xl text-xs transition-all">
-              📖 Ver Códice
+            <button onclick="openStudyVolume('tema3')" class="py-2.5 bg-emerald-500/20 hover:bg-emerald-500 hover:text-slate-950 text-emerald-300 border border-emerald-500/40 font-bold rounded-xl text-xs transition-all">
+              📖 Manual Teórico Oficial
             </button>
           </div>
         </div>
@@ -2718,8 +2718,8 @@
             <button onclick="switchTopicTab('tema4', 'arena')" class="py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs sm:text-sm transition-all">
               🏆 Ir al Examen (28 Retos)
             </button>
-            <button onclick="switchTopicTab('tema4', 'codex')" class="py-2.5 bg-cyan-500/20 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 border border-cyan-500/40 font-bold rounded-xl text-xs sm:text-sm transition-all">
-              📖 Ver Códice de Estudio
+            <button onclick="openStudyVolume('tema4')" class="py-2.5 bg-cyan-500/20 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 border border-cyan-500/40 font-bold rounded-xl text-xs sm:text-sm transition-all">
+              📖 Manual Teórico Oficial
             </button>
           </div>
         </div>
@@ -3072,7 +3072,7 @@
         </div>
 
         <p class="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
-          Preguntas oficiales literales del Word sobre micropropagación, medios, autoclave, protoplastos, Agrobacterium tumefaciens, Caulimovirus y biobalística.
+          Preguntas oficiales literales de convocatoria sobre micropropagación, medios nutritivos, autoclave, protoplastos, Agrobacterium tumefaciens, Caulimovirus y biobalística.
         </p>
 
         <div id="tema4-test-oficial-list" class="space-y-4">
@@ -3084,61 +3084,80 @@
   </main>
   </div>
 
-  <!-- ==================== VISTA 6: TALLER DE EXAMEN (WORD) ==================== -->
+  <!-- ==================== VISTA 6: CASOS PRÁCTICOS DE CONVOCATORIA OFICIAL ==================== -->
   <div id="view-exam-workshop" class="hidden max-w-7xl mx-auto px-4 py-8 space-y-6 flex-1 w-full">
     <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-amber-500/40 bg-gradient-to-br from-amber-950/20 to-slate-900">
       <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
         <div>
-          <span class="text-xs font-mono-code font-bold uppercase tracking-wider text-amber-400">Ejercicios Oficiales del Documento Word</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Taller de Problemas de Examen</h2>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono-code text-xs font-bold border border-amber-500/40">EVALUACIÓN INTERACTIVA ACTIVA</span>
+            <span class="px-2.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono-code text-xs">13 CASOS PRÁCTICOS</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Casos Prácticos de Convocatoria Oficial</h2>
         </div>
         <button onclick="switchView('dashboard')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 transition">
           ← Volver al Panel
         </button>
       </div>
       <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
-        Aquí tienes los 13 ejercicios y problemas del examen adaptados fielmente al simulador. Despliega la solución oficial paso a paso y marca cada uno como completado para registrar tu XP.
+        13 casos prácticos de convocatorias oficiales adaptados a una metodología de evaluación interactiva activa. Analiza el problema, responde a la pregunta de evaluación interactiva para obtener validación pedagógica instantánea (+XP) y consulta la resolución oficial razonada paso a paso.
       </p>
     </div>
 
-    <!-- Lista de los 13 ejercicios -->
+    <!-- Lista de los 13 casos prácticos con evaluación interactiva -->
     <div id="exam-problems-list">
       <!-- Generado dinámicamente por app.js -->
     </div>
   </div>
 
-  <!-- ==================== VISTA 7: CÓDICE CIENTÍFICO UNIVERSAL ==================== -->
+  <!-- ==================== VISTA 7: BIBLIOTECA DE ESTUDIO OFICIAL (MANUALES Y FUENTES) ==================== -->
   <div id="view-codex" class="hidden max-w-7xl mx-auto px-4 py-8 space-y-6 flex-1 w-full">
     <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-emerald-500/40 bg-gradient-to-br from-emerald-950/20 to-slate-900">
       <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
         <div>
-          <span class="text-xs font-mono-code font-bold uppercase tracking-wider text-emerald-400">Glosario & Fundamentos</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Códice Científico Universal</h2>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono-code text-xs font-bold border border-emerald-500/40">FUENTES ORIGINALES DE LA ASIGNATURA</span>
+            <span class="px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-mono-code text-xs">4 VOLÚMENES COMPLETOS</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Biblioteca de Estudio Oficial: Manuales Teóricos</h2>
         </div>
         <button onclick="switchView('dashboard')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 transition">
           ← Volver al Panel
         </button>
       </div>
-      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl mb-6">
-        Base de datos unificada de términos biotecnológicos, leyes de Chargaff, enzimas de restricción, cromatina, splicing, poliploidía y cultivo in vitro.
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl mb-5">
+        Accede al texto íntegro, diagramas, figuras originales y esquemas docentes de los 4 temas oficiales de la asignatura, adaptados a la estética Cyber-BioLab y enriquecidos con fórmulas matemáticas KaTeX e hipervínculos a los simuladores interactivos de laboratorio.
       </p>
 
-      <!-- Buscador y filtro -->
-      <div class="flex flex-wrap gap-3">
-        <input type="text" id="codex-search-input" oninput="handleCodexSearch()" placeholder="Buscar término (ej. Miescher, RFLP, Colchicina, Agrobacterium)..." class="flex-1 min-w-[240px] px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-emerald-400 transition">
-        <select id="codex-topic-filter" onchange="handleCodexSearch()" class="px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs sm:text-sm focus:outline-none focus:border-emerald-400 transition">
-          <option value="all">Todos los Temas</option>
-          <option value="1">Tema 1: Genética y Genómica</option>
-          <option value="2">Tema 2: De la Mutación al Fenotipo</option>
-          <option value="3">Tema 3: Marcadores y Diversidad</option>
-          <option value="4">Tema 4: Cultivo In Vitro</option>
-        </select>
+      <!-- Selector de los 4 Volúmenes / Manuales -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs font-mono-code">
+        <button onclick="switchStudyVolume('tema1')" id="btn-study-vol-tema1" class="p-3 rounded-xl bg-cyan-500/25 border border-cyan-500/50 text-cyan-300 font-bold text-left transition shadow">
+          <span class="text-[10px] text-cyan-400 block uppercase">Volumen 1</span>
+          <span class="text-xs font-bold text-white block mt-0.5">Genética y Genómica</span>
+        </button>
+        <button onclick="switchStudyVolume('tema2')" id="btn-study-vol-tema2" class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-left hover:bg-slate-800 transition">
+          <span class="text-[10px] text-slate-500 block uppercase">Volumen 2</span>
+          <span class="text-xs font-bold text-white block mt-0.5">De la Mutación al Fenotipo</span>
+        </button>
+        <button onclick="switchStudyVolume('tema3')" id="btn-study-vol-tema3" class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-left hover:bg-slate-800 transition">
+          <span class="text-[10px] text-slate-500 block uppercase">Volumen 3</span>
+          <span class="text-xs font-bold text-white block mt-0.5">Marcadores y Diversidad</span>
+        </button>
+        <button onclick="switchStudyVolume('tema4')" id="btn-study-vol-tema4" class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-left hover:bg-slate-800 transition">
+          <span class="text-[10px] text-slate-500 block uppercase">Volumen 4</span>
+          <span class="text-xs font-bold text-white block mt-0.5">Cultivos In-Vitro</span>
+        </button>
+      </div>
+
+      <!-- Buscador en Vivo dentro del Manual Oficial -->
+      <div class="mt-4 pt-3 border-t border-slate-800 flex flex-wrap gap-3">
+        <input type="text" id="study-search-input" oninput="handleStudySearch()" placeholder="Buscar en los manuales (ej. Sanger, RFLP, TILLING, colchicina, Agrobacterium, MON810, epimutación)..." class="flex-1 min-w-[260px] px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-cyan-400 transition">
       </div>
     </div>
 
-    <!-- Grid del Glosario -->
-    <div id="codex-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <!-- Generado dinámicamente por app.js -->
+    <!-- Contenedor del Lector del Manual Oficial Activo -->
+    <div id="study-volume-reader" class="space-y-6">
+      <!-- Rellenado dinámicamente por app.js con el contenido del volumen, secciones y figuras originales -->
     </div>
   </div>
 
@@ -3150,7 +3169,24 @@
     </div>
   </footer>
 
+  <!-- Modal Lightbox para Figuras y Diagramas Originales -->
+  <div id="image-modal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4" onclick="closeImageModal()">
+    <div class="relative max-w-5xl max-h-[92vh] w-full bg-slate-900 border border-slate-700/80 rounded-2xl p-4 sm:p-6 flex flex-col shadow-2xl" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between gap-4 pb-3 border-b border-slate-800">
+        <span class="text-xs font-mono-code text-cyan-400 font-bold uppercase tracking-wider">🔬 Figura Original de la Fuente Oficial</span>
+        <button onclick="closeImageModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center font-bold text-sm transition">
+          ✕
+        </button>
+      </div>
+      <div class="flex-1 overflow-auto py-4 flex items-center justify-center min-h-[250px]">
+        <img id="image-modal-img" src="" alt="Figura Oficial" class="max-h-[75vh] w-auto max-w-full rounded-xl object-contain border border-slate-800 shadow-xl bg-slate-950">
+      </div>
+      <div id="image-modal-caption" class="pt-3 border-t border-slate-800 text-xs sm:text-sm text-slate-300 text-center font-medium leading-relaxed"></div>
+    </div>
+  </div>
+
   <!-- Scripts de Datos y Lógica -->
+  <script src="study-sources.js"></script>
   <script src="quiz-data.js"></script>
   <script src="exam-problems.js"></script>
   <script src="app.js"></script>

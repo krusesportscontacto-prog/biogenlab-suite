@@ -93,6 +93,7 @@ const defaultState = {
   completedModules: [],
   answeredQuiz: {},       // { [questionKey]: selectedOptionIndex }
   examExercises: {},      // { [exerciseId]: boolean }
+  examAnswers: {},        // { [exerciseId]: selectedOptionIndex }
   sound: true
 };
 
@@ -104,6 +105,8 @@ function loadState() {
     if (raw) {
       const parsed = JSON.parse(raw);
       AppState = { ...defaultState, ...parsed };
+      if (!AppState.examAnswers) AppState.examAnswers = {};
+      if (!AppState.examExercises) AppState.examExercises = {};
       SFX.enabled = AppState.sound !== false;
     }
   } catch (e) {
@@ -125,6 +128,10 @@ function resetProgress() {
     renderTopicCardsProgress();
     if (currentView.startsWith('tema')) {
       initTopicQuiz(currentView);
+    }
+    renderExamWorkshop();
+    if (typeof switchStudyVolume === 'function') {
+      switchStudyVolume(currentStudyVolume);
     }
     SFX.beep(300, 'sine', 0.3, 0.1);
     alert('Progreso reiniciado correctamente.');
@@ -249,8 +256,8 @@ function updateBreadcrumbs(viewId) {
     'tema2': 'Tema 2: De la Mutación al Fenotipo',
     'tema3': 'Tema 3: Marcadores y Diversidad',
     'tema4': 'Tema 4: Cultivo In Vitro',
-    'exam-workshop': 'Taller de Ejercicios de Examen (Word)',
-    'codex': 'Códice Científico Universal'
+    'exam-workshop': 'Problemas de Convocatoria Oficial',
+    'codex': 'Biblioteca de Estudio Oficial'
   };
 
   if (viewId === 'dashboard') {
@@ -259,13 +266,24 @@ function updateBreadcrumbs(viewId) {
     bc.innerHTML = `
       <button onclick="switchView('dashboard')" class="text-slate-400 hover:text-cyan-400 transition">🏛️ Inicio</button>
       <span class="text-slate-600">/</span>
-      <span class="text-cyan-300 font-semibold">${names[viewId]}</span>
+      <span class="text-cyan-300 font-semibold">${names[viewId] || viewId}</span>
     `;
+  }
+}
+
+function openStudyVolume(volumeId) {
+  switchView('codex');
+  if (typeof switchStudyVolume === 'function') {
+    switchStudyVolume(volumeId);
   }
 }
 
 // Subtab navigation within a topic
 function switchTopicTab(topicKey, tabKey) {
+  if (tabKey === 'codex') {
+    openStudyVolume(topicKey);
+    return;
+  }
   SFX.click();
   const subtabs = {
     tema1: ['hub', 'sub1', 'sub2', 'sub3', 'sub4', 'arena', 'exercises'],
@@ -457,121 +475,505 @@ function navigateQuiz(topicKey, dir) {
 }
 
 // --------------------------------------------------------------------------
-// 7. GLOSARIO Y CÓDICE CIENTÍFICO UNIFICADO
+// 7. BIBLIOTECA DE ESTUDIO OFICIAL (MANUALES Y FUENTES TEÓRICAS CON IMÁGENES)
 // --------------------------------------------------------------------------
-function renderCodex(filterTopic = 'all', searchQuery = '') {
-  const container = document.getElementById('codex-grid');
-  if (!container || !window.BIOGENLAB_CODEX_DATA) return;
+let currentStudyVolume = 'tema1';
 
-  const q = searchQuery.toLowerCase().trim();
-  const entries = window.BIOGENLAB_CODEX_DATA.filter(item => {
-    const matchTopic = (filterTopic === 'all') || (item.topic == filterTopic);
-    const matchSearch = !q || item.term.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q) || item.tag.toLowerCase().includes(q);
-    return matchTopic && matchSearch;
+function switchStudyVolume(volId) {
+  if (!window.STUDY_SOURCES || !window.STUDY_SOURCES[volId]) return;
+  currentStudyVolume = volId;
+  SFX.click();
+
+  ['tema1', 'tema2', 'tema3', 'tema4'].forEach(k => {
+    const btn = document.getElementById(`btn-study-vol-${k}`);
+    if (btn) {
+      if (k === volId) {
+        const borderColors = {
+          tema1: 'border-cyan-400 bg-cyan-950/40 text-cyan-300 shadow-lg shadow-cyan-500/10',
+          tema2: 'border-emerald-400 bg-emerald-950/40 text-emerald-300 shadow-lg shadow-emerald-500/10',
+          tema3: 'border-indigo-400 bg-indigo-950/40 text-indigo-300 shadow-lg shadow-indigo-500/10',
+          tema4: 'border-lime-400 bg-lime-950/40 text-lime-300 shadow-lg shadow-lime-500/10'
+        };
+        btn.className = `p-3 rounded-xl border ${borderColors[k] || 'border-cyan-400 bg-cyan-950/40 text-cyan-300'} font-bold text-left transition`;
+      } else {
+        btn.className = 'p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-400 font-bold text-left hover:bg-slate-800/90 hover:text-slate-200 transition';
+      }
+    }
   });
 
-  if (!entries.length) {
-    container.innerHTML = `<div class="col-span-full p-8 text-center text-slate-500">No se encontraron términos coincidentes.</div>`;
-    return;
-  }
+  const searchInput = document.getElementById('study-search-input');
+  const q = searchInput ? searchInput.value : '';
+  renderStudyVolume(volId, q);
+}
 
-  container.innerHTML = entries.map(item => {
-    const tagColors = {
-      1: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
-      2: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-      3: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30',
-      4: 'bg-lime-500/20 text-lime-300 border-lime-500/30'
-    };
+function handleStudySearch() {
+  const searchInput = document.getElementById('study-search-input');
+  const q = searchInput ? searchInput.value.trim() : '';
+  renderStudyVolume(currentStudyVolume, q);
+}
 
-    return `
-      <div class="glass-panel p-5 rounded-2xl border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between gap-2 mb-2">
-            <span class="text-[10px] uppercase font-mono-code font-bold px-2 py-0.5 rounded border ${tagColors[item.topic] || 'bg-slate-800 text-slate-400'}">${item.topicName}</span>
-            <span class="text-[10px] font-mono-code text-slate-500">${item.tag}</span>
-          </div>
-          <h4 class="text-base font-bold text-white mb-2">${item.term}</h4>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${item.desc}</p>
+function renderStudyVolume(volId = currentStudyVolume, searchQuery = '') {
+  const container = document.getElementById('study-volume-reader');
+  if (!container || !window.STUDY_SOURCES) return;
+
+  const vol = window.STUDY_SOURCES[volId];
+  if (!vol) return;
+
+  const q = searchQuery.toLowerCase().trim();
+
+  // Filtrar secciones si hay búsqueda activa
+  const sections = vol.sections.filter(sec => {
+    if (!q) return true;
+    const inTitle = sec.title.toLowerCase().includes(q);
+    const inContent = sec.content.toLowerCase().includes(q);
+    const inAlert = sec.examAlert && sec.examAlert.toLowerCase().includes(q);
+    const inCaptions = sec.images && sec.images.some(img => img.caption.toLowerCase().includes(q));
+    return inTitle || inContent || inAlert || inCaptions;
+  });
+
+  const themeClasses = {
+    cyan: { badge: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30', border: 'border-cyan-500/40', accent: 'text-cyan-300' },
+    emerald: { badge: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30', border: 'border-emerald-500/40', accent: 'text-emerald-300' },
+    indigo: { badge: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30', border: 'border-indigo-500/40', accent: 'text-indigo-300' },
+    lime: { badge: 'bg-lime-500/20 text-lime-300 border-lime-500/30', border: 'border-lime-500/40', accent: 'text-lime-300' }
+  }[vol.color] || { badge: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30', border: 'border-cyan-500/40', accent: 'text-cyan-300' };
+
+  let html = '';
+
+  // Banner y Ficha del Volumen
+  html += `
+    <div class="glass-panel p-6 sm:p-8 rounded-3xl border ${themeClasses.border} bg-slate-900/60 shadow-xl space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <span class="px-3 py-1 rounded-lg border font-mono-code font-bold text-xs ${themeClasses.badge}">${vol.volume}</span>
+          <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 font-mono-code text-xs">${vol.badge}</span>
+        </div>
+        <span class="text-xs font-mono-code text-slate-400">${vol.sections.length} Secciones Oficiales • Figuras Originales</span>
+      </div>
+      <div>
+        <h2 class="text-xl sm:text-2xl font-extrabold text-white">${vol.title}</h2>
+        <h3 class="text-sm font-semibold ${themeClasses.accent} mt-0.5">${vol.subtitle}</h3>
+      </div>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80">
+        ${vol.summary}
+      </p>
+
+      <!-- Navegación Rápida por Secciones del Volumen -->
+      <div class="pt-3 border-t border-slate-800/80">
+        <div class="text-[11px] font-mono-code text-slate-400 uppercase tracking-wider mb-2 font-bold">Índice del Volumen (Acceso Rápido):</div>
+        <div class="flex flex-wrap gap-2">
+          ${vol.sections.map(sec => `
+            <a href="#sec-${sec.id}" class="px-3 py-1.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-xs text-slate-300 hover:text-white transition flex items-center gap-1.5">
+              <span class="font-mono-code font-bold ${themeClasses.accent}">${sec.number}</span>
+              <span class="truncate max-w-[180px]">${sec.title.split(':')[0]}</span>
+            </a>
+          `).join('')}
         </div>
       </div>
-    `;
-  }).join('');
+    </div>
+  `;
 
+  if (q) {
+    html += `
+      <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between gap-3 text-xs">
+        <span class="text-slate-300">Filtro activo: "<strong class="text-cyan-400">${q}</strong>" • Mostrando <strong>${sections.length}</strong> de ${vol.sections.length} secciones en ${vol.volume}.</span>
+        <button onclick="document.getElementById('study-search-input').value=''; handleStudySearch();" class="text-cyan-400 hover:underline font-bold">Limpiar filtro</button>
+      </div>
+    `;
+  }
+
+  if (sections.length === 0) {
+    html += `
+      <div class="p-12 text-center glass-panel rounded-3xl border border-slate-800 space-y-3">
+        <span class="text-4xl block">🔍</span>
+        <h4 class="text-lg font-bold text-white">No se encontraron secciones coincidentes en ${vol.volume}</h4>
+        <p class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto">
+          Prueba con otro término científico (ej. "Sanger", "Chargaff", "RFLP", "Agrobacterium", "Poliploidía", "Embriogénesis") o consulta los otros 3 volúmenes.
+        </p>
+      </div>
+    `;
+  } else {
+    sections.forEach(sec => {
+      let imagesHtml = '';
+      if (sec.images && sec.images.length > 0) {
+        const gridCols = sec.images.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2';
+        imagesHtml = `
+          <div class="mt-6 pt-5 border-t border-slate-800/80">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs font-mono-code font-bold text-cyan-400 uppercase tracking-wider">🔬 Figuras y Diagramas Originales Extraídos de los Apuntes</span>
+              <span class="text-[10px] text-slate-500 font-mono-code">(Clic para ampliar en alta resolución)</span>
+            </div>
+            <div class="grid ${gridCols} gap-4">
+              ${sec.images.map(img => `
+                <div onclick="openImageModal('${img.src}', '${encodeURIComponent(img.caption)}')" class="group cursor-pointer bg-slate-950/80 hover:bg-slate-900 border border-slate-800 hover:border-cyan-500/50 rounded-2xl p-3 transition shadow-md flex flex-col justify-between">
+                  <div class="overflow-hidden rounded-xl bg-slate-950 flex items-center justify-center p-2 min-h-[180px]">
+                    <img src="${img.src}" alt="${img.caption}" class="max-h-52 w-auto object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy">
+                  </div>
+                  <div class="mt-2.5 pt-2 border-t border-slate-800/60 flex items-start gap-2">
+                    <span class="text-cyan-400 text-xs shrink-0 mt-0.5">🔍</span>
+                    <span class="text-[11px] sm:text-xs text-slate-300 leading-snug font-medium group-hover:text-white transition">${img.caption}</span>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      let alertHtml = '';
+      if (sec.examAlert) {
+        alertHtml = `
+          <div class="mt-4 p-4 rounded-2xl bg-amber-950/30 border border-amber-500/40 text-amber-200 text-xs sm:text-sm space-y-2">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-bold flex items-center gap-1.5 text-amber-300 font-mono-code uppercase text-[11px]">
+                <span>⚡</span> CONCEPTO CLAVE DE EVALUACIÓN OFICIAL
+              </span>
+              <button onclick="switchView('exam-workshop')" class="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-200 hover:text-slate-950 font-bold text-[11px] font-mono-code transition">
+                Ver Problemas Relacionados →
+              </button>
+            </div>
+            <p class="leading-relaxed">${sec.examAlert}</p>
+          </div>
+        `;
+      }
+
+      html += `
+        <article id="sec-${sec.id}" class="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800 hover:border-slate-700/80 transition space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-xl bg-slate-800/90 border border-slate-700 flex items-center justify-center font-mono-code font-bold text-xs ${themeClasses.accent}">${sec.number}</span>
+              <h3 class="text-base sm:text-lg font-bold text-white">${sec.title}</h3>
+            </div>
+            <a href="#view-codex" class="text-[11px] font-mono-code text-slate-500 hover:text-cyan-400 transition">↑ Volver Arriba</a>
+          </div>
+
+          <div class="text-xs sm:text-sm text-slate-200 leading-relaxed space-y-3 prose-invert max-w-none">
+            ${sec.content}
+          </div>
+
+          ${alertHtml}
+          ${imagesHtml}
+        </article>
+      `;
+    });
+  }
+
+  container.innerHTML = html;
   renderMath();
 }
 
-function handleCodexSearch() {
-  const searchInput = document.getElementById('codex-search-input');
-  const filterSelect = document.getElementById('codex-topic-filter');
-  const q = searchInput ? searchInput.value : '';
-  const topic = filterSelect ? filterSelect.value : 'all';
-  renderCodex(topic, q);
+function openImageModal(src, encodedCaption) {
+  const modal = document.getElementById('image-modal');
+  const img = document.getElementById('image-modal-img');
+  const cap = document.getElementById('image-modal-caption');
+  if (!modal || !img || !cap) return;
+
+  img.src = src;
+  cap.innerHTML = decodeURIComponent(encodedCaption);
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  SFX.click();
+}
+
+function closeImageModal() {
+  const modal = document.getElementById('image-modal');
+  if (!modal) return;
+  modal.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+// Cerrar modal de imagen con tecla Escape
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeImageModal();
+});
+
+// Alias para compatibilidad
+function renderCodex() {
+  switchStudyVolume(currentStudyVolume);
 }
 
 // --------------------------------------------------------------------------
-// 8. TALLER DE EJERCICIOS DE EXAMEN (WORD DOCUMENT)
+// 8. CASOS PRÁCTICOS DE CONVOCATORIA OFICIAL (EVALUACIÓN INTERACTIVA ACTIVA)
 // --------------------------------------------------------------------------
+let currentExamFilter = 'all';
+
+function filterExamWorkshop(topicFilter) {
+  currentExamFilter = topicFilter;
+  renderExamWorkshop();
+  SFX.click();
+}
+
 function renderExamWorkshop() {
   const container = document.getElementById('exam-problems-list');
   if (!container || !window.EXAM_PROBLEMS) return;
 
-  container.innerHTML = window.EXAM_PROBLEMS.map((prob, idx) => {
+  const allProbs = window.EXAM_PROBLEMS;
+  const filtered = currentExamFilter === 'all' 
+    ? allProbs 
+    : allProbs.filter(p => p.topicId === currentExamFilter);
+
+  // Estadísticas globales
+  const total = allProbs.length;
+  const completedCount = allProbs.filter(p => AppState.examExercises[p.id] === true).length;
+  const earnedXP = allProbs
+    .filter(p => AppState.examExercises[p.id] === true)
+    .reduce((acc, p) => acc + (p.xp || 75), 0);
+  const totalPossibleXP = allProbs.reduce((acc, p) => acc + (p.xp || 75), 0);
+  const pct = Math.round((completedCount / total) * 100);
+
+  // Filtros por Asignatura
+  const filterCounts = {
+    all: allProbs.length,
+    tema1: allProbs.filter(p => p.topicId === 'tema1').length,
+    tema2: allProbs.filter(p => p.topicId === 'tema2').length,
+    tema3: allProbs.filter(p => p.topicId === 'tema3').length,
+    tema4: allProbs.filter(p => p.topicId === 'tema4').length
+  };
+
+  const topicTabs = [
+    { id: 'all', label: 'Todos los Casos', count: filterCounts.all },
+    { id: 'tema1', label: 'Tema 1 (Genómica)', count: filterCounts.tema1 },
+    { id: 'tema2', label: 'Tema 2 (Mutaciones)', count: filterCounts.tema2 },
+    { id: 'tema3', label: 'Tema 3 (Marcadores)', count: filterCounts.tema3 },
+    { id: 'tema4', label: 'Tema 4 (In-Vitro)', count: filterCounts.tema4 }
+  ];
+
+  let headerHtml = `
+    <!-- Barra de Estado y Progreso de Convocatoria -->
+    <div class="glass-panel p-5 rounded-2xl border border-slate-800 bg-slate-900/80 mb-6 flex flex-wrap items-center justify-between gap-4">
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-mono-code font-bold text-amber-400 uppercase tracking-wider">Estado de Convocatoria:</span>
+          <span class="text-xs font-bold text-white">${completedCount} de ${total} Casos Superados (${pct}%)</span>
+        </div>
+        <div class="w-64 h-2.5 rounded-full bg-slate-800 overflow-hidden border border-slate-700">
+          <div class="h-full bg-gradient-to-r from-amber-500 to-emerald-400 transition-all duration-500" style="width: ${pct}%"></div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="text-right">
+          <span class="text-[10px] uppercase font-mono-code text-slate-400 block">XP de Convocatoria</span>
+          <span class="text-sm font-extrabold text-amber-300 font-mono-code">+${earnedXP} / ${totalPossibleXP} XP</span>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-lg">
+          ${pct === 100 ? '👑' : '🎯'}
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtros por Asignatura / Tema -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      ${topicTabs.map(t => {
+        const isActive = currentExamFilter === t.id;
+        const cls = isActive
+          ? 'bg-amber-500 text-slate-950 font-bold border-amber-400 shadow-md shadow-amber-500/10'
+          : 'bg-slate-900 text-slate-400 border-slate-800 hover:bg-slate-800 hover:text-white';
+        return `
+          <button onclick="filterExamWorkshop('${t.id}')" class="px-3.5 py-1.5 rounded-xl border text-xs font-mono-code transition flex items-center gap-1.5 ${cls}">
+            <span>${t.label}</span>
+            <span class="px-1.5 py-0.2 rounded-md ${isActive ? 'bg-slate-950/20 text-slate-950 font-bold' : 'bg-slate-800 text-slate-400'} text-[10px]">${t.count}</span>
+          </button>
+        `;
+      }).join('')}
+    </div>
+  `;
+
+  let cardsHtml = filtered.map((prob) => {
     const isCompleted = AppState.examExercises[prob.id] === true;
+    const savedAnswer = AppState.examAnswers ? AppState.examAnswers[prob.id] : undefined;
+    const hasAnswered = savedAnswer !== undefined;
+
     const badgeColors = {
       tema1: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
       tema2: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
       tema3: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30',
       tema4: 'bg-lime-500/20 text-lime-300 border-lime-500/30'
-    };
+    }[prob.topicId] || 'bg-amber-500/20 text-amber-300 border-amber-500/30';
+
+    // Bloque de Evaluación Interactiva
+    let evalHtml = '';
+    if (prob.interactiveEvaluation) {
+      const ev = prob.interactiveEvaluation;
+      const isCorrect = savedAnswer === ev.correct;
+
+      let optionsListHtml = ev.options.map((opt, optIdx) => {
+        let optCls = 'w-full text-left p-3.5 rounded-xl border text-xs sm:text-sm transition flex items-start gap-3 ';
+        let disabled = '';
+
+        if (hasAnswered) {
+          if (optIdx === ev.correct) {
+            optCls += 'bg-emerald-950/70 border-2 border-emerald-400 text-emerald-100 font-semibold shadow-lg shadow-emerald-500/10';
+            disabled = 'disabled';
+          } else if (optIdx === savedAnswer && !isCorrect) {
+            optCls += 'bg-rose-950/70 border-2 border-rose-500 text-rose-200';
+            disabled = 'disabled';
+          } else {
+            optCls += 'bg-slate-950/40 border-slate-800/80 text-slate-500 opacity-60';
+            disabled = 'disabled';
+          }
+        } else {
+          optCls += 'bg-slate-950/80 hover:bg-slate-800/80 border-slate-800 hover:border-amber-400/60 text-slate-200 cursor-pointer';
+        }
+
+        const indicator = hasAnswered
+          ? (optIdx === ev.correct ? '✓' : (optIdx === savedAnswer ? '✗' : String.fromCharCode(65 + optIdx)))
+          : String.fromCharCode(65 + optIdx);
+
+        return `
+          <button onclick="submitExamEvaluation('${prob.id}', ${optIdx})" ${disabled} class="${optCls}">
+            <span class="w-6 h-6 rounded-lg ${hasAnswered && optIdx === ev.correct ? 'bg-emerald-500 text-slate-950' : 'bg-slate-800 border border-slate-700 text-slate-300'} flex items-center justify-center font-mono-code font-bold text-xs shrink-0">${indicator}</span>
+            <span class="leading-relaxed flex-1">${opt}</span>
+          </button>
+        `;
+      }).join('');
+
+      let feedbackBoxHtml = '';
+      if (hasAnswered) {
+        if (isCorrect) {
+          feedbackBoxHtml = `
+            <div class="p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/50 text-emerald-200 text-xs sm:text-sm space-y-1.5 animate-fadeIn">
+              <div class="font-bold flex items-center gap-2 text-emerald-300 text-sm">
+                <span>🎉</span> ¡Diagnóstico Correcto! (+${prob.xp} XP)
+              </div>
+              <p class="leading-relaxed">${ev.feedbackCorrect}</p>
+            </div>
+          `;
+        } else {
+          feedbackBoxHtml = `
+            <div class="p-4 rounded-xl bg-rose-950/60 border border-rose-500/50 text-rose-200 text-xs sm:text-sm space-y-2 animate-fadeIn">
+              <div class="font-bold flex items-center gap-2 text-rose-300 text-sm">
+                <span>❌</span> Respuesta Incorrecta
+              </div>
+              <p class="leading-relaxed">${ev.feedbackIncorrect}</p>
+              <div class="pt-2 border-t border-rose-800/50">
+                <button onclick="resetExamAnswer('${prob.id}')" class="px-3 py-1.5 rounded-lg bg-rose-500 hover:bg-rose-400 text-slate-950 font-bold text-xs transition">
+                  🔄 Reintentar Pregunta
+                </button>
+              </div>
+            </div>
+          `;
+        }
+      }
+
+      evalHtml = `
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-slate-950 to-slate-900 border ${isCompleted ? 'border-emerald-500/40' : 'border-amber-500/30'} space-y-3.5 my-4">
+          <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
+            <div class="flex items-center gap-2">
+              <span class="text-sm">🎯</span>
+              <span class="text-xs font-mono-code font-bold uppercase ${isCompleted ? 'text-emerald-400' : 'text-amber-400'}">Evaluación Activa de Convocatoria</span>
+            </div>
+            <span class="text-[11px] font-mono-code ${isCompleted ? 'text-emerald-400 font-bold' : 'text-amber-400'}">${isCompleted ? '✓ Verificado' : '⏳ Responde para Desbloquear'}</span>
+          </div>
+
+          <div class="text-xs sm:text-sm font-bold text-white leading-snug">
+            ${ev.question}
+          </div>
+
+          <div class="space-y-2 pt-1">
+            ${optionsListHtml}
+          </div>
+
+          ${feedbackBoxHtml}
+        </div>
+      `;
+    }
 
     return `
-      <div class="glass-panel p-6 rounded-2xl border ${isCompleted ? 'border-emerald-500/40 bg-emerald-950/10' : 'border-slate-800'} transition mb-6">
-        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-1 rounded border font-mono-code font-bold text-xs ${badgeColors[prob.topicId]}">${prob.number}</span>
-            <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-mono-code text-xs">${prob.badge}</span>
-            <span class="text-xs font-semibold text-amber-400 font-mono-code">+${prob.xp} XP</span>
+      <article id="card-${prob.id}" class="glass-panel p-6 sm:p-7 rounded-3xl border ${isCompleted ? 'border-emerald-500/40 bg-emerald-950/10' : 'border-slate-800'} transition mb-6 shadow-xl">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="px-2.5 py-1 rounded-xl border font-mono-code font-bold text-xs ${badgeColors}">${prob.number}</span>
+            <span class="px-2.5 py-1 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 font-mono-code text-xs">${prob.badge}</span>
+            <span class="px-2.5 py-1 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold font-mono-code">+${prob.xp} XP</span>
           </div>
-          <span class="text-xs font-bold ${isCompleted ? 'text-emerald-400' : 'text-slate-500'}">
-            ${isCompleted ? '✅ Resuelto y Verificado' : '⏳ Pendiente de Resolver'}
+          <span class="text-xs font-bold font-mono-code ${isCompleted ? 'text-emerald-400 bg-emerald-950/40 px-3 py-1 rounded-lg border border-emerald-500/40 flex items-center gap-1.5' : 'text-slate-500 bg-slate-900 px-3 py-1 rounded-lg border border-slate-800'}">
+            ${isCompleted ? '✅ Caso Superado' : '⏳ Pendiente de Resolver'}
           </span>
         </div>
 
-        <h3 class="text-lg font-bold text-white mb-3">${prob.title}</h3>
+        <h3 class="text-lg sm:text-xl font-bold text-white mb-3">${prob.title}</h3>
 
-        <div class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 whitespace-pre-line bg-slate-950/60 p-4 rounded-xl border border-slate-800/80">
+        <div class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-3 whitespace-pre-line bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80">
           ${prob.description}
         </div>
 
-        <!-- Renderizado de solucion interactiva / acordeón -->
-        <div class="space-y-3">
-          <button onclick="toggleExamSolution('${prob.id}')" id="btn-sol-${prob.id}" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-cyan-300 transition flex items-center gap-2">
-            <span>👁️ Mostrar Solución Oficial y Explicación Paso a Paso</span>
+        <!-- Bloque de Evaluación Interactiva -->
+        ${evalHtml}
+
+        <!-- Solución Oficial Razonada Paso a Paso -->
+        <div class="pt-2">
+          <button onclick="toggleExamSolution('${prob.id}')" id="btn-sol-${prob.id}" class="px-4 py-2.5 rounded-xl ${isCompleted ? 'bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-500/40 text-emerald-300' : 'bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700'} text-xs font-bold transition flex items-center gap-2">
+            <span>${isCompleted ? '👁️ Ocultar Solución Oficial Paso a Paso' : '👁️ Mostrar Solución Oficial y Razonamiento'}</span>
           </button>
 
-          <div id="sol-box-${prob.id}" class="hidden p-5 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm text-slate-200 leading-relaxed space-y-3">
+          <div id="sol-box-${prob.id}" class="${isCompleted ? '' : 'hidden'} p-5 sm:p-6 rounded-2xl bg-slate-950/90 border border-slate-700 text-xs sm:text-sm text-slate-200 leading-relaxed space-y-4 mt-3">
+            <div class="flex items-center gap-2 pb-3 border-b border-slate-800 text-xs font-mono-code font-bold text-cyan-400 uppercase tracking-wider">
+              <span>📋</span> Resolución Oficial Docente y Demostración Matemática
+            </div>
             ${formatExamSolution(prob)}
             
-            <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
-              <span class="text-xs text-slate-400">¿Has asimilado este ejercicio oficial de examen?</span>
-              <button onclick="markExamCompleted('${prob.id}', ${prob.xp})" class="px-4 py-2 rounded-xl ${isCompleted ? 'bg-emerald-950/60 border border-emerald-500/50 text-emerald-300' : 'bg-emerald-500 hover:bg-emerald-400 text-slate-950'} text-xs font-bold transition">
-                ${isCompleted ? '✔️ Ejercicio Ya Superado' : '🎯 Marcar como Superado (+XP)'}
+            <div class="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
+              <span class="text-slate-400">¿Asimilado el razonamiento oficial de este caso?</span>
+              <button onclick="markExamCompleted('${prob.id}', ${prob.xp})" class="px-4 py-2 rounded-xl ${isCompleted ? 'bg-emerald-950/80 border border-emerald-500 text-emerald-300' : 'bg-emerald-500 hover:bg-emerald-400 text-slate-950'} font-bold transition">
+                ${isCompleted ? '✔️ Caso Verificado y Validado' : '🎯 Validar como Superado (+XP)'}
               </button>
             </div>
           </div>
         </div>
-      </div>
+      </article>
     `;
   }).join('');
 
+  container.innerHTML = headerHtml + cardsHtml;
   renderMath();
+}
+
+function submitExamEvaluation(probId, selectedIdx) {
+  if (!window.EXAM_PROBLEMS) return;
+  const prob = window.EXAM_PROBLEMS.find(p => p.id === probId);
+  if (!prob || !prob.interactiveEvaluation) return;
+
+  if (!AppState.examAnswers) AppState.examAnswers = {};
+  AppState.examAnswers[probId] = selectedIdx;
+
+  if (selectedIdx === prob.interactiveEvaluation.correct) {
+    SFX.fanfare();
+    if (!AppState.examExercises[probId]) {
+      AppState.examExercises[probId] = true;
+      addXP(prob.xp, 'exam_' + probId);
+    }
+  } else {
+    SFX.error();
+    saveState();
+  }
+
+  renderExamWorkshop();
+  renderTopicCardsProgress();
+  updateGlobalHUD();
+
+  const card = document.getElementById(`card-${probId}`);
+  if (card) {
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+function resetExamAnswer(probId) {
+  if (AppState.examAnswers) {
+    delete AppState.examAnswers[probId];
+    saveState();
+    renderExamWorkshop();
+    const card = document.getElementById(`card-${probId}`);
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
 }
 
 function formatExamSolution(prob) {
   if (!prob.solution) return '';
   let html = '';
   Object.keys(prob.solution).forEach(k => {
-    html += `<div class="mb-3">${prob.solution[k]}</div>`;
+    html += `<div class="mb-3 space-y-1">${prob.solution[k]}</div>`;
   });
   return html;
 }
@@ -587,7 +989,7 @@ function toggleExamSolution(id) {
     renderMath();
   } else {
     box.classList.add('hidden');
-    btn.innerHTML = '<span>👁️ Mostrar Solución Oficial y Explicación Paso a Paso</span>';
+    btn.innerHTML = '<span>👁️ Mostrar Solución Oficial y Razonamiento</span>';
   }
 }
 
@@ -598,7 +1000,7 @@ function markExamCompleted(id, xp) {
   saveState();
   updateGlobalHUD();
   renderExamWorkshop();
-  renderTema4OfficialTest();
+  renderTopicCardsProgress();
   SFX.fanfare();
 }
 

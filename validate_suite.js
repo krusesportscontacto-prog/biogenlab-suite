@@ -7,7 +7,7 @@ const dir = 'c:/Users/alejo.COMPU_DE_ALEJO/Desktop/biogenlab-suite';
 console.log('=== VALIDATING BIOGENLAB SUITE ===');
 
 // 1. Validate JS syntax of scripts
-['quiz-data.js', 'exam-problems.js', 'app.js'].forEach(f => {
+['quiz-data.js', 'exam-problems.js', 'study-sources.js', 'app.js'].forEach(f => {
   const code = fs.readFileSync(path.join(dir, f), 'utf8');
   try {
     new vm.Script(code);
