@@ -1394,13 +1394,12 @@ function renderGelBands() {
 
   let html = '';
 
-  // 1. Ladder Scale column on the left (col-span-3: 0% to 25% of width)
-  GEL_LADDER_DATA.forEach((lad, idx) => {
-    const curTop = getTop(lad.topPct);
+  // 1. Ladder Scale column on the left (calibrated static axis: 0% to 25% of width)
+  GEL_LADDER_DATA.forEach((lad) => {
     html += `
-      <div class="absolute left-1 sm:left-2 flex items-center gap-1 transition-all duration-150 ${isUV ? 'opacity-90' : 'opacity-0'} pointer-events-none" style="top: ${curTop}%; transform: translateY(-50%);">
-        <span class="text-[9px] sm:text-[10px] font-mono-code font-bold ${lad.isRef ? 'text-amber-300' : 'text-cyan-300'} whitespace-nowrap">${lad.label}</span>
-        <span class="w-2 sm:w-3 h-px bg-slate-600 inline-block"></span>
+      <div class="absolute left-1.5 sm:left-3 flex items-center gap-1.5 transition-opacity duration-200 ${isUV ? 'opacity-90' : 'opacity-0'} pointer-events-none" style="top: ${lad.topPct}%; transform: translateY(-50%);">
+        <span class="text-[10px] sm:text-xs font-mono tabular-nums font-semibold ${lad.isRef ? 'text-amber-300' : 'text-slate-300'} whitespace-nowrap">${lad.label}</span>
+        <span class="w-2 sm:w-3.5 h-px bg-slate-600 inline-block"></span>
       </div>
     `;
   });
