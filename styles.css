@@ -17,11 +17,25 @@
   --theme-exam: #f59e0b; /* Amber */
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-main);
   color: #e2e8f0;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
+
+.custom-scroll {
+  -webkit-overflow-scrolling: touch;
 }
 
 h1, h2, h3, h4, .font-display {
@@ -31,6 +45,11 @@ h1, h2, h3, h4, .font-display {
 
 .font-mono-code {
   font-family: 'JetBrains Mono', monospace;
+  word-break: break-word;
+}
+
+code, pre {
+  word-break: break-word;
 }
 
 /* Custom Scrollbars */
