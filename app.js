@@ -321,8 +321,8 @@ function switchTopicTab(topicKey, tabKey) {
     const btn = document.getElementById(`${topicKey}-tab-${tab}`);
     if (sec) sec.classList.add('hidden');
     if (btn) {
-      btn.classList.remove('bg-cyan-500', 'bg-emerald-500', 'bg-indigo-500', 'bg-lime-500', 'text-slate-950', 'text-white');
-      btn.classList.add('text-slate-300');
+      btn.classList.remove('bg-sky-600', 'bg-emerald-600', 'bg-indigo-600', 'bg-lime-700', 'bg-cyan-500', 'bg-emerald-500', 'bg-indigo-500', 'bg-lime-500', 'text-slate-950', 'text-white', 'shadow-xs');
+      btn.classList.add('text-slate-700');
     }
   });
 
@@ -331,11 +331,11 @@ function switchTopicTab(topicKey, tabKey) {
   if (activeSec) activeSec.classList.remove('hidden');
 
   if (activeBtn) {
-    activeBtn.classList.remove('text-slate-300');
-    const colorClass = topicKey === 'tema1' ? 'bg-cyan-500 text-slate-950' :
-                       topicKey === 'tema2' ? 'bg-emerald-500 text-slate-950' :
-                       topicKey === 'tema3' ? 'bg-indigo-500 text-white' :
-                       'bg-lime-500 text-slate-950';
+    activeBtn.classList.remove('text-slate-700', 'text-slate-300');
+    const colorClass = topicKey === 'tema1' ? 'bg-sky-600 text-white font-bold shadow-xs' :
+                       topicKey === 'tema2' ? 'bg-emerald-600 text-white font-bold shadow-xs' :
+                       topicKey === 'tema3' ? 'bg-indigo-600 text-white font-bold shadow-xs' :
+                       'bg-lime-700 text-white font-bold shadow-xs';
     activeBtn.className += ` ${colorClass}`;
   }
 
@@ -447,30 +447,30 @@ function renderQuizQuestion(topicKey) {
 
   let optionsHtml = '';
   q.options.forEach((opt, idx) => {
-    let btnClass = 'w-full text-left p-4 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-xs sm:text-sm text-slate-200 transition flex items-start gap-3';
+    let btnClass = 'w-full text-left p-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 transition flex items-start gap-3 shadow-2xs';
     let disabledAttr = '';
 
     if (isAnswered) {
       disabledAttr = 'disabled';
       if (idx === q.correct) {
-        btnClass = 'w-full text-left p-4 rounded-xl bg-emerald-950/60 border-2 border-emerald-500 text-xs sm:text-sm text-emerald-100 flex items-start gap-3 font-medium';
+        btnClass = 'w-full text-left p-4 rounded-xl bg-emerald-50 border-2 border-emerald-500 text-xs sm:text-sm text-emerald-950 flex items-start gap-3 font-semibold shadow-xs';
       } else if (idx === savedAnswer) {
-        btnClass = 'w-full text-left p-4 rounded-xl bg-rose-950/60 border-2 border-rose-500 text-xs sm:text-sm text-rose-200 flex items-start gap-3';
+        btnClass = 'w-full text-left p-4 rounded-xl bg-rose-50 border-2 border-rose-400 text-xs sm:text-sm text-rose-950 flex items-start gap-3';
       } else {
-        btnClass = 'w-full text-left p-4 rounded-xl bg-slate-950/40 border border-slate-800 text-xs sm:text-sm text-slate-500 flex items-start gap-3 opacity-60';
+        btnClass = 'w-full text-left p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-400 flex items-start gap-3 opacity-60';
       }
     }
 
     optionsHtml += `
       <button onclick="handleAnswerSelection('${topicKey}', ${q.id}, ${idx})" id="${topicKey}-opt-${idx}" ${disabledAttr} class="${btnClass}">
-        <span class="w-6 h-6 rounded-lg bg-slate-800 border border-slate-600 flex items-center justify-center font-mono-code font-bold text-xs shrink-0">${String.fromCharCode(65 + idx)}</span>
-        <span class="leading-relaxed">${opt}</span>
+        <span class="w-6 h-6 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center font-mono-code font-bold text-xs shrink-0">${String.fromCharCode(65 + idx)}</span>
+        <span class="leading-relaxed flex-1">${opt}</span>
       </button>
     `;
   });
 
   const rationaleClass = isAnswered
-    ? (savedAnswer === q.correct ? 'p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 text-xs sm:text-sm' : 'p-4 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-200 text-xs sm:text-sm')
+    ? (savedAnswer === q.correct ? 'p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-950 text-xs sm:text-sm leading-relaxed shadow-xs' : 'p-4 rounded-xl bg-rose-50 border border-rose-300 text-rose-950 text-xs sm:text-sm leading-relaxed shadow-xs')
     : 'hidden';
   const rationaleContent = isAnswered
     ? (savedAnswer === q.correct ? `✅ <strong>¡Respuesta Exacta!</strong> ${q.exp}` : `❌ <strong>Revisión Necesaria:</strong> ${q.exp}`)
@@ -480,15 +480,15 @@ function renderQuizQuestion(topicKey) {
   const answeredInTopic = state.list.filter(item => AppState.answeredQuiz[`${topicKey}_q${item.id}`] !== undefined).length;
 
   container.innerHTML = `
-    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
       <div class="flex items-center gap-2">
-        <span class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-mono-code font-bold text-xs">Subtema ${q.sub}</span>
-        <span class="text-xs text-slate-400 font-mono-code">Pregunta ${state.currentIdx + 1} de ${state.filtered.length}</span>
+        <span class="px-2.5 py-1 rounded bg-amber-50 border border-amber-200 text-amber-900 font-mono-code font-bold text-xs">Subtema ${q.sub}</span>
+        <span class="text-xs text-slate-600 font-mono-code">Pregunta ${state.currentIdx + 1} de ${state.filtered.length}</span>
       </div>
-      <span class="text-xs ${isAnswered ? 'text-emerald-400 font-bold' : 'text-slate-500'}">${isAnswered ? '✅ Ya evaluada' : '⏳ Sin responder'}</span>
+      <span class="text-xs ${isAnswered ? 'text-emerald-700 font-bold' : 'text-slate-500'}">${isAnswered ? '✅ Ya evaluada' : '⏳ Sin responder'}</span>
     </div>
 
-    <h3 class="text-base sm:text-lg font-bold text-white leading-snug pt-1">${q.q}</h3>
+    <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-snug pt-1 font-sans">${q.q}</h3>
 
     <div class="space-y-2.5">
       ${optionsHtml}
@@ -498,10 +498,10 @@ function renderQuizQuestion(topicKey) {
       ${rationaleContent}
     </div>
 
-    <div class="flex items-center justify-between pt-4 border-t border-slate-800">
-      <button onclick="navigateQuiz('${topicKey}', -1)" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-bold ${state.currentIdx === 0 ? 'opacity-40 pointer-events-none' : ''}">← Anterior</button>
-      <span class="text-xs text-slate-400 font-mono-code">Completadas: ${answeredInTopic} / ${state.list.length}</span>
-      <button onclick="navigateQuiz('${topicKey}', 1)" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-bold ${state.currentIdx === state.filtered.length - 1 ? 'opacity-40 pointer-events-none' : ''}">Siguiente →</button>
+    <div class="flex items-center justify-between pt-4 border-t border-slate-200">
+      <button onclick="navigateQuiz('${topicKey}', -1)" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 text-xs font-bold transition ${state.currentIdx === 0 ? 'opacity-40 pointer-events-none' : ''}">← Anterior</button>
+      <span class="text-xs text-slate-600 font-mono-code">Completadas: ${answeredInTopic} / ${state.list.length}</span>
+      <button onclick="navigateQuiz('${topicKey}', 1)" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition shadow-xs ${state.currentIdx === state.filtered.length - 1 ? 'opacity-40 pointer-events-none' : ''}">Siguiente →</button>
     </div>
   `;
 
@@ -594,38 +594,38 @@ function renderStudyVolume(volId = currentStudyVolume, searchQuery = '') {
   });
 
   const themeClasses = {
-    cyan: { badge: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30', border: 'border-cyan-500/40', accent: 'text-cyan-300' },
-    emerald: { badge: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30', border: 'border-emerald-500/40', accent: 'text-emerald-300' },
-    indigo: { badge: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30', border: 'border-indigo-500/40', accent: 'text-indigo-300' },
-    lime: { badge: 'bg-lime-500/20 text-lime-300 border-lime-500/30', border: 'border-lime-500/40', accent: 'text-lime-300' }
-  }[vol.color] || { badge: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30', border: 'border-cyan-500/40', accent: 'text-cyan-300' };
+    cyan: { badge: 'bg-sky-50 text-sky-800 border-sky-200', border: 'border-sky-200', accent: 'text-sky-700' },
+    emerald: { badge: 'bg-emerald-50 text-emerald-800 border-emerald-200', border: 'border-emerald-200', accent: 'text-emerald-700' },
+    indigo: { badge: 'bg-indigo-50 text-indigo-800 border-indigo-200', border: 'border-indigo-200', accent: 'text-indigo-700' },
+    lime: { badge: 'bg-lime-50 text-lime-900 border-lime-200', border: 'border-lime-200', accent: 'text-lime-800' }
+  }[vol.color] || { badge: 'bg-sky-50 text-sky-800 border-sky-200', border: 'border-sky-200', accent: 'text-sky-700' };
 
   let html = '';
 
   // Banner y Ficha del Volumen
   html += `
-    <div class="glass-panel p-6 sm:p-8 rounded-3xl border ${themeClasses.border} bg-slate-900/60 shadow-xl space-y-4">
+    <div class="bg-white p-6 sm:p-8 rounded-3xl border ${themeClasses.border} shadow-sm space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center gap-2">
           <span class="px-3 py-1 rounded-lg border font-mono-code font-bold text-xs ${themeClasses.badge}">${vol.volume}</span>
-          <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 font-mono-code text-xs">${vol.badge}</span>
+          <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 border border-slate-200 font-mono-code text-xs">${vol.badge}</span>
         </div>
-        <span class="text-xs font-mono-code text-slate-400">${vol.sections.length} Secciones Oficiales • Figuras Originales</span>
+        <span class="text-xs font-mono-code text-slate-500">${vol.sections.length} Secciones Oficiales • Figuras Originales</span>
       </div>
       <div>
-        <h2 class="text-xl sm:text-2xl font-extrabold text-white">${vol.title}</h2>
+        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">${vol.title}</h2>
         <h3 class="text-sm font-semibold ${themeClasses.accent} mt-0.5">${vol.subtitle}</h3>
       </div>
-      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80">
+      <p class="text-xs sm:text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-2xl border border-slate-200">
         ${vol.summary}
       </p>
 
       <!-- Navegación Rápida por Secciones del Volumen -->
-      <div class="pt-3 border-t border-slate-800/80">
-        <div class="text-[11px] font-mono-code text-slate-400 uppercase tracking-wider mb-2 font-bold">Índice del Volumen (Acceso Rápido):</div>
+      <div class="pt-3 border-t border-slate-200">
+        <div class="text-[11px] font-mono-code text-slate-500 uppercase tracking-wider mb-2 font-bold">Índice del Volumen (Acceso Rápido):</div>
         <div class="flex flex-wrap gap-2">
           ${vol.sections.map(sec => `
-            <a href="#sec-${sec.id}" class="px-3 py-1.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-xs text-slate-300 hover:text-white transition flex items-center gap-1.5">
+            <a href="#sec-${sec.id}" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-xs text-slate-700 hover:text-slate-900 transition flex items-center gap-1.5 font-medium">
               <span class="font-mono-code font-bold ${themeClasses.accent}">${sec.number}</span>
               <span class="truncate max-w-[180px]">${sec.title.split(':')[0]}</span>
             </a>
@@ -637,19 +637,19 @@ function renderStudyVolume(volId = currentStudyVolume, searchQuery = '') {
 
   if (q) {
     html += `
-      <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between gap-3 text-xs">
-        <span class="text-slate-300">Filtro activo: "<strong class="text-cyan-400">${q}</strong>" • Mostrando <strong>${sections.length}</strong> de ${vol.sections.length} secciones en ${vol.volume}.</span>
-        <button onclick="document.getElementById('study-search-input').value=''; handleStudySearch();" class="text-cyan-400 hover:underline font-bold">Limpiar filtro</button>
+      <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-xs flex items-center justify-between gap-3 text-xs">
+        <span class="text-slate-700">Filtro activo: "<strong class="text-sky-700">${q}</strong>" • Mostrando <strong>${sections.length}</strong> de ${vol.sections.length} secciones en ${vol.volume}.</span>
+        <button onclick="document.getElementById('study-search-input').value=''; handleStudySearch();" class="text-sky-600 hover:underline font-bold">Limpiar filtro</button>
       </div>
     `;
   }
 
   if (sections.length === 0) {
     html += `
-      <div class="p-12 text-center glass-panel rounded-3xl border border-slate-800 space-y-3">
+      <div class="p-12 text-center bg-white rounded-3xl border border-slate-200 shadow-sm space-y-3">
         <span class="text-4xl block">🔍</span>
-        <h4 class="text-lg font-bold text-white">No se encontraron secciones coincidentes en ${vol.volume}</h4>
-        <p class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto">
+        <h4 class="text-lg font-bold text-slate-900">No se encontraron secciones coincidentes en ${vol.volume}</h4>
+        <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto">
           Prueba con otro término científico (ej. "Sanger", "Chargaff", "RFLP", "Agrobacterium", "Poliploidía", "Embriogénesis") o consulta los otros 3 volúmenes.
         </p>
       </div>
@@ -660,23 +660,22 @@ function renderStudyVolume(volId = currentStudyVolume, searchQuery = '') {
       if (sec.images && sec.images.length > 0) {
         const gridCols = sec.images.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2';
         imagesHtml = `
-          <div class="mt-6 pt-5 border-t border-slate-800/80">
+          <div class="mt-6 pt-5 border-t border-slate-200">
             <div class="flex items-center gap-2 mb-3">
-              <span class="text-xs font-mono-code font-bold text-cyan-400 uppercase tracking-wider">🔬 Figuras y Diagramas Originales del Temario Oficial</span>
+              <span class="text-xs font-mono-code font-bold text-sky-800 uppercase tracking-wider">🔬 Figuras y Diagramas Originales del Temario Oficial</span>
             </div>
             <div class="grid ${gridCols} gap-4">
               ${sec.images.map(img => {
                 const encodedCap = encodeURIComponent(img.caption).replace(/'/g, "%27");
                 return `
-                <div class="study-image-card group cursor-pointer bg-slate-900/90 hover:bg-slate-850 border border-slate-700/80 hover:border-cyan-400 rounded-2xl p-3.5 transition shadow-lg flex flex-col justify-between"
+                <div class="study-image-card group cursor-pointer bg-white hover:bg-slate-50 border border-slate-200 hover:border-sky-400 rounded-2xl p-3.5 transition shadow-sm hover:shadow-md flex flex-col justify-between"
                      data-src="${img.src}"
                      data-caption="${encodedCap}">
-                  <!-- Marco con FONDO BLANCO para máximo contraste y legibilidad de fórmulas y diagramas -->
-                  <div class="overflow-hidden rounded-xl bg-white flex items-center justify-center p-3 min-h-[190px] border border-slate-200 shadow-inner">
+                  <div class="overflow-hidden rounded-xl bg-white flex items-center justify-center p-3 min-h-[190px] border border-slate-100 shadow-inner">
                     <img src="${img.src}" alt="${img.caption.replace(/"/g, '&quot;')}" class="max-h-52 w-auto object-contain transition-transform duration-300 group-hover:scale-105 bg-white" loading="lazy">
                   </div>
-                  <div class="mt-3 pt-2.5 border-t border-slate-800 flex items-start gap-2">
-                    <span class="text-[11px] sm:text-xs text-slate-200 leading-snug font-medium group-hover:text-cyan-300 transition">${img.caption}</span>
+                  <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-start gap-2">
+                    <span class="text-[11px] sm:text-xs text-slate-700 leading-snug font-medium group-hover:text-sky-700 transition">${img.caption}</span>
                   </div>
                 </div>
               `}).join('')}
@@ -688,12 +687,12 @@ function renderStudyVolume(volId = currentStudyVolume, searchQuery = '') {
       let alertHtml = '';
       if (sec.examAlert) {
         alertHtml = `
-          <div class="mt-4 p-4 rounded-2xl bg-amber-950/30 border border-amber-500/40 text-amber-200 text-xs sm:text-sm space-y-2">
+          <div class="mt-4 p-4 rounded-2xl bg-amber-50 border border-amber-300 text-amber-950 text-xs sm:text-sm space-y-2 shadow-xs">
             <div class="flex items-center justify-between gap-2">
-              <span class="font-bold flex items-center gap-1.5 text-amber-300 font-mono-code uppercase text-[11px]">
+              <span class="font-bold flex items-center gap-1.5 text-amber-900 font-mono-code uppercase text-[11px]">
                 <span>⚡</span> CONCEPTO CLAVE DE EVALUACIÓN OFICIAL
               </span>
-              <button onclick="switchView('exam-workshop')" class="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-200 hover:text-slate-950 font-bold text-[11px] font-mono-code transition">
+              <button onclick="switchView('exam-workshop')" class="px-2.5 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-bold text-[11px] font-mono-code transition">
                 Ver Problemas Relacionados →
               </button>
             </div>
@@ -703,16 +702,16 @@ function renderStudyVolume(volId = currentStudyVolume, searchQuery = '') {
       }
 
       html += `
-        <article id="sec-${sec.id}" class="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800 hover:border-slate-700/80 transition space-y-4">
-          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+        <article id="sec-${sec.id}" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 hover:border-slate-300 transition space-y-4 shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
             <div class="flex items-center gap-2.5">
-              <span class="w-8 h-8 rounded-xl bg-slate-800/90 border border-slate-700 flex items-center justify-center font-mono-code font-bold text-xs ${themeClasses.accent}">${sec.number}</span>
-              <h3 class="text-base sm:text-lg font-bold text-white">${sec.title}</h3>
+              <span class="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center font-mono-code font-bold text-xs ${themeClasses.accent}">${sec.number}</span>
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 font-sans">${sec.title}</h3>
             </div>
-            <a href="#view-codex" class="text-[11px] font-mono-code text-slate-500 hover:text-cyan-400 transition">↑ Volver Arriba</a>
+            <a href="#view-codex" class="text-[11px] font-mono-code text-slate-500 hover:text-sky-700 transition">↑ Volver Arriba</a>
           </div>
 
-          <div class="text-xs sm:text-sm text-slate-200 leading-relaxed space-y-3 prose-invert max-w-none">
+          <div class="text-xs sm:text-sm text-slate-700 leading-relaxed space-y-3 max-w-none font-sans">
             ${sec.content}
           </div>
 
@@ -847,22 +846,22 @@ function renderExamWorkshop() {
 
   let headerHtml = `
     <!-- Barra de Estado y Progreso de Convocatoria -->
-    <div class="glass-panel p-5 rounded-2xl border border-slate-800 bg-slate-900/80 mb-6 flex flex-wrap items-center justify-between gap-4">
+    <div class="bg-white p-5 rounded-2xl border border-slate-200 mb-6 flex flex-wrap items-center justify-between gap-4 shadow-sm">
       <div class="space-y-1">
         <div class="flex items-center gap-2">
-          <span class="text-xs font-mono-code font-bold text-amber-400 uppercase tracking-wider">Estado de Convocatoria:</span>
-          <span class="text-xs font-bold text-white">${completedCount} de ${total} Casos Superados (${pct}%)</span>
+          <span class="text-xs font-mono-code font-bold text-amber-800 uppercase tracking-wider">Estado de Convocatoria:</span>
+          <span class="text-xs font-bold text-slate-900">${completedCount} de ${total} Casos Superados (${pct}%)</span>
         </div>
-        <div class="w-64 h-2.5 rounded-full bg-slate-800 overflow-hidden border border-slate-700">
-          <div class="h-full bg-gradient-to-r from-amber-500 to-emerald-400 transition-all duration-500" style="width: ${pct}%"></div>
+        <div class="w-64 h-2.5 rounded-full bg-slate-100 overflow-hidden border border-slate-200">
+          <div class="h-full bg-gradient-to-r from-amber-500 to-emerald-500 transition-all duration-500" style="width: ${pct}%"></div>
         </div>
       </div>
       <div class="flex items-center gap-3">
         <div class="text-right">
-          <span class="text-[10px] uppercase font-mono-code text-slate-400 block">XP de Convocatoria</span>
-          <span class="text-sm font-extrabold text-amber-300 font-mono-code">+${earnedXP} / ${totalPossibleXP} XP</span>
+          <span class="text-[10px] uppercase font-mono-code text-slate-500 block">XP de Convocatoria</span>
+          <span class="text-sm font-extrabold text-amber-700 font-mono-code">+${earnedXP} / ${totalPossibleXP} XP</span>
         </div>
-        <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-lg">
+        <div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-lg">
           ${pct === 100 ? '👑' : '🎯'}
         </div>
       </div>
@@ -873,12 +872,12 @@ function renderExamWorkshop() {
       ${topicTabs.map(t => {
         const isActive = currentExamFilter === t.id;
         const cls = isActive
-          ? 'bg-amber-500 text-slate-950 font-bold border-amber-400 shadow-md shadow-amber-500/10'
-          : 'bg-slate-900 text-slate-400 border-slate-800 hover:bg-slate-800 hover:text-white';
+          ? 'bg-amber-600 text-white font-bold border-amber-600 shadow-xs'
+          : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:text-slate-900';
         return `
           <button onclick="filterExamWorkshop('${t.id}')" class="px-3.5 py-1.5 rounded-xl border text-xs font-mono-code transition flex items-center gap-1.5 ${cls}">
             <span>${t.label}</span>
-            <span class="px-1.5 py-0.2 rounded-md ${isActive ? 'bg-slate-950/20 text-slate-950 font-bold' : 'bg-slate-800 text-slate-400'} text-[10px]">${t.count}</span>
+            <span class="px-1.5 py-0.2 rounded-md ${isActive ? 'bg-amber-700 text-white font-bold' : 'bg-slate-100 text-slate-600'} text-[10px]">${t.count}</span>
           </button>
         `;
       }).join('')}
@@ -891,11 +890,11 @@ function renderExamWorkshop() {
     const hasAnswered = savedAnswer !== undefined;
 
     const badgeColors = {
-      tema1: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
-      tema2: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-      tema3: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30',
-      tema4: 'bg-lime-500/20 text-lime-300 border-lime-500/30'
-    }[prob.topicId] || 'bg-amber-500/20 text-amber-300 border-amber-500/30';
+      tema1: 'bg-sky-50 text-sky-800 border-sky-200',
+      tema2: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+      tema3: 'bg-indigo-50 text-indigo-800 border-indigo-200',
+      tema4: 'bg-lime-50 text-lime-900 border-lime-200'
+    }[prob.topicId] || 'bg-amber-50 text-amber-900 border-amber-200';
 
     // Bloque de Evaluación Interactiva
     let evalHtml = '';
@@ -909,17 +908,17 @@ function renderExamWorkshop() {
 
         if (hasAnswered) {
           if (optIdx === ev.correct) {
-            optCls += 'bg-emerald-950/70 border-2 border-emerald-400 text-emerald-100 font-semibold shadow-lg shadow-emerald-500/10';
+            optCls += 'bg-emerald-50 border-2 border-emerald-500 text-emerald-950 font-semibold shadow-xs';
             disabled = 'disabled';
           } else if (optIdx === savedAnswer && !isCorrect) {
-            optCls += 'bg-rose-950/70 border-2 border-rose-500 text-rose-200';
+            optCls += 'bg-rose-50 border-2 border-rose-400 text-rose-950';
             disabled = 'disabled';
           } else {
-            optCls += 'bg-slate-950/40 border-slate-800/80 text-slate-500 opacity-60';
+            optCls += 'bg-slate-50 border-slate-200 text-slate-400 opacity-60';
             disabled = 'disabled';
           }
         } else {
-          optCls += 'bg-slate-950/80 hover:bg-slate-800/80 border-slate-800 hover:border-amber-400/60 text-slate-200 cursor-pointer';
+          optCls += 'bg-white hover:bg-amber-50/50 border-slate-200 hover:border-amber-400 text-slate-800 cursor-pointer shadow-2xs';
         }
 
         const indicator = hasAnswered
@@ -928,7 +927,7 @@ function renderExamWorkshop() {
 
         return `
           <button onclick="submitExamEvaluation('${prob.id}', ${optIdx})" ${disabled} class="${optCls}">
-            <span class="w-6 h-6 rounded-lg ${hasAnswered && optIdx === ev.correct ? 'bg-emerald-500 text-slate-950' : 'bg-slate-800 border border-slate-700 text-slate-300'} flex items-center justify-center font-mono-code font-bold text-xs shrink-0">${indicator}</span>
+            <span class="w-6 h-6 rounded-lg ${hasAnswered && optIdx === ev.correct ? 'bg-emerald-600 text-white' : 'bg-slate-100 border border-slate-200 text-slate-700'} flex items-center justify-center font-mono-code font-bold text-xs shrink-0">${indicator}</span>
             <span class="leading-relaxed flex-1">${opt}</span>
           </button>
         `;
@@ -938,8 +937,8 @@ function renderExamWorkshop() {
       if (hasAnswered) {
         if (isCorrect) {
           feedbackBoxHtml = `
-            <div class="p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/50 text-emerald-200 text-xs sm:text-sm space-y-1.5 animate-fadeIn">
-              <div class="font-bold flex items-center gap-2 text-emerald-300 text-sm">
+            <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-950 text-xs sm:text-sm space-y-1.5 animate-fadeIn shadow-xs">
+              <div class="font-bold flex items-center gap-2 text-emerald-800 text-sm">
                 <span>🎉</span> ¡Diagnóstico Correcto! (+${prob.xp} XP)
               </div>
               <p class="leading-relaxed">${ev.feedbackCorrect}</p>
@@ -947,13 +946,13 @@ function renderExamWorkshop() {
           `;
         } else {
           feedbackBoxHtml = `
-            <div class="p-4 rounded-xl bg-rose-950/60 border border-rose-500/50 text-rose-200 text-xs sm:text-sm space-y-2 animate-fadeIn">
-              <div class="font-bold flex items-center gap-2 text-rose-300 text-sm">
+            <div class="p-4 rounded-xl bg-rose-50 border border-rose-300 text-rose-950 text-xs sm:text-sm space-y-2 animate-fadeIn shadow-xs">
+              <div class="font-bold flex items-center gap-2 text-rose-800 text-sm">
                 <span>❌</span> Respuesta Incorrecta
               </div>
               <p class="leading-relaxed">${ev.feedbackIncorrect}</p>
-              <div class="pt-2 border-t border-rose-800/50">
-                <button onclick="resetExamAnswer('${prob.id}')" class="px-3 py-1.5 rounded-lg bg-rose-500 hover:bg-rose-400 text-slate-950 font-bold text-xs transition">
+              <div class="pt-2 border-t border-rose-200">
+                <button onclick="resetExamAnswer('${prob.id}')" class="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs transition shadow-xs">
                   🔄 Reintentar Pregunta
                 </button>
               </div>
@@ -963,16 +962,16 @@ function renderExamWorkshop() {
       }
 
       evalHtml = `
-        <div class="p-5 rounded-2xl bg-gradient-to-br from-slate-950 to-slate-900 border ${isCompleted ? 'border-emerald-500/40' : 'border-amber-500/30'} space-y-3.5 my-4">
-          <div class="flex items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
+        <div class="p-5 rounded-2xl bg-amber-50/40 border ${isCompleted ? 'border-emerald-300' : 'border-amber-300'} space-y-3.5 my-4">
+          <div class="flex items-center justify-between gap-2 border-b border-amber-200/80 pb-2.5">
             <div class="flex items-center gap-2">
               <span class="text-sm">🎯</span>
-              <span class="text-xs font-mono-code font-bold uppercase ${isCompleted ? 'text-emerald-400' : 'text-amber-400'}">Evaluación Activa de Convocatoria</span>
+              <span class="text-xs font-mono-code font-bold uppercase ${isCompleted ? 'text-emerald-800' : 'text-amber-900'}">Evaluación Activa de Convocatoria</span>
             </div>
-            <span class="text-[11px] font-mono-code ${isCompleted ? 'text-emerald-400 font-bold' : 'text-amber-400'}">${isCompleted ? '✓ Verificado' : '⏳ Responde para Desbloquear'}</span>
+            <span class="text-[11px] font-mono-code ${isCompleted ? 'text-emerald-700 font-bold' : 'text-amber-800'}">${isCompleted ? '✓ Verificado' : '⏳ Responde para Desbloquear'}</span>
           </div>
 
-          <div class="text-xs sm:text-sm font-bold text-white leading-snug">
+          <div class="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
             ${ev.question}
           </div>
 
@@ -986,21 +985,21 @@ function renderExamWorkshop() {
     }
 
     return `
-      <article id="card-${prob.id}" class="glass-panel p-6 sm:p-7 rounded-3xl border ${isCompleted ? 'border-emerald-500/40 bg-emerald-950/10' : 'border-slate-800'} transition mb-6 shadow-xl">
+      <article id="card-${prob.id}" class="bg-white p-6 sm:p-7 rounded-3xl border ${isCompleted ? 'border-emerald-300 bg-emerald-50/20' : 'border-slate-200'} transition mb-6 shadow-sm">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
           <div class="flex items-center gap-2 flex-wrap">
             <span class="px-2.5 py-1 rounded-xl border font-mono-code font-bold text-xs ${badgeColors}">${prob.number}</span>
-            <span class="px-2.5 py-1 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 font-mono-code text-xs">${prob.badge}</span>
-            <span class="px-2.5 py-1 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold font-mono-code">+${prob.xp} XP</span>
+            <span class="px-2.5 py-1 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 font-mono-code text-xs">${prob.badge}</span>
+            <span class="px-2.5 py-1 rounded-xl bg-amber-50 text-amber-900 border border-amber-200 text-xs font-bold font-mono-code">+${prob.xp} XP</span>
           </div>
-          <span class="text-xs font-bold font-mono-code ${isCompleted ? 'text-emerald-400 bg-emerald-950/40 px-3 py-1 rounded-lg border border-emerald-500/40 flex items-center gap-1.5' : 'text-slate-500 bg-slate-900 px-3 py-1 rounded-lg border border-slate-800'}">
+          <span class="text-xs font-bold font-mono-code ${isCompleted ? 'text-emerald-800 bg-emerald-50 px-3 py-1 rounded-lg border border-emerald-300 flex items-center gap-1.5' : 'text-slate-600 bg-slate-100 px-3 py-1 rounded-lg border border-slate-200'}">
             ${isCompleted ? '✅ Caso Superado' : '⏳ Pendiente de Resolver'}
           </span>
         </div>
 
-        <h3 class="text-lg sm:text-xl font-bold text-white mb-3">${prob.title}</h3>
+        <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-3 font-sans">${prob.title}</h3>
 
-        <div class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-3 whitespace-pre-line bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80">
+        <div class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-3 whitespace-pre-line bg-slate-50 p-4 rounded-2xl border border-slate-200 font-sans">
           ${prob.description}
         </div>
 
@@ -1009,19 +1008,19 @@ function renderExamWorkshop() {
 
         <!-- Solución Oficial Razonada Paso a Paso -->
         <div class="pt-2">
-          <button onclick="toggleExamSolution('${prob.id}')" id="btn-sol-${prob.id}" class="px-4 py-2.5 rounded-xl ${isCompleted ? 'bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-500/40 text-emerald-300' : 'bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700'} text-xs font-bold transition flex items-center gap-2">
+          <button onclick="toggleExamSolution('${prob.id}')" id="btn-sol-${prob.id}" class="px-4 py-2.5 rounded-xl ${isCompleted ? 'bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-900' : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200'} text-xs font-bold transition flex items-center gap-2 shadow-2xs font-sans">
             <span>${isCompleted ? '👁️ Ocultar Solución Oficial Paso a Paso' : '👁️ Mostrar Solución Oficial y Razonamiento'}</span>
           </button>
 
-          <div id="sol-box-${prob.id}" class="${isCompleted ? '' : 'hidden'} p-5 sm:p-6 rounded-2xl bg-slate-950/90 border border-slate-700 text-xs sm:text-sm text-slate-200 leading-relaxed space-y-4 mt-3">
-            <div class="flex items-center gap-2 pb-3 border-b border-slate-800 text-xs font-mono-code font-bold text-cyan-400 uppercase tracking-wider">
+          <div id="sol-box-${prob.id}" class="${isCompleted ? '' : 'hidden'} p-5 sm:p-6 rounded-2xl bg-sky-50/40 border border-sky-200 text-xs sm:text-sm text-slate-800 leading-relaxed space-y-4 mt-3">
+            <div class="flex items-center gap-2 pb-3 border-b border-sky-200 text-xs font-mono-code font-bold text-sky-800 uppercase tracking-wider">
               <span>📋</span> Resolución Oficial Docente y Demostración Matemática
             </div>
             ${formatExamSolution(prob)}
             
-            <div class="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
-              <span class="text-slate-400">¿Asimilado el razonamiento oficial de este caso?</span>
-              <button onclick="markExamCompleted('${prob.id}', ${prob.xp})" class="px-4 py-2 rounded-xl ${isCompleted ? 'bg-emerald-950/80 border border-emerald-500 text-emerald-300' : 'bg-emerald-500 hover:bg-emerald-400 text-slate-950'} font-bold transition">
+            <div class="pt-3 border-t border-sky-200 flex flex-wrap items-center justify-between gap-3 text-xs">
+              <span class="text-slate-600">¿Asimilado el razonamiento oficial de este caso?</span>
+              <button onclick="markExamCompleted('${prob.id}', ${prob.xp})" class="px-4 py-2 rounded-xl ${isCompleted ? 'bg-emerald-100 border border-emerald-300 text-emerald-900' : 'bg-emerald-600 hover:bg-emerald-700 text-white'} font-bold transition shadow-xs">
                 ${isCompleted ? '✔️ Caso Verificado y Validado' : '🎯 Validar como Superado (+XP)'}
               </button>
             </div>
@@ -2384,40 +2383,40 @@ function renderTema4OfficialTest() {
 
     let optionsHtml = '';
     q.options.forEach((opt, optIdx) => {
-      let optClass = 'w-full text-left p-3.5 rounded-xl bg-slate-900 border border-slate-700/80 text-xs sm:text-sm text-slate-200 transition flex items-start gap-3 hover:bg-slate-800';
+      let optClass = 'w-full text-left p-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 transition flex items-start gap-3 shadow-2xs';
       let disabled = '';
       if (isAnswered) {
         disabled = 'disabled';
         if (optIdx === q.correct) {
-          optClass = 'w-full text-left p-3.5 rounded-xl bg-emerald-950/60 border-2 border-emerald-500 text-xs sm:text-sm text-emerald-100 flex items-start gap-3 font-semibold';
+          optClass = 'w-full text-left p-3.5 rounded-xl bg-emerald-50 border-2 border-emerald-500 text-xs sm:text-sm text-emerald-950 flex items-start gap-3 font-semibold shadow-xs';
         } else if (optIdx === savedAns) {
-          optClass = 'w-full text-left p-3.5 rounded-xl bg-rose-950/60 border-2 border-rose-500 text-xs sm:text-sm text-rose-200 flex items-start gap-3';
+          optClass = 'w-full text-left p-3.5 rounded-xl bg-rose-50 border-2 border-rose-400 text-xs sm:text-sm text-rose-950 flex items-start gap-3';
         } else {
-          optClass = 'w-full text-left p-3.5 rounded-xl bg-slate-950/40 border border-slate-800 text-xs sm:text-sm text-slate-500 flex items-start gap-3 opacity-60';
+          optClass = 'w-full text-left p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-400 flex items-start gap-3 opacity-60';
         }
       }
 
       optionsHtml += `
         <button onclick="handleOfficialTestAnswer(${q.id}, ${optIdx})" ${disabled} class="${optClass}">
-          <span class="w-6 h-6 rounded-lg bg-slate-800 border border-slate-600 flex items-center justify-center font-mono-code font-bold text-xs shrink-0">${optIdx + 1}</span>
-          <span class="leading-relaxed">${opt}</span>
+          <span class="w-6 h-6 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center font-mono-code font-bold text-xs shrink-0">${optIdx + 1}</span>
+          <span class="leading-relaxed flex-1">${opt}</span>
         </button>
       `;
     });
 
     const rationaleHtml = isAnswered
-      ? `<div class="${savedAns === q.correct ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-200' : 'bg-rose-950/40 border-rose-500/40 text-rose-200'} p-3.5 rounded-xl border text-xs sm:text-sm mt-3">
+      ? `<div class="${savedAns === q.correct ? 'bg-emerald-50 border-emerald-300 text-emerald-950' : 'bg-rose-50 border-rose-300 text-rose-950'} p-3.5 rounded-xl border text-xs sm:text-sm mt-3 leading-relaxed shadow-xs">
            <strong>${savedAns === q.correct ? '✅ ¡Correcto (Respuesta ' + (q.correct + 1) + ')!' : '❌ Incorrecto.'}</strong> ${q.exp}
          </div>`
       : '';
 
     return `
-      <div class="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-800 space-y-3">
+      <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
         <div class="flex items-center justify-between gap-2">
-          <span class="px-2.5 py-1 rounded bg-lime-500/20 text-lime-300 font-mono-code font-bold text-xs">Pregunta ${q.letter})</span>
-          <span class="text-xs ${isAnswered ? 'text-emerald-400 font-bold' : 'text-slate-500'}">${isAnswered ? '✅ Respondida' : '⏳ Pendiente'}</span>
+          <span class="px-2.5 py-1 rounded bg-lime-50 border border-lime-200 text-lime-900 font-mono-code font-bold text-xs">Pregunta ${q.letter})</span>
+          <span class="text-xs ${isAnswered ? 'text-emerald-700 font-bold' : 'text-slate-500'}">${isAnswered ? '✅ Respondida' : '⏳ Pendiente'}</span>
         </div>
-        <h4 class="text-sm sm:text-base font-bold text-white leading-snug">${q.q}</h4>
+        <h4 class="text-sm sm:text-base font-bold text-slate-900 leading-snug font-sans">${q.q}</h4>
         <div class="space-y-2 pt-1">
           ${optionsHtml}
         </div>
