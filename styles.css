@@ -146,25 +146,25 @@ code, pre {
   animation: pulseGlow 3s infinite ease-in-out;
 }
 
-/* Gel Electrophoresis High-Fidelity Laboratory Styles */
+/* Gel Electrophoresis High-Fidelity Daylight Lab Styles */
 .gel-chamber-box {
-  background: linear-gradient(135deg, #090e1a 0%, #03060f 100%);
-  border: 2px solid #1e293b;
-  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.85), 0 10px 25px rgba(0, 0, 0, 0.5);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
   position: relative;
   user-select: none;
 }
 
 .gel-bed-visible {
-  background: linear-gradient(180deg, #0c2033 0%, #081624 100%);
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid #334155;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 .gel-bed-uv {
-  background: radial-gradient(circle at 50% 40%, #1a0f30 0%, #06030c 100%);
-  border: 1px solid rgba(168, 85, 247, 0.4);
-  box-shadow: inset 0 0 40px rgba(147, 51, 234, 0.25), 0 0 25px rgba(168, 85, 247, 0.15);
+  background: radial-gradient(circle at 50% 35%, #0f172a 0%, #020617 100%);
+  border: 1px solid #1e293b;
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.95);
 }
 
 .gel-well-slot {
@@ -196,21 +196,21 @@ code, pre {
 
 /* Fluorescent DNA band glows */
 .band-etbr {
-  background: linear-gradient(90deg, rgba(251, 146, 60, 0.85), #f43f5e 50%, rgba(251, 146, 60, 0.85));
-  box-shadow: 0 0 10px rgba(244, 63, 94, 0.95), 0 0 22px rgba(244, 63, 94, 0.5);
+  background: linear-gradient(90deg, #ea580c 0%, #f43f5e 50%, #ea580c 100%);
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.95), 0 0 22px rgba(234, 88, 12, 0.45);
   border-radius: 2px;
 }
 
 .band-sybr {
-  background: linear-gradient(90deg, rgba(52, 211, 153, 0.85), #10b981 50%, rgba(52, 211, 153, 0.85));
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.95), 0 0 22px rgba(16, 185, 129, 0.5);
+  background: linear-gradient(90deg, #059669 0%, #10b981 50%, #059669 100%);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.95), 0 0 22px rgba(5, 150, 105, 0.45);
   border-radius: 2px;
 }
 
 .band-highlight {
   outline: 2px solid #ffffff;
   outline-offset: 2px;
-  filter: brightness(1.4) drop-shadow(0 0 8px #ffffff);
+  filter: brightness(1.35) drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
 }
 
 .tracking-dye-front {

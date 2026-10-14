@@ -535,148 +535,191 @@
           </button>
         </div>
 
-        <!-- SIMULADOR 2A: LABORATORIO PROFESIONAL DE ELECTROFORESIS EN GEL DE AGAROSA Y TRANSILUMINADOR UV -->
-        <div class="bg-slate-950 border border-emerald-500/40 rounded-2xl p-6 space-y-6 shadow-2xl">
+        <!-- SIMULADOR 2A: LABORATORIO DE ALTA COGNICIÓN (DAYLIGHT LAB) -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 space-y-6 shadow-sm">
+          
           <!-- Encabezado y Credenciales del Laboratorio -->
-          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
-            <div>
-              <div class="flex flex-wrap items-center gap-2 mb-1">
-                <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono-code text-xs font-bold border border-emerald-500/40">⚡ VIRTUAL SUB-CELL GT</span>
-                <span class="px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-mono-code text-xs">AGAROSA 1.2% EN TAMPÓN TAE 1X</span>
-                <span class="px-2.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono-code text-xs">POLARIDAD: ➖ CÁTODO ➔ ➕ ÁNODO</span>
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
+            <div class="space-y-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded bg-slate-200 text-slate-800 font-sans text-xs font-bold border border-slate-300 tracking-wide">
+                  SUB-CELL GT VIRTUAL
+                </span>
+                <span class="px-2.5 py-0.5 rounded bg-white text-slate-700 font-sans text-xs border border-slate-300">
+                  Agarosa 1.2% en Tampón TAE 1X
+                </span>
+                <span class="px-2.5 py-0.5 rounded bg-white text-slate-700 font-sans text-xs border border-slate-300">
+                  Polaridad: <strong class="text-slate-900">➖ Cátodo</strong> ➔ <strong class="text-red-700">➕ Ánodo</strong>
+                </span>
               </div>
-              <h3 class="text-xl font-bold text-white">⚡ Simulador 2A: Cámara de Electroforesis y Fotodocumentador UV</h3>
-              <p class="text-xs text-slate-300 mt-1 max-w-3xl leading-relaxed">
-                El ADN posee <strong>carga eléctrica neta negativa</strong> en toda su longitud (debido a los <strong>grupos fosfato</strong> de su esqueleto azúcar-fosfato) y migra hacia el <strong>polo positivo (ánodo)</strong>. La matriz de agarosa actúa como un <strong>tamiz molecular tridimensional</strong> donde la distancia de migración ($d$) es inversamente proporcional al logaritmo del tamaño del fragmento ($d \propto -\log_{10}\text{pb}$).
+              <h3 class="text-xl font-bold text-slate-900 font-sans tracking-tight">
+                Simulador 2A: Cámara de Electroforesis y Fotodocumentador UV
+              </h3>
+              <p class="text-xs text-slate-600 max-w-3xl leading-relaxed font-sans">
+                El ADN posee <strong class="text-slate-900">carga eléctrica neta negativa</strong> uniforme en toda su extensión (debido a los <strong class="text-slate-900">grupos fosfato</strong> de su esqueleto) y migra hacia el <strong class="text-slate-900">polo positivo (ánodo)</strong>. La matriz de agarosa actúa como un <strong class="text-slate-900">tamiz molecular tridimensional</strong> donde la distancia de migración es inversamente proporcional al logaritmo del tamaño del fragmento (<span class="font-mono font-medium text-slate-800">d ∝ -log₁₀(pb)</span>).
               </p>
             </div>
             
+            <!-- Badge de Bioseguridad Dinámico -->
             <div class="flex items-center gap-2">
-              <span id="gel-safety-badge" class="px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono-code flex items-center gap-1.5">
+              <span id="gel-safety-badge" class="px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 text-xs font-sans font-medium flex items-center gap-1.5 shadow-xs">
                 <span>⚠️ Bioseguridad: Agente Intercalante</span>
               </span>
             </div>
           </div>
 
-          <!-- Mesa de Trabajo Integrada (2 Columnas: Consola a la Izquierda, Cubeta a la Derecha) -->
+          <!-- Mesa de Trabajo Integrada (Grid de 12 Columnas) -->
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
-            <!-- COLUMNA IZQUIERDA: FUENTE DE ALIMENTACIÓN, MESA ÓPTICA, INSPECTOR Y RETO (5 COLS) -->
+            <!-- ==================== COLUMNA IZQUIERDA: INSTRUMENTACIÓN Y CONTROL (5 COLS) ==================== -->
             <div class="lg:col-span-5 space-y-4">
               
               <!-- 1. FUENTE DE PODER DIGITAL -->
-              <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 space-y-3">
-                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                  <span class="text-xs font-mono-code font-bold text-cyan-400 flex items-center gap-1.5">
-                    <span id="power-led" class="w-2 h-2 rounded-full bg-slate-600 inline-block"></span>
-                    FUENTE DE PODER ELECTROFORÉTICA
+              <div class="bg-white border border-slate-200 rounded-xl p-4 space-y-3 shadow-sm">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                  <span class="text-xs font-bold text-slate-800 font-sans tracking-wide uppercase flex items-center gap-2">
+                    <span id="power-led" class="w-2.5 h-2.5 rounded-full bg-slate-400 inline-block transition-colors duration-300"></span>
+                    Fuente de Poder Electroforética
                   </span>
-                  <span id="disp-status" class="text-[11px] font-mono-code font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-400">STANDBY</span>
+                  <span id="disp-status" class="text-xs font-mono tabular-nums font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">
+                    STANDBY
+                  </span>
                 </div>
 
-                <!-- Display Digital Tipo LED -->
-                <div class="grid grid-cols-3 gap-2 bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-center font-mono-code">
-                  <div>
-                    <span class="text-[10px] text-slate-400 block">VOLTAJE</span>
-                    <span id="disp-voltage" class="text-base sm:text-lg font-bold text-cyan-300">100 V</span>
+                <!-- Display Digital LCD de Alta Legibilidad -->
+                <div class="grid grid-cols-3 gap-2 bg-slate-900 p-3 rounded-lg border border-slate-800 text-center shadow-inner">
+                  <div class="border-r border-slate-800/80 pr-1">
+                    <span class="text-xs text-slate-400 font-sans font-semibold block uppercase tracking-wider">Voltaje</span>
+                    <span id="disp-voltage" class="text-base sm:text-lg font-bold font-mono tabular-nums text-white">100 V</span>
                   </div>
-                  <div>
-                    <span class="text-[10px] text-slate-400 block">CORRIENTE</span>
-                    <span id="disp-current" class="text-base sm:text-lg font-bold text-emerald-400">0 mA</span>
+                  <div class="border-r border-slate-800/80 px-1">
+                    <span class="text-xs text-slate-400 font-sans font-semibold block uppercase tracking-wider">Corriente</span>
+                    <span id="disp-current" class="text-base sm:text-lg font-bold font-mono tabular-nums text-emerald-400">0 mA</span>
                   </div>
-                  <div>
-                    <span class="text-[10px] text-slate-400 block">TIEMPO</span>
-                    <span id="disp-time" class="text-base sm:text-lg font-bold text-amber-300">00:00</span>
+                  <div class="pl-1">
+                    <span class="text-xs text-slate-400 font-sans font-semibold block uppercase tracking-wider">Tiempo</span>
+                    <span id="disp-time" class="text-base sm:text-lg font-bold font-mono tabular-nums text-amber-300">00:00</span>
                   </div>
                 </div>
 
                 <!-- Selectores de Tensión -->
                 <div class="space-y-1.5">
-                  <span class="text-[11px] text-slate-400 font-bold block">Tensión Eléctrica Seleccionada:</span>
-                  <div class="grid grid-cols-3 gap-1.5 text-xs font-mono-code">
-                    <button onclick="setGelVoltage(70)" id="btn-v-70" class="py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition">70 V (Fino)</button>
-                    <button onclick="setGelVoltage(100)" id="btn-v-100" class="py-1.5 rounded-lg bg-cyan-500/30 border border-cyan-500/50 text-cyan-300 font-bold transition">100 V (Estándar)</button>
-                    <button onclick="setGelVoltage(130)" id="btn-v-130" class="py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition">130 V (Rápido)</button>
+                  <span class="text-xs text-slate-700 font-sans font-semibold block">Tensión Eléctrica Seleccionada:</span>
+                  <div class="grid grid-cols-3 gap-1.5 text-xs font-sans">
+                    <button onclick="setGelVoltage(70)" id="btn-v-70" class="py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 font-medium transition">
+                      <span class="font-mono tabular-nums font-bold">70 V</span> (Fino)
+                    </button>
+                    <button onclick="setGelVoltage(100)" id="btn-v-100" class="py-1.5 rounded-lg bg-blue-50 border border-blue-400 text-blue-900 font-bold transition shadow-xs">
+                      <span class="font-mono tabular-nums">100 V</span> (Estándar)
+                    </button>
+                    <button onclick="setGelVoltage(130)" id="btn-v-130" class="py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 font-medium transition">
+                      <span class="font-mono tabular-nums font-bold">130 V</span> (Rápido)
+                    </button>
                   </div>
                 </div>
 
                 <!-- Botonera de Control de Corrida -->
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1">
-                  <button onclick="toggleGelRun()" id="btn-run-gel" class="col-span-2 sm:col-span-1 py-2 px-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition shadow-lg shadow-emerald-500/20">
+                  <!-- Acción Primaria: Azul Institucional de Enfoque Sereno -->
+                  <button onclick="toggleGelRun()" id="btn-run-gel" class="col-span-2 sm:col-span-1 py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs font-sans rounded-lg flex items-center justify-center gap-1.5 transition shadow-sm">
                     <span id="icon-run-gel">▶️</span> <span id="text-run-gel">Conectar</span>
                   </button>
-                  <button onclick="fastForwardGel()" class="py-2 px-2 bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1">
+                  <button onclick="fastForwardGel()" class="py-2 px-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 font-semibold text-xs font-sans rounded-lg transition flex items-center justify-center gap-1">
                     ⏩ Fin Corrida
                   </button>
-                  <button onclick="resetGelSimulation()" class="py-2 px-2 bg-slate-800 hover:bg-rose-950/40 text-slate-400 hover:text-rose-300 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1">
+                  <button onclick="resetGelSimulation()" class="py-2 px-2 bg-slate-100 hover:bg-red-50 hover:border-red-200 hover:text-red-700 border border-slate-200 text-slate-700 font-semibold text-xs font-sans rounded-lg transition flex items-center justify-center gap-1">
                     🔄 Reiniciar
                   </button>
                 </div>
               </div>
 
-              <!-- 2. MESA ÓPTICA: LUZ BLANCA VS TRANSILUMINADOR UV Y COLORANTE -->
-              <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 space-y-3">
-                <span class="text-xs font-mono-code font-bold text-purple-400 block border-b border-slate-800 pb-2">
-                  SISTEMA DE ILUMINACIÓN Y DETECCIÓN FLUORESCENTE
+              <!-- 2. MESA ÓPTICA: SISTEMA DE ILUMINACIÓN Y DETECCIÓN -->
+              <div class="bg-white border border-slate-200 rounded-xl p-4 space-y-3 shadow-sm">
+                <span class="text-xs font-bold font-sans text-slate-800 uppercase tracking-wide block border-b border-slate-100 pb-2">
+                  Sistema Óptico y Detección Fluorescente
                 </span>
 
-                <div class="grid grid-cols-2 gap-2 text-xs">
-                  <button onclick="setGelIllumination('visible')" id="btn-illum-vis" class="p-2.5 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 text-left transition">
-                    <span class="font-bold block">💡 Luz de Banco</span>
-                    <span class="text-[10px] text-slate-400">ADN invisible • Frente azul</span>
+                <div class="grid grid-cols-2 gap-2 text-xs font-sans">
+                  <button onclick="setGelIllumination('visible')" id="btn-illum-vis" class="p-2.5 rounded-xl bg-slate-100 text-slate-800 border border-slate-200 hover:bg-slate-200 text-left transition shadow-xs">
+                    <span class="font-bold block text-slate-900">💡 Luz de Banco</span>
+                    <span class="text-xs text-slate-500 font-normal">ADN invisible • Frente azul</span>
                   </button>
-                  <button onclick="setGelIllumination('uv')" id="btn-illum-uv" class="p-2.5 rounded-xl bg-purple-500/20 text-purple-200 border border-purple-500/50 hover:bg-purple-500/30 text-left transition shadow-lg shadow-purple-500/20">
-                    <span class="font-bold block">🟣 Transiluminador UV</span>
-                    <span class="text-[10px] text-purple-300">Cámara oscura • 302 nm</span>
+                  <button onclick="setGelIllumination('uv')" id="btn-illum-uv" class="p-2.5 rounded-xl bg-slate-900 text-white border border-slate-800 hover:bg-slate-800 text-left transition shadow-xs">
+                    <span class="font-bold block text-purple-200">🟣 Transiluminador UV</span>
+                    <span class="text-xs text-purple-300 font-normal">Cámara oscura • <span class="font-mono tabular-nums">302 nm</span></span>
                   </button>
                 </div>
 
-                <div class="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-slate-800">
-                  <div class="flex items-center gap-1.5 text-xs">
-                    <span class="text-slate-400 text-[11px]">Fluoróforo:</span>
-                    <button onclick="setGelFluorophore('etbr')" id="btn-dye-etbr" class="px-2.5 py-1 rounded-lg bg-rose-500/20 border border-rose-500/50 text-rose-300 text-xs font-bold transition">EtBr (Naranja)</button>
-                    <button onclick="setGelFluorophore('sybr')" id="btn-dye-sybr" class="px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-emerald-300 text-xs font-bold hover:bg-slate-700 transition">SYBR Safe</button>
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                  <div class="flex items-center gap-2 text-xs font-sans">
+                    <span class="text-slate-600 font-medium">Fluoróforo:</span>
+                    <!-- EtBr: Acento sutil naranja/rojizo -->
+                    <button onclick="setGelFluorophore('etbr')" id="btn-dye-etbr" class="px-2.5 py-1 rounded-lg bg-orange-50 border border-orange-300 text-orange-900 text-xs font-bold transition hover:bg-orange-100 shadow-xs">
+                      EtBr (<span class="font-mono tabular-nums">605 nm</span>)
+                    </button>
+                    <!-- SYBR Safe: Acento sutil esmeralda -->
+                    <button onclick="setGelFluorophore('sybr')" id="btn-dye-sybr" class="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold hover:bg-emerald-50 hover:text-emerald-900 hover:border-emerald-300 transition">
+                      SYBR Safe (<span class="font-mono tabular-nums">530 nm</span>)
+                    </button>
                   </div>
-                  <button onclick="toggleGelRuler()" id="btn-toggle-ruler" class="text-xs text-slate-400 hover:text-white flex items-center gap-1">
+                  <button onclick="toggleGelRuler()" id="btn-toggle-ruler" class="text-xs text-slate-600 hover:text-slate-900 font-sans font-medium flex items-center gap-1 transition">
                     <span>📏 Regla Rf</span>
                   </button>
                 </div>
               </div>
 
               <!-- 3. INSPECTOR INTERACTIVO DE BANDAS -->
-              <div id="gel-inspector-card" class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-xs space-y-2">
-                <div class="flex items-center justify-between text-slate-400 border-b border-slate-800 pb-1.5">
-                  <span class="font-bold font-mono-code text-cyan-400">🔍 INSPECTOR DE BANDA</span>
-                  <span id="inspect-carrier" class="text-[11px] text-slate-500">Pasa el cursor o haz clic en una banda</span>
+              <div id="gel-inspector-card" class="bg-white border border-slate-200 rounded-xl p-4 text-xs space-y-2 shadow-sm font-sans">
+                <div class="flex items-center justify-between text-slate-500 border-b border-slate-100 pb-1.5">
+                  <span class="font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+                    🔍 Inspector Molecular de Banda
+                  </span>
+                  <span id="inspect-carrier" class="text-xs text-slate-500 font-medium">Haz clic en una banda fluorescente</span>
                 </div>
-                <div id="inspect-content" class="text-slate-300 space-y-1">
-                  <p class="text-slate-400 italic text-[11px]">Haz clic en cualquier banda fluorescente del gel para inspeccionar su tamaño molecular, distancia de migración y relevancia biológica.</p>
+                <div id="inspect-content" class="text-slate-700 space-y-1">
+                  <p class="text-slate-500 italic text-xs leading-relaxed">
+                    Selecciona cualquier banda fluorescente dentro del gel para inspeccionar su tamaño en pares de bases (pb), movilidad relativa ($R_f$) y trascendencia experimental.
+                  </p>
                 </div>
               </div>
 
               <!-- 4. RETO INTERACTIVO DE LABORATORIO (ESTIMAR PCR EN CARRIL 4) -->
-              <div class="bg-slate-900/90 border border-amber-500/30 rounded-xl p-4 space-y-3">
+              <div class="bg-amber-50/70 border border-amber-300 rounded-xl p-4 space-y-3 shadow-sm font-sans">
                 <div class="flex items-center justify-between">
-                  <span class="text-xs font-mono-code font-bold text-amber-400">🎯 RETO PRÁCTICO (+50 XP)</span>
-                  <span id="gel-challenge-badge" class="text-[10px] font-bold text-slate-400">Pendiente</span>
+                  <span class="text-xs font-bold text-amber-950 uppercase tracking-wide">
+                    🎯 Reto Práctico: Estimación de Amplicón (+50 XP)
+                  </span>
+                  <span id="gel-challenge-badge" class="text-xs font-bold text-amber-900 bg-amber-100/90 px-2 py-0.5 rounded border border-amber-200">
+                    Pendiente
+                  </span>
                 </div>
-                <p class="text-xs text-slate-300 leading-snug">
-                  Interpola con el marcador "ladder" (Carril 1) y determina el <strong>tamaño exacto del amplicón de PCR obtenido en el Carril 4</strong>:
+                <p class="text-xs text-slate-800 leading-relaxed">
+                  Interpola con el marcador <em class="font-semibold">ladder</em> (Carril 1) y determina el <strong>tamaño molecular exacto del amplicón de PCR obtenido en el Carril 4</strong>:
                 </p>
                 
-                <div class="grid grid-cols-5 gap-1.5 font-mono-code text-xs">
-                  <button onclick="selectGelChallengeOpt('250')" id="ch-opt-250" class="py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center transition">250 pb</button>
-                  <button onclick="selectGelChallengeOpt('500')" id="ch-opt-500" class="py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center transition">500 pb</button>
-                  <button onclick="selectGelChallengeOpt('750')" id="ch-opt-750" class="py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center transition">750 pb</button>
-                  <button onclick="selectGelChallengeOpt('1500')" id="ch-opt-1500" class="py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center transition">1.5 kb</button>
-                  <button onclick="selectGelChallengeOpt('4000')" id="ch-opt-4000" class="py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center transition">4.0 kb</button>
+                <div class="grid grid-cols-5 gap-1.5 font-mono tabular-nums text-xs">
+                  <button onclick="selectGelChallengeOpt('250')" id="ch-opt-250" class="py-1.5 rounded-lg bg-white hover:bg-amber-100/70 border border-amber-200 text-slate-800 font-semibold text-center transition shadow-xs">
+                    250 pb
+                  </button>
+                  <button onclick="selectGelChallengeOpt('500')" id="ch-opt-500" class="py-1.5 rounded-lg bg-white hover:bg-amber-100/70 border border-amber-200 text-slate-800 font-semibold text-center transition shadow-xs">
+                    500 pb
+                  </button>
+                  <button onclick="selectGelChallengeOpt('750')" id="ch-opt-750" class="py-1.5 rounded-lg bg-white hover:bg-amber-100/70 border border-amber-200 text-slate-800 font-semibold text-center transition shadow-xs">
+                    750 pb
+                  </button>
+                  <button onclick="selectGelChallengeOpt('1500')" id="ch-opt-1500" class="py-1.5 rounded-lg bg-white hover:bg-amber-100/70 border border-amber-200 text-slate-800 font-semibold text-center transition shadow-xs">
+                    1.5 kb
+                  </button>
+                  <button onclick="selectGelChallengeOpt('4000')" id="ch-opt-4000" class="py-1.5 rounded-lg bg-white hover:bg-amber-100/70 border border-amber-200 text-slate-800 font-semibold text-center transition shadow-xs">
+                    4.0 kb
+                  </button>
                 </div>
 
-                <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
-                  <button onclick="checkGelChallenge()" id="btn-submit-gel-ch" class="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-lg transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-amber-200/60">
+                  <button onclick="checkGelChallenge()" id="btn-submit-gel-ch" class="px-3.5 py-1.5 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-lg transition shadow-xs">
                     Verificar Estimación
                   </button>
-                  <div id="gel-ch-feedback" class="text-xs text-slate-400">
+                  <div id="gel-ch-feedback" class="text-xs text-slate-700 font-medium">
                     Selecciona una opción y verifica.
                   </div>
                 </div>
@@ -684,29 +727,31 @@
 
             </div>
 
-            <!-- COLUMNA DERECHA: LA CÁMARA DE ELECTROFORESIS VIRTUAL (7 COLS) -->
+            <!-- ==================== COLUMNA DERECHA: CÁMARA ELECTROFORÉTICA VIRTUAL (7 COLS) ==================== -->
             <div class="lg:col-span-7 space-y-3">
               
-              <!-- Cubeta Acrílica de Electroforesis -->
-              <div class="gel-chamber-box p-4 rounded-2xl border border-slate-700 space-y-3">
+              <!-- Cubeta Acrílica de Precisión de Laboratorio -->
+              <div class="gel-chamber-box p-4 rounded-2xl border border-slate-200 bg-white shadow-sm space-y-3">
                 
-                <!-- Electrodo Superior: CÁTODO (Polo Negativo ➖ Cable Negro) -->
-                <div class="flex items-center justify-between bg-slate-950/80 px-3 py-1.5 rounded-lg border border-slate-800 text-xs font-mono-code">
+                <!-- ELECTRODO SUPERIOR: CÁTODO (Polo Negativo ➖ Cable Negro) -->
+                <div class="flex items-center justify-between bg-slate-100 px-3 py-2 rounded-lg border border-slate-300 text-xs font-sans text-slate-800 shadow-xs">
                   <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-slate-700 border border-slate-500 inline-block"></span>
-                    <span class="font-bold text-slate-300">➖ CÁTODO (Terminal Negativo • Alambre de Platino)</span>
+                    <span class="w-3 h-3 rounded-full bg-slate-800 border border-slate-900 inline-block shadow-xs" title="Terminal Negativo de Platino"></span>
+                    <span class="font-bold text-slate-900">➖ CÁTODO (Terminal Negativo • Alambre de Platino)</span>
                   </div>
-                  <div class="flex items-center gap-1.5">
-                    <span id="bubbles-cathode-indicator" class="hidden text-[10px] text-cyan-400 animate-pulse">Burbujeo 2H⁺ + 2e⁻ ➔ H₂↑</span>
-                    <span class="text-slate-500 text-[10px]">Pocillos de Carga</span>
+                  <div class="flex items-center gap-2">
+                    <span id="bubbles-cathode-indicator" class="hidden text-xs text-blue-700 font-mono font-semibold animate-pulse bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                      Burbujeo 2H⁺ + 2e⁻ ➔ H₂↑
+                    </span>
+                    <span class="text-slate-600 text-xs font-medium">Pocillos de Carga</span>
                   </div>
                 </div>
 
-                <!-- Contenedor del Gel de Agarosa -->
-                <div id="gel-slab-surface" class="gel-bed-uv relative rounded-xl p-3 h-[420px] transition-colors duration-500 overflow-hidden">
+                <!-- CONTENEDOR DEL GEL DE AGAROSA: EXCEPCIÓN FÍSICA (VON RESTORFF / CÁMARA OSCURA UV) -->
+                <div id="gel-slab-surface" class="gel-bed-uv relative rounded-xl p-3 h-[420px] bg-slate-950 ring-1 ring-slate-800 shadow-inner transition-colors duration-500 overflow-hidden select-none">
                   
-                  <!-- Regla Milimetrada Lateral (Opcional Toggle) -->
-                  <div id="gel-ruler-overlay" class="hidden absolute left-1 top-10 bottom-2 w-6 font-mono-code text-[9px] text-slate-400 border-r border-slate-600/50 flex flex-col justify-between py-1 select-none pointer-events-none z-20">
+                  <!-- Regla Milimetrada Lateral Dinámica -->
+                  <div id="gel-ruler-overlay" class="hidden absolute left-1 top-10 bottom-2 w-6 font-mono tabular-nums text-xs text-slate-400 border-r border-slate-700/80 flex flex-col justify-between py-1 select-none pointer-events-none z-20">
                     <span class="gel-ruler-tick">0mm</span>
                     <span class="gel-ruler-tick">10mm</span>
                     <span class="gel-ruler-tick">20mm</span>
@@ -718,31 +763,36 @@
                     <span class="gel-ruler-tick">80mm</span>
                   </div>
 
-                  <!-- Encabezados de los 4 Carriles -->
-                  <div class="grid grid-cols-12 gap-2 text-center font-mono-code text-[11px] pb-2 border-b border-slate-700/50 z-10 relative">
-                    <!-- Columna de Marcadores/Escala -->
-                    <div class="col-span-3 text-left pl-2 text-cyan-400 font-bold">
-                      Escala Ladder
+                  <!-- ENCABEZADOS DE CARRILES: CONTIGÜIDAD Y HOMOGENEIDAD COGNITIVA -->
+                  <div class="grid grid-cols-12 gap-2 text-center pb-2 border-b border-slate-800 z-10 relative">
+                    <!-- Escala Ladder -->
+                    <div class="col-span-3 text-left pl-2">
+                      <span class="block text-xs text-slate-400 font-mono uppercase tracking-wider">Escala</span>
+                      <span class="text-xs font-sans font-bold text-slate-200">1 kb Plus</span>
                     </div>
                     <!-- Carril 1 -->
-                    <div class="col-span-2 text-cyan-300 font-bold">
-                      C1: Ladder
+                    <div class="col-span-2">
+                      <span class="block text-xs text-slate-400 font-mono">C1</span>
+                      <span class="text-xs font-sans font-bold text-slate-200">Ladder</span>
                     </div>
                     <!-- Carril 2 -->
-                    <div class="col-span-3 text-emerald-400 font-bold">
-                      C2: Digestión
+                    <div class="col-span-3">
+                      <span class="block text-xs text-slate-400 font-mono">C2</span>
+                      <span class="text-xs font-sans font-bold text-slate-200">Digestión</span>
                     </div>
                     <!-- Carril 3 -->
-                    <div class="col-span-2 text-indigo-300 font-bold">
-                      C3: Plásmido
+                    <div class="col-span-2">
+                      <span class="block text-xs text-slate-400 font-mono">C3</span>
+                      <span class="text-xs font-sans font-bold text-slate-200">Plásmido</span>
                     </div>
                     <!-- Carril 4 -->
-                    <div class="col-span-2 text-amber-300 font-bold">
-                      C4: PCR (?)
+                    <div class="col-span-2">
+                      <span class="block text-xs text-slate-400 font-mono">C4</span>
+                      <span class="text-xs font-sans font-bold text-slate-200">PCR (?)</span>
                     </div>
                   </div>
 
-                  <!-- Pocillos (Wells) Moldados en 3D -->
+                  <!-- Pocillos de Siembra (Wells) Físicamente Moldeados -->
                   <div class="grid grid-cols-12 gap-2 pt-1 pb-3 relative z-10">
                     <div class="col-span-3"></div>
                     <!-- Pocillo 1 -->
@@ -773,29 +823,32 @@
 
                   <!-- Área de Migración Dinámica del Gel -->
                   <div id="gel-lanes-area" class="relative w-full h-[330px]">
-                    <!-- Las bandas dinámicas y el frente de colorante se inyectan y posicionan dinámicamente con absolute top por JS -->
+                    <!-- Bandas dinámicas fluorescentes inyectadas por app.js -->
                   </div>
 
                 </div>
 
-                <!-- Electrodo Inferior: ÁNODO (Polo Positivo ➕ Cable Rojo) -->
-                <div class="flex items-center justify-between bg-slate-950/80 px-3 py-1.5 rounded-lg border border-slate-800 text-xs font-mono-code">
+                <!-- ELECTRODO INFERIOR: ÁNODO (Polo Positivo ➕ Cable Rojo Semántico) -->
+                <div class="flex items-center justify-between bg-red-50 px-3 py-2 rounded-lg border border-red-200 text-xs font-sans text-red-900 shadow-xs">
                   <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-rose-600 border border-rose-400 inline-block"></span>
-                    <span class="font-bold text-rose-400">➕ ÁNODO (Terminal Positivo • "Run to the Red")</span>
+                    <span class="w-3 h-3 rounded-full bg-red-600 border border-red-700 inline-block shadow-xs" title="Terminal Positivo de Platino"></span>
+                    <span class="font-bold text-red-950">➕ ÁNODO (Terminal Positivo • "Run to the Red")</span>
                   </div>
-                  <div class="flex items-center gap-1.5">
-                    <span id="bubbles-anode-indicator" class="hidden text-[10px] text-rose-400 animate-pulse">Burbujeo 2H₂O ➔ O₂↑ + 4H⁺</span>
-                    <span class="text-slate-500 text-[10px]">Fragmentos Menores / Rápidos</span>
+                  <div class="flex items-center gap-2">
+                    <span id="bubbles-anode-indicator" class="hidden text-xs text-red-800 font-mono font-semibold animate-pulse bg-red-100/90 px-2 py-0.5 rounded border border-red-300">
+                      Burbujeo 2H₂O ➔ O₂↑ + 4H⁺
+                    </span>
+                    <span class="text-red-800 text-xs font-medium">Fragmentos Menores / Rápidos</span>
                   </div>
                 </div>
 
-                <!-- Guía Didáctica / Leyenda al Pie del Gel -->
-                <div id="gel-sim-feedback" class="p-3 bg-slate-900/60 rounded-xl border border-slate-800 text-xs text-slate-300 leading-relaxed">
-                  <div class="flex items-start gap-2">
-                    <span class="text-emerald-400 text-base">💡</span>
+                <!-- Guía Didáctica / Leyenda de Mnemotecnia Fisiológica -->
+                <div id="gel-sim-feedback" class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed font-sans shadow-xs">
+                  <div class="flex items-start gap-2.5">
+                    <span class="text-base select-none">💡</span>
                     <div>
-                      <strong>Regla Mnemotécnica de Laboratorio:</strong> <em>"Run to the red"</em> (El ADN con carga negativa corre siempre hacia el electrodo rojo positivo). En agarosa, los fragmentos grandes ($10\text{ kb}$) sufren fricción con la malla y migran poco; los fragmentos pequeños ($250\text{ pb}$) atraviesan los poros rápidamente hacia el fondo.
+                      <strong class="text-slate-900">Regla Mnemotécnica de Laboratorio:</strong> 
+                      <em class="text-red-700 font-semibold">"Run to the red"</em> (el ADN con carga neta negativa migra ineludiblemente hacia el electrodo rojo positivo). En la red tridimensional de agarosa, los fragmentos macromoleculares (<span class="font-mono tabular-nums text-slate-900 font-medium">10 kb</span>) experimentan alta fricción estérica con los poros y migran lentamente; los fragmentos pequeños (<span class="font-mono tabular-nums text-slate-900 font-medium">250 pb</span>) transitan con agilidad hacia el fondo del gel.
                     </div>
                   </div>
                 </div>

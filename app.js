@@ -1346,11 +1346,11 @@ function updateGelDisplays() {
     if (GelLabState.isRunning) {
       iconRun.textContent = '⏸️';
       textRun.textContent = 'Pausar';
-      btnRun.className = 'col-span-2 sm:col-span-1 py-2 px-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition shadow-lg shadow-amber-500/20';
+      btnRun.className = 'col-span-2 sm:col-span-1 py-2 px-3 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs font-sans rounded-lg flex items-center justify-center gap-1.5 transition shadow-sm';
     } else {
       iconRun.textContent = '▶️';
       textRun.textContent = GelLabState.progress >= 1.0 ? 'Reanudar' : 'Conectar';
-      btnRun.className = 'col-span-2 sm:col-span-1 py-2 px-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition shadow-lg shadow-emerald-500/20';
+      btnRun.className = 'col-span-2 sm:col-span-1 py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs font-sans rounded-lg flex items-center justify-center gap-1.5 transition shadow-sm';
     }
   }
 
@@ -1563,9 +1563,9 @@ function setGelVoltage(v) {
     const b = document.getElementById(`btn-v-${volt}`);
     if (b) {
       if (volt === v) {
-        b.className = 'py-1.5 rounded-lg bg-cyan-500/30 border border-cyan-500/50 text-cyan-300 font-bold transition';
+        b.className = 'py-1.5 rounded-lg bg-blue-50 border border-blue-400 text-blue-900 font-bold transition shadow-xs';
       } else {
-        b.className = 'py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition';
+        b.className = 'py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 font-medium transition';
       }
     }
   });
@@ -1580,13 +1580,13 @@ function setGelIllumination(mode) {
   const btnUV = document.getElementById('btn-illum-uv');
 
   if (mode === 'uv') {
-    if (slab) slab.className = 'gel-bed-uv relative rounded-xl p-3 h-[420px] transition-colors duration-500 overflow-hidden';
-    if (btnUV) btnUV.className = 'p-2.5 rounded-xl bg-purple-500/20 text-purple-200 border border-purple-500/50 hover:bg-purple-500/30 text-left transition shadow-lg shadow-purple-500/20';
-    if (btnVis) btnVis.className = 'p-2.5 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 text-left transition';
+    if (slab) slab.className = 'gel-bed-uv relative rounded-xl p-3 h-[420px] bg-slate-950 ring-1 ring-slate-800 shadow-inner transition-colors duration-500 overflow-hidden select-none';
+    if (btnUV) btnUV.className = 'p-2.5 rounded-xl bg-slate-900 text-white border border-slate-800 hover:bg-slate-800 text-left transition shadow-xs';
+    if (btnVis) btnVis.className = 'p-2.5 rounded-xl bg-slate-100 text-slate-800 border border-slate-200 hover:bg-slate-200 text-left transition shadow-xs';
   } else {
-    if (slab) slab.className = 'gel-bed-visible relative rounded-xl p-3 h-[420px] transition-colors duration-500 overflow-hidden';
-    if (btnVis) btnVis.className = 'p-2.5 rounded-xl bg-cyan-500/20 text-cyan-200 border border-cyan-500/50 hover:bg-cyan-500/30 text-left transition shadow-lg shadow-cyan-500/20';
-    if (btnUV) btnUV.className = 'p-2.5 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 text-left transition';
+    if (slab) slab.className = 'gel-bed-visible relative rounded-xl p-3 h-[420px] bg-slate-900 ring-1 ring-slate-800 shadow-inner transition-colors duration-500 overflow-hidden select-none';
+    if (btnVis) btnVis.className = 'p-2.5 rounded-xl bg-blue-50 text-blue-900 border border-blue-300 hover:bg-blue-100 text-left transition shadow-xs';
+    if (btnUV) btnUV.className = 'p-2.5 rounded-xl bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 text-left transition shadow-xs';
   }
 
   renderGelBands();
@@ -1601,17 +1601,17 @@ function setGelFluorophore(dye) {
   const badge = document.getElementById('gel-safety-badge');
 
   if (dye === 'sybr') {
-    if (btnSybr) btnSybr.className = 'px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 text-xs font-bold transition';
-    if (btnEtbr) btnEtbr.className = 'px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-slate-400 text-xs font-bold hover:bg-slate-700 transition';
+    if (btnSybr) btnSybr.className = 'px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs font-bold transition hover:bg-emerald-100 shadow-xs';
+    if (btnEtbr) btnEtbr.className = 'px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold hover:bg-slate-200 transition';
     if (badge) {
-      badge.className = 'px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-mono-code flex items-center gap-1.5';
+      badge.className = 'px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs font-sans font-medium flex items-center gap-1.5 shadow-xs';
       badge.innerHTML = '<span>🟢 Bioseguridad: SYBR Safe (No mutagénico)</span>';
     }
   } else {
-    if (btnEtbr) btnEtbr.className = 'px-2.5 py-1 rounded-lg bg-rose-500/20 border border-rose-500/50 text-rose-300 text-xs font-bold transition';
-    if (btnSybr) btnSybr.className = 'px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-slate-400 text-xs font-bold hover:bg-slate-700 transition';
+    if (btnEtbr) btnEtbr.className = 'px-2.5 py-1 rounded-lg bg-orange-50 border border-orange-300 text-orange-900 text-xs font-bold transition hover:bg-orange-100 shadow-xs';
+    if (btnSybr) btnSybr.className = 'px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold hover:bg-slate-200 transition';
     if (badge) {
-      badge.className = 'px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono-code flex items-center gap-1.5';
+      badge.className = 'px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 text-xs font-sans font-medium flex items-center gap-1.5 shadow-xs';
       badge.innerHTML = '<span>⚠️ Bioseguridad: Bromuro de Etidio (Intercalante)</span>';
     }
   }
@@ -1634,8 +1634,8 @@ function toggleGelRuler() {
   }
   if (btn) {
     btn.className = GelLabState.showRuler 
-      ? 'text-xs text-cyan-300 font-bold flex items-center gap-1 underline' 
-      : 'text-xs text-slate-400 hover:text-white flex items-center gap-1';
+      ? 'text-xs text-blue-700 font-bold flex items-center gap-1 underline' 
+      : 'text-xs text-slate-600 hover:text-slate-900 font-sans font-medium flex items-center gap-1 transition';
   }
   SFX.click();
 }
@@ -1673,16 +1673,16 @@ function inspectGelBand(type, key) {
   if (bElem) {
     bElem.innerHTML = `
       <div class="space-y-1.5 animate-fadeIn">
-        <div class="flex items-center justify-between text-xs font-bold text-white">
-          <span class="text-cyan-300">${item.name || item.label}</span>
-          <span class="px-2 py-0.5 rounded bg-slate-800 text-amber-300 font-mono-code font-bold">${item.size.toLocaleString()} pb</span>
+        <div class="flex items-center justify-between text-xs font-bold text-slate-900">
+          <span class="text-blue-900 font-semibold">${item.name || item.label}</span>
+          <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-800 font-mono tabular-nums font-bold border border-slate-200">${item.size.toLocaleString()} pb</span>
         </div>
-        <div class="flex flex-wrap items-center gap-3 text-[11px] text-slate-400 font-mono-code">
-          <span>Movilidad Relativa: <strong class="text-white">$R_f = ${item.rf.toFixed(2)}$</strong></span>
-          <span>Masa estimada: <strong class="text-white">~${item.ng} ng</strong></span>
-          <span>Emisión: <strong class="${GelLabState.dye === 'sybr' ? 'text-emerald-400' : 'text-rose-400'}">${GelLabState.dye === 'sybr' ? '530 nm (Verde)' : '605 nm (Naranja)'}</strong></span>
+        <div class="flex flex-wrap items-center gap-3 text-xs text-slate-600 font-sans">
+          <span>Movilidad Relativa: <strong class="text-slate-900 font-mono tabular-nums">$R_f = ${item.rf.toFixed(2)}$</strong></span>
+          <span>Masa estimada: <strong class="text-slate-900 font-mono tabular-nums">~${item.ng} ng</strong></span>
+          <span>Emisión: <strong class="${GelLabState.dye === 'sybr' ? 'text-emerald-700' : 'text-orange-700'} font-mono tabular-nums">${GelLabState.dye === 'sybr' ? '530 nm (Verde)' : '605 nm (Naranja)'}</strong></span>
         </div>
-        <p class="text-slate-300 text-xs mt-1 leading-relaxed">${item.desc}</p>
+        <p class="text-slate-700 text-xs mt-1 leading-relaxed font-sans">${item.desc}</p>
       </div>
     `;
     renderMath();
@@ -1695,9 +1695,9 @@ function selectGelChallengeOpt(val) {
     const b = document.getElementById(`ch-opt-${opt}`);
     if (b) {
       if (opt === val) {
-        b.className = 'py-1.5 rounded bg-amber-500 text-slate-950 font-bold text-center transition shadow';
+        b.className = 'py-1.5 rounded-lg bg-amber-500 text-white font-bold text-center transition shadow-xs font-mono tabular-nums text-xs';
       } else {
-        b.className = 'py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-center transition';
+        b.className = 'py-1.5 rounded-lg bg-white hover:bg-amber-100/70 border border-amber-200 text-slate-800 font-semibold text-center transition shadow-xs font-mono tabular-nums text-xs';
       }
     }
   });
