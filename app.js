@@ -1280,7 +1280,7 @@ const GelLabState = {
   progress: 1.0, // 0.0 (en pocillos) a 1.0 (migración completa)
   timeElapsedSec: 2400, // 40 minutos en segundos
   totalDurationSec: 2400,
-  illumination: 'uv', // 'visible' | 'uv'
+  illumination: 'visible', // 'visible' (Luz Diurna) | 'uv' (Transiluminador)
   dye: 'etbr', // 'etbr' | 'sybr'
   showRuler: false,
   timerInterval: null,
@@ -1370,7 +1370,7 @@ function updateGelDisplays() {
       if (GelLabState.progress < 0.1) {
         wf.className = 'w-full h-2 bg-indigo-900 rounded opacity-100 transition-all';
       } else {
-        wf.className = 'w-full h-2 bg-slate-900 rounded opacity-40 transition-all';
+        wf.className = 'w-full h-2 bg-slate-400 rounded opacity-30 transition-all';
       }
     }
   }
@@ -1382,8 +1382,10 @@ function renderGelBands() {
 
   const p = Math.min(1.0, Math.max(0.0, GelLabState.progress));
   const isUV = GelLabState.illumination === 'uv';
-  const dyeClass = GelLabState.dye === 'sybr' ? 'band-sybr' : 'band-etbr';
-  const bandDisplay = isUV ? 'opacity-100' : 'opacity-0';
+  const dyeClass = isUV 
+    ? (GelLabState.dye === 'sybr' ? 'band-sybr-uv' : 'band-etbr-uv')
+    : (GelLabState.dye === 'sybr' ? 'band-sybr-daylight' : 'band-etbr-daylight');
+  const bandDisplay = 'opacity-100';
 
   // Tracking dye front (Azul de Bromofenol): co-migrates with ~300 bp fragments (~94% top)
   const dyeTop = (4 + (94 - 4) * p);
@@ -1395,10 +1397,14 @@ function renderGelBands() {
 
   // 1. Ladder Scale column on the left (calibrated static axis: 0% to 25% of width)
   GEL_LADDER_DATA.forEach((lad) => {
+    const labelColor = isUV
+      ? (lad.isRef ? 'text-amber-300 font-bold' : 'text-slate-300')
+      : (lad.isRef ? 'text-blue-900 font-bold' : 'text-slate-700 font-medium');
+    const tickColor = isUV ? 'bg-slate-600' : 'bg-slate-400';
     html += `
-      <div class="absolute left-1.5 sm:left-3 flex items-center gap-1.5 transition-opacity duration-200 ${isUV ? 'opacity-90' : 'opacity-0'} pointer-events-none" style="top: ${lad.topPct}%; transform: translateY(-50%);">
-        <span class="text-[10px] sm:text-xs font-mono tabular-nums font-semibold ${lad.isRef ? 'text-amber-300' : 'text-slate-300'} whitespace-nowrap">${lad.label}</span>
-        <span class="w-2 sm:w-3.5 h-px bg-slate-600 inline-block"></span>
+      <div class="absolute left-1.5 sm:left-3 flex items-center gap-1.5 transition-opacity duration-200 opacity-90 pointer-events-none" style="top: ${lad.topPct}%; transform: translateY(-50%);">
+        <span class="text-[10px] sm:text-xs font-mono tabular-nums ${labelColor} whitespace-nowrap">${lad.label}</span>
+        <span class="w-2 sm:w-3.5 h-px ${tickColor} inline-block"></span>
       </div>
     `;
   });
@@ -1578,12 +1584,12 @@ function setGelIllumination(mode) {
   const btnUV = document.getElementById('btn-illum-uv');
 
   if (mode === 'uv') {
-    if (slab) slab.className = 'gel-bed-uv relative rounded-xl p-3 h-[420px] bg-slate-950 ring-1 ring-slate-800 shadow-inner transition-colors duration-500 overflow-hidden select-none';
-    if (btnUV) btnUV.className = 'p-2.5 rounded-xl bg-slate-900 text-white border border-slate-800 hover:bg-slate-800 text-left transition shadow-xs';
-    if (btnVis) btnVis.className = 'p-2.5 rounded-xl bg-slate-100 text-slate-800 border border-slate-200 hover:bg-slate-200 text-left transition shadow-xs';
+    if (slab) slab.className = 'gel-bed-uv relative rounded-xl p-3 h-[420px] transition-all duration-300 overflow-hidden select-none';
+    if (btnUV) btnUV.className = 'p-2.5 rounded-xl bg-purple-100 text-purple-900 border border-purple-300 text-left transition shadow-xs';
+    if (btnVis) btnVis.className = 'p-2.5 rounded-xl bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 text-left transition shadow-xs';
   } else {
-    if (slab) slab.className = 'gel-bed-visible relative rounded-xl p-3 h-[420px] bg-slate-900 ring-1 ring-slate-800 shadow-inner transition-colors duration-500 overflow-hidden select-none';
-    if (btnVis) btnVis.className = 'p-2.5 rounded-xl bg-blue-50 text-blue-900 border border-blue-300 hover:bg-blue-100 text-left transition shadow-xs';
+    if (slab) slab.className = 'gel-bed-visible relative rounded-xl p-3 h-[420px] transition-all duration-300 overflow-hidden select-none';
+    if (btnVis) btnVis.className = 'p-2.5 rounded-xl bg-blue-50 text-blue-900 border border-blue-300 text-left transition shadow-xs';
     if (btnUV) btnUV.className = 'p-2.5 rounded-xl bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 text-left transition shadow-xs';
   }
 

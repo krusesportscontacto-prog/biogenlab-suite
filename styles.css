@@ -305,25 +305,75 @@ input::placeholder {
 }
 
 /* ==========================================================================
-   EXCEPCIÓN FÍSICA FOTOMÉTRICA: CÁMARA DE TRANSILUMINACIÓN UV (EFECTO VON RESTORFF)
-   El gel de electroforesis y el secuenciador Sanger son simuladores ópticos de
-   cámara oscura real para visualización de fluorescencia molecular.
+   CÁMARA DE ELECTROFORESIS Y TRANSILUMINADOR (DISEÑO ARMONIZADO DE ALTA COGNICIÓN)
+   Polaridad luminosa positiva para agarosa translúcida diurna de laboratorio,
+   con soporte para cámara oscura fotométrica UV (302 nm).
    ========================================================================== */
 
-#gel-slab-surface {
+/* 1. Modo Predeterminado: Gel de Agarosa en Luz Diurna de Laboratorio */
+.gel-bed-visible,
+#gel-slab-surface.gel-bed-visible {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+}
+.gel-bed-visible .gel-header-title {
+  color: #0f172a !important; /* Slate 900 */
+}
+.gel-bed-visible .gel-header-subtitle {
+  color: #64748b !important; /* Slate 500 */
+}
+.gel-bed-visible .gel-header-border {
+  border-color: #cbd5e1 !important;
+}
+.gel-bed-visible .gel-well-slot {
+  background: #cbd5e1 !important;
+  border: 1.5px solid #94a3b8 !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12) !important;
+  border-radius: 4px !important;
+}
+.gel-bed-visible .gel-ruler-text {
+  color: #475569 !important;
+}
+.gel-bed-visible .gel-ruler-border {
+  border-color: #cbd5e1 !important;
+}
+.gel-bed-visible .gel-ruler-tick {
+  border-bottom: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+/* 2. Modo Transiluminador UV de Cámara Oscura */
+.gel-bed-uv,
+#gel-slab-surface.gel-bed-uv {
   background: radial-gradient(circle at 50% 35%, #0f172a 0%, #020617 100%) !important;
   border: 1px solid #1e293b !important;
-  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.95) !important;
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.95), 0 0 15px rgba(99, 102, 241, 0.15) !important;
 }
-#gel-slab-surface .text-slate-200 {
+.gel-bed-uv .gel-header-title {
   color: #e2e8f0 !important;
 }
-#gel-slab-surface .text-slate-400 {
+.gel-bed-uv .gel-header-subtitle {
   color: #94a3b8 !important;
 }
-.gel-well-slot {
+.gel-bed-uv .gel-header-border {
+  border-color: #1e293b !important;
+}
+.gel-bed-uv .gel-well-slot {
   background: #020617 !important;
   border: 1.5px solid #334155 !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+  border-radius: 4px !important;
+}
+.gel-bed-uv .gel-ruler-text {
+  color: #94a3b8 !important;
+}
+.gel-bed-uv .gel-ruler-border {
+  border-color: #334155 !important;
+}
+.gel-bed-uv .gel-ruler-tick {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35) !important;
+  color: #94a3b8 !important;
 }
 
 .lcd-display,
@@ -332,25 +382,13 @@ input::placeholder {
   color: #38bdf8 !important;
 }
 
-/* Gel Electrophoresis Chamber & Band Animations */
+/* Cubeta Acrílica de Precisión */
 .gel-chamber-box {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #cbd5e1;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
   position: relative;
   user-select: none;
-}
-
-.gel-bed-visible {
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-  border: 1px solid #334155;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
-}
-
-.gel-bed-uv {
-  background: radial-gradient(circle at 50% 35%, #0f172a 0%, #020617 100%);
-  border: 1px solid #1e293b;
-  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.95);
 }
 
 @keyframes bubbleFloatUp {
@@ -373,33 +411,51 @@ input::placeholder {
   animation: bubbleFloatDown 1.5s infinite ease-out;
 }
 
-/* Fluorescent DNA band glows */
-.band-etbr {
-  background: linear-gradient(90deg, #ea580c 0%, #f43f5e 50%, #ea580c 100%);
-  box-shadow: 0 0 12px rgba(244, 63, 94, 0.95), 0 0 22px rgba(234, 88, 12, 0.45);
-  border-radius: 2px;
+/* Bandas de ADN en Luz Diurna (Contraste Nítido) */
+.band-etbr,
+.band-etbr-daylight {
+  background: linear-gradient(90deg, #ea580c 0%, #dc2626 50%, #ea580c 100%) !important;
+  box-shadow: 0 1px 3px rgba(220, 38, 38, 0.45) !important;
+  border-radius: 2px !important;
 }
 
-.band-sybr {
-  background: linear-gradient(90deg, #059669 0%, #10b981 50%, #059669 100%);
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.95), 0 0 22px rgba(5, 150, 105, 0.45);
-  border-radius: 2px;
+.band-sybr,
+.band-sybr-daylight {
+  background: linear-gradient(90deg, #059669 0%, #047857 50%, #059669 100%) !important;
+  box-shadow: 0 1px 3px rgba(4, 120, 87, 0.45) !important;
+  border-radius: 2px !important;
 }
 
-.band-highlight {
-  outline: 2px solid #ffffff;
-  outline-offset: 2px;
-  filter: brightness(1.35) drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
+/* Bandas de ADN en Transiluminador UV (Fluorescencia Fotométrica) */
+.band-etbr-uv {
+  background: linear-gradient(90deg, #ea580c 0%, #f43f5e 50%, #ea580c 100%) !important;
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.95), 0 0 22px rgba(234, 88, 12, 0.45) !important;
+  border-radius: 2px !important;
+}
+
+.band-sybr-uv {
+  background: linear-gradient(90deg, #059669 0%, #10b981 50%, #059669 100%) !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.95), 0 0 22px rgba(5, 150, 105, 0.45) !important;
+  border-radius: 2px !important;
+}
+
+/* Resaltado de Banda Seleccionada */
+.gel-bed-visible .band-highlight {
+  outline: 2px solid #2563eb !important;
+  outline-offset: 2px !important;
+  filter: drop-shadow(0 2px 6px rgba(37, 99, 235, 0.6)) !important;
+}
+
+.gel-bed-uv .band-highlight {
+  outline: 2px solid #ffffff !important;
+  outline-offset: 2px !important;
+  filter: brightness(1.35) drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) !important;
 }
 
 .tracking-dye-front {
-  background: linear-gradient(180deg, rgba(14, 165, 233, 0.15), rgba(2, 132, 199, 0.85), rgba(3, 105, 161, 0.2));
+  background: linear-gradient(180deg, rgba(14, 165, 233, 0.2), rgba(2, 132, 199, 0.8), rgba(3, 105, 161, 0.3));
   filter: blur(1.5px);
   border-radius: 3px;
-}
-
-.gel-ruler-tick {
-  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
 }
 
 /* Badges */
