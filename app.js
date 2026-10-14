@@ -600,8 +600,7 @@ function renderStudyVolume(volId = currentStudyVolume, searchQuery = '') {
         imagesHtml = `
           <div class="mt-6 pt-5 border-t border-slate-800/80">
             <div class="flex items-center gap-2 mb-3">
-              <span class="text-xs font-mono-code font-bold text-cyan-400 uppercase tracking-wider">🔬 Figuras y Diagramas Originales Extraídos de los Apuntes</span>
-              <span class="text-[10px] text-slate-500 font-mono-code">(Clic para ampliar en alta resolución)</span>
+              <span class="text-xs font-mono-code font-bold text-cyan-400 uppercase tracking-wider">🔬 Figuras y Diagramas Originales del Temario Oficial</span>
             </div>
             <div class="grid ${gridCols} gap-4">
               ${sec.images.map(img => {
@@ -615,13 +614,7 @@ function renderStudyVolume(volId = currentStudyVolume, searchQuery = '') {
                     <img src="${img.src}" alt="${img.caption.replace(/"/g, '&quot;')}" class="max-h-52 w-auto object-contain transition-transform duration-300 group-hover:scale-105 bg-white" loading="lazy">
                   </div>
                   <div class="mt-3 pt-2.5 border-t border-slate-800 flex items-start gap-2">
-                    <span class="text-cyan-400 text-xs shrink-0 mt-0.5">🔍</span>
                     <span class="text-[11px] sm:text-xs text-slate-200 leading-snug font-medium group-hover:text-cyan-300 transition">${img.caption}</span>
-                  </div>
-                  <div class="mt-2 text-right">
-                    <span class="inline-flex items-center gap-1 text-[10px] uppercase font-mono-code text-cyan-400 font-bold group-hover:underline">
-                      Ampliar a pantalla completa ↗
-                    </span>
                   </div>
                 </div>
               `}).join('')}
