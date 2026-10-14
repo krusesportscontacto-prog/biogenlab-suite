@@ -110,6 +110,13 @@ h1, h2, h3, h4, .font-display {
   padding: 0.25rem 0;
 }
 
+.katex-error {
+  color: #38bdf8 !important;
+  background: transparent !important;
+  border: none !important;
+  font-family: inherit !important;
+}
+
 /* Interactive animations */
 @keyframes pulseGlow {
   0%, 100% { opacity: 1; transform: scale(1); }

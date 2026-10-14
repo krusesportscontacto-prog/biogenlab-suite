@@ -1232,11 +1232,11 @@ function inspectPcrStage(st) {
   const box = document.getElementById('pcr-stage-detail');
   if (!box) return;
   if (st === 1) {
-    box.innerHTML = `🔥 <strong>1. Desnaturalización ($95\\,^\\circ\\text{C}$):</strong> Rompe los puentes de H separando las dos hebras.`;
+    box.innerHTML = `🔥 <strong>1. Desnaturalización (95 °C):</strong> Rompe los puentes de H separando las dos hebras.`;
   } else if (st === 2) {
-    box.innerHTML = `🧲 <strong>2. Hibridación de cebadores ($50\\text{-}65\\,^\\circ\\text{C}$):</strong> Los primers A y B se unen a sus secuencias complementarias.`;
+    box.innerHTML = `🧲 <strong>2. Hibridación de cebadores (50-65 °C):</strong> Los primers A y B se unen a sus secuencias complementarias.`;
   } else {
-    box.innerHTML = `🚀 <strong>3. Elongación ($72\\,^\\circ\\text{C}$):</strong> La Taq ADN polimerasa añade dNTPs en dirección $5'\\rightarrow 3'$.`;
+    box.innerHTML = `🚀 <strong>3. Elongación (72 °C):</strong> La Taq ADN polimerasa añade dNTPs en dirección $5'\\rightarrow 3'$.`;
   }
   renderMath();
   SFX.click();

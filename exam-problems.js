@@ -42,9 +42,9 @@ b) Si el cambio de secuencia es una modificación de una sola base, indique la p
   - ARNm mutado: \`AUG CCC UAU CGA UU-CUC-UAU-ACG-GCU-UUA...\`
   - Proteína: \`Met–Pro–Tyr–Arg–Phe–Leu–Tyr–Thr–Ala–Leu–...\` (secuencia aberrante hasta encontrar un codón stop fuera de fase).`,
       b: `Numerando las bases de 1 a 33:
-- **Silenciosa (CCC \\rightarrow CCT):** Base **6** (3ª base del segundo codón). No produce cambio fenotípico.
-- **Sin Sentido (CGA \\rightarrow TGA):** Base **10** (1ª base del cuarto codón). Produce fenotipo alterado por parada prematura.
-- **Missense (TTT \\rightarrow TTA):** Base **15** (3ª base del quinto codón). Produce fenotipo alterado por sustitución de Phe por Leu.
+- **Silenciosa (CCC → CCT):** Base **6** (3ª base del segundo codón). No produce cambio fenotípico.
+- **Sin Sentido (CGA → TGA):** Base **10** (1ª base del cuarto codón). Produce fenotipo alterado por parada prematura.
+- **Missense (TTT → TTA):** Base **15** (3ª base del quinto codón). Produce fenotipo alterado por sustitución de Phe por Leu.
 - **Frameshift (Inserción/Deleción):** ej. inserción tras la base **14** (cambio de pauta a partir del codón 5).`
     }
   },
@@ -454,9 +454,9 @@ donde $N_{xy}$ es el número de bandas compartidas por ambos individuos, y $N_x,
 Ponga un ejemplo de cómo lo utilizaría para diagnosticar la presencia de una infección viral en un organismo, representando los resultados del gel.`,
     solution: {
       pasosPcr: `**Los 3 Pasos Cíclicos de la PCR:**
-1. **Desnaturalización térmica ($94\\text{-}95\\,^\\circ\\text{C}$, 30-60 seg):** El calor rompe los puentes de hidrógeno separando las dos hebras del ADN molde.
-2. **Anillamiento o Hibridación de cebadores ($50\\text{-}65\\,^\\circ\\text{C}$, 30-60 seg):** Dos oligonucleótidos sintéticos específicos (cebador *Forward* y *Reverse*) hibridan con las secuencias complementarias flanqueantes del gen diana viral en hebras opuestas.
-3. **Elongación o Extensión ($72\\,^\\circ\\text{C}$):** Temperatura óptima de la enzima termoestable **Taq ADN polimerasa**, que incorpora dNTPs en sentido $5'\\rightarrow 3'$ a partir del extremo 3'-OH de cada cebador.
+1. **Desnaturalización térmica (94-95 °C$, 30-60 seg):** El calor rompe los puentes de hidrógeno separando las dos hebras del ADN molde.
+2. **Anillamiento o Hibridación de cebadores (50-65 °C$, 30-60 seg):** Dos oligonucleótidos sintéticos específicos (cebador *Forward* y *Reverse*) hibridan con las secuencias complementarias flanqueantes del gen diana viral en hebras opuestas.
+3. **Elongación o Extensión (72 °C$):** Temperatura óptima de la enzima termoestable **Taq ADN polimerasa**, que incorpora dNTPs en sentido $5'\\rightarrow 3'$ a partir del extremo 3'-OH de cada cebador.
 *Se repiten entre 30 y 35 ciclos, amplificando teóricamente hasta $2^n$ copias del fragmento viral.*
 
 **Electroforesis en Gel de Agarosa:**
