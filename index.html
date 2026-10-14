@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Hoja de Estilos Unificada -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2.1">
 </head>
 <body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-950">
 
@@ -109,6 +109,9 @@
           4 aplicaciones y episodios de aprendizaje armonizados en un solo simulador con <strong>116 retos interactivos</strong>, <strong>13 casos prácticos de convocatorias oficiales</strong> con evaluación interactiva activa y resolución razonada paso a paso, diseño de cebadores, geles Sanger y RAPD, y <strong>Biblioteca de Estudio Oficial</strong> con los manuales teóricos íntegros y sus figuras originales.
         </p>
         <div class="flex flex-wrap gap-3 pt-2">
+          <button onclick="switchView('tema1'); switchTopicTab('tema1', 'sub2');" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition flex items-center gap-2 shadow-lg shadow-blue-600/25">
+            <span>⚡</span> Laboratorio Electroforesis (Daylight Lab)
+          </button>
           <button onclick="switchView('exam-workshop')" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition flex items-center gap-2 shadow-lg shadow-amber-500/20">
             <span>🎯</span> Resolver Casos de Convocatoria
           </button>
@@ -524,13 +527,13 @@
 
     <!-- ==================== SECCIÓN 2: SUBTEMA 2 (ELECTROFORESIS Y EMPAQUETAMIENTO DE LA CROMATINA) ==================== -->
     <section id="tema1-sec-sub2" class="hidden space-y-6">
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-6 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
-            <span class="text-xs font-mono-code uppercase text-emerald-400">Subtema 2 • Separación Molecular y Organización Nuclear</span>
-            <h2 class="text-2xl font-bold text-white">Electroforesis en Gel y Empaquetamiento de la Cromatina</h2>
+            <span class="text-xs font-sans font-bold uppercase text-slate-500 tracking-wider">Subtema 2 • Separación Molecular y Organización Nuclear</span>
+            <h2 class="text-2xl font-bold text-slate-900 font-sans">Electroforesis en Gel y Empaquetamiento de la Cromatina</h2>
           </div>
-          <button onclick="switchTopicTab('tema1', 'arena'); filterQuizBySub('tema1', 2);" class="px-4 py-2 bg-emerald-500/20 hover:bg-emerald-500 hover:text-slate-950 text-emerald-300 border border-emerald-500/40 rounded-xl text-xs font-bold transition-all">
+          <button onclick="switchTopicTab('tema1', 'arena'); filterQuizBySub('tema1', 2);" class="px-4 py-2 bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-700 border border-slate-200 rounded-xl text-xs font-bold transition-all shadow-xs">
             🎯 Evaluar Subtema 2 en Examen
           </button>
         </div>
@@ -3038,6 +3041,6 @@
   <script src="study-sources.js"></script>
   <script src="quiz-data.js"></script>
   <script src="exam-problems.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=2.1"></script>
 </body>
 </html>

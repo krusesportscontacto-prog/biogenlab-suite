@@ -2480,6 +2480,13 @@ window.addEventListener('DOMContentLoaded', () => {
   simGenomeElement('transposon');
   renderSub1Strands();
 
+  // Direct hash routing (e.g., #sub2 or #gel)
+  const hash = (window.location.hash || '').toLowerCase();
+  if (hash.includes('sub2') || hash.includes('gel') || hash.includes('electroforesis')) {
+    switchView('tema1');
+    switchTopicTab('tema1', 'sub2');
+  }
+
   // Render KaTeX
   setTimeout(renderMath, 150);
 });
