@@ -604,17 +604,27 @@ function renderStudyVolume(volId = currentStudyVolume, searchQuery = '') {
               <span class="text-[10px] text-slate-500 font-mono-code">(Clic para ampliar en alta resolución)</span>
             </div>
             <div class="grid ${gridCols} gap-4">
-              ${sec.images.map(img => `
-                <div onclick="openImageModal('${img.src}', '${encodeURIComponent(img.caption)}')" class="group cursor-pointer bg-slate-950/80 hover:bg-slate-900 border border-slate-800 hover:border-cyan-500/50 rounded-2xl p-3 transition shadow-md flex flex-col justify-between">
-                  <div class="overflow-hidden rounded-xl bg-slate-950 flex items-center justify-center p-2 min-h-[180px]">
-                    <img src="${img.src}" alt="${img.caption}" class="max-h-52 w-auto object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy">
+              ${sec.images.map(img => {
+                const encodedCap = encodeURIComponent(img.caption).replace(/'/g, "%27");
+                return `
+                <div class="study-image-card group cursor-pointer bg-slate-900/90 hover:bg-slate-850 border border-slate-700/80 hover:border-cyan-400 rounded-2xl p-3.5 transition shadow-lg flex flex-col justify-between"
+                     data-src="${img.src}"
+                     data-caption="${encodedCap}">
+                  <!-- Marco con FONDO BLANCO para máximo contraste y legibilidad de fórmulas y diagramas -->
+                  <div class="overflow-hidden rounded-xl bg-white flex items-center justify-center p-3 min-h-[190px] border border-slate-200 shadow-inner">
+                    <img src="${img.src}" alt="${img.caption.replace(/"/g, '&quot;')}" class="max-h-52 w-auto object-contain transition-transform duration-300 group-hover:scale-105 bg-white" loading="lazy">
                   </div>
-                  <div class="mt-2.5 pt-2 border-t border-slate-800/60 flex items-start gap-2">
+                  <div class="mt-3 pt-2.5 border-t border-slate-800 flex items-start gap-2">
                     <span class="text-cyan-400 text-xs shrink-0 mt-0.5">🔍</span>
-                    <span class="text-[11px] sm:text-xs text-slate-300 leading-snug font-medium group-hover:text-white transition">${img.caption}</span>
+                    <span class="text-[11px] sm:text-xs text-slate-200 leading-snug font-medium group-hover:text-cyan-300 transition">${img.caption}</span>
+                  </div>
+                  <div class="mt-2 text-right">
+                    <span class="inline-flex items-center gap-1 text-[10px] uppercase font-mono-code text-cyan-400 font-bold group-hover:underline">
+                      Ampliar a pantalla completa ↗
+                    </span>
                   </div>
                 </div>
-              `).join('')}
+              `}).join('')}
             </div>
           </div>
         `;
@@ -662,14 +672,21 @@ function renderStudyVolume(volId = currentStudyVolume, searchQuery = '') {
   renderMath();
 }
 
-function openImageModal(src, encodedCaption) {
+function openImageModal(src, caption) {
   const modal = document.getElementById('image-modal');
   const img = document.getElementById('image-modal-img');
   const cap = document.getElementById('image-modal-caption');
   if (!modal || !img || !cap) return;
 
+  let decoded = caption || '';
+  try {
+    if (decoded.includes('%')) {
+      decoded = decodeURIComponent(decoded);
+    }
+  } catch(e) {}
+
   img.src = src;
-  cap.innerHTML = decodeURIComponent(encodedCaption);
+  cap.textContent = decoded;
   modal.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
   SFX.click();
@@ -681,6 +698,16 @@ function closeImageModal() {
   modal.classList.add('hidden');
   document.body.style.overflow = '';
 }
+
+// Delegación global de clic para maximizar imágenes con fondo blanco
+document.addEventListener('click', (e) => {
+  const card = e.target.closest('.study-image-card');
+  if (card) {
+    const src = card.getAttribute('data-src');
+    const rawCaption = card.getAttribute('data-caption') || '';
+    openImageModal(src, rawCaption);
+  }
+});
 
 // Cerrar modal de imagen con tecla Escape
 window.addEventListener('keydown', (e) => {

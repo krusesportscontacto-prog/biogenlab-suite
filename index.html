@@ -3170,18 +3170,24 @@
   </footer>
 
   <!-- Modal Lightbox para Figuras y Diagramas Originales -->
-  <div id="image-modal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4" onclick="closeImageModal()">
-    <div class="relative max-w-5xl max-h-[92vh] w-full bg-slate-900 border border-slate-700/80 rounded-2xl p-4 sm:p-6 flex flex-col shadow-2xl" onclick="event.stopPropagation()">
-      <div class="flex items-center justify-between gap-4 pb-3 border-b border-slate-800">
-        <span class="text-xs font-mono-code text-cyan-400 font-bold uppercase tracking-wider">🔬 Figura Original de la Fuente Oficial</span>
-        <button onclick="closeImageModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center font-bold text-sm transition">
-          ✕
+  <div id="image-modal" class="hidden fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md flex items-center justify-center p-3 sm:p-6" onclick="closeImageModal()">
+    <div class="relative max-w-5xl max-h-[94vh] w-full bg-slate-900 border border-slate-700 rounded-3xl p-4 sm:p-6 flex flex-col shadow-2xl" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between gap-4 pb-3 border-b border-slate-800 shrink-0">
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-0.5 rounded-md bg-cyan-500/20 text-cyan-300 font-mono-code font-bold text-xs uppercase tracking-wider">🔬 Figura Original del Temario Oficial</span>
+          <span class="text-xs text-slate-400 font-mono-code hidden sm:inline">• Fondo Blanco de Alta Legibilidad</span>
+        </div>
+        <button onclick="closeImageModal()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold text-xs transition flex items-center gap-1.5">
+          <span>✕</span> Cerrar
         </button>
       </div>
-      <div class="flex-1 overflow-auto py-4 flex items-center justify-center min-h-[250px]">
-        <img id="image-modal-img" src="" alt="Figura Oficial" class="max-h-[75vh] w-auto max-w-full rounded-xl object-contain border border-slate-800 shadow-xl bg-slate-950">
+      <div class="flex-1 overflow-auto py-4 flex items-center justify-center min-h-[260px]">
+        <!-- Marco de FONDO BLANCO para máximo contraste de fórmulas y diagramas biológicos -->
+        <div class="bg-white p-3 sm:p-6 rounded-2xl shadow-xl border border-slate-200 flex items-center justify-center max-w-full">
+          <img id="image-modal-img" src="" alt="Figura Oficial" class="max-h-[65vh] w-auto max-w-full object-contain rounded-lg bg-white">
+        </div>
       </div>
-      <div id="image-modal-caption" class="pt-3 border-t border-slate-800 text-xs sm:text-sm text-slate-300 text-center font-medium leading-relaxed"></div>
+      <div id="image-modal-caption" class="pt-3 border-t border-slate-800 text-xs sm:text-sm text-slate-200 text-center font-medium leading-relaxed shrink-0"></div>
     </div>
   </div>
 

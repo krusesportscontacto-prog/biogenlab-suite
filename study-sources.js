@@ -34,11 +34,11 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema1_p1_img2.jpeg",
+            src: "assets/images/tema1_fig1_nucleotido.jpeg",
             caption: "Figura 1: Estructura química de un nucleótido. Detalle del enlace éster (fosfato-azúcar) y el enlace N-glucosídico (azúcar-base nitrogenada)."
           },
           {
-            src: "assets/images/tema1_p1_img3.jpeg",
+            src: "assets/images/tema1_fig2_bases.jpeg",
             caption: "Figura 2: Fórmulas de las bases púricas (Adenina, Guanina) y pirimidínicas (Citosina, Timina)."
           }
         ]
@@ -85,7 +85,7 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema1_p2_img2.png",
+            src: "assets/images/tema1_fig3_doble_helice.png",
             caption: "Figura 3: Modelo de doble hélice antiparalela del ADN. Emparejamiento de bases nitrogenadas (A=T y G≡C) mediante puentes de hidrógeno y esqueleto azúcar-fosfato 5' a 3'."
           }
         ]
@@ -142,7 +142,7 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema1_p4_img4.jpeg",
+            src: "assets/images/tema1_fig4_cromatina.jpeg",
             caption: "Figura 4: Empaquetamiento escalonado del ADN desde la doble hélice (2 nm) hasta el cromosoma metafásico (1400 nm), pasando por el octámero de histonas H1, nucleosoma (11 nm), solenoide (30 nm) y bucles (300-700 nm)."
           }
         ]
@@ -257,7 +257,7 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema1_p8_img2.png",
+            src: "assets/images/tema1_fig5_sanger.png",
             caption: "Figura 5: Distribución cuantitativa del Genoma Humano (3.200 Mb). Detalle de los 1.200 Mb relacionados con genes (exones 48 Mb, intrones, seudogenes) frente a los 2.000 Mb de ADN intergénico repetitivo (LINE, SINE, LTR, transposones, microsatélites)."
           }
         ]
@@ -283,7 +283,7 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema1_p9_img2.png",
+            src: "assets/images/tema1_fig6_genoma_humano.png",
             caption: "Figura 6: Estructura del gen eucariota. Transcripción de exones e intrones, proceso de empalme (splicing) y generación del ARNm maduro con caperuza 5' y cola poli-A en 3'."
           }
         ]
@@ -358,7 +358,7 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema2_p4_img4.jpeg",
+            src: "assets/images/tema2_fig1_gen_eucariota.jpeg",
             caption: "Figura 7: Anatomía molecular de un gen eucariota. Upstream enhancers, promotor con TATA box, 5' UTR, exones e intrones, 3' UTR y cola poli-A."
           }
         ]
@@ -401,11 +401,11 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema2_p5_img2.jpeg",
+            src: "assets/images/tema2_fig2_splicing.jpeg",
             caption: "Figura 8: Modelos tridimensionales de los 7 efectos estructurales producidos por mutaciones en proteínas: truncamiento, mal plegamiento, centro activo, unión a metales, ligandos, dimerización y unión a ADN."
           },
           {
-            src: "assets/images/tema2_p6_img2.jpeg",
+            src: "assets/images/tema2_fig4_mutaciones_puntuales.jpeg",
             caption: "Figura 9: Mutación puntual por sustitución de bases en el ADN original frente al ADN mutado."
           }
         ]
@@ -452,7 +452,7 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema2_p7_img4.jpeg",
+            src: "assets/images/tema2_fig12_reordenaciones_cromosomicas.jpeg",
             caption: "Figura 10: Clasificación de reordenaciones cromosómicas estructurales: A) Deleción, B) Duplicación, C) Inversión, D) Translocación recíproca, E) Translocación robertsoniana."
           }
         ]
@@ -478,7 +478,7 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema2_p9_img2.png",
+            src: "assets/images/tema2_fig5_mosaicismo.png",
             caption: "Figura 11: Métodos de obtención de poliploides: aplicación de colchicina a meristemos (2x a 4x), electrofusión de protoplastos y cruce con parentales productores de gametos no reducidos 2n."
           }
         ]
@@ -505,19 +505,19 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema2_p10_img6.jpeg",
+            src: "assets/images/tema2_fig9_sandias_colchicina.jpeg",
             caption: "Figura 12: Cambios tautoméricos de bases: replicación con forma enol rara de guanina y generación de mutantes por transición en segunda generación."
           },
           {
-            src: "assets/images/tema2_p10_img5.jpeg",
+            src: "assets/images/tema2_fig10_huso_mitotico.jpeg",
             caption: "Figura 13: Desaminación oxidativa de citosina a uracilo y daño oxidativo por radicales de oxígeno."
           },
           {
-            src: "assets/images/tema2_p11_img2.jpeg",
+            src: "assets/images/tema2_fig13_tilling_flujo.jpeg",
             caption: "Figura 14: Agentes mutagénicos químicos y físicos: análogos de bases (5-bromouracilo), intercalantes (proflavina, naranja de acridina) y dímeros de timina inducidos por UV."
           },
           {
-            src: "assets/images/tema2_p12_img2.jpeg",
+            src: "assets/images/tema2_fig14_tilling_gel.jpeg",
             caption: "Figura 15: Flujo de trabajo del protocolo TILLING con EMS: mutagénesis en semillas M1, propagación M2/M3, extracción de ADN y detección molecular con fenotipado agronómico."
           }
         ]
@@ -542,11 +542,11 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema2_p13_img5.jpeg",
+            src: "assets/images/tema2_fig15_epimutacion_cnr.jpeg",
             caption: "Figura 16: Interacción epigenética: la metilación de histona H3-K9 recluta a la ADN metiltransferasa (DNMT), induciendo la metilación del ADN."
           },
           {
-            src: "assets/images/tema2_p14_img2.jpeg",
+            src: "assets/images/tema2_fig3_cap_polya.jpeg",
             caption: "Figura 17: Bucle represor: la proteína MeCP2 se une al ADN metilado y recluta a la histona desacetilasa (HDAC), induciendo la desacetilación de histonas y compactación de la cromatina."
           }
         ]
@@ -612,7 +612,7 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema3_p2_img4.png",
+            src: "assets/images/tema3_fig1_enzimas_restriccion.png",
             caption: "Figura 18: Tipos de cortes producidos por enzimas de restricción: cortes escalonados (extremos cohesivos en EcoRI y PstI) vs cortes rectos (extremos romos en HaeIII)."
           }
         ]
@@ -642,7 +642,7 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema3_p3_img2.png",
+            src: "assets/images/tema3_fig2_rflp_southern.png",
             caption: "Figura 19: Esquema clásico de RFLPs (Botstein et al., 1980): digestión con enzimas de restricción, electroforesis, transferencia Southern blot, hibridación con sonda y patrón electroforético de genotipos AA, BB y AB."
           }
         ]
@@ -716,11 +716,11 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema3_p8_img4.jpeg",
+            src: "assets/images/tema3_fig3_illumina.jpeg",
             caption: "Figura 20: Control de pureza varietal y huellas genéticas en frutos de tomate comerciales y tradicionales."
           },
           {
-            src: "assets/images/tema3_p9_img2.jpeg",
+            src: "assets/images/tema3_fig4_mas_seleccion.jpeg",
             caption: "Figura 21: Cartografía genética y grupos de ligamiento (LG I a LG VI) utilizados en programas de mejora asistida por marcadores moleculares (MAS)."
           }
         ]
@@ -798,15 +798,15 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema4_p2_img4.png",
+            src: "assets/images/tema4_fig1_instalaciones_invitro.png",
             caption: "Figura 22: Construcción de un plásmido recombinante: digestión con enzimas de restricción del plásmido y del gen diana, y posterior unión covalente mediante ADN ligasa."
           },
           {
-            src: "assets/images/tema4_p3_img2.png",
+            src: "assets/images/tema4_fig4_agrobacterium.jpeg",
             caption: "Figura 23: Ciclo de transformación genética mediada por Agrobacterium tumefaciens: inserción del gen foráneo en el T-DNA del plásmido Ti, inoculación celular, regeneración in vitro y planta transgénica."
           },
           {
-            src: "assets/images/tema4_p4_img2.jpeg",
+            src: "assets/images/tema4_fig5_biobalistica.png",
             caption: "Figura 24: Transformación vegetal por biobalística: bombardeo de partículas de oro recubiertas de ADN sobre explantes, multiplicación de callos transgénicos y regeneración de plántulas."
           }
         ]
@@ -840,7 +840,7 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema4_p10_img2.jpeg",
+            src: "assets/images/tema4_fig6_micropropagacion.jpeg",
             caption: "Figura 25: Diagrama esquemático oficial de las fases de un proceso de micropropagación (Figura 3): Planta seleccionada ➔ Análisis ➔ Saneamiento ➔ Establecimiento in vitro ➔ Multiplicación ➔ Enraizamiento ➔ Aclimatación."
           }
         ]
@@ -891,23 +891,23 @@ window.STUDY_SOURCES = {
         `,
         images: [
           {
-            src: "assets/images/tema4_p6_img2.jpeg",
+            src: "assets/images/tema4_fig2_medios_nutritivos.png",
             caption: "Figura 26: Regeneración de berenjena por vía organogénica a partir de explantes de hoja (A) y embriones somáticos obtenidos a partir de raíces de zanahoria por vía embriogénica (B)."
           },
           {
-            src: "assets/images/tema4_p7_img2.png",
+            src: "assets/images/tema4_fig7_balanza_hormonal.jpeg",
             caption: "Figura 27: Tabla oficial de reguladores de crecimiento de tipo auxina (IAA, NAA, IBA, 2,4-D) y de tipo citoquinina (Z, BA, IP, K, TDZ) frecuentemente utilizados en micropropagación."
           },
           {
-            src: "assets/images/tema4_p12_img2.jpeg",
+            src: "assets/images/tema4_fig8_embriogenesis.jpeg",
             caption: "Figura 28: Comparación morfogénica: A) Callo embriogénico, B) Embriones de zanahoria germinados a las 3 semanas, C) Callo con yemas en pimiento, D) Planta desarrollada a partir de callo organogénico."
           },
           {
-            src: "assets/images/tema4_p13_img2.jpeg",
+            src: "assets/images/tema4_fig3_protoplastos.jpeg",
             caption: "Figura 29: Organogénesis directa (A) en cotiledones de calabacín e indirecta (B) a través de callo en berenjena."
           },
           {
-            src: "assets/images/tema4_p14_img4.png",
+            src: "assets/images/tema4_fig9_fases_embrion.png",
             caption: "Figura 30: Esquema de clasificación general de la morfogénesis vegetal: embriogénesis (directa e indirecta) frente a organogénesis (directa e indirecta)."
           }
         ]
@@ -915,3 +915,4 @@ window.STUDY_SOURCES = {
     ]
   }
 };
+
