@@ -1,6 +1,6 @@
 # BioGenLab Suite • Simulador Integral de Biotecnología y Genética
 
-Plataforma interactiva unificada que compila y armoniza los 4 episodios de estudio para el Grado en Biotecnología y Fundamentos de Aplicaciones Biotecnológicas (FAB), integrando 13 Casos Prácticos de Convocatoria Oficial con evaluación interactiva activa y la Biblioteca de Estudio Oficial con los textos y figuras originales de la asignatura.
+Plataforma interactiva unificada que compila y armoniza los 4 módulos de estudio para la asignatura Fundamentos de Aplicaciones Biotecnológicas (FAB), integrando 13 Casos Prácticos Experimentales con evaluación interactiva activa y la Biblioteca de Estudio con los modelos y figuras de referencia.
 
 ---
 
