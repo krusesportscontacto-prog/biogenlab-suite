@@ -152,12 +152,12 @@ function updateSoundButton() {
   if (!btn) return;
   if (AppState.sound) {
     btn.innerHTML = '🔊 <span class="hidden sm:inline">Sonido: ON</span>';
-    btn.classList.add('text-cyan-400', 'border-cyan-500/40');
-    btn.classList.remove('text-slate-500', 'border-slate-800');
+    btn.classList.add('text-sky-700', 'border-sky-500/40');
+    btn.classList.remove('text-slate-500', 'border-slate-200');
   } else {
     btn.innerHTML = '🔇 <span class="hidden sm:inline">Sonido: OFF</span>';
-    btn.classList.add('text-slate-500', 'border-slate-800');
-    btn.classList.remove('text-cyan-400', 'border-cyan-500/40');
+    btn.classList.add('text-slate-500', 'border-slate-200');
+    btn.classList.remove('text-sky-700', 'border-sky-500/40');
   }
 }
 
@@ -265,17 +265,17 @@ function updateBreadcrumbs(viewId) {
   } else if (viewId === 'exam-workshop' && currentExamFilter && currentExamFilter.startsWith('tema')) {
     const parentName = names[currentExamFilter] || currentExamFilter;
     bc.innerHTML = `
-      <button onclick="switchView('dashboard')" class="text-slate-400 hover:text-cyan-400 transition">🏛️ Inicio</button>
-      <span class="text-slate-600">/</span>
-      <button onclick="switchView('${currentExamFilter}')" class="text-slate-400 hover:text-cyan-400 transition">${parentName}</button>
-      <span class="text-slate-600">/</span>
-      <span class="text-amber-300 font-semibold">Casos Prácticos de Examen</span>
+      <button onclick="switchView('dashboard')" class="text-slate-600 hover:text-blue-700 font-medium transition">🏛️ Inicio</button>
+      <span class="text-slate-400">/</span>
+      <button onclick="switchView('${currentExamFilter}')" class="text-slate-600 hover:text-blue-700 font-medium transition">${parentName}</button>
+      <span class="text-slate-400">/</span>
+      <span class="text-amber-800 font-bold">Casos Prácticos de Examen</span>
     `;
   } else {
     bc.innerHTML = `
-      <button onclick="switchView('dashboard')" class="text-slate-400 hover:text-cyan-400 transition">🏛️ Inicio</button>
-      <span class="text-slate-600">/</span>
-      <span class="text-cyan-300 font-semibold">${names[viewId] || viewId}</span>
+      <button onclick="switchView('dashboard')" class="text-slate-600 hover:text-blue-700 font-medium transition">🏛️ Inicio</button>
+      <span class="text-slate-400">/</span>
+      <span class="text-blue-900 font-bold">${names[viewId] || viewId}</span>
     `;
   }
 }
@@ -417,13 +417,13 @@ function filterQuizBySub(topicKey, sub) {
   try {
     const allBtns = document.querySelectorAll(`[id^="${topicKey}-qf-"]`);
     allBtns.forEach(btn => {
-      btn.classList.remove('bg-amber-500', 'text-slate-950');
-      btn.classList.add('bg-slate-800', 'text-slate-300');
+      btn.classList.remove('bg-amber-600', 'text-white', 'font-bold', 'shadow-xs');
+      btn.classList.add('bg-white', 'text-slate-700', 'border-slate-200');
     });
     const activeBtn = document.getElementById(`${topicKey}-qf-${sub}`);
     if (activeBtn) {
-      activeBtn.classList.remove('bg-slate-800', 'text-slate-300');
-      activeBtn.classList.add('bg-amber-500', 'text-slate-950');
+      activeBtn.classList.remove('bg-white', 'text-slate-700');
+      activeBtn.classList.add('bg-amber-600', 'text-white', 'font-bold', 'shadow-xs');
     }
   } catch (e) {}
 
@@ -551,14 +551,14 @@ function switchStudyVolume(volId) {
     if (btn) {
       if (k === volId) {
         const borderColors = {
-          tema1: 'border-cyan-400 bg-cyan-950/40 text-cyan-300 shadow-lg shadow-cyan-500/10',
-          tema2: 'border-emerald-400 bg-emerald-950/40 text-emerald-300 shadow-lg shadow-emerald-500/10',
-          tema3: 'border-indigo-400 bg-indigo-950/40 text-indigo-300 shadow-lg shadow-indigo-500/10',
-          tema4: 'border-lime-400 bg-lime-950/40 text-lime-300 shadow-lg shadow-lime-500/10'
+          tema1: 'border-blue-600 bg-blue-50 text-blue-900 shadow-sm',
+          tema2: 'border-emerald-600 bg-emerald-50 text-emerald-900 shadow-sm',
+          tema3: 'border-indigo-600 bg-indigo-50 text-indigo-900 shadow-sm',
+          tema4: 'border-teal-600 bg-teal-50 text-teal-900 shadow-sm'
         };
-        btn.className = `p-3 rounded-xl border ${borderColors[k] || 'border-cyan-400 bg-cyan-950/40 text-cyan-300'} font-bold text-left transition`;
+        btn.className = `p-3 rounded-xl border-2 ${borderColors[k] || 'border-blue-600 bg-blue-50 text-blue-900'} font-bold text-left transition`;
       } else {
-        btn.className = 'p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-400 font-bold text-left hover:bg-slate-800/90 hover:text-slate-200 transition';
+        btn.className = 'p-3 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-left hover:bg-slate-50 hover:text-slate-900 transition shadow-xs';
       }
     }
   });
@@ -1218,10 +1218,10 @@ function updateChargaffCalc() {
   const breakdown = document.getElementById('chg-breakdown');
   if (breakdown) {
     breakdown.innerHTML = `
-      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-cyan-300">Adenina (A): <strong>${a}%</strong></div>
-      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-cyan-300">Timina (T = A): <strong>${t}%</strong></div>
-      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-purple-300">Guanina (G): <strong>${g}%</strong></div>
-      <div class="p-2 rounded bg-slate-950 border border-slate-800 text-purple-300">Citosina (C = G): <strong>${c}%</strong></div>
+      <div class="p-2 rounded-xl bg-sky-50 border border-sky-200 text-sky-900 font-medium">Adenina (A): <strong>${a}%</strong></div>
+      <div class="p-2 rounded-xl bg-sky-50 border border-sky-200 text-sky-900 font-medium">Timina (T = A): <strong>${t}%</strong></div>
+      <div class="p-2 rounded-xl bg-purple-50 border border-purple-200 text-purple-900 font-medium">Guanina (G): <strong>${g}%</strong></div>
+      <div class="p-2 rounded-xl bg-purple-50 border border-purple-200 text-purple-900 font-medium">Citosina (C = G): <strong>${c}%</strong></div>
     `;
   }
 
@@ -1470,12 +1470,16 @@ function renderGelBands() {
 
   // 6. Frente del Colorante de Carga (Azul de Bromofenol)
   if (p > 0.04) {
-    const dyeOpacity = isUV ? 'opacity-25' : 'opacity-85';
+    const dyeOpacity = isUV ? 'opacity-30' : 'opacity-90';
+    const isSelected = GelLabState.selectedBandKey === 'tracking_dye';
     const lanesX = ['33.3%', '54.1%', '75.0%', '91.6%'];
-    lanesX.forEach(lx => {
+    lanesX.forEach((lx, idx) => {
       html += `
-        <div class="absolute -translate-x-1/2 w-8 sm:w-11 h-2 tracking-dye-front ${dyeOpacity} pointer-events-none transition-all duration-150 z-10"
-             style="left: ${lx}; top: ${dyeTop}%; transform: translate(-50%, -50%);">
+        <div id="band-dye-${idx}"
+             onclick="inspectGelBand('tracking_dye', 'bpb')"
+             class="absolute -translate-x-1/2 w-8 sm:w-11 h-2 tracking-dye-front ${dyeOpacity} ${isSelected ? 'band-highlight' : ''} cursor-pointer transition-all duration-150 z-20"
+             style="left: ${lx}; top: ${dyeTop}%; transform: translate(-50%, -50%);"
+             title="Frente de Tinción: Azul de Bromofenol (~300 pb). Colorante del tampón de carga (Click para inspeccionar)">
         </div>
       `;
     });
@@ -1665,6 +1669,17 @@ function inspectGelBand(type, key) {
     item = GEL_SAMPLES_DATA.sampleC.find(x => x.size === key);
     carrierText = item ? item.lane : 'Carril 4';
     GelLabState.selectedBandKey = item ? item.id : null;
+  } else if (type === 'tracking_dye') {
+    item = {
+      name: 'Frente de Tinción: Azul de Bromofenol (Colorante de Carga)',
+      label: '~300 pb (co-migración aparente)',
+      size: 300,
+      rf: 0.94,
+      ng: 'N/A (Colorante orgánico sintético, 670 Da)',
+      desc: 'El <strong>Azul de Bromofenol</strong> es una molécula orgánica polianiónica pequeña presente en todo <em>tampón de carga (6x Loading Buffer)</em>. Al tener carga negativa neta, migra rápidamente hacia el ánodo positivo (+) por delante de la mayoría de fragmentos de ADN (co-migra aproximadamente con fragmentos de $\\approx 300\\text{ pb}$ en agarosa al 1%). <strong>¿Por qué corre y por qué es rigurosamente correcto?</strong> Como el ADN puro es incoloro e invisible en el laboratorio, este colorante azul es el testigo visual que permite al científico seguir la carrera a simple vista (en luz diurna, sin UV) y saber cuándo desconectar la corriente para que las muestras no se salgan del gel al buffer de la cubeta.'
+    };
+    carrierText = 'Todos los Carriles • Frente del Tampón de Carga (Tracking Dye)';
+    GelLabState.selectedBandKey = 'tracking_dye';
   }
 
   if (!item) return;
@@ -1675,6 +1690,12 @@ function inspectGelBand(type, key) {
   const bElem = document.getElementById('inspect-content');
   if (cElem) cElem.textContent = carrierText;
   if (bElem) {
+    const isDye = type === 'tracking_dye';
+    const emissionText = isDye
+      ? '<span>Visualización: <strong class="text-blue-700 font-sans">Luz Visible (Azul) / Sombra UV</strong></span>'
+      : `<span>Emisión: <strong class="${GelLabState.dye === 'sybr' ? 'text-emerald-700' : 'text-orange-700'} font-mono tabular-nums">${GelLabState.dye === 'sybr' ? '530 nm (Verde)' : '605 nm (Naranja)'}</strong></span>`;
+    const massText = typeof item.ng === 'number' ? `~${item.ng} ng` : item.ng;
+
     bElem.innerHTML = `
       <div class="space-y-1.5 animate-fadeIn">
         <div class="flex items-center justify-between text-xs font-bold text-slate-900">
@@ -1683,8 +1704,8 @@ function inspectGelBand(type, key) {
         </div>
         <div class="flex flex-wrap items-center gap-3 text-xs text-slate-600 font-sans">
           <span>Movilidad Relativa: <strong class="text-slate-900 font-mono tabular-nums">$R_f = ${item.rf.toFixed(2)}$</strong></span>
-          <span>Masa estimada: <strong class="text-slate-900 font-mono tabular-nums">~${item.ng} ng</strong></span>
-          <span>Emisión: <strong class="${GelLabState.dye === 'sybr' ? 'text-emerald-700' : 'text-orange-700'} font-mono tabular-nums">${GelLabState.dye === 'sybr' ? '530 nm (Verde)' : '605 nm (Naranja)'}</strong></span>
+          <span>Masa estimada: <strong class="text-slate-900 font-mono tabular-nums">${massText}</strong></span>
+          ${emissionText}
         </div>
         <p class="text-slate-700 text-xs mt-1 leading-relaxed font-sans">${item.desc}</p>
       </div>
@@ -1778,11 +1799,11 @@ function inspectChromatinType(type) {
   const box = document.getElementById('chromatin-type-box');
   if (!box) return;
   if (type === 'eu') {
-    box.innerHTML = `<strong class="text-emerald-300">🔓 Eucromatina:</strong> Forma menos condensada, desespiralizada y relajada del ADN. Corresponde a la fracción <strong>transcripcionalmente activa</strong>, donde la maquinaria enzimática puede acceder para sintetizar ARNm.`;
+    box.innerHTML = `<strong class="text-emerald-800">🔓 Eucromatina:</strong> Forma menos condensada, desespiralizada y relajada del ADN. Corresponde a la fracción <strong>transcripcionalmente activa</strong>, donde la maquinaria enzimática puede acceder para sintetizar ARNm.`;
   } else if (type === 'const') {
-    box.innerHTML = `<strong class="text-rose-300">🔒 Heterocromatina Constitutiva:</strong> Se mantiene <strong>siempre compacta y silenciada en todos los tipos celulares</strong> de un organismo (por ejemplo, en las regiones pericentroméricas y en los <strong>centrómeros y telómeros</strong> de los cromosomas).`;
+    box.innerHTML = `<strong class="text-rose-800">🔒 Heterocromatina Constitutiva:</strong> Se mantiene <strong>siempre compacta y silenciada en todos los tipos celulares</strong> de un organismo (por ejemplo, en las regiones pericentroméricas y en los <strong>centrómeros y telómeros</strong> de los cromosomas).`;
   } else {
-    box.innerHTML = `<strong class="text-purple-300">🌗 Heterocromatina Facultativa (Corpúsculo de Barr):</strong> Puede <strong>alternar reversiblemente</strong> entre un estado compacto o relajado según la estirpe celular o momento del desarrollo. Ejemplo clásico: la <strong>inactivación de uno de los cromosomas X en las células somáticas de las hembras de mamíferos, formando el corpúsculo de Barr</strong>.`;
+    box.innerHTML = `<strong class="text-indigo-800">🌗 Heterocromatina Facultativa (Corpúsculo de Barr):</strong> Puede <strong>alternar reversiblemente</strong> entre un estado compacto o relajado según la estirpe celular o momento del desarrollo. Ejemplo clásico: la <strong>inactivación de uno de los cromosomas X en las células somáticas de las hembras de mamíferos, formando el corpúsculo de Barr</strong>.`;
   }
   SFX.click();
 }
@@ -1803,7 +1824,7 @@ function addSangerBase(base) {
 
     if (userSangerSeq.length === targetSangerSynthesized.length) {
       if (fb) {
-        fb.className = 'p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/40 text-emerald-200';
+        fb.className = 'p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-950 shadow-xs';
         fb.innerHTML = `
           🎉 <strong>¡Secuenciación de Sanger Perfecta! (+50 XP)</strong><br>
           • <strong>ADN Sintetizado (leído de abajo a arriba, $5'\\rightarrow 3'$):</strong> <span class="font-mono-code font-bold">5'- ACTGCA -3'</span><br>
@@ -1814,14 +1835,14 @@ function addSangerBase(base) {
       renderMath();
     } else {
       if (fb) {
-        fb.className = 'p-3 rounded-lg bg-slate-950 border border-emerald-500/30 text-emerald-300';
+        fb.className = 'p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-900 shadow-xs';
         fb.innerHTML = `✅ Correcto (${userSangerSeq.length}/6). Sube a la siguiente banda superior (${5 + userSangerSeq.length + 1} nt).`;
       }
     }
   } else {
     SFX.error();
     if (fb) {
-      fb.className = 'p-3 rounded-lg bg-rose-950/40 border border-rose-500/40 text-rose-200';
+      fb.className = 'p-3 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 shadow-xs';
       fb.innerHTML = `⚠️ Error de lectura: Estás leyendo la banda nº ${userSangerSeq.length + 1} desde abajo (${6 + userSangerSeq.length} nt). Mira qué tubo tiene la banda en esa fila.`;
     }
   }
@@ -1833,7 +1854,7 @@ function resetSangerGel() {
   if (seqEl) seqEl.textContent = `5'- `;
   const fb = document.getElementById('sanger-feedback');
   if (fb) {
-    fb.className = 'p-3 rounded-lg bg-slate-950 border border-slate-800 text-slate-300';
+    fb.className = 'p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700';
     fb.innerHTML = 'Empieza por la banda más baja (6 nt = 5 nt del primer + 1º ddNTP). ¿En qué carril está?';
   }
 }
@@ -1843,16 +1864,16 @@ function inspectHumanGenomeBranch(branch) {
   if (!box) return;
   if (branch === 'genes') {
     box.innerHTML = `
-      <div class="font-bold text-emerald-300">🟢 Genes y secuencias relacionadas con genes: <strong>1.200 Mb</strong> (de $3.200\\text{ Mb}$)</div>
-      <ul class="list-disc list-inside text-slate-300 space-y-1 mt-1 text-xs sm:text-sm">
+      <div class="font-bold text-emerald-800">🟢 Genes y secuencias relacionadas con genes: <strong>1.200 Mb</strong> (de $3.200\\text{ Mb}$)</div>
+      <ul class="list-disc list-inside text-slate-700 space-y-1 mt-1 text-xs sm:text-sm">
         <li><strong>Exones (codificantes):</strong> solo <strong>48 Mb</strong> (¡apenas el 1,5% del genoma humano total!).</li>
         <li><strong>Secuencias relacionadas con genes:</strong> <strong>1.152 Mb</strong> (Seudogenes, Fragmentos de genes, Intrones y RNT).</li>
       </ul>
     `;
   } else {
     box.innerHTML = `
-      <div class="font-bold text-rose-300">🔴 DNA Intergénico: <strong>2.000 Mb</strong> (de $3.200\\text{ Mb}$)</div>
-      <ul class="list-disc list-inside text-slate-300 space-y-1 mt-1 text-xs sm:text-sm">
+      <div class="font-bold text-rose-800">🔴 DNA Intergénico: <strong>2.000 Mb</strong> (de $3.200\\text{ Mb}$)</div>
+      <ul class="list-disc list-inside text-slate-700 space-y-1 mt-1 text-xs sm:text-sm">
         <li><strong>Repeticiones en todo el genoma (1.400 Mb):</strong> LINE (640 Mb), SINE (420 Mb), LTR (250 Mb), Transposones de ADN (90 Mb).</li>
         <li><strong>Otras regiones intergénicas (600 Mb):</strong> Microsatélites (90 Mb) y diversos (510 Mb).</li>
       </ul>
@@ -1907,21 +1928,23 @@ function renderSub1Strands() {
   rnaRow.innerHTML = '';
 
   dnaCoding.forEach(b => {
-    codingRow.innerHTML += `<span class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded bg-slate-800 text-slate-400 font-mono-code text-xs font-bold">${b}</span>`;
+    codingRow.innerHTML += `<span class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded bg-slate-100 border border-slate-200 text-slate-800 font-mono-code text-xs font-bold shadow-2xs">${b}</span>`;
   });
 
   dnaTemplate.forEach((b, idx) => {
-    const highlight = idx === currentRnaIndex ? 'ring-2 ring-cyan-400 bg-cyan-500/20 text-white font-bold' : 'bg-slate-800 text-cyan-300';
+    const highlight = idx === currentRnaIndex 
+      ? 'ring-2 ring-blue-500 bg-blue-600 text-white font-bold shadow-xs' 
+      : 'bg-blue-50 border border-blue-200 text-blue-900 font-bold';
     templateRow.innerHTML += `<span class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded font-mono-code text-xs ${highlight}">${b}</span>`;
   });
 
   expectedRna.forEach((b, idx) => {
     if (idx < currentRnaIndex) {
-      rnaRow.innerHTML += `<span class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded bg-emerald-500 text-slate-950 font-bold font-mono-code text-xs">${b}</span>`;
+      rnaRow.innerHTML += `<span class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded bg-emerald-600 text-white font-bold font-mono-code text-xs shadow-xs">${b}</span>`;
     } else if (idx === currentRnaIndex) {
-      rnaRow.innerHTML += `<span class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded border border-dashed border-emerald-400 text-emerald-400 font-mono-code text-xs animate-pulse">?</span>`;
+      rnaRow.innerHTML += `<span class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded border-2 border-dashed border-emerald-500 text-emerald-700 bg-emerald-50 font-bold font-mono-code text-xs animate-pulse">?</span>`;
     } else {
-      rnaRow.innerHTML += `<span class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded bg-slate-950 text-slate-700 font-mono-code text-xs">·</span>`;
+      rnaRow.innerHTML += `<span class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded bg-slate-100 border border-slate-200 text-slate-400 font-mono-code text-xs">·</span>`;
     }
   });
 
@@ -1939,7 +1962,7 @@ function addRnaBase(base) {
     SFX.error();
     if (fb) {
       fb.innerHTML = `❌ <strong>¡Error bioquímico!</strong> En el ARN no existe la Timina (T); el <strong>Uracilo (U)</strong> reemplaza a la timina para emparejarse con la Adenina del ADN.`;
-      fb.className = 'text-xs font-medium text-rose-300 bg-rose-950/40 p-3 rounded-lg border border-rose-500/40';
+      fb.className = 'text-xs font-medium text-rose-950 bg-rose-50 p-3.5 rounded-xl border border-rose-300 shadow-xs';
     }
     return;
   }
@@ -1951,20 +1974,20 @@ function addRnaBase(base) {
     if (currentRnaIndex === expectedRna.length) {
       if (fb) {
         fb.innerHTML = `🎉 <strong>¡Transcripción 5'→3' completada con éxito!</strong> La ARN polimerasa se unió al promotor, leyó la hebra molde 3'→5' e incorporó ribonucleótidos generando <strong>AUG</strong> y <strong>CGG (Arginina)</strong>. (+50 XP)`;
-        fb.className = 'text-xs font-medium text-emerald-300 bg-emerald-950/40 p-3 rounded-lg border border-emerald-500/40';
+        fb.className = 'text-xs font-medium text-emerald-950 bg-emerald-50 p-3.5 rounded-xl border border-emerald-300 shadow-xs';
       }
       addXP(50, 'tema2_sub1');
     } else {
       if (fb) {
         fb.innerHTML = `✅ Correcto: La base <strong>${targetTemplate}</strong> del molde se empareja con <strong>${base}</strong> en el ARNm (5'→3').`;
-        fb.className = 'text-xs font-medium text-emerald-300 bg-slate-900 p-3 rounded-lg border border-emerald-500/30';
+        fb.className = 'text-xs font-medium text-emerald-950 bg-emerald-50 p-3.5 rounded-xl border border-emerald-300 shadow-xs';
       }
     }
   } else {
     SFX.error();
     if (fb) {
       fb.innerHTML = `⚠️ En el molde hay una <strong>${targetTemplate}</strong>. Recuerda las reglas: A→U, T→A, C→G, G→C.`;
-      fb.className = 'text-xs font-medium text-amber-300 bg-amber-950/40 p-3 rounded-lg border border-amber-500/40';
+      fb.className = 'text-xs font-medium text-amber-950 bg-amber-50 p-3.5 rounded-xl border border-amber-300 shadow-xs';
     }
   }
 }
@@ -1983,27 +2006,27 @@ function updateRegSimulator() {
   if (!out) return;
 
   if (sil) {
-    out.className = 'p-4 rounded-xl bg-rose-950/40 border border-rose-500/40 text-xs space-y-1 text-rose-200';
+    out.className = 'p-4 rounded-xl bg-rose-50 border border-rose-300 text-xs space-y-1 text-rose-950 shadow-xs';
     out.innerHTML = `<strong>🛑 Transcripción Bloqueada por Silenciador:</strong> Los represores bloquean la ARN polimerasa impidiendo la transcripción.`;
     return;
   }
   if (!utr5) {
-    out.className = 'p-4 rounded-xl bg-amber-950/40 border border-amber-500/40 text-xs space-y-1 text-amber-200';
+    out.className = 'p-4 rounded-xl bg-amber-50 border border-amber-300 text-xs space-y-1 text-amber-950 shadow-xs';
     out.innerHTML = `<strong>⚠️ Fallo de Inicio en 5' UTR:</strong> El ribosoma no reconoce el extremo 5' y no puede acoplarse para iniciar la traducción.`;
     return;
   }
   if (!end3) {
-    out.className = 'p-4 rounded-xl bg-rose-950/40 border border-rose-500/40 text-xs space-y-1 text-rose-200';
+    out.className = 'p-4 rounded-xl bg-rose-50 border border-rose-300 text-xs space-y-1 text-rose-950 shadow-xs';
     out.innerHTML = `<strong>🚨 Aborto Ribosómico (Extremo 3' dañado):</strong> El ribosoma interpreta que el ARNm está roto y aborta la síntesis.`;
     return;
   }
 
   if (enh) {
-    out.className = 'p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-xs space-y-1 text-emerald-200';
+    out.className = 'p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-xs space-y-1 text-emerald-950 shadow-xs';
     out.innerHTML = `<strong>🚀 Expresión Génica Máxima:</strong> El potenciador distante estimula la tasa transcripcional por plegamiento 3D de cromatina. (+25 XP)`;
     addXP(25, 'tema2_reg');
   } else {
-    out.className = 'p-4 rounded-xl bg-cyan-950/40 border border-cyan-500/40 text-xs space-y-1 text-cyan-200';
+    out.className = 'p-4 rounded-xl bg-blue-50 border border-blue-200 text-xs space-y-1 text-blue-950 shadow-xs';
     out.innerHTML = `<strong>✔️ Expresión Basal:</strong> Sin enhancer, la transcripción es basal pero se traduce con normalidad.`;
   }
 }
@@ -2012,11 +2035,11 @@ function inspectTomatoOrgan(organ) {
   const box = document.getElementById('tomato-transcriptome-box');
   if (!box) return;
   if (organ === 'raiz') {
-    box.innerHTML = `<div class="font-bold text-amber-300">🌱 Células de Raíz:</div><p class="text-slate-300 text-xs sm:text-sm">ADN 99% idéntico. Transcribe intensamente genes de absorción mineral y silencia genes de fotosíntesis y maduración.</p>`;
+    box.innerHTML = `<div class="font-bold text-amber-800">🌱 Células de Raíz:</div><p class="text-slate-700 text-xs sm:text-sm">ADN 99% idéntico. Transcribe intensamente genes de absorción mineral y silencia genes de fotosíntesis y maduración.</p>`;
   } else if (organ === 'hoja') {
-    box.innerHTML = `<div class="font-bold text-emerald-300">🍃 Células de Hoja:</div><p class="text-slate-300 text-xs sm:text-sm">ADN 99% idéntico. Transcribe activamente genes fotosintéticos y transporte vascular.</p>`;
+    box.innerHTML = `<div class="font-bold text-emerald-800">🍃 Células de Hoja:</div><p class="text-slate-700 text-xs sm:text-sm">ADN 99% idéntico. Transcribe activamente genes fotosintéticos y transporte vascular.</p>`;
   } else {
-    box.innerHTML = `<div class="font-bold text-rose-400">🍅 Células de Fruto:</div><p class="text-slate-300 text-xs sm:text-sm">ADN 99% idéntico. Transcribe masivamente genes de licopeno, azúcares y ablandamiento del fruto.</p>`;
+    box.innerHTML = `<div class="font-bold text-rose-800">🍅 Células de Fruto:</div><p class="text-slate-700 text-xs sm:text-sm">ADN 99% idéntico. Transcribe masivamente genes de licopeno, azúcares y ablandamiento del fruto.</p>`;
   }
   SFX.click();
 }
@@ -2032,26 +2055,26 @@ function toggleSpliceUnit(key) {
   if (key.startsWith('I')) {
     if (spliceState[key]) {
       btn.textContent = `Intrón ${key[1]} (Presente en pre-ARNm)`;
-      btn.className = 'px-3 py-2 rounded-lg font-mono-code font-bold text-xs bg-rose-500/20 border border-rose-500 text-rose-300';
+      btn.className = 'px-3 py-2 rounded-lg font-mono-code font-bold text-xs bg-rose-50 border border-rose-300 text-rose-900 shadow-2xs';
     } else {
       btn.textContent = `Intrón ${key[1]} (✂️ Escindido)`;
-      btn.className = 'px-3 py-2 rounded-lg font-mono-code font-bold text-xs bg-slate-900 border border-slate-700 text-slate-500 line-through';
+      btn.className = 'px-3 py-2 rounded-lg font-mono-code font-bold text-xs bg-slate-100 border border-slate-200 text-slate-400 line-through';
     }
   } else if (key.startsWith('E')) {
     if (spliceState[key]) {
       btn.textContent = `Exón ${key[1]} (Incluido)`;
-      btn.className = 'px-3 py-2 rounded-lg font-mono-code font-bold text-xs bg-emerald-500 text-slate-950';
+      btn.className = 'px-3 py-2 rounded-lg font-mono-code font-bold text-xs bg-emerald-600 text-white shadow-xs';
     } else {
       btn.textContent = `Exón ${key[1]} (Omitido - Splicing Alt.)`;
-      btn.className = 'px-3 py-2 rounded-lg font-mono-code font-bold text-xs bg-slate-900 border border-emerald-500/40 text-emerald-400';
+      btn.className = 'px-3 py-2 rounded-lg font-mono-code font-bold text-xs bg-slate-100 border border-slate-300 text-slate-500';
     }
   } else if (key === 'PA') {
     if (spliceState.PA) {
       btn.textContent = `+ Cola 3' Poli-A (AAAAA Añadida)`;
-      btn.className = 'px-3 py-2 rounded-lg font-mono-code font-bold text-xs bg-purple-500 text-slate-950';
+      btn.className = 'px-3 py-2 rounded-lg font-mono-code font-bold text-xs bg-indigo-600 text-white shadow-xs';
     } else {
       btn.textContent = `+ Cola 3' Poli-A (Sin añadir)`;
-      btn.className = 'px-3 py-2 rounded-lg font-mono-code font-bold text-xs bg-slate-800 border border-slate-600 text-slate-300';
+      btn.className = 'px-3 py-2 rounded-lg font-mono-code font-bold text-xs bg-slate-100 border border-slate-300 text-slate-600';
     }
   }
 }
@@ -2062,25 +2085,25 @@ function exportMrnaToCytoplasm() {
 
   if (spliceState.I1 || spliceState.I2) {
     SFX.error();
-    res.className = 'p-3.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-xs text-rose-200';
+    res.className = 'p-3.5 rounded-xl bg-rose-50 border border-rose-300 text-xs text-rose-950 shadow-xs';
     res.innerHTML = `❌ <strong>Error Nuclear:</strong> ¡ARNm con intrones! Los intrones nunca viajan al citoplasma; son escindidos y degradados en el núcleo.`;
     return;
   }
   if (!spliceState.PA) {
     SFX.error();
-    res.className = 'p-3.5 rounded-xl bg-amber-950/40 border border-amber-500/40 text-xs text-amber-200';
+    res.className = 'p-3.5 rounded-xl bg-amber-50 border border-amber-300 text-xs text-amber-950 shadow-xs';
     res.innerHTML = `⚠️ <strong>ARNm Degradado:</strong> Falta la cola 3' Poli-A para proteger el extremo 3' frente a exonucleasas citoplasmáticas.`;
     return;
   }
   if (!spliceState.E1 || !spliceState.E3) {
     SFX.error();
-    res.className = 'p-3.5 rounded-xl bg-amber-950/40 border border-amber-500/40 text-xs text-amber-200';
+    res.className = 'p-3.5 rounded-xl bg-amber-50 border border-amber-300 text-xs text-amber-950 shadow-xs';
     res.innerHTML = `⚠️ <strong>Falta Codón de Inicio o de Parada:</strong> Necesitas conservar el Exón 1 (ATG) y el Exón 3 (TGA).`;
     return;
   }
 
   const isoform = spliceState.E2 ? 'Isoforma A Completa (Exón 1 + Exón 2 + Exón 3)' : 'Isoforma B Alternativa (Exón 1 + Exón 3)';
-  res.className = 'p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-xs text-emerald-200';
+  res.className = 'p-3.5 rounded-xl bg-emerald-50 border border-emerald-300 text-xs text-emerald-950 shadow-xs';
   res.innerHTML = `🎉 <strong>¡Splicing y Exportación Exitosos!</strong> Has generado la <strong>${isoform}</strong> con 5' Cap y 3' Poli-A. (+50 XP)`;
   addXP(50, 'tema2_sub2');
 }
@@ -2096,8 +2119,8 @@ function runWatermelonStep(step) {
   wmCurrentStep = step;
   const btn = document.getElementById(`wm-step-${step}`);
   if (btn) {
-    btn.classList.remove('opacity-60', 'border-slate-800');
-    btn.classList.add('border-emerald-500', 'bg-emerald-950/20');
+    btn.classList.remove('opacity-60', 'border-slate-200');
+    btn.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
   }
 
   const messages = {
@@ -2118,10 +2141,13 @@ function resetWatermelonSim() {
   wmCurrentStep = 0;
   for (let i = 1; i <= 5; i++) {
     const el = document.getElementById(`wm-step-${i}`);
-    if (el) el.className = 'p-3 rounded-xl bg-slate-900 border border-slate-800 text-left opacity-60 hover:bg-slate-800 transition text-xs';
+    if (el) el.className = 'p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left opacity-60 transition text-xs';
   }
   const step1 = document.getElementById('wm-step-1');
-  if (step1) step1.classList.remove('opacity-60');
+  if (step1) {
+    step1.classList.remove('opacity-60');
+    step1.classList.add('border-emerald-500/50');
+  }
   const fb = document.getElementById('watermelon-feedback');
   if (fb) fb.innerHTML = 'Pulsa en el <strong>Paso 1</strong> para aplicar colchicina sobre meristemos $2n$.';
 }
@@ -2187,8 +2213,8 @@ function runRflpStep(step) {
   rflpStep = step;
   const btn = document.getElementById(`rflp-btn-${step}`);
   if (btn) {
-    btn.classList.remove('opacity-60', 'border-slate-800');
-    btn.classList.add('border-cyan-400', 'bg-cyan-950/30');
+    btn.classList.remove('opacity-60', 'border-slate-200');
+    btn.classList.add('border-cyan-500', 'bg-cyan-50', 'text-cyan-950');
   }
 
   const texts = {
@@ -2207,10 +2233,13 @@ function resetRflpSim() {
   rflpStep = 0;
   for (let i = 1; i <= 5; i++) {
     const b = document.getElementById(`rflp-btn-${i}`);
-    if (b) b.className = 'p-3 rounded-xl bg-slate-900 border border-slate-800 opacity-60 text-left hover:bg-slate-800 transition text-xs';
+    if (b) b.className = 'p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs opacity-60 text-left transition text-xs';
   }
   const btn1 = document.getElementById('rflp-btn-1');
-  if (btn1) btn1.classList.remove('opacity-60');
+  if (btn1) {
+    btn1.classList.remove('opacity-60');
+    btn1.classList.add('border-cyan-500/50');
+  }
   const out = document.getElementById('rflp-step-output');
   if (out) out.innerHTML = 'Haz clic en el Paso 1 para comenzar.';
 }
@@ -2251,14 +2280,14 @@ function checkIlluminaSnp(isCorrect) {
   const fb = document.getElementById('illumina-feedback');
   if (isCorrect) {
     if (fb) {
-      fb.className = 'p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-xs text-emerald-200';
+      fb.className = 'p-3.5 rounded-xl bg-emerald-50 border border-emerald-300 text-xs text-emerald-950 shadow-xs';
       fb.innerHTML = `🎉 <strong>¡Lectura de Cluster e Identificación de SNP Exacta! (+50 XP)</strong><br>Destellos Azul-Rojo-Verde-Azul = 5'-CTAC-3'. Detectado SNP (G➔A) en la 3ª posición respecto a la referencia (5'-CTGC-3').`;
     }
     addXP(50, 'tema3_sub4');
   } else {
     SFX.error();
     if (fb) {
-      fb.className = 'p-3.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-xs text-rose-200';
+      fb.className = 'p-3.5 rounded-xl bg-amber-50 border border-amber-300 text-xs text-amber-950 shadow-xs';
       fb.innerHTML = `❌ El ciclo 3 emitió luz VERDE (Adenina). Sí existe un SNP (G➔A).`;
     }
   }
@@ -2268,14 +2297,14 @@ function runMasSelection(choice) {
   const out = document.getElementById('mas-sim-output');
   if (choice === 'close') {
     if (out) {
-      out.className = 'bg-emerald-950/40 p-4 rounded-xl border border-emerald-500/40 text-xs text-emerald-200';
+      out.className = 'bg-emerald-50 p-4 rounded-xl border border-emerald-300 text-xs text-emerald-950 shadow-xs';
       out.innerHTML = `🎉 <strong>¡Regla de Oro del MAS! (+50 XP)</strong> El marcador estrechamente ligado reduce al mínimo la tasa de recombinación meiótica.`;
     }
     addXP(50, 'tema3_sub5');
   } else {
     SFX.error();
     if (out) {
-      out.className = 'bg-rose-950/40 p-4 rounded-xl border border-rose-500/40 text-xs text-rose-200';
+      out.className = 'bg-amber-50 p-4 rounded-xl border border-amber-300 text-xs text-amber-950 shadow-xs';
       out.innerHTML = `⚠️ Marcador distante: alta tasa de sobrecruzamiento meiótico que desliga el marcador del gen diana.`;
     }
   }
@@ -2287,8 +2316,8 @@ function toggleMediaComp(key) {
   sub1Selected.add(key);
   const btn = document.getElementById(`m-${key}`);
   if (btn) {
-    btn.classList.remove('border-slate-700', 'bg-slate-900');
-    btn.classList.add('border-lime-400', 'bg-lime-950/30');
+    btn.classList.remove('border-slate-200', 'bg-white');
+    btn.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
   }
   const descriptions = {
     salts: `✅ <strong>Sales minerales:</strong> Macro y micronutrientes esenciales.`,
@@ -2302,7 +2331,7 @@ function toggleMediaComp(key) {
   if (out) out.innerHTML = descriptions[key];
   SFX.click();
   if (sub1Selected.size === 6) {
-    if (out) out.innerHTML += `<div class="mt-2 p-2.5 rounded-lg bg-lime-500/20 border border-lime-500/40 text-lime-300 font-bold">🎉 ¡Laboratorio de Cultivo In Vitro 100% Operativo! (+50 XP)</div>`;
+    if (out) out.innerHTML += `<div class="mt-2 p-2.5 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-900 font-bold shadow-2xs">🎉 ¡Laboratorio de Cultivo In Vitro 100% Operativo! (+50 XP)</div>`;
     addXP(50, 'tema4_sub1');
   }
 }
@@ -2311,7 +2340,7 @@ function resetSub1Sim() {
   sub1Selected.clear();
   ['salts', 'sucrose', 'water', 'agar', 'autoclave', 'phytotron'].forEach(k => {
     const b = document.getElementById(`m-${k}`);
-    if (b) b.className = 'p-3 rounded-xl bg-slate-900 border border-slate-700 text-left hover:border-lime-400 transition text-xs';
+    if (b) b.className = 'p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left transition text-xs';
   });
   const out = document.getElementById('sub1-sim-output');
   if (out) out.innerHTML = 'Haz clic en cada componente para activar la línea de cultivo in vitro.';
@@ -2328,8 +2357,8 @@ function runMicropropPhase(phase) {
   currentMpPhase = phase;
   const btn = document.getElementById(`mp-btn-${phase}`);
   if (btn) {
-    btn.classList.remove('opacity-60', 'border-slate-800');
-    btn.classList.add('border-cyan-400', 'bg-cyan-950/30');
+    btn.classList.remove('opacity-60', 'border-slate-200');
+    btn.classList.add('border-sky-500', 'bg-sky-50', 'text-sky-950');
   }
 
   const texts = {
@@ -2348,10 +2377,13 @@ function resetMicropropSim() {
   currentMpPhase = -1;
   for (let i = 0; i <= 4; i++) {
     const b = document.getElementById(`mp-btn-${i}`);
-    if (b) b.className = 'p-3 rounded-xl bg-slate-900 border border-slate-800 opacity-60 text-left hover:bg-slate-800 transition text-xs';
+    if (b) b.className = 'p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs opacity-60 text-left transition text-xs';
   }
   const btn0 = document.getElementById('mp-btn-0');
-  if (btn0) btn0.classList.remove('opacity-60');
+  if (btn0) {
+    btn0.classList.remove('opacity-60');
+    btn0.classList.add('border-cyan-500/50');
+  }
   const out = document.getElementById('mp-phase-output');
   if (out) out.innerHTML = 'Haz clic en la Fase 0 para comenzar la micropropagación.';
 }
@@ -2362,10 +2394,10 @@ function simMorphogenesis(type) {
   const box = document.getElementById('morpho-sim-output');
   if (!box) return;
   const info = {
-    org_dir: `<div class="font-bold text-cyan-300">🌿 Organogénesis Directa:</div><p class="text-slate-300 text-xs sm:text-sm">Tallos diferenciados directamente del explante sin pasar por callo desorganizado.</p>`,
-    org_ind: `<div class="font-bold text-cyan-300">🧩 Organogénesis Indirecta:</div><p class="text-slate-300 text-xs sm:text-sm">Pasa previamente por proliferación de callo antes de diferenciar yemas.</p>`,
-    emb_ind: `<div class="font-bold text-amber-300">🥕 Embriogénesis Somática (2,4-D):</div><p class="text-slate-300 text-xs sm:text-sm">Generación bipolar de embriones somáticos con tallo y radícula simultáneos a partir de células no gaméticas.</p>`,
-    emb_stages: `<div class="font-bold text-emerald-300">🌱 Las 4 Fases del Embrión Somático:</div><p class="text-slate-300 text-xs sm:text-sm">1. Globular ➔ 2. Corazón ➔ 3. Torpedo ➔ 4. Cotiledonar.</p>`
+    org_dir: `<div class="font-bold text-sky-800">🌿 Organogénesis Directa:</div><p class="text-slate-700 text-xs sm:text-sm">Tallos diferenciados directamente del explante sin pasar por callo desorganizado.</p>`,
+    org_ind: `<div class="font-bold text-sky-800">🧩 Organogénesis Indirecta:</div><p class="text-slate-700 text-xs sm:text-sm">Pasa previamente por proliferación de callo antes de diferenciar yemas.</p>`,
+    emb_ind: `<div class="font-bold text-amber-800">🥕 Embriogénesis Somática (2,4-D):</div><p class="text-slate-700 text-xs sm:text-sm">Generación bipolar de embriones somáticos con tallo y radícula simultáneos a partir de células no gaméticas.</p>`,
+    emb_stages: `<div class="font-bold text-emerald-800">🌱 Las 4 Fases del Embrión Somático:</div><p class="text-slate-700 text-xs sm:text-sm">1. Globular ➔ 2. Corazón ➔ 3. Torpedo ➔ 4. Cotiledonar.</p>`
   };
   box.innerHTML = info[type];
   SFX.click();

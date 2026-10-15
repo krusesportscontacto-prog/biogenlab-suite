@@ -440,7 +440,7 @@
     <!-- ==================== SECCIÓN 1: SUBTEMA 1 (NATURALEZA Y ESTRUCTURA DEL ADN) ==================== -->
     <section id="tema1-sec-sub1" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-sky-800">Subtema 1 • Bioquímica e Historia del ADN</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Naturaleza, Polimerización, Hibridación y Leyes de Chargaff</h2>
@@ -546,7 +546,7 @@
               </div>
             </div>
 
-            <div id="chg-explanation" class="bg-slate-100 p-4 rounded-xl border border-slate-800 text-xs space-y-2 text-slate-700 border border-slate-200">
+            <div id="chg-explanation" class="bg-slate-100 p-4 rounded-xl text-xs space-y-2 text-slate-700 border border-slate-200">
               <!-- Dinámico -->
             </div>
           </div>
@@ -620,11 +620,11 @@
 
                 <!-- Display Digital LCD de Alta Legibilidad -->
                 <div class="grid grid-cols-3 gap-2 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-slate-800 shadow-2xs text-center shadow-inner">
-                  <div class="border-r border-slate-800/80 pr-1">
+                  <div class="border-r border-slate-200 pr-1">
                     <span class="text-xs text-slate-600 font-sans font-semibold block uppercase tracking-wider">Voltaje</span>
-                    <span id="disp-voltage" class="text-base sm:text-lg font-bold font-mono tabular-nums text-white">100 V</span>
+                    <span id="disp-voltage" class="text-base sm:text-lg font-bold font-mono tabular-nums text-slate-900">100 V</span>
                   </div>
-                  <div class="border-r border-slate-800/80 px-1">
+                  <div class="border-r border-slate-200 px-1">
                     <span class="text-xs text-slate-600 font-sans font-semibold block uppercase tracking-wider">Corriente</span>
                     <span id="disp-current" class="text-base sm:text-lg font-bold font-mono tabular-nums text-emerald-800">0 mA</span>
                   </div>
@@ -876,12 +876,19 @@
                 </div>
 
                 <!-- Guía Didáctica / Leyenda de Mnemotecnia Fisiológica -->
-                <div id="gel-sim-feedback" class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed font-sans shadow-xs">
+                <div id="gel-sim-feedback" class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed font-sans shadow-xs space-y-2.5">
                   <div class="flex items-start gap-2.5">
                     <span class="text-base select-none">💡</span>
                     <div>
                       <strong class="text-slate-900">Regla Mnemotécnica de Laboratorio:</strong> 
-                      <em class="text-red-700 font-semibold">"Run to the red"</em> (el ADN con carga neta negativa migra ineludiblemente hacia el electrodo rojo positivo). En la red tridimensional de agarosa, los fragmentos macromoleculares (<span class="font-mono tabular-nums text-slate-900 font-medium">10 kb</span>) experimentan alta fricción estérica con los poros y migran lentamente; los fragmentos pequeños (<span class="font-mono tabular-nums text-slate-900 font-medium">250 pb</span>) transitan con agilidad hacia el fondo del gel.
+                      <em class="text-blue-700 font-semibold">"Run to the red"</em> (el ADN con carga neta negativa migra hacia el electrodo rojo positivo ➕). En la red de agarosa, los fragmentos macromoleculares (<span class="font-mono tabular-nums text-slate-900 font-medium">10 kb</span>) sufren fricción con los poros y migran lentamente; los fragmentos pequeños (<span class="font-mono tabular-nums text-slate-900 font-medium">250 pb</span>) transitan con agilidad hacia el fondo.
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-2.5 pt-2.5 border-t border-slate-200">
+                    <span class="text-base select-none">🟦</span>
+                    <div>
+                      <strong class="text-slate-900">¿Qué es la marca azul al final de todo que también corre?</strong> 
+                      Es el <strong>frente de tinción (Azul de Bromofenol, ~300 pb)</strong> del <em>tampón de carga</em>. Dado que el ADN puro es completamente incoloro e invisible a simple vista, este colorante orgánico de bajo peso molecular (670 Da) con carga negativa corre por delante del ADN para que el científico pueda ver el avance de la corrida en tiempo real (en luz diurna, sin UV) y saber cuándo desconectar la corriente antes de que las muestras caigan fuera del gel. <em>Haz clic sobre la marca azul en cualquier carril para ver su ficha técnica en el panel.</em>
                     </div>
                   </div>
                 </div>
@@ -895,7 +902,7 @@
 
         <!-- SIMULADOR 2B: NIVELES DE EMPAQUETAMIENTO DE LA CROMATINA Y EUCROMATINA VS HETEROCROMATINA -->
         <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-4 shadow-xl">
-          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
             <div>
               <span class="px-2.5 py-0.5 rounded bg-cyan-500/20 text-sky-700 font-mono-code text-xs font-bold">🧬 MODELO ESTRUCTURAL</span>
               <h3 class="text-lg font-bold text-slate-900 font-sans mt-1">Simulador 2B: Escala de Condensación de la Cromatina ($2\text{ nm} \rightarrow 1400\text{ nm}$)</h3>
@@ -921,8 +928,8 @@
           </div>
 
           <!-- Selector Eucromatina vs Heterocromatina Constitutiva y Facultativa -->
-          <div class="space-y-3 pt-3 border-t border-slate-800">
-            <span class="text-xs font-bold text-white block">Clasificación funcional según compactación y transcripción:</span>
+          <div class="space-y-3 pt-3 border-t border-slate-200">
+            <span class="text-xs font-bold text-slate-900 block">Clasificación funcional según compactación y transcripción:</span>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
               <button onclick="inspectChromatinType('eu')" class="p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-700 font-bold hover:bg-emerald-500/25 transition text-left">
                 <span class="block text-sm">🔓 Eucromatina</span>
@@ -948,7 +955,7 @@
     <!-- ==================== SECCIÓN 3: SUBTEMA 3 (SECUENCIACIÓN DE SANGER, NGS Y VALOR C) ==================== -->
     <section id="tema1-sec-sub3" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-indigo-800">Subtema 3 • Secuenciación Genómica y Paradoja Evolutiva</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Método de Sanger (1970s), NGS, Paradoja del Valor C y Genoma Humano ($3.200\text{ Mb}$)</h2>
@@ -999,7 +1006,7 @@
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
             <!-- Gel de 4 carriles interactivo -->
             <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-slate-800 space-y-2 font-mono-code text-xs">
-              <div class="flex justify-between text-[11px] text-slate-600 pb-1 border-b border-slate-800">
+              <div class="flex justify-between text-[11px] text-slate-600 pb-1 border-b border-slate-200">
                 <span>➖ Origen (Pocillos - Más largos/lentos)</span>
                 <span>Longitud = Primer (5 nt) + añadidos</span>
               </div>
@@ -1051,7 +1058,7 @@
                 </div>
               </div>
 
-              <div class="flex justify-between text-[11px] text-emerald-800 pt-1 border-t border-slate-800">
+              <div class="flex justify-between text-[11px] text-emerald-800 pt-1 border-t border-slate-200">
                 <span>➕ Polo Positivo (Más cortos/rápidos)</span>
                 <span>⬆️ LEER DE ABAJO A ARRIBA ⬆️</span>
               </div>
@@ -1074,7 +1081,7 @@
                 <button onclick="addSangerBase('T')" class="px-3.5 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-mono-code font-bold">T (Amarillo)</button>
                 <button onclick="addSangerBase('C')" class="px-3.5 py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-mono-code font-bold">C (Rojo)</button>
                 <button onclick="addSangerBase('G')" class="px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-mono-code font-bold">G (Verde)</button>
-                <button onclick="resetSangerGel()" class="px-3 py-2 text-slate-600 hover:text-white underline">Reiniciar</button>
+                <button onclick="resetSangerGel()" class="px-3 py-2 text-slate-600 hover:text-blue-700 underline transition font-medium">Reiniciar</button>
               </div>
 
               <div id="sanger-feedback" class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs shadow-2xs font-sans">
@@ -1097,12 +1104,12 @@
             <div class="grid grid-cols-2 gap-3 pt-2">
               <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-slate-800 shadow-2xs">
                 <span class="font-bold text-amber-800 block">🦌 <em>Muntiacus muntjak</em></span>
-                <span class="font-mono-code text-sm text-white font-bold mt-1 block">2n = 6 (♀) / 7 (♂)</span>
+                <span class="font-mono-code text-sm text-slate-900 font-bold mt-1 block">2n = 6 (♀) / 7 (♂)</span>
                 <span class="text-[11px] text-slate-600">Especie gemela casi idéntica morfológicamente a M. reevesi.</span>
               </div>
               <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-slate-800 shadow-2xs">
                 <span class="font-bold text-sky-700 block">🦌 <em>Muntiacus reevesi</em></span>
-                <span class="font-mono-code text-sm text-white font-bold mt-1 block">2n = 46</span>
+                <span class="font-mono-code text-sm text-slate-900 font-bold mt-1 block">2n = 46</span>
                 <span class="text-[11px] text-slate-600">¡Mismo aspecto morfológico pero 46 cromosomas!</span>
               </div>
             </div>
@@ -1114,13 +1121,13 @@
             <p class="text-slate-600">Haz clic en las ramas del esquema oficial de tus apuntes para memorizar todas las cifras en Megabases ($\text{Mb}$):</p>
 
             <div class="grid grid-cols-2 gap-2">
-              <button onclick="inspectHumanGenomeBranch('genes')" class="p-3 rounded-xl bg-emerald-950/50 border border-emerald-500/50 text-left hover:bg-emerald-900/40 transition">
-                <span class="font-bold text-emerald-700 block">1. Genes y secuencias relacionadas</span>
-                <span class="font-mono-code text-sm font-bold text-white">1.200 Mb (37,5%)</span>
+              <button onclick="inspectHumanGenomeBranch('genes')" class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-300 text-left hover:bg-emerald-100 transition shadow-xs">
+                <span class="font-bold text-emerald-800 block">1. Genes y secuencias relacionadas</span>
+                <span class="font-mono-code text-sm font-bold text-slate-900">1.200 Mb (37,5%)</span>
               </button>
-              <button onclick="inspectHumanGenomeBranch('intergenic')" class="p-3 rounded-xl bg-rose-950/50 border border-rose-500/50 text-left hover:bg-rose-900/40 transition">
-                <span class="font-bold text-rose-700 block">2. DNA Intergénico</span>
-                <span class="font-mono-code text-sm font-bold text-white">2.000 Mb (62,5%)</span>
+              <button onclick="inspectHumanGenomeBranch('intergenic')" class="p-3.5 rounded-xl bg-rose-50 border border-rose-300 text-left hover:bg-rose-100 transition shadow-xs">
+                <span class="font-bold text-rose-800 block">2. DNA Intergénico</span>
+                <span class="font-mono-code text-sm font-bold text-slate-900">2.000 Mb (62,5%)</span>
               </button>
             </div>
 
@@ -1135,7 +1142,7 @@
     <!-- ==================== SECCIÓN 4: SUBTEMA 4 (ORGANIZACIÓN DE GENES Y GENOMAS) ==================== -->
     <section id="tema1-sec-sub4" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-rose-800">Subtema 4 • Evolución Genómica y Control de Expresión</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Organización de Genes y Genomas: ADN Intergénico, Transposones y Seudogenes</h2>
@@ -1186,7 +1193,7 @@
                 "Los genes, piedra angular del desarrollo y funcionamiento de los organismos, no pueden explicar por sí solos qué hace a las vacas, vacas, y maíz al maíz. Los mismos genes se han manifestado en organismos tan diferentes como ratón y medusa. Es más, nuevos hallazgos de varios investigadores han puesto en claro que es el <strong>exquisito control por el genoma de la actividad de cada gen</strong> y no los genes <em>per se</em> lo que más importa."
               </blockquote>
             </div>
-            <div class="bg-slate-100 p-3.5 rounded-xl border border-slate-800 text-xs text-slate-700 border border-slate-200">
+            <div class="bg-slate-100 p-3.5 rounded-xl text-xs text-slate-700 border border-slate-200">
               <strong>Recuerda para el examen:</strong> Las <strong>secuencias reguladoras</strong> (promotores, <em>enhancers</em>, terminadores) flanquean a los exones e intrones y controlan de forma <strong>espacial y temporal cuándo, dónde y con qué intensidad</strong> se expresa cada gen.
             </div>
           </div>
@@ -1197,7 +1204,7 @@
     <!-- ==================== SECCIÓN 5: ARENA DE EXAMEN (28 RETOS RIGUROSOS) ==================== -->
     <section id="tema1-sec-arena" class="hidden space-y-6">
       <div class="bg-white border border-amber-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-amber-900">Certificación Exhaustiva • 28 Preguntas de Nivel Examen</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Arena de Evaluación Rigurosa del Tema 1</h2>
@@ -1381,7 +1388,7 @@
     <!-- ==================== SECCIÓN 1: SUBTEMA 1 (EXPRESIÓN GÉNICA) ==================== -->
     <section id="tema2-sec-sub1" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-emerald-800">Subtema 1 • Simulador Molecular</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Expresión Génica: Transcripción, Traducción y Transcriptómica</h2>
@@ -1444,7 +1451,7 @@
               <span class="w-40 shrink-0 text-sky-800 font-bold text-xs">Hebra Molde Inferior (3'→5'):</span>
               <div class="flex gap-1.5" id="dna-template-row"></div>
             </div>
-            <div class="flex items-center gap-2 pt-2 border-t border-slate-800">
+            <div class="flex items-center gap-2 pt-2 border-t border-slate-200">
               <span class="w-40 shrink-0 text-emerald-800 font-bold text-xs">ARNm Sintetizado (5'→3'):</span>
               <div class="flex gap-1.5" id="rna-synth-row"></div>
             </div>
@@ -1460,7 +1467,7 @@
               <button onclick="addRnaBase('C')" class="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white font-mono-code font-bold rounded-lg shadow">C (Citosina)</button>
               <button onclick="addRnaBase('T')" class="px-3 py-2 bg-rose-900/50 hover:bg-rose-700 text-rose-200 border border-rose-500/30 font-mono-code text-xs rounded-lg">T (Timina)</button>
             </div>
-            <button onclick="resetSub1Lab()" class="text-xs text-slate-600 hover:text-white underline">Reiniciar hebra</button>
+            <button onclick="resetSub1Lab()" class="text-xs text-slate-600 hover:text-blue-700 underline">Reiniciar hebra</button>
           </div>
           <div id="sub1-feedback" class="text-xs font-medium text-slate-700 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-slate-800 shadow-2xs">
             💡 Pista: Observa la base resaltada en la <strong>Hebra Molde Inferior (3'→5')</strong> y elige su complementaria en ARN.
@@ -1519,7 +1526,7 @@
     <!-- ==================== SECCIÓN 2: SUBTEMA 2 (GEN EUCARIOTA Y SPLICING) ==================== -->
     <section id="tema2-sec-sub2" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-sky-800">Subtema 2 • Arquitectura Génica y Maduración Nuclear</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Estructura del Gen Eucariota, Splicing Alternativo y Cola Poli-A</h2>
@@ -1539,17 +1546,17 @@
           <!-- Diagrama interactivo fiel a la Figura 1 y al texto -->
           <div class="flex flex-wrap items-center gap-1.5 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-slate-800">
             <span class="text-xs font-mono-code text-slate-600 mr-1">5'</span>
-            <button onclick="inspectGenePart('enhancer')" class="px-2.5 py-2 rounded bg-lime-500/20 border border-lime-500/50 text-lime-800 text-xs font-bold hover:scale-105 transition">Upstream Enhancers</button>
-            <button onclick="inspectGenePart('promoter')" class="px-3 py-2 rounded bg-amber-500/20 border border-amber-500/50 text-amber-800 text-xs font-bold hover:scale-105 transition">Promotor + Caja TATA</button>
-            <button onclick="inspectGenePart('utr5')" class="px-3 py-2 rounded bg-orange-500/20 border border-orange-500/50 text-orange-300 text-xs font-bold hover:scale-105 transition">5' UTR ( + 5' Cap )</button>
-            <button onclick="inspectGenePart('exon1')" class="px-3.5 py-2 rounded bg-emerald-500/30 border border-emerald-400 text-emerald-200 text-xs font-bold hover:scale-105 transition">Exón 1 (Inicio ATG)</button>
-            <button onclick="inspectGenePart('intron1')" class="px-3 py-2 rounded bg-cyan-500/20 border border-cyan-500/40 text-sky-700 text-xs font-bold hover:scale-105 transition">Intrón 1</button>
-            <button onclick="inspectGenePart('exon2')" class="px-3.5 py-2 rounded bg-emerald-500/30 border border-emerald-400 text-emerald-200 text-xs font-bold hover:scale-105 transition">Exón 2</button>
-            <button onclick="inspectGenePart('intron2')" class="px-3 py-2 rounded bg-cyan-500/20 border border-cyan-500/40 text-sky-700 text-xs font-bold hover:scale-105 transition">Intrón 2</button>
-            <button onclick="inspectGenePart('exon3')" class="px-3.5 py-2 rounded bg-emerald-500/30 border border-emerald-400 text-emerald-200 text-xs font-bold hover:scale-105 transition">Exón 3 (Parada TGA)</button>
-            <button onclick="inspectGenePart('utr3')" class="px-3 py-2 rounded bg-rose-500/20 border border-rose-500/50 text-rose-700 text-xs font-bold hover:scale-105 transition">3' UTR</button>
-            <button onclick="inspectGenePart('terminator')" class="px-3 py-2 rounded bg-slate-700 border border-slate-500 text-slate-200 text-xs font-bold hover:scale-105 transition">Terminador</button>
-            <button onclick="inspectGenePart('polya')" class="px-3 py-2 rounded bg-purple-500/20 border border-purple-400 text-purple-200 text-xs font-bold hover:scale-105 transition">Cola 3' Poli-A (AAAAA)</button>
+            <button onclick="inspectGenePart('enhancer')" class="px-2.5 py-2 rounded bg-lime-50 border border-lime-300 text-lime-900 text-xs font-bold hover:scale-105 transition">Upstream Enhancers</button>
+            <button onclick="inspectGenePart('promoter')" class="px-3 py-2 rounded bg-amber-50 border border-amber-300 text-amber-900 text-xs font-bold hover:scale-105 transition">Promotor + Caja TATA</button>
+            <button onclick="inspectGenePart('utr5')" class="px-3 py-2 rounded bg-orange-50 border border-orange-300 text-orange-950 text-xs font-bold hover:scale-105 transition">5' UTR ( + 5' Cap )</button>
+            <button onclick="inspectGenePart('exon1')" class="px-3.5 py-2 rounded bg-emerald-100 border border-emerald-300 text-emerald-950 text-xs font-bold hover:scale-105 transition">Exón 1 (Inicio ATG)</button>
+            <button onclick="inspectGenePart('intron1')" class="px-3 py-2 rounded bg-sky-50 border border-sky-300 text-sky-900 text-xs font-bold hover:scale-105 transition">Intrón 1</button>
+            <button onclick="inspectGenePart('exon2')" class="px-3.5 py-2 rounded bg-emerald-100 border border-emerald-300 text-emerald-950 text-xs font-bold hover:scale-105 transition">Exón 2</button>
+            <button onclick="inspectGenePart('intron2')" class="px-3 py-2 rounded bg-sky-50 border border-sky-300 text-sky-900 text-xs font-bold hover:scale-105 transition">Intrón 2</button>
+            <button onclick="inspectGenePart('exon3')" class="px-3.5 py-2 rounded bg-emerald-100 border border-emerald-300 text-emerald-950 text-xs font-bold hover:scale-105 transition">Exón 3 (Parada TGA)</button>
+            <button onclick="inspectGenePart('utr3')" class="px-3 py-2 rounded bg-rose-50 border border-rose-300 text-rose-950 text-xs font-bold hover:scale-105 transition">3' UTR</button>
+            <button onclick="inspectGenePart('terminator')" class="px-3 py-2 rounded bg-slate-200 border border-slate-300 text-slate-800 text-xs font-bold hover:scale-105 transition">Terminador</button>
+            <button onclick="inspectGenePart('polya')" class="px-3 py-2 rounded bg-purple-100 border border-purple-300 text-purple-950 text-xs font-bold hover:scale-105 transition">Cola 3' Poli-A (AAAAA)</button>
             <span class="text-xs font-mono-code text-slate-600 ml-1">3'</span>
           </div>
 
@@ -1571,18 +1578,18 @@
 
             <div class="space-y-2 text-xs">
               <div class="flex flex-wrap gap-2">
-                <button onclick="toggleSpliceUnit('I1')" id="sp-I1" class="px-3 py-2 rounded-lg font-mono-code font-bold bg-rose-500/20 border border-rose-500 text-rose-700">Intrón 1 (Presente en pre-ARNm)</button>
-                <button onclick="toggleSpliceUnit('I2')" id="sp-I2" class="px-3 py-2 rounded-lg font-mono-code font-bold bg-rose-500/20 border border-rose-500 text-rose-700">Intrón 2 (Presente en pre-ARNm)</button>
+                <button onclick="toggleSpliceUnit('I1')" id="sp-I1" class="px-3 py-2 rounded-lg font-mono-code font-bold bg-rose-50 border border-rose-300 text-rose-900 shadow-2xs">Intrón 1 (Presente en pre-ARNm)</button>
+                <button onclick="toggleSpliceUnit('I2')" id="sp-I2" class="px-3 py-2 rounded-lg font-mono-code font-bold bg-rose-50 border border-rose-300 text-rose-900 shadow-2xs">Intrón 2 (Presente en pre-ARNm)</button>
               </div>
               <div class="flex flex-wrap gap-2 pt-2">
-                <button onclick="toggleSpliceUnit('E1')" id="sp-E1" class="px-3 py-2 rounded-lg font-mono-code font-bold bg-emerald-500 text-slate-950">Exón 1 (Incluido)</button>
-                <button onclick="toggleSpliceUnit('E2')" id="sp-E2" class="px-3 py-2 rounded-lg font-mono-code font-bold bg-emerald-500 text-slate-950">Exón 2 (Incluido)</button>
-                <button onclick="toggleSpliceUnit('E3')" id="sp-E3" class="px-3 py-2 rounded-lg font-mono-code font-bold bg-emerald-500 text-slate-950">Exón 3 (Incluido)</button>
-                <button onclick="toggleSpliceUnit('PA')" id="sp-PA" class="px-3 py-2 rounded-lg font-mono-code font-bold bg-slate-800 border border-slate-600 text-slate-700">+ Cola 3' Poli-A (Sin añadir)</button>
+                <button onclick="toggleSpliceUnit('E1')" id="sp-E1" class="px-3 py-2 rounded-lg font-mono-code font-bold bg-emerald-600 text-white shadow-xs">Exón 1 (Incluido)</button>
+                <button onclick="toggleSpliceUnit('E2')" id="sp-E2" class="px-3 py-2 rounded-lg font-mono-code font-bold bg-emerald-600 text-white shadow-xs">Exón 2 (Incluido)</button>
+                <button onclick="toggleSpliceUnit('E3')" id="sp-E3" class="px-3 py-2 rounded-lg font-mono-code font-bold bg-emerald-600 text-white shadow-xs">Exón 3 (Incluido)</button>
+                <button onclick="toggleSpliceUnit('PA')" id="sp-PA" class="px-3 py-2 rounded-lg font-mono-code font-bold bg-slate-100 border border-slate-300 text-slate-700">+ Cola 3' Poli-A (Sin añadir)</button>
               </div>
             </div>
 
-            <button onclick="exportMrnaToCytoplasm()" class="w-full py-2.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-xl text-xs transition-all">
+            <button onclick="exportMrnaToCytoplasm()" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs transition-all shadow-xs">
               🚀 Exportar ARNm Maduro al Citoplasma
             </button>
 
@@ -1604,7 +1611,7 @@
             <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-slate-800 shadow-2xs space-y-2 text-xs">
               <h4 class="font-bold text-indigo-700">🛡️ Las 3 Funciones Vitales de la Cola Poli-A (Adición en extremo 3')</h4>
               <p class="text-slate-600">El ARN es químicamente muy lábil e inestable; su punto más susceptible al ataque por <strong>ribonucleasas</strong> es el <strong>extremo 3'</strong>. La cadena de residuos de adenina (cola poli-A) cumple 3 funciones:</p>
-              <ul class="space-y-1.5 text-slate-200 list-decimal list-inside font-medium">
+              <ul class="space-y-1.5 text-slate-700 list-decimal list-inside font-medium">
                 <li><strong>Protege al mensajero</strong> frente al ataque de <strong>exonucleasas citoplasmáticas</strong>.</li>
                 <li><strong>Facilita la exportación activa</strong> del ARNm desde el núcleo celular al citoplasma.</li>
                 <li><strong>Favorece el inicio eficiente de la traducción</strong> ribosómica.</li>
@@ -1618,7 +1625,7 @@
     <!-- ==================== SECCIÓN 3: SUBTEMA 3 (MUTACIONES PUNTUALES, SOMÁTICAS Y GERMINALES) ==================== -->
     <section id="tema2-sec-sub3" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-indigo-800">Subtema 3 • Variabilidad, Exones y Linajes Celulares</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Tipos de Mutaciones: Puntuales, Somáticas y Germinales</h2>
@@ -1649,24 +1656,24 @@
           <p class="text-xs text-slate-600">Prueba los ejemplos exactos de tus apuntes y observa el impacto en el aminoácido, el plegamiento y la función proteica (incluyendo los 7 efectos de la Figura 1 del Subtema 3):</p>
 
           <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
-            <button onclick="testPointMutation('silent')" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border border-emerald-500/40 text-left transition">
+            <button onclick="testPointMutation('silent')" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left transition">
               <span class="text-xs font-mono-code font-bold text-emerald-800 block">1. Mutación Silenciosa</span>
-              <span class="text-sm font-bold text-white mt-1 block">AGG ➔ CGG</span>
+              <span class="text-sm font-bold text-slate-900 mt-1 block">AGG ➔ CGG</span>
               <span class="text-[11px] text-slate-600">Codón sinónimo (Arginina)</span>
             </button>
-            <button onclick="testPointMutation('missense')" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border border-amber-500/40 text-left transition">
+            <button onclick="testPointMutation('missense')" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left transition">
               <span class="text-xs font-mono-code font-bold text-amber-900 block">2. Cambio de Sentido (Missense)</span>
-              <span class="text-sm font-bold text-white mt-1 block">Cambio Químico AA</span>
+              <span class="text-sm font-bold text-slate-900 mt-1 block">Cambio Químico AA</span>
               <span class="text-[11px] text-slate-600">Altera conformación y función</span>
             </button>
-            <button onclick="testPointMutation('nonsense_early')" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border border-rose-500/40 text-left transition">
+            <button onclick="testPointMutation('nonsense_early')" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left transition">
               <span class="text-xs font-mono-code font-bold text-rose-800 block">3A. Sin Sentido (Nonsense Temprana)</span>
-              <span class="text-sm font-bold text-white mt-1 block">CAG (Gln) ➔ UAG (STOP)</span>
+              <span class="text-sm font-bold text-slate-900 mt-1 block">CAG (Gln) ➔ UAG (STOP)</span>
               <span class="text-[11px] text-slate-600">Próximo al inicio de lectura</span>
             </button>
-            <button onclick="testPointMutation('nonsense_late')" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border border-rose-500/40 text-left transition">
+            <button onclick="testPointMutation('nonsense_late')" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left transition">
               <span class="text-xs font-mono-code font-bold text-rose-800 block">3B. Sin Sentido (Nonsense Intermedia)</span>
-              <span class="text-sm font-bold text-white mt-1 block">CAG (Gln) ➔ UAG (STOP)</span>
+              <span class="text-sm font-bold text-slate-900 mt-1 block">CAG (Gln) ➔ UAG (STOP)</span>
               <span class="text-[11px] text-slate-600">Posición intermedia o avanzada</span>
             </button>
           </div>
@@ -1716,7 +1723,7 @@
     <!-- ==================== SECCIÓN 4: SUBTEMA 4 (ALTERACIONES CROMOSÓMICAS Y POLIPLOIDÍA) ==================== -->
     <section id="tema2-sec-sub4" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-rose-800">Subtema 4 • Citogenética y Biotecnología Agrícola</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Alteraciones Cromosómicas, Sandías Triploides (3n) y Colchicina (4n)</h2>
@@ -1757,27 +1764,27 @@
               <h3 class="text-lg font-bold text-emerald-800">🍉 Simulador Biotecnológico: Producción de Sandías Triploides (3n) Sin Semillas</h3>
               <p class="text-xs text-slate-600">Ejecuta los 5 pasos agronómicos en orden riguroso para obtener y propagar sandías triploides estériles:</p>
             </div>
-            <button onclick="resetWatermelonSim()" class="text-xs text-slate-600 hover:text-white underline">Reiniciar protocolo</button>
+            <button onclick="resetWatermelonSim()" class="text-xs text-slate-600 hover:text-blue-700 underline">Reiniciar protocolo</button>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-5 gap-2.5 text-xs">
-            <button onclick="runWatermelonStep(1)" id="wm-step-1" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-emerald-500/50 text-left hover:bg-slate-800 transition">
+            <button onclick="runWatermelonStep(1)" id="wm-step-1" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-emerald-500/50 text-slate-800 shadow-2xs text-left transition">
               <span class="font-mono-code font-bold text-emerald-800 block">Paso 1: Colchicina</span>
               <span class="text-slate-700 mt-1 block">Tratar sandía $2n$ con alcaloide mitostático en metafase ➔ Planta $4n$.</span>
             </button>
-            <button onclick="runWatermelonStep(2)" id="wm-step-2" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-800 text-left opacity-60 hover:bg-slate-800 transition">
+            <button onclick="runWatermelonStep(2)" id="wm-step-2" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left opacity-60 transition">
               <span class="font-mono-code font-bold text-sky-800 block">Paso 2: Gametos</span>
               <span class="text-slate-700 mt-1 block">Planta $4n$ genera gametos diploides ($2n$); cruzar con silvestre $2n$ (gametos $1n$).</span>
             </button>
-            <button onclick="runWatermelonStep(3)" id="wm-step-3" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-800 text-left opacity-60 hover:bg-slate-800 transition">
+            <button onclick="runWatermelonStep(3)" id="wm-step-3" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left opacity-60 transition">
               <span class="font-mono-code font-bold text-indigo-800 block">Paso 3: Embrión 3n</span>
               <span class="text-slate-700 mt-1 block">Fecundación ($2n + 1n$) origina embrión triploide ($3n$).</span>
             </button>
-            <button onclick="runWatermelonStep(4)" id="wm-step-4" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-800 text-left opacity-60 hover:bg-slate-800 transition">
+            <button onclick="runWatermelonStep(4)" id="wm-step-4" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left opacity-60 transition">
               <span class="font-mono-code font-bold text-rose-800 block">Paso 4: Profase I Caótica</span>
               <span class="text-slate-700 mt-1 block">3 juegos homólogos no forman parejas bivalentes ➔ aneuploidías y aborto de semillas.</span>
             </button>
-            <button onclick="runWatermelonStep(5)" id="wm-step-5" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-800 text-left opacity-60 hover:bg-slate-800 transition">
+            <button onclick="runWatermelonStep(5)" id="wm-step-5" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left opacity-60 transition">
               <span class="font-mono-code font-bold text-amber-900 block">Paso 5: Propagación</span>
               <span class="text-slate-700 mt-1 block">Clonación vegetativa o cultivo <em>in vitro</em> por esterilidad sexual.</span>
             </button>
@@ -1793,7 +1800,7 @@
     <!-- ==================== SECCIÓN 5: SUBTEMA 5 (MUTAGÉNESIS, TAUTOMERISMO, TILLING Y EPIGENÉTICA) ==================== -->
     <section id="tema2-sec-sub5" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-amber-900">Subtema 5 • Química del ADN, Genética Inversa y Cromatina</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Mutagénesis, Tautomerismo, TILLING y Epigenética (Tomate <em>Cnr</em>)</h2>
@@ -1880,7 +1887,7 @@
     <!-- ==================== SECCIÓN 6: ARENA DE EXAMEN (30 RETOS RIGUROSOS) ==================== -->
     <section id="tema2-sec-arena" class="hidden space-y-6">
       <div class="bg-white border border-amber-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-amber-900">Certificación Exhaustiva • 30 Preguntas de Nivel Examen</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Arena de Evaluación Rigurosa del Tema 2</h2>
@@ -1961,15 +1968,15 @@
         <div class="bg-white border border-slate-200 hover:border-indigo-300 rounded-3xl p-6 flex flex-col justify-between transition-all shadow-sm hover:shadow-md group">
           <div>
             <div class="flex justify-between items-start mb-3">
-              <span class="px-2.5 py-1 bg-indigo-500/10 text-indigo-400 rounded-md text-xs font-mono-code font-bold">SUBTEMA 1</span>
+              <span class="px-2.5 py-1 bg-indigo-500/10 text-indigo-800 rounded-md text-xs font-mono-code font-bold">SUBTEMA 1</span>
               <span id="tema3-badge-sub1" class="text-xs text-slate-600">⏳ Pendiente</span>
             </div>
-            <h3 class="text-lg font-bold text-slate-900 font-sans group-hover:text-indigo-400 transition-colors">Huellas Genéticas y Enzimas de Restricción</h3>
+            <h3 class="text-lg font-bold text-slate-900 font-sans group-hover:text-indigo-700 transition-colors">Huellas Genéticas y Enzimas de Restricción</h3>
             <p class="text-xs text-slate-600 mt-2 leading-relaxed">
               <em>DNA fingerprinting</em> (excepción: gemelos monocigóticos) y sus 4 etapas (RFLPs, VNTRs/STRs). Restrictasas bacterianas (defensa contra bacteriófagos) y secuencias palindrómicas. Cortes escalonados/extremos cohesivos (<strong>EcoRI</strong> <code>5'-G↓AATTC-3'</code>, <strong>PstI</strong> <code>5'-CTGCA↓G-3'</code>) vs extremos romos (<strong>HaeIII</strong> <code>5'-GG↓CC-3'</code>).
             </p>
           </div>
-          <button onclick="switchTopicTab('tema3', 'sub1')" class="mt-5 w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs hover:text-white text-indigo-400 font-semibold rounded-xl text-sm transition-all">
+          <button onclick="switchTopicTab('tema3', 'sub1')" class="mt-5 w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs font-semibold rounded-xl text-sm transition-all">
             Entrar al Laboratorio 1 →
           </button>
         </div>
@@ -2066,12 +2073,12 @@
     <!-- ==================== SECCIÓN 1: SUBTEMA 1 (HUELLAS GENÉTICAS Y ENZIMAS DE RESTRICCIÓN) ==================== -->
     <section id="tema3-sec-sub1" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
-            <span class="text-xs font-mono-code uppercase text-indigo-400">Subtema 1 • Perfiles de ADN y Tijeras Moleculares Bacterianas</span>
+            <span class="text-xs font-mono-code uppercase text-indigo-800">Subtema 1 • Perfiles de ADN y Tijeras Moleculares Bacterianas</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Huellas Genéticas (DNA Fingerprinting) y Enzimas de Restricción</h2>
           </div>
-          <button onclick="switchTopicTab('tema3', 'arena'); filterQuizBySub('tema3', 1);" class="px-4 py-2 bg-indigo-500/20 hover:bg-indigo-500 hover:text-white text-indigo-300 border border-indigo-500/40 rounded-xl text-xs font-bold transition-all">
+          <button onclick="switchTopicTab('tema3', 'arena'); filterQuizBySub('tema3', 1);" class="px-4 py-2 bg-indigo-500/20 hover:bg-indigo-600 hover:text-white text-indigo-700 border border-indigo-500/40 rounded-xl text-xs font-bold transition-all">
             🎯 Evaluar Subtema 1 en Examen
           </button>
         </div>
@@ -2079,7 +2086,7 @@
         <!-- Píldoras Teóricas Subtema 1 -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
           <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-1.5 shadow-2xs">
-            <h4 class="text-indigo-400 font-bold text-sm">1. Huellas Genéticas y 4 Etapas</h4>
+            <h4 class="text-indigo-800 font-bold text-sm">1. Huellas Genéticas y 4 Etapas</h4>
             <p class="text-slate-700">• Patrones reproducibles y exclusivos de fragmentos de ADN que identifican inequívocamente a un individuo, <strong>salvo en el caso de los gemelos monocigóticos (idénticos)</strong>.</p>
             <p class="text-slate-700">• <strong>Las 4 etapas de obtención:</strong><br>
               1) <strong>Extracción y purificación</strong> (sangre, saliva, tejido foliar, raíces, pelo...).<br>
@@ -2131,7 +2138,7 @@
     <!-- ==================== SECCIÓN 2: SUBTEMA 2 (MARCADORES RFLP Y SOUTHERN BLOT) ==================== -->
     <section id="tema3-sec-sub2" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-sky-800">Subtema 2 • Polimorfismos de Longitud de Fragmentos de Restricción</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Marcadores RFLP (<em>Botstein et al., 1980</em>) y Técnica de Southern Blot</h2>
@@ -2146,31 +2153,31 @@
           <div class="bg-white border border-slate-200 rounded-3xl p-6 space-y-4 shadow-sm">
             <div class="flex items-center justify-between">
               <h3 class="text-base font-bold text-sky-800">🧪 Simulador 2A: Las 5 Etapas del Protocolo RFLP y Southern Blot</h3>
-              <button onclick="resetRflpSim()" class="text-xs text-slate-600 hover:text-white underline">Reiniciar</button>
+              <button onclick="resetRflpSim()" class="text-xs text-slate-600 hover:text-blue-700 underline">Reiniciar</button>
             </div>
             <p class="text-xs text-slate-700">
               Los <strong>RFLPs</strong> fueron los <strong>primeros marcadores moleculares basados en el análisis directo del ADN</strong>. Si una mutación puntual o indel altera una diana de restricción entre el alelo A y el alelo B, cambian las longitudes de los fragmentos. Ejecuta los 5 pasos en orden:
             </p>
 
             <div class="grid grid-cols-1 gap-2 text-xs">
-              <button onclick="runRflpStep(1)" id="rflp-btn-1" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-cyan-500/50 text-left hover:bg-slate-800 transition">
+              <button onclick="runRflpStep(1)" id="rflp-btn-1" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-cyan-500/50 text-slate-800 shadow-2xs text-left transition">
                 <span class="font-mono-code font-bold text-sky-800">1. Extracción y Aislamiento de ADN Genómico</span> (Individuos AA, BB y AB)
               </button>
-              <button onclick="runRflpStep(2)" id="rflp-btn-2" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-800 opacity-60 text-left hover:bg-slate-800 transition">
+              <button onclick="runRflpStep(2)" id="rflp-btn-2" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs opacity-60 text-left transition">
                 <span class="font-mono-code font-bold text-sky-800">2. Digestión Enzimática con Restrictasa</span> (Millones de piezas de diferentes longitudes)
               </button>
-              <button onclick="runRflpStep(3)" id="rflp-btn-3" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-800 opacity-60 text-left hover:bg-slate-800 transition">
+              <button onclick="runRflpStep(3)" id="rflp-btn-3" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs opacity-60 text-left transition">
                 <span class="font-mono-code font-bold text-sky-800">3. Electroforesis (Frotis Continuo) y Southern Blot</span> (Transferencia capilar a membrana de nylon/nitrocelulosa)
               </button>
-              <button onclick="runRflpStep(4)" id="rflp-btn-4" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-800 opacity-60 text-left hover:bg-slate-800 transition">
+              <button onclick="runRflpStep(4)" id="rflp-btn-4" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs opacity-60 text-left transition">
                 <span class="font-mono-code font-bold text-sky-800">4. Hibridación con Sonda Molecular Marcada</span> (ADN monocatenario radiactivo o fluorescente)
               </button>
-              <button onclick="runRflpStep(5)" id="rflp-btn-5" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-800 opacity-60 text-left hover:bg-slate-800 transition">
+              <button onclick="runRflpStep(5)" id="rflp-btn-5" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs opacity-60 text-left transition">
                 <span class="font-mono-code font-bold text-sky-800">5. Lavado, Revelado en Placa/Escáner e Interpretación Alélica</span> (AA, BB y AB)
               </button>
             </div>
 
-            <div id="rflp-step-output" class="bg-slate-100 p-4 rounded-xl border border-slate-800 text-xs text-slate-700 border border-slate-200 leading-relaxed">
+            <div id="rflp-step-output" class="bg-slate-100 p-4 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed">
               Haz clic en el <strong>Paso 1</strong> para comenzar el análisis RFLP.
             </div>
           </div>
@@ -2185,7 +2192,7 @@
 
               <!-- Representación exacta de la placa AA, BB, AB de la Figura 1 -->
               <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-slate-800 shadow-2xs font-mono-code text-xs space-y-4">
-                <div class="grid grid-cols-3 gap-4 text-center font-bold border-b border-slate-800 pb-2">
+                <div class="grid grid-cols-3 gap-4 text-center font-bold border-b border-slate-200 pb-2">
                   <span class="text-sky-700">Individuo 1: AA<br><span class="text-[10px] text-slate-600">(Homocigoto A)</span></span>
                   <span class="text-amber-800">Individuo 2: BB<br><span class="text-[10px] text-slate-600">(Homocigoto B)</span></span>
                   <span class="text-emerald-700">Individuo 3: AB<br><span class="text-[10px] text-slate-600">(Heterocigoto)</span></span>
@@ -2205,13 +2212,13 @@
                   <div class="h-2.5 rounded bg-sky-400 probe-glow" title="Alelo A (Fragmento más corto)"></div>
                 </div>
 
-                <div class="text-[11px] text-slate-600 text-center pt-2 border-t border-slate-800">
+                <div class="text-[11px] text-slate-600 text-center pt-2 border-t border-slate-200">
                   ⬇️ Dirección de migración electroforética (Abajo = fragmento más corto con corte interno intacto)
                 </div>
               </div>
             </div>
 
-            <div class="bg-slate-100 p-3.5 rounded-xl border border-slate-800 text-xs text-slate-700 border border-slate-200">
+            <div class="bg-slate-100 p-3.5 rounded-xl text-xs text-slate-700 border border-slate-200">
               💡 <strong>¿Por qué el individuo AB muestra DOS bandas?</strong> Porque es <strong>heterocigoto</strong>: posee un cromosoma homólogo con la diana intacta (alelo A, banda inferior corta) y el otro cromosoma con la diana modificada (alelo B, banda superior larga).
             </div>
           </div>
@@ -2222,7 +2229,7 @@
     <!-- ==================== SECCIÓN 3: SUBTEMA 3 (DETECCIÓN DE POLIMORFISMOS MEDIANTE PCR) ==================== -->
     <section id="tema3-sec-sub3" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-emerald-800">Subtema 3 • Amplificación Exponencial In Vitro</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Detección de Polimorfismos mediante PCR, RAPD y Diagnóstico Viral</h2>
@@ -2278,7 +2285,7 @@
           <!-- Slider de Ciclos 2^n -->
           <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-slate-800 space-y-3 text-xs">
             <div class="flex flex-wrap justify-between items-center gap-2">
-              <span class="font-bold text-white">Número de ciclos térmicos en el Termociclador ($n$): <span id="pcr-cycle-num" class="text-emerald-800 font-mono-code">3</span></span>
+              <span class="font-bold text-slate-800">Número de ciclos térmicos en el Termociclador ($n$): <span id="pcr-cycle-num" class="text-emerald-800 font-mono-code">3</span></span>
               <span id="pcr-copies-out" class="font-mono-code text-sm font-bold text-sky-700">2³ = 8 moléculas de ADN</span>
             </div>
             <input type="range" id="pcr-slider" min="1" max="35" value="3" oninput="updatePcrCycles()" class="w-full accent-emerald-500 cursor-pointer">
@@ -2293,7 +2300,7 @@
     <!-- ==================== SECCIÓN 4: SUBTEMA 4 (SECUENCIACIÓN MASIVA ILLUMINA Y SNPs) ==================== -->
     <section id="tema3-sec-sub4" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-indigo-800">Subtema 4 • NGS de Segunda Generación y Variabilidad Eucariota</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Secuenciación Masiva Illumina y Detección de SNPs</h2>
@@ -2340,7 +2347,7 @@
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono-code font-bold text-center">
                 <div class="p-2 rounded bg-emerald-500/20 text-emerald-700 border border-emerald-500/40">A = VERDE</div>
                 <div class="p-2 rounded bg-rose-500/20 text-rose-700 border border-rose-500/40">T = ROJO</div>
-                <div class="p-2 rounded bg-blue-500/20 text-blue-300 border border-blue-500/40">C = AZUL</div>
+                <div class="p-2 rounded bg-blue-500/20 text-blue-700 border border-blue-500/40">C = AZUL</div>
                 <div class="p-2 rounded bg-amber-400/20 text-amber-800 border border-amber-400/40">G = AMARILLO</div>
               </div>
 
@@ -2348,7 +2355,7 @@
               <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-slate-800 space-y-3 text-xs font-mono-code">
                 <div class="flex justify-between text-slate-600">
                   <span>Genoma de Referencia:</span>
-                  <span class="text-white font-bold tracking-widest">5' - C  T  G  C - 3'</span>
+                  <span class="text-slate-900 font-bold tracking-widest">5' - C  T  G  C - 3'</span>
                 </div>
                 <div class="space-y-1.5">
                   <span class="text-slate-600 font-sans block">Destellos emitidos por el Cluster del Individuo en los 4 ciclos:</span>
@@ -2372,7 +2379,7 @@
               </div>
             </div>
 
-            <div id="illumina-feedback" class="p-3.5 rounded-xl bg-slate-100 border border-slate-800 text-xs text-slate-700 border border-slate-200">
+            <div id="illumina-feedback" class="p-3.5 rounded-xl bg-slate-100 text-xs text-slate-700 border border-slate-200">
               Analiza los colores de los 4 ciclos de síntesis y selecciona la conclusión bioinformática correcta.
             </div>
           </div>
@@ -2383,7 +2390,7 @@
     <!-- ==================== SECCIÓN 5: SUBTEMA 5 (CONSERVACIÓN, PUREZA VARIETAL Y MAPEO MAS) ==================== -->
     <section id="tema3-sec-sub5" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-rose-800">Subtema 5 • Biodiversidad, Derechos de Obtentor y Mejora Genética</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Aplicaciones: Conservación, Pureza Varietal y Selección Asistida por Marcadores (MAS)</h2>
@@ -2431,7 +2438,7 @@
             </button>
           </div>
 
-          <div id="mas-sim-output" class="bg-slate-100 p-4 rounded-xl border border-slate-800 text-xs text-slate-700 border border-slate-200">
+          <div id="mas-sim-output" class="bg-slate-100 p-4 rounded-xl text-xs text-slate-700 border border-slate-200">
             Elige qué marcador molecular emplearás para cribar las hojas de las miles de plántulas jóvenes.
           </div>
         </div>
@@ -2441,7 +2448,7 @@
     <!-- ==================== SECCIÓN 6: ARENA DE EXAMEN (30 RETOS RIGUROSOS) ==================== -->
     <section id="tema3-sec-arena" class="hidden space-y-6">
       <div class="bg-white border border-amber-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-amber-900">Certificación Exhaustiva • 30 Preguntas de Nivel Examen</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Arena de Evaluación Rigurosa del Tema 3</h2>
@@ -2606,7 +2613,7 @@
     <!-- ==================== SECCIÓN 1: SUBTEMA 1 (FUNDAMENTOS Y METODOLOGÍA GENERAL) ==================== -->
     <section id="tema4-sec-sub1" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-lime-900">Subtema 1 • Asepsia, Explantes, Protoplastos e Instrumental</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Fundamentos y Metodología General del Cultivo In Vitro</h2>
@@ -2648,37 +2655,37 @@
               <h3 class="text-lg font-bold text-lime-900">🧪 Simulador 1: Formulación del Medio de Cultivo, Esterilización en Autoclave y Fitotrón</h3>
               <p class="text-xs text-slate-600">Añade los 4 componentes esenciales del medio de cultivo, esteriliza en la autoclave y ajusta el fitotrón:</p>
             </div>
-            <button onclick="resetSub1Sim()" class="text-xs text-slate-600 hover:text-white underline">Reiniciar</button>
+            <button onclick="resetSub1Sim()" class="text-xs text-slate-600 hover:text-blue-700 underline">Reiniciar</button>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs">
-            <button onclick="toggleMediaComp('salts')" id="m-salts" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-700 text-left hover:border-lime-400 transition">
+            <button onclick="toggleMediaComp('salts')" id="m-salts" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left hover:border-lime-500 transition">
               <span class="font-bold text-lime-800 block">1. Sales Minerales</span>
               <span class="text-[11px] text-slate-600">Macro y micronutrientes esenciales</span>
             </button>
-            <button onclick="toggleMediaComp('sucrose')" id="m-sucrose" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-700 text-left hover:border-lime-400 transition">
+            <button onclick="toggleMediaComp('sucrose')" id="m-sucrose" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left hover:border-lime-500 transition">
               <span class="font-bold text-amber-800 block">2. Sacarosa</span>
               <span class="text-[11px] text-slate-600">Fuente de carbono y energía</span>
             </button>
-            <button onclick="toggleMediaComp('water')" id="m-water" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-700 text-left hover:border-lime-400 transition">
+            <button onclick="toggleMediaComp('water')" id="m-water" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left hover:border-lime-500 transition">
               <span class="font-bold text-sky-700 block">3. Agua Pura</span>
               <span class="text-[11px] text-slate-600">Destilada / desionizada</span>
             </button>
-            <button onclick="toggleMediaComp('agar')" id="m-agar" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-700 text-left hover:border-lime-400 transition">
+            <button onclick="toggleMediaComp('agar')" id="m-agar" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left hover:border-lime-500 transition">
               <span class="font-bold text-indigo-700 block">4. Agar, Vitaminas y PGRs</span>
               <span class="text-[11px] text-slate-600">Gelificante y fitohormonas</span>
             </button>
-            <button onclick="toggleMediaComp('autoclave')" id="m-autoclave" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-700 text-left hover:border-lime-400 transition">
+            <button onclick="toggleMediaComp('autoclave')" id="m-autoclave" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left hover:border-lime-500 transition">
               <span class="font-bold text-rose-700 block">5. Autoclave</span>
               <span class="text-[11px] text-slate-600">Vapor a alta presión y Tª</span>
             </button>
-            <button onclick="toggleMediaComp('phytotron')" id="m-phytotron" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-700 text-left hover:border-lime-400 transition">
+            <button onclick="toggleMediaComp('phytotron')" id="m-phytotron" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs text-left hover:border-lime-500 transition">
               <span class="font-bold text-emerald-700 block">6. Fitotrón</span>
               <span class="text-[11px] text-slate-600">Tª, Humedad y Fotoperiodo</span>
             </button>
           </div>
 
-          <div id="sub1-sim-output" class="bg-slate-100 p-4 rounded-xl border border-slate-800 text-xs text-slate-700 border border-slate-200">
+          <div id="sub1-sim-output" class="bg-slate-100 p-4 rounded-xl border border-slate-200 text-xs text-slate-700">
             Haz clic en cada uno de los 6 elementos para activar la línea completa del laboratorio de cultivo in vitro.
           </div>
         </div>
@@ -2688,7 +2695,7 @@
     <!-- ==================== SECCIÓN 2: SUBTEMA 2 (APLICACIONES Y TRANSFORMACIÓN GENÉTICA) ==================== -->
     <section id="tema4-sec-sub2" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-emerald-800">Subtema 2 • Ingeniería Genética Vegetal, Biorreactores y Bioseguridad</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Rescate de Embriones, Transformación Genética y Maíz MON810</h2>
@@ -2748,7 +2755,7 @@
     <!-- ==================== SECCIÓN 3: SUBTEMA 3 (MICROPROPAGACIÓN) ==================== -->
     <section id="tema4-sec-sub3" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-sky-800">Subtema 3 • Clonación Comercial, Auxinas/Citoquininas y Fases 0 a 4</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Micropropagación: Protocolo Completo, Variación Somaclonal y Aclimatación</h2>
@@ -2786,19 +2793,19 @@
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono-code">
               <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-slate-800 shadow-2xs space-y-1.5">
-                <span class="text-amber-800 font-bold block border-b border-slate-800 pb-1">TIPO AUXINA (4)</span>
-                <div class="text-slate-200">• Ácido 3-indolacético (<strong>IAA</strong>)</div>
-                <div class="text-slate-200">• Ácido 1-naftalenacético (<strong>NAA</strong>)</div>
-                <div class="text-slate-200">• Ácido 3-indolbutírico (<strong>IBA</strong>)</div>
-                <div class="text-slate-200">• Ácido 2,4-diclorofenoxiacético (<strong>2,4-D</strong>)</div>
+                <span class="text-amber-800 font-bold block border-b border-slate-200 pb-1">TIPO AUXINA (4)</span>
+                <div class="text-slate-700">• Ácido 3-indolacético (<strong>IAA</strong>)</div>
+                <div class="text-slate-700">• Ácido 1-naftalenacético (<strong>NAA</strong>)</div>
+                <div class="text-slate-700">• Ácido 3-indolbutírico (<strong>IBA</strong>)</div>
+                <div class="text-slate-700">• Ácido 2,4-diclorofenoxiacético (<strong>2,4-D</strong>)</div>
               </div>
               <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-slate-800 shadow-2xs space-y-1.5">
-                <span class="text-sky-700 font-bold block border-b border-slate-800 pb-1">TIPO CITOQUININA (5)</span>
-                <div class="text-slate-200">• Zeatina (<strong>Z</strong>)</div>
-                <div class="text-slate-200">• 6-Bencil aminopurina (<strong>BA</strong>)</div>
-                <div class="text-slate-200">• Isopentil adenina (<strong>IP</strong>)</div>
-                <div class="text-slate-200">• Kinetina (<strong>K</strong>)</div>
-                <div class="text-slate-200">• Tidiazurón (<strong>TDZ</strong>)</div>
+                <span class="text-sky-700 font-bold block border-b border-slate-200 pb-1">TIPO CITOQUININA (5)</span>
+                <div class="text-slate-700">• Zeatina (<strong>Z</strong>)</div>
+                <div class="text-slate-700">• 6-Bencil aminopurina (<strong>BA</strong>)</div>
+                <div class="text-slate-700">• Isopentil adenina (<strong>IP</strong>)</div>
+                <div class="text-slate-700">• Kinetina (<strong>K</strong>)</div>
+                <div class="text-slate-700">• Tidiazurón (<strong>TDZ</strong>)</div>
               </div>
             </div>
           </div>
@@ -2811,33 +2818,33 @@
               <h3 class="text-lg font-bold text-sky-800">🔄 Simulador 3: Cadena Secuencial de Micropropagación (Fase 0 ➔ Fase 4)</h3>
               <p class="text-xs text-slate-600">Ejecuta en orden las 5 fases del protocolo de la Figura 3 de tus apuntes:</p>
             </div>
-            <button onclick="resetMicropropSim()" class="text-xs text-slate-600 hover:text-white underline">Reiniciar fases</button>
+            <button onclick="resetMicropropSim()" class="text-xs text-slate-600 hover:text-blue-700 underline">Reiniciar fases</button>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-5 gap-2.5 text-xs">
-            <button onclick="runMicropropPhase(0)" id="mp-btn-0" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-cyan-500/50 text-left hover:bg-slate-800 transition">
+            <button onclick="runMicropropPhase(0)" id="mp-btn-0" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-cyan-500/50 text-slate-800 shadow-2xs text-left transition">
               <span class="font-mono-code font-bold text-sky-800 block">Fase 0: Selección y Saneamiento</span>
               <span class="text-slate-700 mt-1 block">Análisis sanitario. Meristemos + termoterapia si hay virus.</span>
             </button>
-            <button onclick="runMicropropPhase(1)" id="mp-btn-1" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-800 opacity-60 text-left hover:bg-slate-800 transition">
+            <button onclick="runMicropropPhase(1)" id="mp-btn-1" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs opacity-60 text-left transition">
               <span class="font-mono-code font-bold text-lime-900 block">Fase 1: Establecimiento</span>
               <span class="text-slate-700 mt-1 block">Desinfección de yemas. Control de hongos y bacterias.</span>
             </button>
-            <button onclick="runMicropropPhase(2)" id="mp-btn-2" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-800 opacity-60 text-left hover:bg-slate-800 transition">
+            <button onclick="runMicropropPhase(2)" id="mp-btn-2" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs opacity-60 text-left transition">
               <span class="font-mono-code font-bold text-emerald-800 block">Fase 2: Multiplicación</span>
               <span class="text-slate-700 mt-1 block">Citoquininas, callo, variación somaclonal y citometría.</span>
             </button>
-            <button onclick="runMicropropPhase(3)" id="mp-btn-3" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-800 opacity-60 text-left hover:bg-slate-800 transition">
+            <button onclick="runMicropropPhase(3)" id="mp-btn-3" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs opacity-60 text-left transition">
               <span class="font-mono-code font-bold text-amber-900 block">Fase 3: Enraizamiento</span>
               <span class="text-slate-700 mt-1 block">Medio con auxinas o túneles de enraizado en riego.</span>
             </button>
-            <button onclick="runMicropropPhase(4)" id="mp-btn-4" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs border-slate-800 opacity-60 text-left hover:bg-slate-800 transition">
+            <button onclick="runMicropropPhase(4)" id="mp-btn-4" class="p-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-2xs opacity-60 text-left transition">
               <span class="font-mono-code font-bold text-rose-800 block">Fase 4: Aclimatación</span>
               <span class="text-slate-700 mt-1 block">Vasos/campanas, fotosíntesis y regulación estomática.</span>
             </button>
           </div>
 
-          <div id="mp-phase-output" class="bg-slate-100 p-4 rounded-xl border border-slate-800 text-xs sm:text-sm text-slate-700 border border-slate-200 leading-relaxed">
+          <div id="mp-phase-output" class="bg-slate-100 p-4 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed">
             Haz clic en la <strong>Fase 0</strong> para comenzar el protocolo de micropropagación.
           </div>
         </div>
@@ -2847,7 +2854,7 @@
     <!-- ==================== SECCIÓN 4: SUBTEMA 4 (MORFOGÉNESIS: ORGANOGÉNESIS VS EMBRIOGÉNESIS) ==================== -->
     <section id="tema4-sec-sub4" class="hidden space-y-6">
       <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-amber-900">Subtema 4 • Diferenciación Celular, Vías Directa/Indirecta y Fases Embrionarias</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Morfogénesis: Ruta Organogénica versus Ruta Embriogénica</h2>
@@ -2901,7 +2908,7 @@
             </button>
           </div>
 
-          <div id="morpho-sim-output" class="bg-slate-100 p-4 rounded-xl border border-slate-800 text-xs sm:text-sm text-slate-700 border border-slate-200">
+          <div id="morpho-sim-output" class="bg-slate-100 p-4 rounded-xl text-xs sm:text-sm text-slate-700 border border-slate-200">
             Selecciona una de las rutas morfogenéticas superiores para analizar sus reguladores, estructuras y ejemplos vegetales.
           </div>
         </div>
@@ -2911,7 +2918,7 @@
     <!-- ==================== SECCIÓN 5: ARENA DE EXAMEN (28 RETOS RIGUROSOS) ==================== -->
     <section id="tema4-sec-arena" class="hidden space-y-6">
       <div class="bg-white border border-amber-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div>
             <span class="text-xs font-mono-code uppercase text-amber-900">Certificación Exhaustiva • 28 Preguntas de Nivel Examen</span>
             <h2 class="text-2xl font-bold text-slate-900 font-sans">Arena de Evaluación Rigurosa de Cultivos In Vitro</h2>
@@ -3048,12 +3055,12 @@
 
   <!-- Modal Lightbox para Figuras y Diagramas Originales -->
   <div id="image-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6" onclick="closeImageModal()">
-    <div class="relative max-w-5xl max-h-[94vh] w-full bg-white border border-slate-200 rounded-3xl text-slate-900 shadow-2xl p-4 sm:p-6 flex flex-col shadow-2xl" onclick="event.stopPropagation()">
-      <div class="flex items-center justify-between gap-4 pb-3 border-b border-slate-800 shrink-0">
+    <div class="relative max-w-5xl max-h-[94vh] w-full bg-white border border-slate-200 rounded-3xl text-slate-900 shadow-2xl p-4 sm:p-6 flex flex-col" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between gap-4 pb-3 border-b border-slate-200 shrink-0">
         <div class="flex items-center gap-2">
           <span class="px-2.5 py-0.5 rounded-md bg-cyan-500/20 text-sky-700 font-mono-code font-bold text-xs uppercase tracking-wider">🔬 Figura Original del Temario Oficial</span>
         </div>
-        <button onclick="closeImageModal()" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 hover:text-white font-bold text-xs transition flex items-center gap-1.5">
+        <button onclick="closeImageModal()" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 hover:text-slate-900 font-bold text-xs transition flex items-center gap-1.5">
           <span>✕</span> Cerrar
         </button>
       </div>
@@ -3063,7 +3070,7 @@
           <img id="image-modal-img" src="" alt="Figura Oficial" class="max-h-[65vh] w-auto max-w-full object-contain rounded-lg bg-white">
         </div>
       </div>
-      <div id="image-modal-caption" class="pt-3 border-t border-slate-800 text-xs sm:text-sm text-slate-200 text-center font-medium leading-relaxed shrink-0"></div>
+      <div id="image-modal-caption" class="pt-3 border-t border-slate-200 text-xs sm:text-sm text-slate-700 text-center font-medium leading-relaxed shrink-0"></div>
     </div>
   </div>
 
