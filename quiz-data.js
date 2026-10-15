@@ -262,7 +262,7 @@ const BIOGENLAB_QUIZ_DATA = {
         "Guanina: negro, Timina: violeta, Citosina: blanco, Adenina: gris."
       ],
       "correct": 0,
-      "exp": "Colores oficiales del cromatograma en tus apuntes: Guanina (G) = verde, Timina (T) = amarillo, Citosina (C) = rojo, Adenina (A) = azul."
+      "exp": "Colores estándar del cromatograma en electroforesis capilar: Guanina (G) = verde, Timina (T) = amarillo, Citosina (C) = rojo, Adenina (A) = azul."
     },
     {
       "id": 21,

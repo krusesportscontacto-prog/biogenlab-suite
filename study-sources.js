@@ -387,7 +387,7 @@ window.STUDY_SOURCES = {
           </div>
           <h4 class="text-sm font-bold text-emerald-400 mt-4 mb-1">Los 7 Efectos Estructurales en Proteínas (Figura 1)</h4>
           <p class="leading-relaxed text-slate-300">
-            Según se ilustra en los modelos cristalográficos de los apuntes oficiales, las mutaciones pueden desestabilizar la proteína mediante 7 mecanismos:
+            Según se ilustra en los modelos cristalográficos de referencia, las mutaciones pueden desestabilizar la proteína mediante 7 mecanismos:
           </p>
           <ol class="list-decimal pl-5 space-y-1 text-slate-300 my-2">
             <li><strong>Truncamiento por codón Stop (Stop codon - truncation):</strong> Pérdida de dominios funcionales enteros por parada prematura.</li>

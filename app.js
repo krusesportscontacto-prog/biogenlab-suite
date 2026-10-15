@@ -1014,7 +1014,7 @@ function renderExamWorkshop() {
 
           <div id="sol-box-${prob.id}" class="${isCompleted ? '' : 'hidden'} p-5 sm:p-6 rounded-2xl bg-sky-50/40 border border-sky-200 text-xs sm:text-sm text-slate-800 leading-relaxed space-y-4 mt-3">
             <div class="flex items-center gap-2 pb-3 border-b border-sky-200 text-xs font-mono-code font-bold text-sky-800 uppercase tracking-wider">
-              <span>📋</span> Resolución Oficial Docente y Demostración Matemática
+              <span>📋</span> Resolución Técnica Razonada y Demostración Matemática
             </div>
             ${formatExamSolution(prob)}
             

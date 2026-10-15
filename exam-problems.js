@@ -1,6 +1,6 @@
 // ==========================================================================
-// BIOGENLAB SUITE - CUADERNO OFICIAL DE PROBLEMAS DE CONVOCATORIA
-// 13 Casos Prácticos y Problemas Oficiales con Evaluación Interactiva Activa
+// BIOGENLAB SUITE - COMPENDIO DE CASOS PRÁCTICOS Y PROBLEMAS EXPERIMENTALES
+// 13 Casos Prácticos y Problemas Experimentales con Evaluación Interactiva Activa
 // ==========================================================================
 
 const EXAM_PROBLEMS = [
