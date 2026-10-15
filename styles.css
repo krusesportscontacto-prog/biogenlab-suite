@@ -92,13 +92,11 @@ strong, b, .font-bold, .font-semibold {
   color: var(--text-primary);
 }
 
-/* Transformación de cursivas a texto normal con subrayado limpio del color de acento */
+/* Cursivas Científicas (Nomenclatura Binomial de Especies y Genes) */
 em:not(.katex *):not(#gel-slab-surface *),
 i:not(.katex *):not(#gel-slab-surface *):not([class*="icon"]):not(.fa) {
-  font-style: normal;
-  text-decoration: underline;
-  text-decoration-color: var(--accent-primary);
-  text-underline-offset: 3px;
+  font-style: italic;
+  text-decoration: none;
 }
 
 /* Tipografía Monospaciada para Datos Tabulares y Secuencias de ADN */
@@ -399,7 +397,7 @@ input::placeholder {
 /* KaTeX Fórmulas Matemáticas */
 .katex {
   font-size: 1.05em;
-  color: var(--accent-primary);
+  color: inherit;
 }
 
 .katex-display {
@@ -413,11 +411,10 @@ input::placeholder {
 }
 
 .katex-error {
-  color: var(--semantic-warning) !important;
-  background: var(--semantic-warning-bg) !important;
-  border: 1px solid #FDE68A !important;
-  border-radius: var(--radius-btn);
-  padding: 0.25rem 0.5rem;
+  color: inherit !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
   font-family: inherit !important;
 }
 

@@ -186,14 +186,14 @@ window.STUDY_SOURCES = {
             Imaginemos que partimos de un cromosoma de melón. Seleccionamos un fragmento bicatenario purificado de $\\approx 1\\text{ kb}$:
           </p>
           <ol class="list-decimal pl-5 space-y-2 text-slate-300 my-3">
-            <li><strong>Desnaturalización:</strong> Se calienta el fragmento a $\\approx 100\\,^\\circ\\text{C}$ para separar sus dos hebras complementarias.</li>
+            <li><strong>Desnaturalización:</strong> Se calienta el fragmento a ≈ 100 °C para separar sus dos hebras complementarias.</li>
             <li><strong>Adición del cebador (primer):</strong> Se hibrida un oligonucleótido corto sintético en el extremo $3'$ de la hebra molde (uniéndose de forma complementaria al extremo $5'$ inicial). <em>Regla de examen: el cebador siempre debe diseñarse y escribirse en dirección $5'\\rightarrow 3'$, en secuencia complementaria e invertida</em>.</li>
             <li><strong>Preparación de los 4 tubos de reacción:</strong> La mezcla (ADN molde, primer, polimerasa y los cuatro dNTPs normales) se reparte en cuatro tubos independientes, añadiendo a cada uno una pequeña proporción de un ddNTP específico:
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono-code my-2 text-center">
-                <span class="p-2 rounded bg-slate-900 border border-blue-500/40 text-blue-300">Tubo 1: +ddATP</span>
-                <span class="p-2 rounded bg-slate-900 border border-amber-500/40 text-amber-300">Tubo 2: +ddTTP</span>
-                <span class="p-2 rounded bg-slate-900 border border-rose-500/40 text-rose-300">Tubo 3: +ddCTP</span>
-                <span class="p-2 rounded bg-slate-900 border border-emerald-500/40 text-emerald-300">Tubo 4: +ddGTP</span>
+                <span class="p-2 rounded-xl bg-blue-50 border border-blue-200 text-blue-800 font-bold shadow-2xs">Tubo 1: +ddATP</span>
+                <span class="p-2 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 font-bold shadow-2xs">Tubo 2: +ddTTP</span>
+                <span class="p-2 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 font-bold shadow-2xs">Tubo 3: +ddCTP</span>
+                <span class="p-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 font-bold shadow-2xs">Tubo 4: +ddGTP</span>
               </div>
             </li>
             <li><strong>Extensión y Terminación:</strong> La polimerasa elonga desde el $3'\\text{-OH}$ del primer hasta que incorpora aleatoriamente un ddNTP, generando una colección de fragmentos de diferentes longitudes que terminan en la base correspondiente al tubo.</li>
@@ -751,8 +751,8 @@ window.STUDY_SOURCES = {
             <li><strong>Recipientes:</strong> Tubos, matraces o frascos de vidrio/plástico con diseño que garantice volumen adecuado y ventilación estéril.</li>
             <li><strong>Medios de Cultivo (ej. Murashige & Skoog - MS):</strong> Formulado con sales minerales (macro y micronutrientes), sacarosa (como fuente de carbono y energía para tejidos heterótrofos), agua purificada, vitaminas y reguladores del crecimiento (fitohormonas). El soporte físico suele ser gelificante (agar).</li>
             <li><strong>Zona de Asepsia:</strong> Cabinas de flujo laminar vertical u horizontal con filtros HEPA para manipulación estéril.</li>
-            <li><strong>Autoclave:</strong> Similar a una "lavadora de alta presión de laboratorio"; esteriliza medios e instrumental mediante vapor saturado a alta presión ($121\\,^\\circ\\text{C}$ durante 15–20 minutos a $1\\text{ atm}$ de sobrepresión).</li>
-            <li><strong>Fitotrón o Cámara de Cultivo:</strong> Recinto climatizado para regular de forma automatizada la <strong>temperatura</strong> (típicamente $22\\text{–}25\\,^\\circ\\text{C}$), <strong>humedad relativa</strong> ($70\\text{–}80\\%$) y el <strong>fotoperiodo</strong> (ciclos luz/oscuridad, ej. 16 h luz / 8 h oscuridad).</li>
+            <li><strong>Autoclave:</strong> Similar a una "lavadora de alta presión de laboratorio"; esteriliza medios e instrumental mediante vapor saturado a alta presión (121 °C durante 15–20 minutos a 1 atm de sobrepresión).</li>
+            <li><strong>Fitotrón o Cámara de Cultivo:</strong> Recinto climatizado para regular de forma automatizada la <strong>temperatura</strong> (típicamente 22–25 °C), <strong>humedad relativa</strong> (70–80%) y el <strong>fotoperiodo</strong> (ciclos luz/oscuridad, ej. 16 h luz / 8 h oscuridad).</li>
           </ul>
         `,
         images: []
@@ -780,20 +780,25 @@ window.STUDY_SOURCES = {
             La <strong>transformación genética</strong> permite transferir e integrar genes foráneos (transgenes) de cualquier especie en el genoma vegetal para conferir nuevas características agronómicas (resistencia a plagas, herbicidas, tolerancia a salinidad o valor nutricional).
           </p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-3 text-xs">
-            <div class="bg-slate-900 p-4 rounded-xl border border-emerald-500/40 space-y-2">
-              <strong class="text-emerald-300 block text-sm">1. Transformación por <em>Agrobacterium tumefaciens</em></strong>
-              <p>Bacteriófago del suelo que causa la "agalla de la corona". Posee el <strong>plásmido Ti (Tumor inducing)</strong>. Mediante ingeniería genética se desactiva su virulencia tumorigénica y se reemplaza el <strong>T-DNA (ADN de transferencia)</strong> por el gen de interés y un gen marcador de selección.</p>
-              <p>• La bacteria transfiere de forma natural el T-DNA recombinante al núcleo de la célula vegetal, donde se integra de forma limpia en el cromosoma.</p>
+            <div class="bg-emerald-50/60 p-4 rounded-2xl border border-emerald-200 text-slate-800 space-y-2 shadow-2xs">
+              <strong class="text-emerald-900 block text-sm font-bold">1. Transformación por <em>Agrobacterium tumefaciens</em></strong>
+              <p class="text-slate-700">Bacteria del suelo que causa la "agalla de la corona". Posee el <strong>plásmido Ti (Tumor inducing)</strong>. Mediante ingeniería genética se desactiva su virulencia tumorigénica y se reemplaza el <strong>T-DNA (ADN de transferencia)</strong> por el gen de interés y un gen marcador de selección.</p>
+              <p class="text-slate-700">• La bacteria transfiere de forma natural el T-DNA recombinante al núcleo de la célula vegetal, donde se integra de forma limpia en el cromosoma.</p>
             </div>
-            <div class="bg-slate-900 p-4 rounded-xl border border-amber-500/40 space-y-2">
-              <strong class="text-amber-300 block text-sm">2. Biobalística (Cañón de Partículas)</strong>
-              <p>Método físico directo. Microproyectiles esféricos de oro o tungsteno de alta densidad ($1\\text{–}3\\,\\mu\\text{m}$) se recubren con el ADN recombinante que contiene el transgen.</p>
-              <p>• Se disparan a gran velocidad mediante descargas de helio a alta presión contra suspensiones celulares o callos vegetales, penetrando físicamente la pared celular e integrándose en el genoma nuclear o cloroplástico.</p>
+            <div class="bg-amber-50/60 p-4 rounded-2xl border border-amber-200 text-slate-800 space-y-2 shadow-2xs">
+              <strong class="text-amber-900 block text-sm font-bold">2. Biobalística (Cañón de Partículas)</strong>
+              <p class="text-slate-700">Método físico directo. Microproyectiles esféricos de oro o tungsteno de alta densidad ($1\\text{–}3\\,\\mu\\text{m}$) se recubren con el ADN recombinante que contiene el transgen.</p>
+              <p class="text-slate-700">• Se disparan a gran velocidad mediante descargas de helio a alta presión contra suspensiones celulares o callos vegetales, penetrando físicamente la pared celular e integrándose en el genoma nuclear o cloroplástico.</p>
             </div>
           </div>
-          <div class="p-3.5 rounded-2xl bg-lime-50 border border-lime-200 my-3 text-lime-900 text-xs sm:text-sm shadow-2xs">
-            <strong>Dato de Examen: Maíz Transgénico MON810 en España</strong><br>
-            En 2016 se cultivaron en España <strong>$129.081\\text{ hectáreas}$ con el maíz transgénico MON810</strong> (creado por Monsanto), resistente al taladro del maíz mediante la expresión de la endotoxina Bt de <em>Bacillus thuringiensis</em>. Esta cifra supuso un incremento del $19.8\\%$ respecto a 2015 según ISAAA. <em>Advertencia de bioseguridad:</em> Se recomienda estrictamente no introducir transgénicos en los centros de origen de las especies cultivadas para prevenir la hibridación y escape génico hacia poblaciones silvestres emparentadas.
+          <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-300 my-3 text-slate-800 text-xs sm:text-sm shadow-2xs space-y-1.5">
+            <strong class="text-emerald-950 font-bold block text-sm">🌽 Dato Clave: Maíz Transgénico MON810 en España</strong>
+            <p class="text-slate-800">
+              En 2016 se cultivaron en España <strong>129.081 hectáreas con el maíz transgénico MON810</strong> (creado por Monsanto), resistente al taladro del maíz mediante la expresión de la endotoxina Bt de <em>Bacillus thuringiensis</em>. Esta cifra supuso un incremento del <strong>19,8%</strong> respecto a 2015 según ISAAA.
+            </p>
+            <p class="text-slate-700 pt-1">
+              <strong>Advertencia de bioseguridad:</strong> Se recomienda estrictamente no introducir transgénicos en los centros de origen de las especies cultivadas para prevenir la hibridación y escape génico hacia poblaciones silvestres emparentadas.
+            </p>
           </div>
         `,
         images: [
@@ -834,8 +839,9 @@ window.STUDY_SOURCES = {
             <li><strong>Fase 3: Enraizamiento:</strong> Transferencia de los brotes elongados a un medio suplementado con <strong>auxinas (como IBA o NAA)</strong> para inducir el sistema radicular adventicio.</li>
             <li><strong>Fase 4: Aclimatación:</strong> Paso crucial para evitar la muerte de la planta. Se transfieren las plantas enraizadas a sustrato in vivo en invernadero, reduciendo gradualmente la humedad ambiental (inicialmente bajo campanas o nebulización) para forzar a la planta a sintetizar cutícula cérea, regular la apertura estomática y activar la fotosíntesis autónoma.</li>
           </ol>
-          <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-700 my-3 text-xs text-slate-300">
-            <strong>Variación Somaclonal:</strong> Mutaciones genéticas o cromosómicas no deseadas que pueden surgir durante el cultivo in vitro (especialmente al pasar por fase de callo desdiferenciado). Debe controlarse la fidelidad clonal de las plantas comerciales mediante <strong>citometría de flujo</strong> (para verificar la constancia en el número cromosómico) y <strong>marcadores moleculares de ADN</strong>.
+          <div class="p-4 rounded-2xl bg-amber-50/70 border border-amber-200 my-3 text-xs text-slate-800 shadow-2xs space-y-1">
+            <strong class="text-amber-950 font-bold block mb-1">Variación Somaclonal:</strong>
+            Mutaciones genéticas o cromosómicas no deseadas que pueden surgir durante el cultivo in vitro (especialmente al pasar por fase de callo desdiferenciado). Debe controlarse la fidelidad clonal de las plantas comerciales mediante <strong>citometría de flujo</strong> (para verificar la constancia en el número cromosómico) y <strong>marcadores moleculares de ADN</strong>.
           </div>
         `,
         images: [
@@ -850,37 +856,37 @@ window.STUDY_SOURCES = {
         number: "4.5",
         title: "Morfogénesis Vegetal: Ruta Organogénica vs. Ruta Embriogénica",
         content: `
-          <p class="leading-relaxed text-slate-300">
+          <p class="leading-relaxed text-slate-700">
             La <strong>morfogénesis</strong> es la génesis o diferenciación de nuevos órganos y estructuras funcionales a partir de células o tejidos. Es posible gracias a la <strong>totipotencia celular</strong>: la asombrosa plasticidad que permite a células somáticas diferenciadas desdiferenciarse y reorganizarse bajo estímulos hormonales específicos para formar una planta completa.
           </p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-3 text-xs">
-            <div class="p-4 rounded-xl bg-slate-900 border border-cyan-500/40 space-y-2">
-              <strong class="text-cyan-300 block text-sm">1. Vía Organogénica (Unipolar)</strong>
-              <p>Se diferencian meristemos que dan lugar a <strong>tallos o raíces de forma independiente</strong>. Los tallos deben posteriormente aislarse e inducirse a enraizar en un paso secundario.</p>
-              <p>• <strong>Directa:</strong> Los brotes surgen directamente de las células del tejido del explante (ej. cotiledones de calabacín).</p>
-              <p>• <strong>Indirecta:</strong> Requiere una fase intermedia de proliferación celular desorganizada llamada <strong>callo</strong>, a partir del cual se diferencian los meristemos (ej. hojas de berenjena).</p>
+            <div class="p-4 rounded-2xl bg-sky-50/60 border border-sky-200 space-y-2 text-slate-800 shadow-2xs">
+              <strong class="text-sky-900 block text-sm font-bold">1. Vía Organogénica (Unipolar)</strong>
+              <p class="text-slate-700">Se diferencian meristemos que dan lugar a <strong>tallos o raíces de forma independiente</strong>. Los tallos deben posteriormente aislarse e inducirse a enraizar en un paso secundario.</p>
+              <p class="text-slate-700">• <strong>Directa:</strong> Los brotes surgen directamente de las células del tejido del explante (ej. cotiledones de calabacín).</p>
+              <p class="text-slate-700">• <strong>Indirecta:</strong> Requiere una fase intermedia de proliferación celular desorganizada llamada <strong>callo</strong>, a partir del cual se diferencian los meristemos (ej. hojas de berenjena).</p>
             </div>
-            <div class="p-4 rounded-xl bg-slate-900 border border-emerald-500/40 space-y-2">
-              <strong class="text-emerald-300 block text-sm">2. Vía Embriogénica (Bipolar)</strong>
-              <p>Se generan <strong>embriones somáticos (ES)</strong> a partir de células somáticas. Al igual que los embriones cigóticos derivados de la fecundación, los embriones somáticos son <strong>estructuras bipolares completas</strong> que poseen simultáneamente un ápice caulinar y una radícula conectada a un cilindro vascular cerrado.</p>
-              <p>• Pasan por las mismas etapas ontogenéticas: <strong>globular $\\rightarrow$ corazón $\\rightarrow$ torpedo $\\rightarrow$ cotiledonar</strong>.</p>
-              <p>• Al germinar, emiten tallo y raíz de manera sincronizada igual que una semilla real.</p>
+            <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200 space-y-2 text-slate-800 shadow-2xs">
+              <strong class="text-emerald-900 block text-sm font-bold">2. Vía Embriogénica (Bipolar)</strong>
+              <p class="text-slate-700">Se generan <strong>embriones somáticos (ES)</strong> a partir de células somáticas. Al igual que los embriones cigóticos derivados de la fecundación, los embriones somáticos son <strong>estructuras bipolares completas</strong> que poseen simultáneamente un ápice caulinar y una radícula conectada a un cilindro vascular cerrado.</p>
+              <p class="text-slate-700">• Pasan por las mismas etapas ontogenéticas: <strong>globular $\rightarrow$ corazón $\rightarrow$ torpedo $\rightarrow$ cotiledonar</strong>.</p>
+              <p class="text-slate-700">• Al germinar, emiten tallo y raíz de manera sincronizada igual que una semilla real.</p>
             </div>
           </div>
-          <h4 class="text-sm font-bold text-lime-400 mt-4 mb-1">Reguladores de Crecimiento: Auxinas vs. Citoquininas (Figura 2)</h4>
-          <p class="leading-relaxed text-slate-300">
+          <h4 class="text-sm font-bold text-lime-900 mt-4 mb-1">Reguladores de Crecimiento: Auxinas vs. Citoquininas (Figura 2)</h4>
+          <p class="leading-relaxed text-slate-700">
             El balance hormonal añadido al medio determina el destino morfogénico del explante:
           </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-2 font-mono-code text-xs">
-            <div class="bg-slate-900 p-3.5 rounded-xl border border-amber-500/40 space-y-1">
-              <span class="text-amber-300 font-bold block border-b border-slate-800 pb-1">TIPO AUXINA (4 reguladores oficiales)</span>
+            <div class="bg-amber-50/60 p-4 rounded-2xl border border-amber-200 space-y-1.5 text-slate-800 shadow-2xs">
+              <span class="text-amber-900 font-bold block border-b border-amber-200 pb-1">TIPO AUXINA (4 reguladores oficiales)</span>
               <div>• Ácido 3-indolacético (<strong>IAA</strong>)</div>
               <div>• Ácido 1-naftalenacético (<strong>NAA</strong>)</div>
               <div>• Ácido 3-indolbutírico (<strong>IBA</strong>)</div>
               <div>• Ácido 2,4-diclorofenoxiacético (<strong>2,4-D</strong>: clave para inducir embriogénesis somática)</div>
             </div>
-            <div class="bg-slate-900 p-3.5 rounded-xl border border-cyan-500/40 space-y-1">
-              <span class="text-cyan-300 font-bold block border-b border-slate-800 pb-1">TIPO CITOQUININA (5 reguladores oficiales)</span>
+            <div class="bg-sky-50/60 p-4 rounded-2xl border border-sky-200 space-y-1.5 text-slate-800 shadow-2xs">
+              <span class="text-sky-900 font-bold block border-b border-sky-200 pb-1">TIPO CITOQUININA (5 reguladores oficiales)</span>
               <div>• Zeatina (<strong>Z</strong>)</div>
               <div>• 6-Bencil aminopurina (<strong>BA</strong>)</div>
               <div>• Isopentil adenina (<strong>IP</strong>)</div>
