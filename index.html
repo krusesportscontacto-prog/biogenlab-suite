@@ -772,26 +772,24 @@
               <div class="gel-chamber-box p-4 rounded-2xl border border-slate-300/80 bg-white shadow-sm space-y-3">
                 
                 <!-- ELECTRODO SUPERIOR: CÁTODO (Polo Negativo ➖ Cable Negro) -->
-                <div class="flex items-center justify-between bg-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs font-sans text-slate-800 shadow-xs">
+                <div class="flex flex-wrap items-center justify-between bg-slate-100 px-3.5 py-2 rounded-xl border border-slate-300 text-xs font-sans text-slate-800 shadow-xs gap-2">
                   <div class="flex items-center gap-2">
                     <span class="w-3.5 h-3.5 rounded-full bg-slate-900 border border-slate-700 inline-block shadow-xs" title="Terminal Negativo de Platino"></span>
-                    <span class="font-bold text-slate-900">➖ CÁTODO (Terminal Negativo • Alambre de Platino)</span>
-                  </div>
-                  <div class="flex items-center gap-2">
+                    <span class="font-bold text-slate-900">➖ CÁTODO (Terminal Negativo • Platino)</span>
                     <span id="bubbles-cathode-indicator" class="hidden text-xs text-blue-700 font-mono font-semibold animate-pulse bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
                       Burbujeo 2H⁺ + 2e⁻ ➔ H₂↑
                     </span>
-                    <span class="text-slate-600 text-xs font-medium">Pocillos de Carga</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <!-- Pastilla de Estado Óptico y Revelado (Espacio dedicado sin solapamiento) -->
+                    <div id="gel-bed-status-pill" class="text-[11px] font-sans font-semibold px-2.5 py-0.5 rounded-full border shadow-xs transition-all bg-purple-900/80 text-purple-200 border-purple-500/50">
+                      🟣 Transiluminador UV • Bandas Reveladas (302 nm)
+                    </div>
                   </div>
                 </div>
 
                 <!-- CONTENEDOR DEL GEL DE AGAROSA: POLARIDAD POSITIVA Y ARMONÍA COGNITIVA -->
                 <div id="gel-slab-surface" class="gel-bed-uv relative rounded-xl p-3 h-[420px] transition-all duration-300 overflow-hidden select-none">
-                  
-                  <!-- Pastilla de Estado Óptico y Revelado -->
-                  <div id="gel-bed-status-pill" class="absolute top-2 right-2.5 z-20 text-[10px] sm:text-xs font-sans font-semibold px-2.5 py-0.5 rounded-full border shadow-xs transition-all pointer-events-none bg-purple-900/80 text-purple-200 border-purple-500/50">
-                    🟣 Transiluminador UV • Bandas Reveladas (302 nm)
-                  </div>
                   
                   <!-- Regla Milimetrada Lateral Dinámica -->
                   <div id="gel-ruler-overlay" class="hidden absolute left-1 top-10 bottom-2 w-6 font-mono tabular-nums text-xs gel-ruler-text border-r gel-ruler-border flex flex-col justify-between py-1 select-none pointer-events-none z-20">

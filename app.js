@@ -1628,7 +1628,7 @@ function setGelIllumination(mode) {
       statusNote.innerHTML = `<span class="text-purple-800 font-medium">✨ <strong>Revelado Activo:</strong> Excitación transiluminador a $302\\text{ nm}$. Emisión fluorescente: <strong>${dyeName}</strong>.</span>`;
     }
     if (statusPill) {
-      statusPill.className = 'absolute top-2 right-2.5 z-20 text-[10px] sm:text-xs font-sans font-semibold px-2.5 py-0.5 rounded-full border shadow-xs transition-all pointer-events-none bg-purple-900/80 text-purple-200 border-purple-500/50';
+      statusPill.className = 'text-[11px] font-sans font-semibold px-2.5 py-0.5 rounded-full border shadow-xs transition-all bg-purple-900/80 text-purple-200 border-purple-500/50';
       statusPill.textContent = '🟣 Transiluminador UV • Bandas Reveladas (302 nm)';
     }
   } else {
@@ -1639,7 +1639,7 @@ function setGelIllumination(mode) {
       statusNote.innerHTML = `<span class="text-slate-600 font-normal">💡 <strong>Luz de sala (Modo Corrida):</strong> El ADN no absorbe luz visible ni emite fluorescencia. Solo se distingue el frente azul de bromofenol (~300 pb). Activa el <strong>Transiluminador UV</strong> para revelar.</span>`;
     }
     if (statusPill) {
-      statusPill.className = 'absolute top-2 right-2.5 z-20 text-[10px] sm:text-xs font-sans font-semibold px-2.5 py-0.5 rounded-full border shadow-xs transition-all pointer-events-none bg-slate-200/90 text-slate-700 border-slate-300';
+      statusPill.className = 'text-[11px] font-sans font-semibold px-2.5 py-0.5 rounded-full border shadow-xs transition-all bg-amber-50 text-amber-900 border-amber-300';
       statusPill.textContent = '💡 Luz Visible • ADN Incoloro (Sin Revelar)';
     }
   }
