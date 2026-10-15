@@ -5,23 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BioGenLab Suite • Simulador Integral de Biotecnología y Genética</title>
   
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CSS & Tokens Cognitivos -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'canvas': '#F9FAFB',
+            'surface': '#FFFFFF',
+            'subtle': '#F3F4F6',
+            'text-primary': '#1F2937',
+            'text-secondary': '#4B5563',
+            'accent-primary': '#2563EB',
+            'accent-hover': '#1D4ED8',
+            'accent-soft': '#EFF6FF',
+            'semantic-success': '#059669',
+            'semantic-warning': '#D97706',
+            'border-subtle': '#E5E7EB'
+          },
+          fontFamily: {
+            sans: ['Inter', 'Roboto', 'Open Sans', 'Lato', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          borderRadius: {
+            'card': '12px',
+            'btn': '8px'
+          },
+          boxShadow: {
+            'card': '0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02)'
+          }
+        }
+      }
+    };
+  </script>
   
   <!-- KaTeX CSS & JS con Auto-Render -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Inter Sans-Serif Humanista de Alta Legibilidad -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Hoja de Estilos Unificada -->
-  <link rel="stylesheet" href="styles.css?v=2.1">
+  <!-- Hoja de Estilos de Alta Ergonomía Cognitiva -->
+  <link rel="stylesheet" href="styles.css?v=3.0">
 </head>
-<body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-950">
+<body class="min-h-screen flex flex-col selection:bg-blue-100 selection:text-blue-900">
 
   <!-- ==================== HEADER BAR GLOBAL UNIFICADO ==================== -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 px-4 py-3 text-slate-800 shadow-xs">
