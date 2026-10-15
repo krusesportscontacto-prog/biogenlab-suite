@@ -1625,10 +1625,10 @@ function setGelIllumination(mode) {
     if (btnVis) btnVis.className = 'p-2.5 rounded-xl bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 text-left transition shadow-xs';
     if (statusNote) {
       const dyeName = GelLabState.dye === 'sybr' ? 'SYBR Safe verde (530 nm)' : 'Bromuro de Etidio naranja (605 nm)';
-      statusNote.innerHTML = `<span class="text-purple-800 font-medium">✨ <strong>Revelado Activo:</strong> Excitación transiluminador a $302\\text{ nm}$. Emisión fluorescente: <strong>${dyeName}</strong>.</span>`;
+      statusNote.innerHTML = `<span class="text-purple-950 font-bold">✨ <strong>Revelado Activo:</strong> Excitación transiluminador a $302\\text{ nm}$. Emisión fluorescente: <strong>${dyeName}</strong>.</span>`;
     }
     if (statusPill) {
-      statusPill.className = 'text-[11px] font-sans font-semibold px-2.5 py-0.5 rounded-full border shadow-xs transition-all bg-purple-900/80 text-purple-200 border-purple-500/50';
+      statusPill.className = 'pill-uv';
       statusPill.textContent = '🟣 Transiluminador UV • Bandas Reveladas (302 nm)';
     }
   } else {
@@ -1636,10 +1636,10 @@ function setGelIllumination(mode) {
     if (btnVis) btnVis.className = 'p-2.5 rounded-xl bg-blue-50 text-blue-900 border border-blue-300 text-left transition shadow-xs';
     if (btnUV) btnUV.className = 'p-2.5 rounded-xl bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 text-left transition shadow-xs';
     if (statusNote) {
-      statusNote.innerHTML = `<span class="text-slate-600 font-normal">💡 <strong>Luz de sala (Modo Corrida):</strong> El ADN no absorbe luz visible ni emite fluorescencia. Solo se distingue el frente azul de bromofenol (~300 pb). Activa el <strong>Transiluminador UV</strong> para revelar.</span>`;
+      statusNote.innerHTML = `<span class="text-slate-700 font-medium">💡 <strong>Luz de sala (Modo Corrida):</strong> El ADN no absorbe luz visible ni emite fluorescencia. Solo se distingue el frente azul de bromofenol (~300 pb). Activa el <strong>Transiluminador UV</strong> para revelar.</span>`;
     }
     if (statusPill) {
-      statusPill.className = 'text-[11px] font-sans font-semibold px-2.5 py-0.5 rounded-full border shadow-xs transition-all bg-amber-50 text-amber-900 border-amber-300';
+      statusPill.className = 'pill-visible';
       statusPill.textContent = '💡 Luz Visible • ADN Incoloro (Sin Revelar)';
     }
   }
@@ -1676,9 +1676,9 @@ function setGelFluorophore(dye) {
   if (statusNote) {
     if (GelLabState.illumination === 'uv') {
       const dyeName = dye === 'sybr' ? 'SYBR Safe verde (530 nm)' : 'Bromuro de Etidio naranja (605 nm)';
-      statusNote.innerHTML = `<span class="text-purple-800 font-medium">✨ <strong>Revelado Activo:</strong> Excitación transiluminador a $302\\text{ nm}$. Emisión fluorescente: <strong>${dyeName}</strong>.</span>`;
+      statusNote.innerHTML = `<span class="text-purple-950 font-bold">✨ <strong>Revelado Activo:</strong> Excitación transiluminador a $302\\text{ nm}$. Emisión fluorescente: <strong>${dyeName}</strong>.</span>`;
     } else {
-      statusNote.innerHTML = `<span class="text-slate-600 font-normal">💡 <strong>Luz de sala (Modo Corrida):</strong> El ADN no absorbe luz visible ni emite fluorescencia. Solo se distingue el frente azul de bromofenol (~300 pb). Activa el <strong>Transiluminador UV</strong> para revelar.</span>`;
+      statusNote.innerHTML = `<span class="text-slate-700 font-medium">💡 <strong>Luz de sala (Modo Corrida):</strong> El ADN no absorbe luz visible ni emite fluorescencia. Solo se distingue el frente azul de bromofenol (~300 pb). Activa el <strong>Transiluminador UV</strong> para revelar.</span>`;
     }
   }
 
