@@ -672,13 +672,13 @@
                 </span>
 
                 <div class="grid grid-cols-2 gap-2 text-xs font-sans">
-                  <button onclick="setGelIllumination('visible')" id="btn-illum-vis" class="p-2.5 rounded-xl bg-blue-50 text-blue-900 border border-blue-300 text-left transition shadow-xs">
-                    <span class="font-bold block text-blue-900">💡 Luz de Laboratorio (Diurno)</span>
-                    <span class="text-xs text-blue-700 font-normal">Agarosa clara • Bandas nítidas</span>
+                  <button onclick="setGelIllumination('visible')" id="btn-illum-vis" class="p-2.5 rounded-xl bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 text-left transition shadow-xs">
+                    <span class="font-bold block text-slate-800">💡 Luz de Laboratorio (Corrida)</span>
+                    <span class="text-xs text-slate-500 font-normal">ADN incoloro • Solo frente de carga</span>
                   </button>
-                  <button onclick="setGelIllumination('uv')" id="btn-illum-uv" class="p-2.5 rounded-xl bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 text-left transition shadow-xs">
-                    <span class="font-bold block text-slate-800">🟣 Transiluminador UV</span>
-                    <span class="text-xs text-slate-500 font-normal">Cámara oscura • <span class="font-mono tabular-nums">302 nm</span></span>
+                  <button onclick="setGelIllumination('uv')" id="btn-illum-uv" class="p-2.5 rounded-xl bg-purple-100 text-purple-900 border border-purple-300 text-left transition shadow-xs">
+                    <span class="font-bold block text-purple-900">🟣 Transiluminador UV (Revelado)</span>
+                    <span class="text-xs text-purple-700 font-normal">Excitación 302 nm • Bandas fluorescentes</span>
                   </button>
                 </div>
 
@@ -697,6 +697,11 @@
                   <button onclick="toggleGelRuler()" id="btn-toggle-ruler" class="text-xs text-slate-600 hover:text-slate-900 font-sans font-medium flex items-center gap-1 transition">
                     <span>📏 Regla Rf</span>
                   </button>
+                </div>
+
+                <!-- Nota Didáctica de Revelado Óptico -->
+                <div id="fluorophore-status-note" class="text-xs font-sans pt-1 border-t border-slate-100 leading-relaxed">
+                  <span class="text-purple-800 font-medium">✨ <strong>Revelado Activo:</strong> Excitación a 302 nm. Emisión fluorescente a 605 nm (EtBr naranja).</span>
                 </div>
               </div>
 
@@ -781,7 +786,12 @@
                 </div>
 
                 <!-- CONTENEDOR DEL GEL DE AGAROSA: POLARIDAD POSITIVA Y ARMONÍA COGNITIVA -->
-                <div id="gel-slab-surface" class="gel-bed-visible relative rounded-xl p-3 h-[420px] transition-all duration-300 overflow-hidden select-none">
+                <div id="gel-slab-surface" class="gel-bed-uv relative rounded-xl p-3 h-[420px] transition-all duration-300 overflow-hidden select-none">
+                  
+                  <!-- Pastilla de Estado Óptico y Revelado -->
+                  <div id="gel-bed-status-pill" class="absolute top-2 right-2.5 z-20 text-[10px] sm:text-xs font-sans font-semibold px-2.5 py-0.5 rounded-full border shadow-xs transition-all pointer-events-none bg-purple-900/80 text-purple-200 border-purple-500/50">
+                    🟣 Transiluminador UV • Bandas Reveladas (302 nm)
+                  </div>
                   
                   <!-- Regla Milimetrada Lateral Dinámica -->
                   <div id="gel-ruler-overlay" class="hidden absolute left-1 top-10 bottom-2 w-6 font-mono tabular-nums text-xs gel-ruler-text border-r gel-ruler-border flex flex-col justify-between py-1 select-none pointer-events-none z-20">

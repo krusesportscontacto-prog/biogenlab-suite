@@ -517,7 +517,32 @@ input::placeholder {
   animation: bubbleFloatDown 1.5s infinite ease-out;
 }
 
-/* Bandas de ADN en Gel Diurno */
+/* Bandas de ADN Incoloras / Sin Revelar (Luz Visible / Diurna) */
+.band-unrevealed {
+  opacity: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 1px dashed transparent !important;
+  border-radius: 2px !important;
+  cursor: help !important;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+  pointer-events: auto;
+}
+
+.band-unrevealed:hover {
+  opacity: 0.55 !important;
+  border-color: #64748B !important;
+  box-shadow: 0 0 6px rgba(100, 116, 139, 0.35) !important;
+}
+
+.gel-bed-visible .band-unrevealed.band-highlight {
+  opacity: 0.9 !important;
+  border-color: var(--accent-primary) !important;
+  background: rgba(37, 99, 235, 0.08) !important;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.3) !important;
+}
+
+/* Bandas de ADN en Gel Diurno (Fallback) */
 .band-etbr,
 .band-etbr-daylight {
   background: linear-gradient(90deg, #EA580C 0%, #DC2626 50%, #EA580C 100%) !important;
@@ -532,7 +557,7 @@ input::placeholder {
   border-radius: 2px !important;
 }
 
-/* Bandas de ADN en UV */
+/* Bandas de ADN en UV (Revelado Fluorescente Activo) */
 .band-etbr-uv {
   background: linear-gradient(90deg, #EA580C 0%, #F43F5E 50%, #EA580C 100%) !important;
   box-shadow: 0 0 12px rgba(244, 63, 94, 0.95), 0 0 22px rgba(234, 88, 12, 0.45) !important;
@@ -558,12 +583,21 @@ input::placeholder {
   filter: brightness(1.35) drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) !important;
 }
 
+/* Frente del Tampón de Carga: Azul de Bromofenol (~300 pb) */
 .tracking-dye-front {
-  background: linear-gradient(180deg, rgba(2, 132, 199, 0.35) 0%, rgba(2, 132, 199, 0.85) 50%, rgba(3, 105, 161, 0.45) 100%) !important;
-  filter: blur(1.2px);
+  background: linear-gradient(180deg, rgba(2, 132, 199, 0.45) 0%, rgba(2, 132, 199, 0.95) 50%, rgba(3, 105, 161, 0.55) 100%) !important;
+  filter: blur(0.8px);
   border-radius: 3px;
   cursor: pointer;
+  box-shadow: 0 1px 4px rgba(2, 132, 199, 0.35);
   transition: all 0.15s ease-in-out;
+}
+
+.gel-bed-uv .tracking-dye-front {
+  background: rgba(30, 41, 59, 0.75) !important;
+  filter: blur(1.2px);
+  box-shadow: none !important;
+  opacity: 0.35 !important;
 }
 
 .tracking-dye-front:hover {

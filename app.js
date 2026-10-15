@@ -1280,7 +1280,7 @@ const GelLabState = {
   progress: 1.0, // 0.0 (en pocillos) a 1.0 (migración completa)
   timeElapsedSec: 2400, // 40 minutos en segundos
   totalDurationSec: 2400,
-  illumination: 'visible', // 'visible' (Luz Diurna) | 'uv' (Transiluminador)
+  illumination: 'uv', // 'visible' (Luz Diurna / Corrida) | 'uv' (Transiluminador / Revelado)
   dye: 'etbr', // 'etbr' | 'sybr'
   showRuler: false,
   timerInterval: null,
@@ -1291,7 +1291,8 @@ const GelLabState = {
 
 function initGelLab() {
   updateGelDisplays();
-  renderGelBands();
+  setGelIllumination(GelLabState.illumination);
+  setGelFluorophore(GelLabState.dye);
 }
 
 function updateGelDisplays() {
@@ -1384,8 +1385,8 @@ function renderGelBands() {
   const isUV = GelLabState.illumination === 'uv';
   const dyeClass = isUV 
     ? (GelLabState.dye === 'sybr' ? 'band-sybr-uv' : 'band-etbr-uv')
-    : (GelLabState.dye === 'sybr' ? 'band-sybr-daylight' : 'band-etbr-daylight');
-  const bandDisplay = 'opacity-100';
+    : 'band-unrevealed';
+  const bandDisplay = isUV ? 'opacity-100' : '';
 
   // Tracking dye front (Azul de Bromofenol): co-migrates with ~300 bp fragments (~94% top)
   const dyeTop = (4 + (94 - 4) * p);
@@ -1398,9 +1399,9 @@ function renderGelBands() {
   // 1. Ladder Scale column on the left (calibrated static axis: 0% to 25% of width)
   GEL_LADDER_DATA.forEach((lad) => {
     const labelColor = isUV
-      ? (lad.isRef ? 'text-amber-300 font-bold' : 'text-slate-300')
-      : (lad.isRef ? 'text-blue-900 font-bold' : 'text-slate-700 font-medium');
-    const tickColor = isUV ? 'bg-slate-600' : 'bg-slate-400';
+      ? (lad.isRef ? 'text-amber-300 font-bold' : 'text-slate-300 font-medium')
+      : (lad.isRef ? 'text-slate-500 font-medium opacity-60' : 'text-slate-400 opacity-40');
+    const tickColor = isUV ? (lad.isRef ? 'bg-amber-400/80' : 'bg-slate-600') : 'bg-slate-300';
     html += `
       <div class="absolute left-1.5 sm:left-3 flex items-center gap-1.5 transition-opacity duration-200 opacity-90 pointer-events-none" style="top: ${lad.topPct}%; transform: translateY(-50%);">
         <span class="text-[10px] sm:text-xs font-mono tabular-nums ${labelColor} whitespace-nowrap">${lad.label}</span>
@@ -1414,12 +1415,15 @@ function renderGelBands() {
     const curTop = getTop(lad.topPct);
     const isSelected = GelLabState.selectedBandKey === `lad_${lad.size}`;
     const heightClass = lad.isRef ? 'h-2 sm:h-2.5' : 'h-1 sm:h-1.5';
+    const titleText = isUV
+      ? `Ladder: ${lad.label} (${lad.size} pb • Emisión UV ${GelLabState.dye === 'sybr' ? '530 nm' : '605 nm'})`
+      : `Fragmento de ADN incoloro (~${lad.size} pb). Requiere luz UV (302 nm) para revelarse por fluorescencia.`;
     html += `
       <div id="band-lad-${idx}" 
            onclick="inspectGelBand('ladder', ${lad.size})" 
            class="absolute left-[33.3%] -translate-x-1/2 w-8 sm:w-10 ${heightClass} ${dyeClass} ${bandDisplay} ${isSelected ? 'band-highlight' : ''} cursor-pointer transition-all duration-150 hover:brightness-150 z-20"
            style="top: ${curTop}%; transform: translate(-50%, -50%);"
-           title="Ladder: ${lad.label} (${lad.size} pb)">
+           title="${titleText}">
       </div>
     `;
   });
@@ -1429,12 +1433,15 @@ function renderGelBands() {
     const curTop = getTop(item.topPct);
     const isSelected = GelLabState.selectedBandKey === item.id;
     const heightClass = item.isThick ? 'h-2 sm:h-2.5' : 'h-1 sm:h-1.5';
+    const titleText = isUV
+      ? `${item.name}: ${item.label} (${item.size} pb)`
+      : `Fragmento de ADN incoloro (${item.name}). Requiere luz UV (302 nm) para revelarse por fluorescencia.`;
     html += `
       <div id="band-${item.id}" 
            onclick="inspectGelBand('sampleA', ${item.size})" 
            class="absolute left-[54.1%] -translate-x-1/2 w-10 sm:w-12 ${heightClass} ${dyeClass} ${bandDisplay} ${isSelected ? 'band-highlight' : ''} cursor-pointer transition-all duration-150 hover:brightness-150 z-20"
            style="top: ${curTop}%; transform: translate(-50%, -50%);"
-           title="${item.name}: ${item.label}">
+           title="${titleText}">
       </div>
     `;
   });
@@ -1444,12 +1451,15 @@ function renderGelBands() {
     const curTop = getTop(item.topPct);
     const isSelected = GelLabState.selectedBandKey === item.id;
     const heightClass = item.isThick ? 'h-2 sm:h-2.5' : 'h-1 sm:h-1.5';
+    const titleText = isUV
+      ? `${item.name}: ${item.label}`
+      : `Fragmento de ADN incoloro (${item.name}). Requiere luz UV (302 nm) para revelarse por fluorescencia.`;
     html += `
       <div id="band-${item.id}" 
            onclick="inspectGelBand('sampleB', '${item.id}')" 
            class="absolute left-[75.0%] -translate-x-1/2 w-8 sm:w-10 ${heightClass} ${dyeClass} ${bandDisplay} ${isSelected ? 'band-highlight' : ''} cursor-pointer transition-all duration-150 hover:brightness-150 z-20"
            style="top: ${curTop}%; transform: translate(-50%, -50%);"
-           title="${item.name}: ${item.label}">
+           title="${titleText}">
       </div>
     `;
   });
@@ -1458,19 +1468,22 @@ function renderGelBands() {
   GEL_SAMPLES_DATA.sampleC.forEach(item => {
     const curTop = getTop(item.topPct);
     const isSelected = GelLabState.selectedBandKey === item.id;
+    const titleText = isUV
+      ? `${item.name}: ${item.label} (${item.size} pb)`
+      : `Fragmento de ADN incoloro (${item.name}). Requiere luz UV (302 nm) para revelarse por fluorescencia.`;
     html += `
       <div id="band-${item.id}" 
            onclick="inspectGelBand('sampleC', ${item.size})" 
            class="absolute left-[91.6%] -translate-x-1/2 w-8 sm:w-10 h-2 sm:h-2.5 ${dyeClass} ${bandDisplay} ${isSelected ? 'band-highlight' : ''} cursor-pointer transition-all duration-150 hover:brightness-150 z-20"
            style="top: ${curTop}%; transform: translate(-50%, -50%);"
-           title="${item.name}: ${item.label}">
+           title="${titleText}">
       </div>
     `;
   });
 
   // 6. Frente del Colorante de Carga (Azul de Bromofenol)
   if (p > 0.04) {
-    const dyeOpacity = isUV ? 'opacity-30' : 'opacity-90';
+    const dyeOpacity = isUV ? 'opacity-35' : 'opacity-95';
     const isSelected = GelLabState.selectedBandKey === 'tracking_dye';
     const lanesX = ['33.3%', '54.1%', '75.0%', '91.6%'];
     lanesX.forEach((lx, idx) => {
@@ -1479,7 +1492,7 @@ function renderGelBands() {
              onclick="inspectGelBand('tracking_dye', 'bpb')"
              class="absolute -translate-x-1/2 w-8 sm:w-11 h-2 tracking-dye-front ${dyeOpacity} ${isSelected ? 'band-highlight' : ''} cursor-pointer transition-all duration-150 z-20"
              style="left: ${lx}; top: ${dyeTop}%; transform: translate(-50%, -50%);"
-             title="Frente de Tinción: Azul de Bromofenol (~300 pb). Colorante del tampón de carga (Click para inspeccionar)">
+             title="Frente de Carga: Azul de Bromofenol (~300 pb). Colorante testigo visible a simple vista en luz de laboratorio (Click para inspeccionar)">
         </div>
       `;
     });
@@ -1519,6 +1532,7 @@ function startGelSimulation() {
       GelLabState.progress = 1.0;
       pauseGelSimulation();
       SFX.success();
+      onGelRunCompleted();
     } else {
       GelLabState.progress = GelLabState.timeElapsedSec / GelLabState.totalDurationSec;
     }
@@ -1546,6 +1560,7 @@ function fastForwardGel() {
   updateGelDisplays();
   renderGelBands();
   SFX.success();
+  onGelRunCompleted();
 }
 
 function resetGelSimulation() {
@@ -1553,6 +1568,8 @@ function resetGelSimulation() {
   GelLabState.progress = 0;
   GelLabState.timeElapsedSec = 0;
   GelLabState.selectedBandKey = null;
+  // Al reiniciar para una nueva corrida, volvemos a luz visible de laboratorio
+  setGelIllumination('visible');
   updateGelDisplays();
   renderGelBands();
   SFX.click();
@@ -1560,8 +1577,21 @@ function resetGelSimulation() {
   const insp = document.getElementById('inspect-content');
   const carrier = document.getElementById('inspect-carrier');
   if (insp && carrier) {
-    carrier.textContent = 'Pocillos cargados • Listo para correr';
-    insp.innerHTML = `<p class="text-slate-400 italic text-[11px]">Las muestras de ADN con glicerol y azul de bromofenol están en el fondo de los pocillos. Pulsa <strong>▶️ Conectar</strong> para iniciar la migración hacia el polo positivo (+).</p>`;
+    carrier.textContent = 'Pocillos cargados • Modo Corrida';
+    insp.innerHTML = `<p class="text-slate-500 italic text-xs leading-relaxed">Las muestras de ADN con tampón de carga (glicerol y azul de bromofenol) están en los pocillos de agarosa. Pulsa <strong>▶️ Conectar</strong> para iniciar la migración hacia el electrodo rojo (+).</p>`;
+  }
+
+  const fb = document.getElementById('gel-sim-feedback');
+  if (fb) {
+    fb.innerHTML = `
+      <div class="flex items-start gap-2.5">
+        <span class="text-base select-none">💡</span>
+        <div>
+          <strong class="text-slate-900">Regla Mnemotécnica de Laboratorio:</strong> 
+          <em class="text-blue-700 font-semibold">"Run to the red"</em> (el ADN con carga neta negativa migra hacia el electrodo rojo positivo ➕). En la red de agarosa, los fragmentos macromoleculares (<span class="font-mono tabular-nums text-slate-900 font-medium">10 kb</span>) sufren fricción con los poros y migran lentamente; los fragmentos pequeños (<span class="font-mono tabular-nums text-slate-900 font-medium">250 pb</span>) transitan con agilidad hacia el fondo.
+        </div>
+      </div>
+    `;
   }
 }
 
@@ -1586,18 +1616,36 @@ function setGelIllumination(mode) {
   const slab = document.getElementById('gel-slab-surface');
   const btnVis = document.getElementById('btn-illum-vis');
   const btnUV = document.getElementById('btn-illum-uv');
+  const statusNote = document.getElementById('fluorophore-status-note');
+  const statusPill = document.getElementById('gel-bed-status-pill');
 
   if (mode === 'uv') {
     if (slab) slab.className = 'gel-bed-uv relative rounded-xl p-3 h-[420px] transition-all duration-300 overflow-hidden select-none';
     if (btnUV) btnUV.className = 'p-2.5 rounded-xl bg-purple-100 text-purple-900 border border-purple-300 text-left transition shadow-xs';
     if (btnVis) btnVis.className = 'p-2.5 rounded-xl bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 text-left transition shadow-xs';
+    if (statusNote) {
+      const dyeName = GelLabState.dye === 'sybr' ? 'SYBR Safe verde (530 nm)' : 'Bromuro de Etidio naranja (605 nm)';
+      statusNote.innerHTML = `<span class="text-purple-800 font-medium">✨ <strong>Revelado Activo:</strong> Excitación transiluminador a $302\\text{ nm}$. Emisión fluorescente: <strong>${dyeName}</strong>.</span>`;
+    }
+    if (statusPill) {
+      statusPill.className = 'absolute top-2 right-2.5 z-20 text-[10px] sm:text-xs font-sans font-semibold px-2.5 py-0.5 rounded-full border shadow-xs transition-all pointer-events-none bg-purple-900/80 text-purple-200 border-purple-500/50';
+      statusPill.textContent = '🟣 Transiluminador UV • Bandas Reveladas (302 nm)';
+    }
   } else {
     if (slab) slab.className = 'gel-bed-visible relative rounded-xl p-3 h-[420px] transition-all duration-300 overflow-hidden select-none';
     if (btnVis) btnVis.className = 'p-2.5 rounded-xl bg-blue-50 text-blue-900 border border-blue-300 text-left transition shadow-xs';
     if (btnUV) btnUV.className = 'p-2.5 rounded-xl bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 text-left transition shadow-xs';
+    if (statusNote) {
+      statusNote.innerHTML = `<span class="text-slate-600 font-normal">💡 <strong>Luz de sala (Modo Corrida):</strong> El ADN no absorbe luz visible ni emite fluorescencia. Solo se distingue el frente azul de bromofenol (~300 pb). Activa el <strong>Transiluminador UV</strong> para revelar.</span>`;
+    }
+    if (statusPill) {
+      statusPill.className = 'absolute top-2 right-2.5 z-20 text-[10px] sm:text-xs font-sans font-semibold px-2.5 py-0.5 rounded-full border shadow-xs transition-all pointer-events-none bg-slate-200/90 text-slate-700 border-slate-300';
+      statusPill.textContent = '💡 Luz Visible • ADN Incoloro (Sin Revelar)';
+    }
   }
 
   renderGelBands();
+  renderMath();
   SFX.click();
 }
 
@@ -1607,6 +1655,7 @@ function setGelFluorophore(dye) {
   const btnEtbr = document.getElementById('btn-dye-etbr');
   const btnSybr = document.getElementById('btn-dye-sybr');
   const badge = document.getElementById('gel-safety-badge');
+  const statusNote = document.getElementById('fluorophore-status-note');
 
   if (dye === 'sybr') {
     if (btnSybr) btnSybr.className = 'px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs font-bold transition hover:bg-emerald-100 shadow-xs';
@@ -1624,7 +1673,17 @@ function setGelFluorophore(dye) {
     }
   }
 
+  if (statusNote) {
+    if (GelLabState.illumination === 'uv') {
+      const dyeName = dye === 'sybr' ? 'SYBR Safe verde (530 nm)' : 'Bromuro de Etidio naranja (605 nm)';
+      statusNote.innerHTML = `<span class="text-purple-800 font-medium">✨ <strong>Revelado Activo:</strong> Excitación transiluminador a $302\\text{ nm}$. Emisión fluorescente: <strong>${dyeName}</strong>.</span>`;
+    } else {
+      statusNote.innerHTML = `<span class="text-slate-600 font-normal">💡 <strong>Luz de sala (Modo Corrida):</strong> El ADN no absorbe luz visible ni emite fluorescencia. Solo se distingue el frente azul de bromofenol (~300 pb). Activa el <strong>Transiluminador UV</strong> para revelar.</span>`;
+    }
+  }
+
   renderGelBands();
+  renderMath();
   SFX.click();
 }
 
@@ -1671,12 +1730,12 @@ function inspectGelBand(type, key) {
     GelLabState.selectedBandKey = item ? item.id : null;
   } else if (type === 'tracking_dye') {
     item = {
-      name: 'Frente de Tinción: Azul de Bromofenol (Colorante de Carga)',
+      name: 'Frente de Carga: Azul de Bromofenol (Colorante Testigo)',
       label: '~300 pb (co-migración aparente)',
       size: 300,
       rf: 0.94,
-      ng: 'N/A (Colorante orgánico sintético, 670 Da)',
-      desc: 'El <strong>Azul de Bromofenol</strong> es una molécula orgánica polianiónica pequeña presente en todo <em>tampón de carga (6x Loading Buffer)</em>. Al tener carga negativa neta, migra rápidamente hacia el ánodo positivo (+) por delante de la mayoría de fragmentos de ADN (co-migra aproximadamente con fragmentos de $\\approx 300\\text{ pb}$ en agarosa al 1%). <strong>¿Por qué corre y por qué es rigurosamente correcto?</strong> Como el ADN puro es incoloro e invisible en el laboratorio, este colorante azul es el testigo visual que permite al científico seguir la carrera a simple vista (en luz diurna, sin UV) y saber cuándo desconectar la corriente para que las muestras no se salgan del gel al buffer de la cubeta.'
+      ng: 'N/A (Colorante sintético, 670 Da)',
+      desc: 'El <strong>Azul de Bromofenol</strong> es una molécula orgánica polianiónica pequeña presente en todo <em>tampón de carga (Loading Buffer)</em>. Al tener carga negativa neta, migra rápidamente hacia el ánodo positivo (+) por delante de la mayoría de fragmentos de ADN (co-migra aproximadamente con fragmentos de $\\approx 300\\text{ pb}$ en agarosa al 1%). <strong>¿Por qué corre y por qué es rigurosamente correcto?</strong> Como el ADN puro es incoloro e invisible en el laboratorio, este colorante azul es el testigo visual que permite al científico seguir la carrera a simple vista (en luz diurna, sin UV) y saber cuándo desconectar la corriente para que las muestras no se salgan del gel al buffer de la cubeta.'
     };
     carrierText = 'Todos los Carriles • Frente del Tampón de Carga (Tracking Dye)';
     GelLabState.selectedBandKey = 'tracking_dye';
@@ -1688,6 +1747,34 @@ function inspectGelBand(type, key) {
 
   const cElem = document.getElementById('inspect-carrier');
   const bElem = document.getElementById('inspect-content');
+
+  // Si se hace clic en una banda de ADN pero estamos en luz diurna (sin revelar):
+  if (GelLabState.illumination !== 'uv' && type !== 'tracking_dye') {
+    if (cElem) cElem.textContent = `${carrierText} • [Sin Revelar en Luz Visible]`;
+    if (bElem) {
+      bElem.innerHTML = `
+        <div class="space-y-2 animate-fadeIn p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-xs">
+          <div class="flex items-center justify-between text-amber-950 font-bold">
+            <span class="flex items-center gap-1.5">⚠️ ADN Incoloro a Simple Vista</span>
+            <span class="px-2 py-0.5 rounded bg-white text-slate-800 font-mono tabular-nums font-bold border border-amber-300">${item.size ? item.size.toLocaleString() + ' pb' : item.label}</span>
+          </div>
+          <p class="text-slate-700 leading-relaxed font-sans">
+            Bajo la luz blanca del laboratorio, los fragmentos de ADN son <strong>completamente transparentes e invisibles</strong>. El agente intercalante (<em>${GelLabState.dye === 'sybr' ? 'SYBR Safe' : 'Bromuro de Etidio'}</em>) no emite fotones en el espectro visible; requiere radiación <strong>ultravioleta ($\approx 302\\text{ nm}$)</strong> para excitarse y fluorescer.
+          </p>
+          <div class="pt-1 flex flex-wrap items-center justify-between gap-2 border-t border-amber-200/60">
+            <span class="text-slate-600 italic text-[11px]">Enciende el transiluminador para revelar:</span>
+            <button onclick="revealGelWithUV()" class="px-3 py-1 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg transition shadow-xs flex items-center gap-1">
+              🟣 Encender UV y Revelar
+            </button>
+          </div>
+        </div>
+      `;
+      renderMath();
+    }
+    return;
+  }
+
+  // Si está en UV o es el colorante de seguimiento:
   if (cElem) cElem.textContent = carrierText;
   if (bElem) {
     const isDye = type === 'tracking_dye';
@@ -1700,7 +1787,7 @@ function inspectGelBand(type, key) {
       <div class="space-y-1.5 animate-fadeIn">
         <div class="flex items-center justify-between text-xs font-bold text-slate-900">
           <span class="text-blue-900 font-semibold">${item.name || item.label}</span>
-          <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-800 font-mono tabular-nums font-bold border border-slate-200">${item.size.toLocaleString()} pb</span>
+          <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-800 font-mono tabular-nums font-bold border border-slate-200">${item.size ? item.size.toLocaleString() + ' pb' : item.label}</span>
         </div>
         <div class="flex flex-wrap items-center gap-3 text-xs text-slate-600 font-sans">
           <span>Movilidad Relativa: <strong class="text-slate-900 font-mono tabular-nums">$R_f = ${item.rf.toFixed(2)}$</strong></span>
@@ -1708,6 +1795,70 @@ function inspectGelBand(type, key) {
           ${emissionText}
         </div>
         <p class="text-slate-700 text-xs mt-1 leading-relaxed font-sans">${item.desc}</p>
+      </div>
+    `;
+    renderMath();
+  }
+}
+
+function onGelRunCompleted() {
+  const fb = document.getElementById('gel-sim-feedback');
+  if (!fb) return;
+
+  if (GelLabState.illumination === 'visible') {
+    fb.innerHTML = `
+      <div class="flex items-start gap-2.5 animate-fadeIn">
+        <span class="text-base select-none">🏁</span>
+        <div class="space-y-1 w-full">
+          <strong class="text-slate-900">¡Corrida Electroforética Completada!</strong>
+          <p class="text-slate-700 text-xs">
+            El frente testigo de <strong>azul de bromofenol</strong> ha recorrido el 94% del gel (cerca del polo positivo ➕). La corriente se ha desconectado para evitar que las muestras caigan al tampón.
+          </p>
+          <p class="text-slate-700 text-xs">
+            <strong>Paso de Revelado:</strong> El ADN sigue siendo transparente bajo luz ambiente. Transfiere el gel al <strong>Transiluminador UV</strong> para excitar el fluoróforo y visualizar las bandas por fluorescencia.
+          </p>
+          <div class="pt-1.5">
+            <button onclick="revealGelWithUV()" class="px-3.5 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl transition shadow-sm flex items-center justify-center gap-1.5 w-full sm:w-auto">
+              🟣 Encender Transiluminador UV y REVELAR el Gel (+50 XP)
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  } else {
+    fb.innerHTML = `
+      <div class="flex items-start gap-2.5 animate-fadeIn">
+        <span class="text-base select-none">✨</span>
+        <div class="space-y-1">
+          <strong class="text-purple-900">¡Electroforesis y Revelado UV en Tiempo Real Completados!</strong>
+          <p class="text-slate-700 text-xs">
+            El ADN migró hacia el polo positivo (ánodo) según la ley logarítmica de tamizaje molecular. Tu muestra incluye los fragmentos revelados bajo transiluminador con ${GelLabState.dye === 'sybr' ? 'SYBR Safe (530 nm)' : 'Bromuro de Etidio (605 nm)'}. (+50 XP)
+          </p>
+        </div>
+      </div>
+    `;
+    addXP(50, 'tema1_sub2');
+  }
+}
+
+function revealGelWithUV() {
+  setGelIllumination('uv');
+  SFX.success();
+  addXP(50, 'tema1_sub2');
+  const fb = document.getElementById('gel-sim-feedback');
+  if (fb) {
+    fb.innerHTML = `
+      <div class="flex items-start gap-2.5 animate-fadeIn">
+        <span class="text-base select-none">✨</span>
+        <div class="space-y-1">
+          <strong class="text-purple-900">¡Gel Revelado Exitosamente por Fluorescencia UV! (+50 XP)</strong>
+          <p class="text-slate-700 text-xs">
+            Bajo excitación UV a $302\\text{ nm}$, las moléculas intercalantes de ${GelLabState.dye === 'sybr' ? '<strong>SYBR Safe</strong> (emisión verde a $530\\text{ nm}$)' : '<strong>Bromuro de Etidio</strong> (emisión naranja a $605\\text{ nm}$)'} emiten luz visible proporcional a la masa del amplicón.
+          </p>
+          <p class="text-slate-700 text-xs">
+            Haz clic en cualquier banda luminiscente para inspeccionar su peso molecular ($R_f$, tamaño en pb y ng) o resuelve el reto del Carril 4.
+          </p>
+        </div>
       </div>
     `;
     renderMath();
