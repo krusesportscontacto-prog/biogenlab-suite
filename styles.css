@@ -199,11 +199,23 @@ p[class*="bg-slate-900/"] {
 [class*="from-amber-950"],
 [class*="from-emerald-950"],
 [class*="from-cyan-950"],
+[class*="from-blue-950"],
+[class*="from-indigo-950"],
+[class*="from-purple-950"],
+[class*="from-violet-950"],
+[class*="from-lime-950"],
+[class*="from-rose-950"],
 [class*="bg-emerald-950"]:not(#gel-slab-surface):not(.lcd-display),
 [class*="bg-rose-950"]:not(#gel-slab-surface):not(.lcd-display),
 [class*="bg-amber-950"]:not(#gel-slab-surface):not(.lcd-display),
 [class*="bg-cyan-950"]:not(#gel-slab-surface):not(.lcd-display),
-[class*="bg-indigo-950"]:not(#gel-slab-surface):not(.lcd-display) {
+[class*="bg-indigo-950"]:not(#gel-slab-surface):not(.lcd-display),
+[class*="bg-blue-950"]:not(#gel-slab-surface):not(.lcd-display),
+[class*="bg-purple-950"]:not(#gel-slab-surface):not(.lcd-display),
+[class*="bg-violet-950"]:not(#gel-slab-surface):not(.lcd-display),
+[class*="bg-teal-950"]:not(#gel-slab-surface):not(.lcd-display),
+[class*="bg-lime-950"]:not(#gel-slab-surface):not(.lcd-display),
+[class*="bg-sky-950"]:not(#gel-slab-surface):not(.lcd-display) {
   background-color: var(--bg-surface) !important;
   background-image: none !important;
   border-color: var(--border-subtle) !important;

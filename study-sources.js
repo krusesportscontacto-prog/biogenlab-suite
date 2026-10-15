@@ -51,7 +51,7 @@ window.STUDY_SOURCES = {
           <p class="leading-relaxed text-slate-300">
             El ADN es una <strong>molécula universal</strong>, lo que significa que su estructura físico-química y composición básica son idénticas en todos los reinos biológicos. Por ello, no importa de qué especie o tejido proceda el ADN: dos hebras independientes pueden <strong>unirse o hibridarse</strong> siempre que sus bases nitrogenadas sean complementarias y estén dispuestas de manera adecuada.
           </p>
-          <div class="p-3.5 rounded-xl bg-cyan-950/40 border border-cyan-500/40 my-3 text-cyan-200">
+          <div class="p-3.5 rounded-2xl bg-sky-50 border border-sky-200 my-3 text-sky-900 text-xs sm:text-sm shadow-2xs">
             <strong>Principio Fundamental: Hibridar = Re-naturalizar</strong><br>
             Las moléculas bicatenarias (bicordales) de ADN pueden <strong>desnaturalizarse</strong> (separarse en sus dos hebras complementarias monocatenarias) mediante la aplicación de calor (≈100 °C) que rompe los puentes de hidrógeno sin romper los enlaces covalentes fosfodiéster. Al disminuir gradualmente la temperatura, las hebras complementarias vuelven a emparejarse (<strong>re-naturalización o hibridación</strong>).
           </div>
@@ -213,7 +213,7 @@ window.STUDY_SOURCES = {
           <p class="leading-relaxed text-slate-300">
             El número de cromosomas ($2n$) y la cantidad total de ADN por genoma haploide (denominado <strong>valor C</strong>) varían drásticamente entre especies y <strong>no guardan ninguna relación con la complejidad evolutiva del organismo ni con el número de genes codificantes</strong>.
           </p>
-          <div class="p-3.5 rounded-xl bg-purple-950/40 border border-purple-500/40 my-3 text-purple-200">
+          <div class="p-3.5 rounded-2xl bg-purple-50 border border-purple-200 my-3 text-purple-900 text-xs sm:text-sm shadow-2xs">
             <strong>Ejemplo Clásico de Examen: Los ciervos del género <em>Muntiacus</em></strong><br>
             Existen dos especies morfológicamente casi idénticas ("especies gemelas"):
             <ul class="list-disc pl-5 mt-1 space-y-0.5">
@@ -535,8 +535,8 @@ window.STUDY_SOURCES = {
             <li><strong>Metilación de Histona H3 en Lisina 9 (H3-K9):</strong> Modificación represora clave. La histona H3-K9 metilada recluta a la proteína HP1, la cual atrae a la enzima <strong>DNMT (ADN metiltransferasa)</strong> que metila directamente las citosinas del ADN circundante.</li>
             <li><strong>Bucle de Represión Cruzada:</strong> El ADN metilado se une a la proteína <strong>MeCP2</strong>, que a su vez recluta a la enzima <strong>HDAC</strong>, cerrando un círculo vicioso que condensa permanentemente la heterocromatina.</li>
           </ul>
-          <div class="p-3.5 rounded-xl bg-rose-950/40 border border-rose-500/40 my-3 text-rose-200 text-xs">
-            <strong>Caso Oficial de Examen: Epimutante de Tomate Cnr (Colorless non-ripening)</strong><br>
+          <div class="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 my-3 text-rose-900 text-xs sm:text-sm shadow-2xs">
+            <strong>Caso de Examen: Epimutante de Tomate Cnr (Colorless non-ripening)</strong><br>
             Descubierto por Manning et al. (2006). El mutante produce frutos sin pigmentación roja licopénica y con pericarpio duro y harinoso. Se demostró que se trata de una <strong>epimutación natural</strong>: la secuencia de nucleótidos del gen estaba intacta, pero la <strong>zona promotora del epialelo Cnr se encontraba hipermetilada</strong>, silenciando completamente su expresión. Además, la epimutación presenta reversiones espontáneas con sectores de color rojo normal en el mismo fruto.
           </div>
         `,
@@ -688,10 +688,10 @@ window.STUDY_SOURCES = {
             <li><strong>Amplificación por Puente (Bridge Amplification):</strong> Cada fragmento se dobla sobre la superficie formando un "puente" con un oligonucleótido vecino, generando tras múltiples ciclos de amplificación local una colonia clonal o <strong>cluster de copias idénticas</strong> en el mismo punto físico de la flow cell.</li>
             <li><strong>Secuenciación por Síntesis (SBS):</strong> Se añaden simultáneamente los 4 dNTPs reversibles, cada uno marcado con un fluorocromo de color específico:
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono-code text-center my-2">
-                <span class="p-1.5 rounded bg-emerald-950 border border-emerald-500/50 text-emerald-300">A ➔ Verde</span>
-                <span class="p-1.5 rounded bg-rose-950 border border-rose-500/50 text-rose-300">T ➔ Rojo</span>
-                <span class="p-1.5 rounded bg-blue-950 border border-blue-500/50 text-blue-300">C ➔ Azul</span>
-                <span class="p-1.5 rounded bg-amber-950 border border-amber-500/50 text-amber-300">G ➔ Amarillo</span>
+                <span class="p-2 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 font-bold shadow-2xs">A ➔ Verde</span>
+                <span class="p-2 rounded-xl bg-rose-50 border border-rose-300 text-rose-800 font-bold shadow-2xs">T ➔ Rojo</span>
+                <span class="p-2 rounded-xl bg-blue-50 border border-blue-300 text-blue-800 font-bold shadow-2xs">C ➔ Azul</span>
+                <span class="p-2 rounded-xl bg-amber-50 border border-amber-300 text-amber-800 font-bold shadow-2xs">G ➔ Amarillo</span>
               </div>
               La polimerasa incorpora únicamente un nucleótido por ciclo debido a un bloqueador químico reversible. Un láser de alta resolución fotografía el color emitido por cada cluster; luego se elimina químicamente el fluorocromo y el bloqueador, repitiéndose el ciclo para leer base a base en millones de clusters en paralelo.
             </li>
@@ -791,7 +791,7 @@ window.STUDY_SOURCES = {
               <p>• Se disparan a gran velocidad mediante descargas de helio a alta presión contra suspensiones celulares o callos vegetales, penetrando físicamente la pared celular e integrándose en el genoma nuclear o cloroplástico.</p>
             </div>
           </div>
-          <div class="p-3.5 rounded-xl bg-lime-950/40 border border-lime-500/40 my-3 text-lime-200 text-xs">
+          <div class="p-3.5 rounded-2xl bg-lime-50 border border-lime-200 my-3 text-lime-900 text-xs sm:text-sm shadow-2xs">
             <strong>Dato de Examen: Maíz Transgénico MON810 en España</strong><br>
             En 2016 se cultivaron en España <strong>$129.081\\text{ hectáreas}$ con el maíz transgénico MON810</strong> (creado por Monsanto), resistente al taladro del maíz mediante la expresión de la endotoxina Bt de <em>Bacillus thuringiensis</em>. Esta cifra supuso un incremento del $19.8\\%$ respecto a 2015 según ISAAA. <em>Advertencia de bioseguridad:</em> Se recomienda estrictamente no introducir transgénicos en los centros de origen de las especies cultivadas para prevenir la hibridación y escape génico hacia poblaciones silvestres emparentadas.
           </div>
