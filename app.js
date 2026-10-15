@@ -1147,20 +1147,20 @@ function inspectDnaChem(key) {
   if (!box) return;
   const info = {
     miescher: `
-      <div class="font-bold text-cyan-300">🧪 Friedrich Miescher (1871) y el aislamiento de la "Nucleína"</div>
-      <p class="text-slate-300 mt-1">Aisló del núcleo de las <strong>células de pus</strong> una sustancia ácida rica en <strong>fósforo</strong> a la que llamó <strong>"nucleína"</strong>. De ese término procede directamente el nombre actual de <strong>ácido nucleico</strong>.</p>
+      <div class="font-bold text-sky-950">🧪 Friedrich Miescher (1871) y el aislamiento de la "Nucleína"</div>
+      <p class="text-slate-700 mt-1">Aisló del núcleo de las <strong>células de pus</strong> una sustancia ácida rica en <strong>fósforo</strong> a la que llamó <strong>"nucleína"</strong>. De ese término procede directamente el nombre actual de <strong>ácido nucleico</strong>.</p>
     `,
     ngluc: `
-      <div class="font-bold text-emerald-300">🔗 Enlace N-glucosídico (Intranucleotídico)</div>
-      <p class="text-slate-300 mt-1">Es el enlace químico covalente que une directamente la <strong>base nitrogenada</strong> (purina de doble anillo A/G o pirimidina de un anillo C/T) con el carbono 1' de la <strong>pentosa (azúcar)</strong>.</p>
+      <div class="font-bold text-emerald-950">🔗 Enlace N-glucosídico (Intranucleotídico)</div>
+      <p class="text-slate-700 mt-1">Es el enlace químico covalente que une directamente la <strong>base nitrogenada</strong> (purina de doble anillo A/G o pirimidina de un anillo C/T) con el carbono 1' de la <strong>pentosa (azúcar)</strong>.</p>
     `,
     fosfo: `
-      <div class="font-bold text-amber-300">⛓️ Enlace Éster / Fosfodiéster (Polimerización)</div>
-      <p class="text-slate-300 mt-1">Une el <strong>grupo fosfato</strong> con el <strong>azúcar de nucleótidos consecutivos</strong>, formando el <strong>esqueleto o eje azúcar-fosfato</strong> situado en los lados externos de la doble hélice (con carga negativa neta).</p>
+      <div class="font-bold text-amber-950">⛓️ Enlace Éster / Fosfodiéster (Polimerización)</div>
+      <p class="text-slate-700 mt-1">Une el <strong>grupo fosfato</strong> con el <strong>azúcar de nucleótidos consecutivos</strong>, formando el <strong>esqueleto o eje azúcar-fosfato</strong> situado en los lados externos de la doble hélice (con carga negativa neta).</p>
     `,
     hbonds: `
-      <div class="font-bold text-purple-300">🧲 Puentes de Hidrógeno y Hebras Antiparalelas (Watson y Crick)</div>
-      <p class="text-slate-300 mt-1">Las bases se dirigen hacia el centro perpendiculares al eje: <strong>Adenina y Timina se unen por 2 puentes de H ($A=T$)</strong>; <strong>Guanina y Citosina por 3 puentes de H ($G\\equiv C$)</strong>. Las cadenas son antiparalelas: una va <strong>$5'\\text{P} \\rightarrow 3'\\text{OH}$</strong> y la complementaria <strong>$3'\\text{OH} \\rightarrow 5'\\text{P}$</strong>.</p>
+      <div class="font-bold text-indigo-950">🧲 Puentes de Hidrógeno y Hebras Antiparalelas (Watson y Crick)</div>
+      <p class="text-slate-700 mt-1">Las bases se dirigen hacia el centro perpendiculares al eje: <strong>Adenina y Timina se unen por 2 puentes de H ($A=T$)</strong>; <strong>Guanina y Citosina por 3 puentes de H ($G\\equiv C$)</strong>. Las cadenas son antiparalelas: una va <strong>$5'\\text{P} \\rightarrow 3'\\text{OH}$</strong> y la complementaria <strong>$3'\\text{OH} \\rightarrow 5'\\text{P}$</strong>.</p>
     `
   };
   box.innerHTML = info[key];
@@ -1177,28 +1177,28 @@ function updateThermalSim() {
 
   if (temp < 65) {
     badge.textContent = `${temp} °C (Doble Hélice Hibridada)`;
-    badge.className = 'px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-300 font-mono-code font-bold text-xs';
+    badge.className = 'px-2.5 py-1 rounded-lg bg-sky-100 text-sky-900 border border-sky-300 font-mono-code font-bold text-xs';
     view.innerHTML = `
-      <div class="text-emerald-300 font-mono-code text-xs sm:text-sm">5'P — A — T — G — C — C — T — A — 3'OH  (Especie A)</div>
+      <div class="text-emerald-800 font-mono-code text-xs sm:text-sm font-semibold">5'P — A — T — G — C — C — T — A — 3'OH  (Especie A)</div>
       <div class="text-slate-500 font-mono-code text-xs sm:text-sm">      ‖   ‖   ≡   ≡   ≡   ‖   ‖        (Puentes de H intactos)</div>
-      <div class="text-cyan-300 font-mono-code text-xs sm:text-sm">3'OH— T — A — C — G — G — A — T — 5'P  (Complementaria)</div>
-      <p class="text-slate-400 font-sans pt-2 text-xs">🔄 <strong>Hibridar = re-naturalizar:</strong> Al enfriarse, las hebras complementarias (incluso de especies distintas gracias a la universalidad del ADN) vuelven a unirse por puentes de hidrógeno.</p>
+      <div class="text-sky-800 font-mono-code text-xs sm:text-sm font-semibold">3'OH— T — A — C — G — G — A — T — 5'P  (Complementaria)</div>
+      <p class="text-slate-700 font-sans pt-2 text-xs">🔄 <strong>Hibridar = re-naturalizar:</strong> Al enfriarse, las hebras complementarias (incluso de especies distintas gracias a la universalidad del ADN) vuelven a unirse por puentes de hidrógeno.</p>
     `;
   } else if (temp < 92) {
     badge.textContent = `${temp} °C (Apertura Parcial)`;
-    badge.className = 'px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-mono-code font-bold text-xs';
+    badge.className = 'px-2.5 py-1 rounded-lg bg-amber-100 text-amber-950 border border-amber-300 font-mono-code font-bold text-xs';
     view.innerHTML = `
-      <div class="text-emerald-300 font-mono-code text-xs sm:text-sm">5'P — A   T   G — C — C   T   A — 3'OH</div>
-      <div class="text-amber-400 font-mono-code text-xs sm:text-sm">      ·   ·   ≡   ≡   ≡   ·   ·  (Los pares A=T de 2 puentes se abren antes que G≡C de 3 puentes)</div>
-      <div class="text-cyan-300 font-mono-code text-xs sm:text-sm">3'OH— T   A   C — G — G   A   T — 5'P</div>
+      <div class="text-emerald-800 font-mono-code text-xs sm:text-sm font-semibold">5'P — A   T   G — C — C   T   A — 3'OH</div>
+      <div class="text-amber-800 font-mono-code text-xs sm:text-sm font-bold">      ·   ·   ≡   ≡   ≡   ·   ·  (Los pares A=T de 2 puentes se abren antes que G≡C de 3 puentes)</div>
+      <div class="text-sky-800 font-mono-code text-xs sm:text-sm font-semibold">3'OH— T   A   C — G — G   A   T — 5'P</div>
     `;
   } else {
     badge.textContent = `${temp} °C (¡Desnaturalización Térmica!)`;
-    badge.className = 'px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 font-mono-code font-bold text-xs';
+    badge.className = 'px-2.5 py-1 rounded-lg bg-rose-100 text-rose-950 border border-rose-300 font-mono-code font-bold text-xs';
     view.innerHTML = `
-      <div class="text-emerald-300 pb-2 font-mono-code text-xs sm:text-sm">5'P — A — T — G — C — C — T — A — 3'OH  (Hebra 1 separada)</div>
-      <div class="text-rose-400 text-xs font-sans">🔥 Alrededor de <strong>100 °C</strong> se rompen los puentes de hidrógeno (pero NO los enlaces fosfodiéster). Esta apertura también es el 1º paso indispensable en la replicación celular por las ADN polimerasas.</div>
-      <div class="text-cyan-300 pt-2 font-mono-code text-xs sm:text-sm">3'OH— T — A — C — G — G — A — T — 5'P  (Hebra 2 separada)</div>
+      <div class="text-emerald-800 pb-2 font-mono-code text-xs sm:text-sm font-semibold">5'P — A — T — G — C — C — T — A — 3'OH  (Hebra 1 separada)</div>
+      <div class="text-rose-800 text-xs font-sans font-medium">🔥 Alrededor de <strong>100 °C</strong> se rompen los puentes de hidrógeno (pero NO los enlaces fosfodiéster). Esta apertura también es el 1º paso indispensable en la replicación celular por las ADN polimerasas.</div>
+      <div class="text-sky-800 pt-2 font-mono-code text-xs sm:text-sm font-semibold">3'OH— T — A — C — G — G — A — T — 5'P  (Hebra 2 separada)</div>
     `;
   }
 }
@@ -1240,7 +1240,7 @@ function verifyChargaffChallenge() {
   addXP(50, 'tema1_sub1');
   const exp = document.getElementById('chg-explanation');
   if (exp && !exp.innerHTML.includes('¡Dominio de Subtema 1')) {
-    exp.innerHTML += `<div class="mt-2 p-2 rounded bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-bold">🎉 ¡Dominio de Subtema 1 registrado! (+50 XP)</div>`;
+    exp.innerHTML += `<div class="mt-2 p-2.5 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-950 font-bold text-xs">🎉 ¡Dominio de Subtema 1 registrado! (+50 XP)</div>`;
   }
 }
 
@@ -1892,7 +1892,7 @@ function checkGelChallenge() {
   }
 
   if (GelLabState.challengeSelected === '750') {
-    fb.innerHTML = '<span class="text-emerald-300 font-bold">🎉 ¡Correcto! Amplicón de 750 pb identificado con éxito. (+50 XP)</span>';
+    fb.innerHTML = '<span class="text-emerald-800 font-bold">🎉 ¡Correcto! Amplicón de 750 pb identificado con éxito. (+50 XP)</span>';
     if (badge) {
       badge.textContent = '✅ Superado';
       badge.className = 'text-[10px] font-bold text-emerald-400';
@@ -2039,23 +2039,23 @@ function simGenomeElement(type) {
   if (!box) return;
   if (type === 'transposon') {
     box.innerHTML = `
-      <div class="font-bold text-rose-300">🦗 Transposones ("Genes Saltarines")</div>
-      <p class="text-slate-300 text-xs sm:text-sm mt-1">Fragmentos de ADN no traducibles en el ADN intergénico que se mueven por el genoma, pudiendo provocar reordenaciones o mutaciones al insertarse.</p>
+      <div class="font-bold text-rose-950">🦗 Transposones ("Genes Saltarines")</div>
+      <p class="text-slate-700 text-xs sm:text-sm mt-1">Fragmentos de ADN no traducibles en el ADN intergénico que se mueven por el genoma, pudiendo provocar reordenaciones o mutaciones al insertarse.</p>
     `;
   } else if (type === 'pseudogene') {
     box.innerHTML = `
-      <div class="font-bold text-amber-300">🏺 Seudogenes ("Falsos Genes")</div>
-      <p class="text-slate-300 text-xs sm:text-sm mt-1">Secuencias muy similares a genes funcionales que perdieron su capacidad de expresión por mutaciones deletéreas. Actúan como reservorio génico evolutivo.</p>
+      <div class="font-bold text-amber-950">🏺 Seudogenes ("Falsos Genes")</div>
+      <p class="text-slate-700 text-xs sm:text-sm mt-1">Secuencias muy similares a genes funcionales que perdieron su capacidad de expresión por mutaciones deletéreas. Actúan como reservorio génico evolutivo.</p>
     `;
   } else if (type === 'repertoire') {
     box.innerHTML = `
-      <div class="font-bold text-emerald-300">📈 Repertorio Génico y Potencial Evolutivo</div>
-      <p class="text-slate-300 text-xs sm:text-sm mt-1">Un mayor repertorio confiere mayor plasticidad para evolucionar ante nuevas presiones bióticas o climáticas.</p>
+      <div class="font-bold text-emerald-950">📈 Repertorio Génico y Potencial Evolutivo</div>
+      <p class="text-slate-700 text-xs sm:text-sm mt-1">Un mayor repertorio confiere mayor plasticidad para evolucionar ante nuevas presiones bióticas o climáticas.</p>
     `;
   } else {
     box.innerHTML = `
-      <div class="font-bold text-cyan-300">🧩 Estructura Fragmentada del Gen Eucariota</div>
-      <p class="text-slate-300 text-xs sm:text-sm mt-1">Exones (codificantes maduros), Intrones (eliminados por splicing con 5' Cap y 3' Poli-A) y regiones reguladoras flanqueantes.</p>
+      <div class="font-bold text-sky-950">🧩 Estructura Fragmentada del Gen Eucariota</div>
+      <p class="text-slate-700 text-xs sm:text-sm mt-1">Exones (codificantes maduros), Intrones (eliminados por splicing con 5' Cap y 3' Poli-A) y regiones reguladoras flanqueantes.</p>
     `;
     addXP(50, 'tema1_sub4');
   }
@@ -2322,11 +2322,11 @@ function setEpigeneticState(state) {
   const box = document.getElementById('epigenetic-output');
   if (!box) return;
   if (state === 'active') {
-    box.innerHTML = `<div class="font-bold text-emerald-400">🍅 Tomate Maduro (Eucromatina Activa):</div><p class="text-slate-300 text-xs sm:text-sm">Histonas acetiladas y promotor desmetilado: expresión normal del gen de maduración.</p>`;
+    box.innerHTML = `<div class="font-bold text-emerald-950">🍅 Tomate Maduro (Eucromatina Activa):</div><p class="text-slate-700 text-xs sm:text-sm">Histonas acetiladas y promotor desmetilado: expresión normal del gen de maduración.</p>`;
   } else if (state === 'cnr') {
-    box.innerHTML = `<div class="font-bold text-amber-300">🍋 Epimutante Cnr (Manning et al., 2006):</div><p class="text-slate-300 text-xs sm:text-sm">Hipermetilación del promotor, MeCP2 recluta HDAC, desacetilación de histonas y cromatina compactada.</p>`;
+    box.innerHTML = `<div class="font-bold text-amber-950">🍋 Epimutante Cnr (Manning et al., 2006):</div><p class="text-slate-700 text-xs sm:text-sm">Hipermetilación del promotor, MeCP2 recluta HDAC, desacetilación de histonas y cromatina compactada.</p>`;
   } else {
-    box.innerHTML = `<div class="font-bold text-rose-400">🔴 Reversión Somática Espontánea:</div><p class="text-slate-300 text-xs sm:text-sm">Desmetilación estocástica del ADN que recupera sectores rojos en el fruto.</p>`;
+    box.innerHTML = `<div class="font-bold text-rose-950">🔴 Reversión Somática Espontánea:</div><p class="text-slate-700 text-xs sm:text-sm">Desmetilación estocástica del ADN que recupera sectores rojos en el fruto.</p>`;
   }
   SFX.click();
 }
@@ -2754,13 +2754,13 @@ function inspectGenePart(partKey) {
   if (!box || !info) return;
   box.innerHTML = `
     <div class="flex flex-wrap items-center justify-between gap-2">
-      <h4 class="font-bold text-cyan-300 text-sm">${info.title}</h4>
+      <h4 class="font-bold text-sky-950 text-sm">${info.title}</h4>
       <div class="flex gap-2">
-        <span class="px-2 py-0.5 rounded bg-slate-800 text-xs font-mono-code text-emerald-300">${info.transcribed}</span>
-        <span class="px-2 py-0.5 rounded bg-slate-800 text-xs font-mono-code text-purple-300">${info.translated}</span>
+        <span class="px-2.5 py-0.5 rounded-lg bg-emerald-50 border border-emerald-200 text-xs font-mono-code font-bold text-emerald-900">${info.transcribed}</span>
+        <span class="px-2.5 py-0.5 rounded-lg bg-indigo-50 border border-indigo-200 text-xs font-mono-code font-bold text-indigo-900">${info.translated}</span>
       </div>
     </div>
-    <p class="text-slate-300 leading-relaxed text-xs sm:text-sm mt-1">${info.desc}</p>
+    <p class="text-slate-700 leading-relaxed text-xs sm:text-sm mt-1">${info.desc}</p>
   `;
   SFX.click();
 }
@@ -2771,23 +2771,23 @@ function testPointMutation(type) {
   if (!box) return;
   if (type === 'silent') {
     box.innerHTML = `
-      <div class="font-bold text-emerald-400">1. Mutación Silenciosa: <span class="font-mono-code">AGG ➔ CGG</span> (Ambos Arginina)</div>
-      <p class="text-slate-300 text-xs sm:text-sm mt-1">• <strong>Mecanismo:</strong> Genera un codón sinónimo por la <strong>degeneración del código genético</strong>. No provoca alteración en la secuencia de aminoácidos ni en la función proteica.</p>
+      <div class="font-bold text-emerald-950">1. Mutación Silenciosa: <span class="font-mono-code">AGG ➔ CGG</span> (Ambos Arginina)</div>
+      <p class="text-slate-700 text-xs sm:text-sm mt-1">• <strong>Mecanismo:</strong> Genera un codón sinónimo por la <strong>degeneración del código genético</strong>. No provoca alteración en la secuencia de aminoácidos ni en la función proteica.</p>
     `;
   } else if (type === 'missense') {
     box.innerHTML = `
-      <div class="font-bold text-amber-400">2. Mutación de Cambio de Sentido (Missense)</div>
-      <p class="text-slate-300 text-xs sm:text-sm mt-1">• <strong>Mecanismo:</strong> Sustitución que codifica para un aminoácido químicamente distinto, pudiendo provocar mal plegamiento (*misfolding*), alteración del centro activo o pérdida de afinidad.</p>
+      <div class="font-bold text-amber-950">2. Mutación de Cambio de Sentido (Missense)</div>
+      <p class="text-slate-700 text-xs sm:text-sm mt-1">• <strong>Mecanismo:</strong> Sustitución que codifica para un aminoácido químicamente distinto, pudiendo provocar mal plegamiento (*misfolding*), alteración del centro activo o pérdida de afinidad.</p>
     `;
   } else if (type === 'nonsense_early') {
     box.innerHTML = `
-      <div class="font-bold text-rose-400">3A. Mutación Sin Sentido (Nonsense) Temprana: <span class="font-mono-code">CAG (Gln) ➔ UAG (STOP)</span></div>
-      <p class="text-slate-300 text-xs sm:text-sm mt-1">• <strong>Consecuencia:</strong> Al aparecer muy cerca del inicio, la traducción se interrumpe y la proteína prácticamente ni se sintetiza.</p>
+      <div class="font-bold text-rose-950">3A. Mutación Sin Sentido (Nonsense) Temprana: <span class="font-mono-code">CAG (Gln) ➔ UAG (STOP)</span></div>
+      <p class="text-slate-700 text-xs sm:text-sm mt-1">• <strong>Consecuencia:</strong> Al aparecer muy cerca del inicio, la traducción se interrumpe y la proteína prácticamente ni se sintetiza.</p>
     `;
   } else {
     box.innerHTML = `
-      <div class="font-bold text-rose-400">3B. Mutación Sin Sentido (Nonsense) Intermedia/Avanzada: <span class="font-mono-code">CAG (Gln) ➔ UAG (STOP)</span></div>
-      <p class="text-slate-300 text-xs sm:text-sm mt-1">• <strong>Consecuencia:</strong> Se produce una <strong>proteína truncada</strong> más corta de lo normal que carece de funcionalidad biológica. (+50 XP)</p>
+      <div class="font-bold text-rose-950">3B. Mutación Sin Sentido (Nonsense) Intermedia/Avanzada: <span class="font-mono-code">CAG (Gln) ➔ UAG (STOP)</span></div>
+      <p class="text-slate-700 text-xs sm:text-sm mt-1">• <strong>Consecuencia:</strong> Se produce una <strong>proteína truncada</strong> más corta de lo normal que carece de funcionalidad biológica. (+50 XP)</p>
     `;
     addXP(50, 'tema2_sub3');
   }
@@ -2800,19 +2800,19 @@ function simEmbryoMosaic(stage) {
   if (!box) return;
   if (stage === 'zygote2') {
     box.innerHTML = `
-      <div class="font-bold text-cyan-300">🌓 Mutación Somática en 2 Blastómeros (1ª División del Cigoto)</div>
-      <p class="text-slate-300 text-xs sm:text-sm mt-1">• Cuanto más temprana en el desarrollo, mayor el tejido afectado: exactamente el <strong>50% de las células del organismo adulto</strong> serán mutantes y el 50% silvestres (individuo mosaico). (+25 XP)</p>
+      <div class="font-bold text-sky-950">🌓 Mutación Somática en 2 Blastómeros (1ª División del Cigoto)</div>
+      <p class="text-slate-700 text-xs sm:text-sm mt-1">• Cuanto más temprana en el desarrollo, mayor el tejido afectado: exactamente el <strong>50% de las células del organismo adulto</strong> serán mutantes y el 50% silvestres (individuo mosaico). (+25 XP)</p>
     `;
     addXP(25, 'tema2_mosaic');
   } else if (stage === 'late') {
     box.innerHTML = `
-      <div class="font-bold text-slate-200">🔬 Mutación Somática Tardía</div>
-      <p class="text-slate-300 text-xs sm:text-sm mt-1">• Solo las células hijas mitóticas derivadas de esa célula somática heredarán la mutación, originando un pequeño sector o parche tisular mutante.</p>
+      <div class="font-bold text-slate-900">🔬 Mutación Somática Tardía</div>
+      <p class="text-slate-700 text-xs sm:text-sm mt-1">• Solo las células hijas mitóticas derivadas de esa célula somática heredarán la mutación, originando un pequeño sector o parche tisular mutante.</p>
     `;
   } else {
     box.innerHTML = `
-      <div class="font-bold text-purple-300">🧬 Mutación Germinal (Gametos)</div>
-      <p class="text-slate-300 text-xs sm:text-sm mt-1">• Se transmite a la descendencia y <strong>estará presente en el 100% de las células del nuevo individuo</strong>. Son las mutaciones con trascendencia en la selección natural y evolución.</p>
+      <div class="font-bold text-indigo-950">🧬 Mutación Germinal (Gametos)</div>
+      <p class="text-slate-700 text-xs sm:text-sm mt-1">• Se transmite a la descendencia y <strong>estará presente en el 100% de las células del nuevo individuo</strong>. Son las mutaciones con trascendencia en la selección natural y evolución.</p>
     `;
   }
   SFX.click();
@@ -2826,8 +2826,8 @@ function inspectTransformMethod(key) {
   if (!box) return;
   const data = {
     agro: `
-      <div class="font-bold text-emerald-400 text-sm">🦠 Agrobacterium tumefaciens (Vector Biológico Natural - 7 Pasos)</div>
-      <ol class="list-decimal list-inside text-slate-300 space-y-1 text-xs leading-relaxed mt-2">
+      <div class="font-bold text-emerald-950 text-sm">🦠 Agrobacterium tumefaciens (Vector Biológico Natural - 7 Pasos)</div>
+      <ol class="list-decimal list-inside text-slate-700 space-y-1 text-xs leading-relaxed mt-2">
         <li>Se extrae el plásmido Ti de la bacteria y el T-DNA se corta con enzima de restricción.</li>
         <li>El ADN foráneo con el gen de interés se corta con la misma enzima.</li>
         <li>Se ligan formando un plásmido Ti recombinante.</li>
@@ -2838,15 +2838,15 @@ function inspectTransformMethod(key) {
       </ol>
     `,
     biobal: `
-      <div class="font-bold text-cyan-400 text-sm">🔫 Biobalística o Cañón de Partículas (Particle Gun Method)</div>
-      <ul class="list-disc list-inside text-slate-300 space-y-1 text-xs leading-relaxed mt-2">
+      <div class="font-bold text-sky-950 text-sm">🔫 Biobalística o Cañón de Partículas (Particle Gun Method)</div>
+      <ul class="list-disc list-inside text-slate-700 space-y-1 text-xs leading-relaxed mt-2">
         <li><strong>Fundamento:</strong> Bombardeo físico de tejidos vegetales con micropartículas de oro o tungsteno recubiertas de ADN.</li>
         <li><strong>Ventaja:</strong> Supera la barrera de monocotiledóneas (cereales) y dicotiledóneas, integrando el ADN en el genoma nuclear o cloroplástico.</li>
       </ul>
     `,
     rescue: `
-      <div class="font-bold text-amber-400 text-sm">🛡️ Rescate de Embriones y Maíz MON810 en España (2016)</div>
-      <ul class="list-disc list-inside text-slate-300 space-y-1 text-xs leading-relaxed mt-2">
+      <div class="font-bold text-amber-950 text-sm">🛡️ Rescate de Embriones y Maíz MON810 en España (2016)</div>
+      <ul class="list-disc list-inside text-slate-700 space-y-1 text-xs leading-relaxed mt-2">
         <li><strong>Rescate de embriones:</strong> Se aíslan embriones de cruces interespecíficos antes de su aborto y se cultivan in vitro.</li>
         <li><strong>Maíz MON810 (Monsanto):</strong> En España se cultivaron 129.081 hectáreas en 2016 (+19,8% respecto a 2015), resistente al taladro del maíz.</li>
         <li><strong>Bioseguridad:</strong> No introducir transgénicos en zonas de origen silvestre de los cultivos para evitar flujos genéticos indeseados.</li>
