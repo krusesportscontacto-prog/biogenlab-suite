@@ -61,7 +61,7 @@
       
       <!-- Logo y Título -->
       <div class="flex items-center gap-3 cursor-pointer" onclick="switchView('dashboard')">
-        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-600 via-indigo-600 to-teal-500 flex items-center justify-center text-white font-black text-2xl shadow-md">
+        <div class="w-11 h-11 rounded-2xl bg-blue-600 flex items-center justify-center text-white font-black text-2xl shadow-sm">
           🧬
         </div>
         <div>
@@ -149,9 +149,7 @@
           </button>
         </div>
       </div>
-      <div class="absolute -right-10 -bottom-10 opacity-5 text-[200px] pointer-events-none select-none">
-        🧬
-      </div>
+
     </div>
 
     <!-- Las 4 Cards de Selección de Tema -->
@@ -334,9 +332,9 @@
 
     <!-- ==================== SECCIÓN 0: CENTRO DE MANDO (HUB) ==================== -->
     <section id="tema1-sec-hub" class="space-y-6">
-      <div class="bg-gradient-to-r from-sky-50 via-white to-sky-50/50 border border-sky-200 rounded-3xl p-6 sm:p-8 shadow-sm">
+      <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm">
         <div class="max-w-3xl space-y-3">
-          <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-cyan-500/20 text-sky-700 border border-cyan-500/30">
+          <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-sky-50 text-sky-800 border border-sky-200">
             Saga BioGenLab • Módulo I • Fundamentos de Biología Molecular y Genómica
           </span>
           <h2 class="text-2xl sm:text-4xl font-bold text-slate-900 font-sans">Domina el Tema 1: Genética y Genómica</h2>
@@ -417,19 +415,19 @@
         </div>
 
         <!-- Arena de Examen + Códice -->
-        <div class="md:col-span-2 bg-gradient-to-br from-amber-50 via-white to-emerald-50 border border-amber-200 rounded-3xl p-6 flex flex-col justify-between shadow-sm">
+        <div class="md:col-span-2 bg-white border border-slate-200 hover:border-amber-300 rounded-3xl p-6 flex flex-col justify-between shadow-sm transition-all">
           <div>
-            <span class="px-2.5 py-1 bg-amber-500/20 text-amber-800 rounded-md text-xs font-mono-code font-bold">CERTIFICACIÓN INTEGRAL DEL TEMA 1</span>
+            <span class="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200 rounded-md text-xs font-mono-code font-bold">CERTIFICACIÓN INTEGRAL DEL TEMA 1</span>
             <h3 class="text-lg font-bold text-slate-900 font-sans mt-3">Arena de Examen (28 Preguntas de Examen Oficial) + Códice Completo</h3>
-            <p class="text-xs text-slate-700 mt-2 leading-relaxed">
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
               Incluye los conceptos y problemas esenciales de evaluación técnica (como por qué Sanger es la base de todos los métodos posteriores, cómo deducir la secuencia del ADN sintetizado y de la hebra molde a partir de un gel de 4 carriles, el diseño invertido y complementario del <em>primer</em> en dirección $5'\rightarrow 3'$, los colores exactos del cromatograma y las cifras en Mb del genoma humano).
             </p>
           </div>
           <div class="grid grid-cols-2 gap-3 mt-5">
-            <button onclick="switchTopicTab('tema1', 'arena')" class="py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs sm:text-sm transition-all">
+            <button onclick="switchTopicTab('tema1', 'arena')" class="py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-xs sm:text-sm transition-all shadow-xs">
               🏆 Ir al Examen (28 Retos)
             </button>
-            <button onclick="openStudyVolume('tema1')" class="py-2.5 bg-emerald-500/20 hover:bg-emerald-500 hover:text-slate-950 text-emerald-700 border border-emerald-500/40 font-bold rounded-xl text-xs sm:text-sm transition-all">
+            <button onclick="openStudyVolume('tema1')" class="py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 font-bold rounded-xl text-xs sm:text-sm transition-all shadow-2xs">
               📖 Manual Teórico Oficial
             </button>
           </div>
@@ -1273,9 +1271,9 @@
 
     <!-- ==================== SECCIÓN 0: CENTRO DE MANDO (HUB) ==================== -->
     <section id="tema2-sec-hub" class="space-y-6">
-      <div class="bg-gradient-to-r from-emerald-50 via-white to-emerald-50/50 border border-emerald-200 rounded-3xl p-6 sm:p-8 shadow-sm">
+      <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm">
         <div class="max-w-3xl space-y-3">
-          <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-emerald-500/20 text-emerald-700 border border-emerald-500/30">
+          <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-emerald-50 text-emerald-800 border border-emerald-200">
             Misión de Entrenamiento Integral • Cero Omisiones
           </span>
           <h2 class="text-2xl sm:text-4xl font-bold text-slate-900 font-sans">Domina el Tema 2: De la Mutación al Fenotipo</h2>
@@ -1367,25 +1365,25 @@
               Tautómeros ceto/amino vs enol/imino (A-imino con C, T-enol con G). Desaminación de C a U (uracilo-ADN glicosilasa, G-C→A-T). Daño oxidativo (8-oxo-guanina). Físicos y químicos (5-bromouracilo, intercalantes/indels, alquilantes EMS). TILLING (genética inversa, no OGM, M1-M4). Epigenética: H3-K9, MeCP2, HDAC, desacetilación y tomate <em>Cnr</em> (Manning et al. 2006).
             </p>
           </div>
-          <button onclick="switchTopicTab('tema2', 'sub5')" class="mt-5 w-full py-2.5 bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-amber-900 font-semibold rounded-xl text-sm transition-all">
+          <button onclick="switchTopicTab('tema2', 'sub5')" class="mt-5 w-full py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-xl text-xs sm:text-sm transition-all shadow-xs">
             Entrar al Laboratorio 5 →
           </button>
         </div>
 
         <!-- Examen & Códice -->
-        <div class="bg-gradient-to-br from-amber-950/40 via-slate-900 to-cyan-950/40 border border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between">
+        <div class="bg-white border border-slate-200 hover:border-amber-300 rounded-3xl p-6 flex flex-col justify-between shadow-sm transition-all">
           <div>
-            <span class="px-2.5 py-1 bg-amber-500/20 text-amber-800 rounded-md text-xs font-mono-code font-bold">CERTIFICACIÓN FINAL</span>
+            <span class="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200 rounded-md text-xs font-mono-code font-bold">CERTIFICACIÓN FINAL</span>
             <h3 class="text-lg font-bold text-slate-900 font-sans mt-3">Arena de Examen (30 Preguntas) + Códice</h3>
-            <p class="text-xs text-slate-700 mt-2 leading-relaxed">
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
               Pon a prueba tu memoria con un banco riguroso de 30 preguntas filtrables por subtema con explicaciones detalladas o consulta el Códice interactivo donde están desglosados todos los conceptos, esquemas y modelos moleculares de referencia.
             </p>
           </div>
           <div class="grid grid-cols-2 gap-2 mt-5">
-            <button onclick="switchTopicTab('tema2', 'arena')" class="py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs transition-all">
-              🏆 Ir al Examen
+            <button onclick="switchTopicTab('tema2', 'arena')" class="py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-xs sm:text-sm transition-all shadow-xs">
+              🏆 Ir al Examen (30)
             </button>
-            <button onclick="openStudyVolume('tema2')" class="py-2.5 bg-cyan-500/20 hover:bg-cyan-500 hover:text-slate-950 text-sky-700 border border-cyan-500/40 font-bold rounded-xl text-xs transition-all">
+            <button onclick="openStudyVolume('tema2')" class="py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 font-bold rounded-xl text-xs sm:text-sm transition-all shadow-2xs">
               📖 Manual Teórico Oficial
             </button>
           </div>
@@ -1958,9 +1956,9 @@
 
     <!-- ==================== SECCIÓN 0: CENTRO DE MANDO (HUB) ==================== -->
     <section id="tema3-sec-hub" class="space-y-6">
-      <div class="bg-gradient-to-r from-slate-900 via-indigo-950/50 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 sm:p-8 neon-indigo">
+      <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm">
         <div class="max-w-3xl space-y-3">
-          <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+          <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-indigo-50 text-indigo-800 border border-indigo-200">
             Saga BioGenLab • Módulo III • Biotecnología Molecular, Marcadores y Clonación
           </span>
           <h2 class="text-2xl sm:text-4xl font-bold text-slate-900 font-sans">Domina el Tema 3: Los Marcadores Moleculares y la Diversidad Genética</h2>
@@ -2058,19 +2056,19 @@
         </div>
 
         <!-- Examen & Códice -->
-        <div class="bg-gradient-to-br from-amber-50 via-white to-emerald-50 border border-amber-200 rounded-3xl p-6 flex flex-col justify-between shadow-sm">
+        <div class="bg-white border border-slate-200 hover:border-amber-300 rounded-3xl p-6 flex flex-col justify-between shadow-sm transition-all">
           <div>
-            <span class="px-2.5 py-1 bg-amber-500/20 text-amber-800 rounded-md text-xs font-mono-code font-bold">CERTIFICACIÓN INTEGRAL DEL TEMA 3</span>
+            <span class="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200 rounded-md text-xs font-mono-code font-bold">CERTIFICACIÓN INTEGRAL DEL TEMA 3</span>
             <h3 class="text-lg font-bold text-slate-900 font-sans mt-3">Arena de Examen (30 Retos Oficiales) + Códice Completo</h3>
-            <p class="text-xs text-slate-700 mt-2 leading-relaxed">
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
               Pon a prueba tu dominio de todas las dianas de restricción, diferencias entre RFLP, RAPD, PCR e Illumina, colores de fluorocromos con bloqueador reversible y aplicaciones en conservación y MAS.
             </p>
           </div>
           <div class="grid grid-cols-2 gap-3 mt-5">
-            <button onclick="switchTopicTab('tema3', 'arena')" class="py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs transition-all">
+            <button onclick="switchTopicTab('tema3', 'arena')" class="py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-xs sm:text-sm transition-all shadow-xs">
               🏆 Ir al Examen (30)
             </button>
-            <button onclick="openStudyVolume('tema3')" class="py-2.5 bg-emerald-500/20 hover:bg-emerald-500 hover:text-slate-950 text-emerald-700 border border-emerald-500/40 font-bold rounded-xl text-xs transition-all">
+            <button onclick="openStudyVolume('tema3')" class="py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 font-bold rounded-xl text-xs sm:text-sm transition-all shadow-2xs">
               📖 Manual Teórico Oficial
             </button>
           </div>
@@ -2515,9 +2513,9 @@
 
     <!-- ==================== SECCIÓN 0: CENTRO DE MANDO (HUB) ==================== -->
     <section id="tema4-sec-hub" class="space-y-6">
-      <div class="bg-gradient-to-r from-slate-900 via-lime-950/40 to-slate-900 border border-lime-500/30 rounded-2xl p-6 sm:p-8 neon-lime">
+      <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm">
         <div class="max-w-3xl space-y-3">
-          <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-lime-500/20 text-lime-800 border border-lime-500/30">
+          <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-lime-50 text-lime-900 border border-lime-200">
             Saga BioGenLab • Módulo IV • Biotecnología Vegetal y Cultivo In Vitro
           </span>
           <h2 class="text-2xl sm:text-4xl font-bold text-slate-900 font-sans">Domina el Cultivo In Vitro de Tejidos Vegetales</h2>
@@ -2592,25 +2590,25 @@
               Concepto de morfogénesis, totipotencia y <strong>regeneración adventicia</strong>. Diferencias clave: <strong>Organogénesis</strong> (tallos y raíces independientes; auxina + citoquinina) vs <strong>Embriogénesis somática</strong> (tallo y radícula simultáneos sin fecundación de gametos; inducida por <strong>2,4-D</strong>; pasa por las 4 fases: <strong>globular, corazón, torpedo y cotiledonar</strong>). Regeneración <strong>directa vs indirecta</strong> (con fase de callo) y ejemplos de zanahoria, pimiento, calabacín y berenjena.
             </p>
           </div>
-          <button onclick="switchTopicTab('tema4', 'sub4')" class="mt-5 w-full py-2.5 bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-amber-900 font-semibold rounded-xl text-sm transition-all">
+          <button onclick="switchTopicTab('tema4', 'sub4')" class="mt-5 w-full py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-xl text-xs sm:text-sm transition-all shadow-xs">
             Entrar al Laboratorio 4 →
           </button>
         </div>
 
         <!-- Arena de Examen + Códice -->
-        <div class="md:col-span-2 bg-gradient-to-br from-amber-950/40 via-slate-900 to-cyan-950/40 border border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between">
+        <div class="md:col-span-2 bg-white border border-slate-200 hover:border-amber-300 rounded-3xl p-6 flex flex-col justify-between shadow-sm transition-all">
           <div>
-            <span class="px-2.5 py-1 bg-amber-500/20 text-amber-800 rounded-md text-xs font-mono-code font-bold">CERTIFICACIÓN INTEGRAL DE CULTIVOS IN VITRO</span>
+            <span class="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200 rounded-md text-xs font-mono-code font-bold">CERTIFICACIÓN INTEGRAL DE CULTIVOS IN VITRO</span>
             <h3 class="text-lg font-bold text-slate-900 font-sans mt-3">Arena de Examen (28 Retos Oficiales) + Códice Completo</h3>
-            <p class="text-xs text-slate-700 mt-2 leading-relaxed">
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
               Incluye las <strong>"Posibles preguntas de examen"</strong> listadas explícitamente en el Subtema 3 (¿En qué consiste la micropropagación?, ¿Para qué se utiliza?, ¿Qué ventajas tiene?, ¿Por qué se analizan los materiales de partida?, ¿Cómo se multiplican?, ¿Qué factores influyen en la regeneración?, ¿En qué consiste la aclimatación?) y todas las cuestiones clave del Subtema 4.
             </p>
           </div>
           <div class="grid grid-cols-2 gap-3 mt-5">
-            <button onclick="switchTopicTab('tema4', 'arena')" class="py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs sm:text-sm transition-all">
+            <button onclick="switchTopicTab('tema4', 'arena')" class="py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-xs sm:text-sm transition-all shadow-xs">
               🏆 Ir al Examen (28 Retos)
             </button>
-            <button onclick="openStudyVolume('tema4')" class="py-2.5 bg-cyan-500/20 hover:bg-cyan-500 hover:text-slate-950 text-sky-700 border border-cyan-500/40 font-bold rounded-xl text-xs sm:text-sm transition-all">
+            <button onclick="openStudyVolume('tema4')" class="py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 font-bold rounded-xl text-xs sm:text-sm transition-all shadow-2xs">
               📖 Manual Teórico Oficial
             </button>
           </div>
@@ -2978,16 +2976,16 @@
 
   <!-- ==================== VISTA 6: CASOS PRÁCTICOS DE CONVOCATORIA OFICIAL ==================== -->
   <div id="view-exam-workshop" class="hidden max-w-7xl mx-auto px-4 py-8 space-y-6 flex-1 w-full">
-    <div class="bg-gradient-to-r from-amber-50 via-white to-amber-50/50 p-6 sm:p-8 rounded-3xl border border-amber-300 shadow-sm">
+    <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
       <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
         <div>
           <div class="flex items-center gap-2 mb-1">
-            <span class="px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-800 font-mono-code text-xs font-bold border border-amber-500/40">EVALUACIÓN INTERACTIVA ACTIVA</span>
-            <span class="px-2.5 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 font-mono-code text-xs">13 CASOS PRÁCTICOS</span>
+            <span class="px-2.5 py-0.5 rounded-lg bg-amber-50 text-amber-900 font-mono-code text-xs font-bold border border-amber-200">EVALUACIÓN INTERACTIVA ACTIVA</span>
+            <span class="px-2.5 py-0.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200 font-mono-code text-xs">13 CASOS PRÁCTICOS</span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-sans">Casos Prácticos de Convocatoria Oficial</h2>
         </div>
-        <button id="btn-exam-return" onclick="switchView('dashboard')" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-xs font-bold text-slate-200 transition">
+        <button id="btn-exam-return" onclick="switchView('dashboard')" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-xs font-bold text-slate-700 hover:text-slate-900 transition flex items-center gap-1.5 shadow-2xs">
           ← Volver al Panel
         </button>
       </div>
@@ -3004,16 +3002,16 @@
 
   <!-- ==================== VISTA 7: BIBLIOTECA DE ESTUDIO OFICIAL (MANUALES Y FUENTES) ==================== -->
   <div id="view-codex" class="hidden max-w-7xl mx-auto px-4 py-8 space-y-6 flex-1 w-full">
-    <div class="bg-gradient-to-r from-emerald-50 via-white to-emerald-50/50 p-6 sm:p-8 rounded-3xl border border-emerald-200 shadow-sm">
+    <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
       <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
         <div>
           <div class="flex items-center gap-2 mb-1">
-            <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-700 font-mono-code text-xs font-bold border border-emerald-500/40">FUENTES ORIGINALES DE LA ASIGNATURA</span>
-            <span class="px-2.5 py-0.5 rounded bg-cyan-500/20 text-sky-700 font-mono-code text-xs">4 VOLÚMENES COMPLETOS</span>
+            <span class="px-2.5 py-0.5 rounded-lg bg-sky-50 text-sky-800 font-mono-code text-xs font-bold border border-sky-200">FUENTES ORIGINALES DE LA ASIGNATURA</span>
+            <span class="px-2.5 py-0.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200 font-mono-code text-xs">4 VOLÚMENES COMPLETOS</span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-sans">Biblioteca de Estudio Oficial: Manuales Teóricos</h2>
         </div>
-        <button onclick="switchView('dashboard')" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-xs font-bold text-slate-200 transition">
+        <button onclick="switchView('dashboard')" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-xs font-bold text-slate-700 hover:text-slate-900 transition flex items-center gap-1.5 shadow-2xs">
           ← Volver al Panel
         </button>
       </div>

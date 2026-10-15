@@ -853,7 +853,7 @@ function renderExamWorkshop() {
           <span class="text-xs font-bold text-slate-900">${completedCount} de ${total} Casos Superados (${pct}%)</span>
         </div>
         <div class="w-64 h-2.5 rounded-full bg-slate-100 overflow-hidden border border-slate-200">
-          <div class="h-full bg-gradient-to-r from-amber-500 to-emerald-500 transition-all duration-500" style="width: ${pct}%"></div>
+          <div class="h-full bg-emerald-600 transition-all duration-500" style="width: ${pct}%"></div>
         </div>
       </div>
       <div class="flex items-center gap-3">
